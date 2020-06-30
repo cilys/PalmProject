@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="155dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_et_bg"
+            android:drawableLeft="@mipmap/icon_et_search"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:hint="搜索"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingLeft="5dp"
+            android:singleLine="true"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="21dp"
+            android:gravity="center"
+            android:text="取消"
+            android:textSize="14sp" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_search_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:text="搜索指定内容"
+            android:textSize="14sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tv_day_log"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/shape_work_log_search_type"
+                    android:gravity="center"
+                    android:text="日报"
+                    android:textColor="@color/theme_white"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tv_week_log"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/shape_work_log_search_type"
+                    android:gravity="center"
+                    android:text="周报"
+                    android:textColor="@color/theme_white"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tv_month_log"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/shape_work_log_search_type"
+                    android:gravity="center"
+                    android:text="月报"
+                    android:textColor="@color/theme_white"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tv_project"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/shape_work_log_search_type"
+                    android:gravity="center"
+                    android:text="项目"
+                    android:textColor="@color/theme_white"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tv_worker"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/shape_work_log_search_type"
+                    android:gravity="center"
+                    android:text="人员"
+                    android:textColor="@color/theme_white"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tv_tag"
+                    android:layout_width="70dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/shape_work_log_search_type"
+                    android:gravity="center"
+                    android:text="标签"
+                    android:textColor="@color/theme_white"
+                    android:textSize="14sp" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_mic"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="71dp"
+            android:src="@mipmap/icon_mic" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:gravity="center"
+            android:text="按住讲话录入"
+            android:textColor="#FF6F6D6D"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/theme_background_f5"
+        android:divider="@color/theme_background_f5"
+        android:dividerHeight="17dp"
+        android:padding="15dp" />
+
+</LinearLayout>

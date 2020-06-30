@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_f5"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="#FEFCE9"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_marginLeft="13dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="温馨提示：公司负责人可以设置管理员并分配对应的权限"
+            android:textColor="#E26D43"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/rl_add_manager"
+        android:layout_width="match_parent"
+        android:layout_marginTop="1dp"
+        android:layout_height="47dp"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@mipmap/icon_nav_add"
+            android:layout_marginLeft="13dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="添加管理员"
+            android:textColor="#101010"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/tv_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="65dp"
+            android:gravity="center"
+            android:text="查看系统设置日志"
+            android:textColor="@color/theme_color"
+            android:textSize="14sp" />
+    </RelativeLayout>
+</LinearLayout>

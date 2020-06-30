@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:background="@color/theme_background_f5"
+    android:gravity="center"
+    android:id="@+id/ll_post_add"
+    android:layout_height="60dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FF6F6D6D"
+        android:textSize="25sp"
+        android:text=" + "
+        />
+    <TextView
+        android:id="@+id/tv_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FF6F6D6D"
+        android:textSize="14sp"
+        android:text="  添加职务"
+        />
+
+</LinearLayout>

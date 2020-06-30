@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <com.aopcloud.palmproject.view.CircleImageView
+        android:id="@+id/iv_img"
+        android:layout_width="41dp"
+        android:layout_height="41dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="10dp"
+        android:src="@color/theme_color"
+        app:border_color="#00000000"
+        app:border_width="0dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="81dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="16dp"
+
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="张三 "
+                android:textColor="@color/theme_color"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="6dp"
+                android:text="2019-10-20   12:00"
+                android:textColor="#FF101010"
+                android:textSize="14dp" />
+        </RelativeLayout>
+
+
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="进度反馈至 20% "
+            android:textColor="#FF101010"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="反馈留言"
+            android:textColor="#FF101010"
+            android:textSize="14dp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:visibility="gone"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/tv_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:text="工单：高压配电柜 1AH"
+            android:layout_marginBottom="10dp"
+            android:textColor="#FF6F6D6D"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

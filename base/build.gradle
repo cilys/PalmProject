@@ -1,0 +1,50 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            Date debugDate = new Date();
+            debugDate.setTime(debugDate.getTime()+(3*86400*1000))
+            buildConfigField ('Long', 'DEBUG_DURATION',"${debugDate.time}L")
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //noinspection GradleCompatible
+    api 'com.android.support:appcompat-v7:28.0.0'
+    api 'com.android.support:support-v4:28.0.0'
+
+    api 'com.jakewharton:butterknife:9.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0'
+
+    api 'com.gyf.immersionbar:immersionbar:3.0.0'
+
+    api 'de.greenrobot:eventbus:2.4.0'
+
+    // layout
+    api 'vip.devkit.widget:layout-state:2.0.1'
+    api 'com.squareup.okhttp3:okhttp:3.11.0'
+    api 'com.zhy:okhttputils:2.6.2'
+
+
+}

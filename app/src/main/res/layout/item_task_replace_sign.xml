@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@color/theme_white">
+
+        <com.aopcloud.palmproject.view.CircleImageView
+            android:id="@+id/iv_img"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18dp"
+            app:border_color="#00000000"
+            app:border_width="0dp" />
+
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/iv_img"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="二安"
+            android:textColor="#101010"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_mobile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_below="@+id/tv_name"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/iv_img"
+            android:gravity="center"
+            android:text="1300000000"
+            android:textColor="@color/theme_font_6f"
+            android:textSize="12sp" />
+
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="24dp"
+            android:gravity="center"
+            android:clickable="false"
+            android:button="@drawable/shape_theme_checkbox_bg"
+           />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

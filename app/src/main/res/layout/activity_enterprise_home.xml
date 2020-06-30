@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_white"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="122dp"
+        android:background="@drawable/shape_enterprise_head_bg" />
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="9dp"
+        android:src="@mipmap/icon_head_back" />
+
+
+    <ImageView
+        android:id="@+id/iv_setting"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginRight="12dp"
+        android:src="@mipmap/qiyeguanli" />
+
+    <RelativeLayout
+        android:id="@+id/rl_head_layout"
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginRight="13dp"
+        android:background="@drawable/shape_enterprise_head_info_bg"
+        android:elevation="2dp">
+
+
+        <ImageView
+            android:id="@+id/iv_qr_code"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="12dp"
+            android:src="@mipmap/icon_qr_code" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="41dp"
+            android:gravity="left"
+            android:text="广州市锋云计算机科技有限公司"
+            android:textColor="@color/theme_font_black"
+            android:textSize="16dp" />
+
+
+        <TextView
+            android:id="@+id/tv_no_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"
+            android:gravity="left"
+            android:text="团队编码：AA99001 企业负责人 周祚栋"
+            android:textColor="#F9101010"
+            android:textSize="12dp" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_head_layout"
+        android:layout_marginTop="20dp"
+        android:background="@color/theme_background_f5"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rl_info"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/theme_white"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="企业基本信息"
+                android:textColor="@color/theme_font_black"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="24dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="18dp"
+                android:src="@mipmap/icon_more" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_qr"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/theme_white"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="企业二维码"
+                android:textColor="@color/theme_font_black"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="24dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="18dp"
+                android:src="@mipmap/icon_more" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:elevation="2dp"
+        android:layout_height="wrap_content">
+
+    <com.aopcloud.palmproject.view.CircleImageView
+
+        android:id="@+id/iv_logo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="4dp"
+        android:elevation="2dp"
+        android:layout_marginRight="12dp"
+        app:border_color="#00000000"
+        app:border_width="0dp" />
+    </LinearLayout>
+</RelativeLayout>

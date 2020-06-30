@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_f5"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/theme_white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="部门名称"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/et_department_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_vertical|left"
+                    android:hint="请输入部门名称"
+                    android:paddingLeft="5dp"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="18dp"
+                    android:src="@mipmap/icon_more"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/theme_white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="部门主管"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_department_manger"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:hint="请选择"
+                    android:paddingLeft="5dp"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="18dp"
+                    android:src="@mipmap/icon_more" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/theme_white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="上级部门"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/tv_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:hint="不选则无上级部门"
+                    android:paddingLeft="5dp"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="18dp"
+                    android:src="@mipmap/icon_more" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:gravity="center"
+                android:text="权限设置"
+                android:textColor="@color/theme_font_black"
+                android:textSize="15sp" />
+
+            <RelativeLayout
+                android:id="@+id/rl_enterprise_department"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_gone_department"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center"
+                    android:text="隐藏本部门"
+                    android:textColor="#101010"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_gone_department"
+                    android:layout_marginLeft="30dp"
+                    android:text="开启后，本部门将不会显示在全局范围的通讯录"
+                    android:textColor="@color/theme_font_6f"
+                    android:textSize="12sp" />
+
+
+                <Switch
+                    android:id="@+id/sw_gone_department"
+                    android:layout_width="44dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="12dp"
+                    android:checked="false"
+                    android:thumb="@drawable/selector_switch_thumb_40_28"
+                    android:track="@drawable/selector_switch_track_40_28" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:gravity="center"
+
+                    android:text="职能设置"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dp"
+                        android:src="@mipmap/icon_mine_card" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="11dp"
+                        android:gravity="center"
+                        android:text="项目管理"
+                        android:textColor="#101010"
+                        android:textSize="16sp" />
+
+                    <Spinner
+                        android:id="@+id/spinner_project"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:entries="@array/department_project"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/theme_font_6f"
+                        android:textSize="12sp" />
+
+
+                    <Switch
+                        android:id="@+id/switch_project"
+                        android:layout_width="44dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="12dp"
+                        android:checked="true"
+                        android:thumb="@drawable/selector_switch_thumb_40_28"
+                        android:track="@drawable/selector_switch_track_40_28" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dp"
+                        android:src="@mipmap/icon_mine_card" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="11dp"
+                        android:gravity="center"
+                        android:text="发布公告"
+                        android:textColor="#101010"
+                        android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/theme_font_6f"
+                        android:textSize="12sp" />
+
+
+                    <Switch
+                        android:id="@+id/switch_notice"
+                        android:layout_width="44dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="12dp"
+                        android:checked="true"
+                        android:thumb="@drawable/selector_switch_thumb_40_28"
+                        android:track="@drawable/selector_switch_track_40_28" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dp"
+                        android:src="@mipmap/icon_mine_card" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="11dp"
+                        android:gravity="center"
+                        android:text="预算管理"
+                        android:textColor="#101010"
+                        android:textSize="16sp" />
+
+                    <Spinner
+                        android:id="@+id/spinner_budget"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:entries="@array/department_budget"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/theme_font_6f"
+                        android:textSize="12sp" />
+
+
+                    <Switch
+                        android:id="@+id/switch_budget"
+                        android:layout_width="44dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="12dp"
+                        android:checked="true"
+                        android:thumb="@drawable/selector_switch_thumb_40_28"
+                        android:track="@drawable/selector_switch_track_40_28" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dp"
+                        android:src="@mipmap/icon_mine_card" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="11dp"
+                        android:gravity="center"
+                        android:text="采购管理"
+                        android:textColor="#101010"
+                        android:textSize="16sp" />
+
+                    <Spinner
+                        android:id="@+id/spinner_purchase"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:entries="@array/department_purchase"
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/theme_font_6f"
+                        android:textSize="12sp" />
+
+
+                    <Switch
+                        android:id="@+id/switch_purchase"
+                        android:layout_width="44dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="12dp"
+                        android:checked="true"
+                        android:thumb="@drawable/selector_switch_thumb_40_28"
+                        android:track="@drawable/selector_switch_track_40_28" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dp"
+                        android:src="@mipmap/icon_mine_card" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="11dp"
+                        android:gravity="center"
+                        android:text="合同管理"
+                        android:textColor="#101010"
+                        android:textSize="16sp" />
+
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/theme_font_6f"
+                        android:textSize="12sp" />
+
+
+                    <Switch
+                        android:id="@+id/switch_contract"
+                        android:layout_width="44dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="12dp"
+                        android:checked="true"
+                        android:thumb="@drawable/selector_switch_thumb_40_28"
+                        android:track="@drawable/selector_switch_track_40_28" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dp"
+                        android:src="@mipmap/icon_mine_card" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="11dp"
+                        android:gravity="center"
+                        android:text="报销管理"
+                        android:textColor="#101010"
+                        android:textSize="16sp" />
+
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/theme_font_6f"
+                        android:textSize="12sp" />
+
+
+                    <Switch
+                        android:id="@+id/switch_expense"
+                        android:layout_width="44dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="12dp"
+                        android:checked="true"
+                        android:thumb="@drawable/selector_switch_thumb_40_28"
+                        android:track="@drawable/selector_switch_track_40_28" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dp"
+                        android:src="@mipmap/icon_mine_card" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="11dp"
+                        android:gravity="center"
+                        android:text="记账管理"
+                        android:textColor="#101010"
+                        android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/theme_font_6f"
+                        android:textSize="12sp" />
+
+
+                    <Switch
+                        android:id="@+id/switch_bookkeeping"
+                        android:layout_width="44dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="12dp"
+                        android:checked="true"
+                        android:thumb="@drawable/selector_switch_thumb_40_28"
+                        android:track="@drawable/selector_switch_track_40_28" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dp"
+                        android:src="@mipmap/icon_mine_card" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="11dp"
+                        android:gravity="center"
+                        android:text="发票管理"
+                        android:textColor="#101010"
+                        android:textSize="16sp" />
+
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/theme_font_6f"
+                        android:textSize="12sp" />
+
+
+                    <Switch
+                        android:id="@+id/switch_invoice"
+                        android:layout_width="44dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="12dp"
+                        android:checked="true"
+                        android:thumb="@drawable/selector_switch_thumb_40_28"
+                        android:track="@drawable/selector_switch_track_40_28" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dp"
+                        android:src="@mipmap/icon_mine_card" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="11dp"
+                        android:gravity="center"
+                        android:text="合作单位"
+                        android:textColor="#101010"
+                        android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/theme_font_6f"
+                        android:textSize="12sp" />
+
+
+                    <Switch
+                        android:id="@+id/switch_cooperate"
+                        android:layout_width="44dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="12dp"
+                        android:checked="true"
+                        android:thumb="@drawable/selector_switch_thumb_40_28"
+                        android:track="@drawable/selector_switch_track_40_28" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dp"
+                        android:src="@mipmap/icon_mine_card" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="11dp"
+                        android:gravity="center"
+                        android:text="物质管理"
+                        android:textColor="#101010"
+                        android:textSize="16sp" />
+
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/theme_font_6f"
+                        android:textSize="12sp" />
+
+
+                    <Switch
+                        android:id="@+id/switch_goods"
+                        android:layout_width="44dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="12dp"
+                        android:checked="true"
+                        android:thumb="@drawable/selector_switch_thumb_40_28"
+                        android:track="@drawable/selector_switch_track_40_28" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="1dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="15dp"
+                        android:src="@mipmap/icon_mine_card" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="11dp"
+                        android:gravity="center"
+                        android:text="操作记录"
+                        android:textColor="#101010"
+                        android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/theme_font_6f"
+                        android:textSize="12sp" />
+
+
+                    <Switch
+                        android:id="@+id/switch_record"
+                        android:layout_width="44dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="12dp"
+                        android:checked="true"
+                        android:thumb="@drawable/selector_switch_thumb_40_28"
+                        android:track="@drawable/selector_switch_track_40_28" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/theme_white"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shape_submit"
+            android:gravity="center"
+            android:text="确认编辑"
+            android:textColor="@color/theme_white"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</LinearLayout>

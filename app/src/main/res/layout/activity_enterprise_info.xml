@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_f5"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:background="@color/theme_white"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.aopcloud.palmproject.view.CircleImageView
+                    android:id="@+id/iv_logo"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    app:border_color="#00000000"
+                    app:border_width="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="点击更换"
+                    android:textColor="@color/theme_font_6f"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/theme_white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="名称"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="15sp" />
+
+
+                <EditText
+                    android:id="@+id/et_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/iv_name"
+                    android:background="@color/theme_white"
+                    android:gravity="right|center"
+                    android:minWidth="100dp"
+                    android:text="广州市锋云计算机科技有限公司"
+                    android:textColor="#6F6D6D"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/iv_name"
+                    android:layout_width="22dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="18dp"
+                    android:src="@mipmap/icon_more" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/theme_white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_industry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="行业"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="15sp" />
+
+
+                <EditText
+                    android:id="@+id/et_industry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/iv_industry"
+                    android:background="@color/theme_white"
+                    android:gravity="right|center"
+                    android:minWidth="100dp"
+                    android:text="建筑工程"
+                    android:textColor="#6F6D6D"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/iv_industry"
+                    android:layout_width="22dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="18dp"
+                    android:src="@mipmap/icon_more" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/theme_white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_area_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="地区"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="15sp" />
+
+
+                <TextView
+                    android:id="@+id/tv_district"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/iv_area"
+                    android:background="@color/theme_white"
+                    android:gravity="right|center"
+                    android:minWidth="100dp"
+                    android:text="广东省 梅州市 梅江区"
+                    android:textColor="#6F6D6D"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/iv_area"
+                    android:layout_width="22dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="18dp"
+                    android:src="@mipmap/icon_more" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/theme_white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="企业负责人"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="15sp" />
+
+
+                <EditText
+                    android:id="@+id/et_manger_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/iv_area"
+                    android:layout_weight="1"
+                    android:background="@color/theme_white"
+                    android:gravity="right|center"
+                    android:minWidth="100dp"
+                    android:text="周祚栋"
+                    android:textColor="#6F6D6D"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/iv_manger_name"
+                    android:layout_width="22dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="18dp"
+                    android:src="@mipmap/icon_more" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/theme_white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="注册资金："
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="15sp" />
+
+
+                <EditText
+                    android:id="@+id/et_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toStartOf="@+id/iv_area"
+                    android:layout_weight="1"
+                    android:background="@color/theme_white"
+                    android:gravity="right|center"
+                    android:minWidth="100dp"
+                    android:text="500"
+                    android:textColor="#6F6D6D"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="40dp"
+                    android:background="@color/theme_white"
+                    android:gravity="right|center"
+                    android:text="万元"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:gravity="center"
+                android:text="收款信息"
+                android:textColor="@color/theme_font_black"
+                android:textSize="15sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/theme_white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="账户名称："
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="15sp" />
+
+
+                <EditText
+                    android:id="@+id/et_account_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="116dp"
+                    android:background="@color/theme_white"
+                    android:gravity="left|center"
+                    android:hint="输入开户银行"
+                    android:minWidth="100dp"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/theme_white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="开户行："
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="15sp" />
+
+
+                <EditText
+                    android:id="@+id/et_blank_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="116dp"
+                    android:background="@color/theme_white"
+                    android:gravity="left|center"
+                    android:hint="请输入名称"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="1dp"
+                android:background="@color/theme_white"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="银行账号："
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="15sp" />
+
+
+                <EditText
+                    android:id="@+id/et_blank_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="116dp"
+                    android:background="@color/theme_white"
+                    android:gravity="left|center"
+                    android:hint="请输入账号"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:gravity="center"
+                android:text="证件照片"
+                android:textColor="@color/theme_font_black"
+                android:textSize="15sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_list_img"
+                android:layout_width="match_parent"
+                android:layout_height="97dp"
+                android:layout_marginBottom="40dp"
+                android:background="@color/theme_white" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

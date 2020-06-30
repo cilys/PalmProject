@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_f5"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical">
+
+
+        <com.aopcloud.palmproject.view.segmented.SegmentedBarView
+
+            android:id="@+id/sb_view"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            app:seg_isShowLine="true"
+            app:seg_outerMarginColor="@color/theme_color"
+            app:seg_outerMarginWidth="1dp"
+            app:seg_outerRadii="20dp"
+            app:seg_selectedColor="@color/theme_color"
+            app:seg_selectedTextColor="#ffffff"
+            app:seg_textSize="14sp"
+            app:seg_unSelectedColor="#ffffff"
+            app:seg_unSelectedTextColor="@color/theme_color" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/theme_white">
+
+
+        <CheckBox
+            android:id="@+id/checkbox_all"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:button="@null"
+            android:drawableRight="@drawable/shape_theme_checkbox_bg"
+            android:paddingLeft="65dp"
+            android:paddingRight="24dp"
+            android:text="全选" />
+
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_width="match_parent"
+        android:layout_marginTop="1dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/theme_white"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shape_submit"
+            android:gravity="center"
+            android:text="帮TA签到"
+            android:textColor="@color/theme_white"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</LinearLayout>

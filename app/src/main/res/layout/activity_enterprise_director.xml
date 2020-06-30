@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_f5"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title_more" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="217dp"
+        android:background="@color/theme_white"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="106dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/shape_mine_card_bg"
+            android:elevation="2dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <com.aopcloud.palmproject.view.CircleImageView
+                android:id="@+id/iv_img"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="31dp" />
+
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="3dp"
+                android:layout_toEndOf="@+id/iv_img"
+                android:gravity="center"
+                android:text="周祚栋"
+                android:textColor="@color/theme_font_black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_name"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="8dp"
+                android:layout_toEndOf="@+id/iv_img"
+                android:gravity="center"
+                android:text="CEO"
+                android:textColor="@color/theme_font_6f"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="3dp"
+            android:layout_toEndOf="@+id/iv_img"
+            android:gravity="center"
+            android:text="职位"
+            android:textColor="@color/theme_font_6f"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_position_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_name"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/iv_img"
+            android:gravity="center"
+            android:text="CEO"
+            android:textColor="@color/theme_font_black"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/iv_img"
+        android:gravity="center"
+        android:text="你要选择的职位可能是"
+        android:textColor="@color/theme_font_6f"
+        android:textSize="14sp" />
+</LinearLayout>

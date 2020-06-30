@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_white"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/theme_white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="66dp"
+            android:background="@drawable/shape_enterprise_qr_code_bg"
+            android:elevation="2dp">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="59dp"
+                android:text="广州市锋云计算机科技有限公司"
+                android:textStyle="bold"
+                android:textColor="@color/theme_font_black"
+                android:textSize="20sp" />
+
+
+            <ImageView
+                android:id="@+id/iv_qr_code"
+                android:layout_width="219dp"
+                android:layout_height="219dp"
+                android:layout_below="@+id/tv_name"
+                android:layout_centerHorizontal="true"
+                android:padding="5dp"
+                android:background="@drawable/shape_mine_card_bg"
+                android:layout_marginTop="30dp"
+                android:src="@mipmap/icon_qr_code" />
+
+
+            <TextView
+                android:id="@+id/tv_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_qr_code"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="17dp"
+                android:text="团队编码：AA99001 企业负责人 周祚栋"
+                android:textColor="@color/theme_font_black"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:elevation="2dp">
+
+
+            <com.aopcloud.palmproject.view.CircleImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:src="@color/theme_color"
+                app:border_color="@color/theme_white"
+                app:border_width="0dp" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

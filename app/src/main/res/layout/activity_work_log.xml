@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_white"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title" />
+
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/tab_view"
+        android:layout_width="fill_parent"
+        android:layout_height="45dip"
+        android:background="#ffffffff"
+        android:paddingBottom="5.0dip"
+        app:tl_indicator_color="@color/theme_color"
+        app:tl_indicator_corner_radius="1.5dip"
+        app:tl_indicator_height="3.0dip"
+        app:tl_indicator_width="15.0dip"
+        app:tl_tab_space_equal="true"
+        app:tl_textSelectColor="@color/theme_color"
+        app:tl_textUnselectColor="@color/theme_font_black"
+        app:tl_textsize="16.0sp" />
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/page_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/theme_white"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shape_submit"
+            android:gravity="center"
+            android:text="新增汇报"
+            android:textColor="@color/theme_white"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>

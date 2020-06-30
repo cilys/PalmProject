@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:background="@color/theme_white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="27dp"
+            android:background="#FFBBBBBB" />
+
+        <TextView
+            android:id="@+id/tv_no"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/shape_dot_theme"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/theme_white"
+            android:textSize="14sp" />
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="9dp"
+            android:layout_toEndOf="@+id/tv_no"
+            android:clickable="false" />
+
+        <vip.devkit.view.common.dtextview.DrawableTextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/checkbox"
+            android:gravity="center_vertical"
+            android:text="[周祚栋]办理作业票"
+            app:drawableSrc="@mipmap/icon_arrows_down"
+                app:drawablePosition="right"
+            app:drawableWidth="20dp"
+            app:drawableHeight="20dp"
+            android:textColor="#FF6F6D6D"
+            android:textStyle="normal" />
+
+
+
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:text="剩余12天"
+            android:textColor="#FF6F6D6D"
+            android:textStyle="normal" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_time_layout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="27dp"
+                android:background="#FFBBBBBB" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="23dp"
+                android:background="@drawable/shape_dot_f8" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:layout_toStartOf="@+id/tv_end_time"
+                android:gravity="center"
+                android:text="完成"
+                android:textColor="#FF888888"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/tv_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:gravity="center"
+                android:text="10-15 15:54"
+                android:textColor="#FF101010"
+                android:textStyle="normal" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="27dp"
+                android:background="#FFBBBBBB" />
+
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="23dp"
+                android:background="@drawable/shape_dot_f8" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:layout_toStartOf="@+id/tv_create_time"
+                android:gravity="center"
+                android:text="创建"
+                android:textColor="#FF888888"
+                android:textStyle="normal" />
+            <TextView
+                android:id="@+id/tv_create_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:gravity="center"
+                android:text="10-15 15:54"
+                android:textColor="#FF101010"
+                android:textStyle="normal" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

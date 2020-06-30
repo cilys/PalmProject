@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/theme_background_f5"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="45dp"
+            android:gravity="center"
+            android:text="管理员"
+            android:textColor="#101010"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:textSize="14sp"
+            android:gravity="center|right" />
+
+        <ImageView
+            android:id="@+id/iv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:src="@mipmap/icon_more" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="11dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/icon_entereprise_department" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:gravity="center"
+            android:text="组织架构管理"
+            android:textColor="#101010"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/iv_tips"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="3dp"
+            android:src="@mipmap/icon_enterprise_tips" />
+        <vip.devkit.view.common.dtextview.DrawableTextView
+            android:id="@+id/tv_permission"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:gravity="center|right"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:hint="请选择"
+            app:drawableHeight="25dp"
+            app:drawableSrc="@mipmap/icon_sort_down"
+            app:drawablePosition="right"
+            app:drawableWidth="28dp"
+            android:textColor="@color/theme_font_6f"
+            android:textSize="14sp" />
+
+
+        <Switch
+            android:id="@+id/switch_department"
+            android:layout_width="44dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            android:checked="false"
+            android:thumb="@drawable/selector_switch_thumb_40_28"
+            android:track="@drawable/selector_switch_track_40_28" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="15dp"
+            android:src="@mipmap/icon_enterprise_info_2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:gravity="center"
+            android:text="企业信息"
+            android:textColor="#101010"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:entries="@array/department_project"
+            android:textAlignment="textEnd"
+            android:textColor="@color/theme_font_6f"
+            android:textSize="12sp" />
+
+
+        <Switch
+            android:id="@+id/switch_info"
+            android:layout_width="44dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            android:checked="false"
+            android:thumb="@drawable/selector_switch_thumb_40_28"
+            android:track="@drawable/selector_switch_track_40_28" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <TextView
+            android:id="@+id/tv_del"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_alignParentBottom="true"
+            android:text="删除"
+            android:textColor="#C60707"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_height="47dp"/>
+    </RelativeLayout>
+</LinearLayout>

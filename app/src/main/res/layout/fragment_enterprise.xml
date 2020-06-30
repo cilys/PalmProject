@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_f5"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/theme_color">
+
+        <TextView
+            android:id="@+id/tv_enterprise_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="25dp"
+            android:text=""
+            android:textColor="@color/theme_white"
+            android:textSize="18sp" />
+
+
+
+
+        <TextView
+            android:id="@+id/tv_switch_enterprise"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="25dp"
+            android:text="切换"
+            android:textColor="@color/theme_white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/theme_color"
+        android:paddingTop="20dp"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:id="@+id/ll_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/iv_cancel"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@mipmap/icon_enterprise_info" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="企业信息"
+                android:textColor="@color/theme_white"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/iv_cancel"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@mipmap/icon_enterprise_tell" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="通讯录"
+                android:textColor="@color/theme_white"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_work"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/iv_cancel"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@mipmap/icon_enterprise_todo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="工作汇报"
+                android:textColor="@color/theme_white"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/iv_cancel"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="1.6"
+            android:gravity="center"
+            android:orientation="vertical"></LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+
+        android:background="@mipmap/img_enterprise_header">
+
+
+    </LinearLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_todo_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toStartOf="@+id/tv_todo_count"
+                    android:gravity="center"
+                    android:text="------"
+                    android:textColor="@color/theme_font_6f"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_todo_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"
+                    android:minWidth="100dp"
+                    android:text="待办 (0) "
+                    android:textColor="@color/theme_font_6f"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_todo_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toEndOf="@+id/tv_todo_count"
+                    android:gravity="center"
+                    android:text="------"
+                    android:textColor="@color/theme_font_6f"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_todo_more"
+                    android:layout_width="58dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/shape_head_more"
+                    android:gravity="center"
+                    android:text="更多"
+                    android:textColor="@color/theme_font_6f"
+                    android:textSize="12dp" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_todo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_project_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toStartOf="@+id/tv_project_count"
+                    android:gravity="center"
+                    android:text="------"
+                    android:textColor="@color/theme_font_6f"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_project_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"
+                    android:minWidth="100dp"
+                    android:text="最近查看项目 "
+                    android:textColor="@color/theme_font_6f"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_project_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toEndOf="@+id/tv_project_count"
+                    android:gravity="center"
+                    android:text="------"
+                    android:textColor="@color/theme_font_6f"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_project_more"
+                    android:layout_width="58dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/shape_head_more"
+                    android:gravity="center"
+                    android:text="更多"
+                    android:textColor="@color/theme_font_6f"
+                    android:textSize="12dp" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_project"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/tv_task_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toStartOf="@+id/tv_task_count"
+                    android:gravity="center"
+                    android:text="------"
+                    android:textColor="@color/theme_font_6f"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_task_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="20dp"
+
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"
+                    android:minWidth="100dp"
+                    android:text="最近查看任务"
+                    android:textColor="@color/theme_font_6f"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_task_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_toEndOf="@+id/tv_task_count"
+                    android:gravity="center"
+                    android:text="------"
+                    android:textColor="@color/theme_font_6f"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_task_more"
+                    android:layout_width="58dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/shape_head_more"
+                    android:gravity="center"
+                    android:text="更多"
+                    android:textColor="@color/theme_font_6f"
+                    android:textSize="12dp" />
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_task"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+       />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

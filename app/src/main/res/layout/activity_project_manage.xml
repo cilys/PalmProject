@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title" />
+
+
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/tab_view"
+        android:layout_width="match_parent"
+        android:layout_height="45dip"
+        android:background="#ffffffff"
+        android:paddingBottom="5.0dip"
+        app:tl_indicator_color="@color/theme_color"
+        app:tl_indicator_corner_radius="1.5dip"
+        app:tl_indicator_height="3.0dip"
+        app:tl_indicator_width="15.0dip"
+        app:tl_tab_space_equal="true"
+        app:tl_textSelectColor="@color/theme_color"
+        app:tl_textUnselectColor="@color/theme_font_black"
+        app:tl_textsize="16.0sp" />
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/page_view"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/white"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_add_project"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shape_submit_bb"
+            android:gravity="center"
+            android:minWidth="150dp"
+            android:text="新建项目"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_add_project_child"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/shape_submit"
+            android:gravity="center"
+            android:minWidth="150dp"
+            android:text="新建分项"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- base theme colors  -->
+    <color name="base_theme_primary">#409eff</color>
+    <color name="base_theme_success">#67c23a</color>
+    <color name="base_theme_warning">#e6a23c</color>
+    <color name="base_theme_danger">#f56c6c</color>
+    <color name="base_theme_w">#80ffffff</color>
+    <color name="base_theme_accent">#80ffffff</color>
+
+    <color name="base_theme_0">#000000</color>
+
+</resources>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="34dp"
+
+        android:background="@drawable/shape_create_enterprise"
+        android:layout_height="180dp">
+
+        <ImageView
+            android:layout_width="180dp"
+            android:padding="3dp"
+            android:src="@mipmap/icon_create_enterprise"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:textColor="@color/theme_white"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:text="如果您是企业的管理者 \n并希望全体参与"
+                />
+
+            <TextView
+                android:id="@+id/tv_create"
+                android:layout_width="111dp"
+                android:layout_marginTop="15dp"
+                android:layout_height="31dp"
+                android:textColor="@color/theme_white"
+                android:background="@drawable/shape_create_enterprise_btn"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:text="创建团队"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="65dp"
+        android:background="@drawable/shape_create_enterprise"
+        android:layout_height="180dp">
+
+        <ImageView
+            android:layout_width="180dp"
+            android:src="@mipmap/icon_add_enterprise"
+            android:padding="10dp"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:textColor="@color/theme_white"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:text="如果您收到邀请 \n需要加入团队"
+                />
+
+            <TextView
+                android:id="@+id/tv_join"
+                android:layout_width="111dp"
+                android:layout_marginTop="15dp"
+                android:layout_height="31dp"
+                android:textColor="@color/theme_white"
+                android:background="@drawable/shape_create_enterprise_btn"
+                android:textSize="13sp"
+                android:gravity="center"
+                android:text="加入团队"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_skip"
+            android:layout_width="111dp"
+            android:layout_marginTop="15dp"
+            android:layout_height="31dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="42dp"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/theme_white"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:text="跳过"
+            />
+
+    </RelativeLayout>
+</LinearLayout>

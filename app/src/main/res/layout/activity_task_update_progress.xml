@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_f5"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title" />
+
+    <TextView
+        android:id="@+id/tv_last_time"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginLeft="15dp"
+        android:gravity="center"
+        android:text="上次反馈："
+        android:textColor="#FF6F6D6D"
+        android:textSize="13dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/shape_card_bg_10_8"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tv_task_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:text=""
+                android:textColor="#FF080808"
+                android:textSize="13dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/shape_line" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="11dp"
+            android:text="进度"
+            android:textColor="#FF080808"
+            android:textSize="13dp" />
+
+        <com.xw.repo.BubbleSeekBar
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:bsb_always_show_bubble="false"
+            app:bsb_second_track_color="@color/theme_color"
+            app:bsb_second_track_size="6dp"
+            app:bsb_show_thumb_text="true"
+            app:bsb_thumb_color="@color/theme_color"
+            app:bsb_thumb_radius_on_dragging="1dp"
+            app:bsb_track_color="#bbbbbb"
+            app:bsb_track_size="6dp" />
+
+        <RelativeLayout
+            android:id="@+id/rl_number_progress"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="50dp">
+
+            <EditText
+                android:id="@+id/et_number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="21dp"
+                android:background="@color/theme_white"
+                android:layout_toStartOf="@+id/tv_count_unit"
+                android:gravity="center_vertical"
+                android:hint="请输入"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_count_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center_vertical"
+                android:text="台"
+                android:textColor="#FF101010"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/tv_complete_all"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:layout_marginRight="15dp"
+                android:text="全部完成"
+                android:textColor="#FF108CF7"
+                android:textSize="14sp" />
+
+
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/shape_line" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="11dp"
+            android:text="备注："
+            android:textColor="#FF080808"
+            android:textSize="13dp" />
+
+        <EditText
+            android:id="@+id/et_msg"
+            android:layout_width="match_parent"
+            android:layout_height="89dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/shape_et_bg"
+            android:gravity="top|left"
+            android:hint="请输入备注..."
+            android:padding="6dp"
+            android:textSize="14sp" />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="15dp" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/shape_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:text="选取现场记录的影像"
+                android:textColor="#FF080808"
+                android:textSize="13dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="1dp"
+                android:text="（上次反馈时间至今的照片)"
+                android:textColor="#FF999696"
+                android:textSize="13dp" />
+
+        </LinearLayout>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_list_img"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="40dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/theme_white"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shape_submit"
+            android:gravity="center"
+            android:text="立即提交"
+            android:textColor="@color/theme_white"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#00000000"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_dialog_head_withe_bg"
+        android:gravity="center"
+        android:text="高压配电柜 1AH  (2 台)"
+        android:textColor="#FF888888"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/theme_background_f5"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_copy"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/shape_dialog_head_withe_bg"
+            android:gravity="center"
+            android:text="复制创建工单"
+            android:textColor="#FF41484D"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/shape_dialog_head_withe_bg"
+            android:gravity="center"
+            android:text="编辑工单"
+            android:textColor="#FF41484D"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_del"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="1dp"
+
+            android:background="@drawable/shape_dialog_head_withe_bg"
+            android:gravity="center"
+            android:text="删除工单"
+            android:textColor="#FFF90C0C"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/shape_dialog_head_withe_bg"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="#FF41484D"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</LinearLayout>

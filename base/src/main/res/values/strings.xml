@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">base</string>
+
+    <string name="base_exception_layout_null">根布局 layout 为空</string>
+
+    <string name="base_debug_version_duration">您使用的程序是内测版本，将于当地时间%s到期，到期后将无法使用。请尽快下载正式版本使用</string>
+    <string name="base_debug_version_duration_expire">您使用的程序是测试版本，目前已经过期，请下载正式版本使用</string>
+</resources>

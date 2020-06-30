@@ -1,0 +1,30 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.aopcloud.base">
+
+
+    <application>
+
+
+        <!--       aopkit://test/detail-->
+        <activity android:name=".base.BaseActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <!--需要被js调起必须设置-->
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!--协议部分-->
+                <data
+                    android:host="${applicationId}"
+                    android:path="/detail"
+                    android:scheme="aopkit" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4" />
+
+
+    </application>
+</manifest>

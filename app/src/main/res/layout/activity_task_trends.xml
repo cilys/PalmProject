@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_f5"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_marginTop="1dp"
+        android:background="@color/theme_white"
+        android:layout_height="50dp">
+
+        <vip.devkit.view.common.dtextview.DrawableTextView
+            android:id="@+id/tv_discuss"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:text="讨论"
+            android:textColor="#FF101010"
+            android:textSize="14sp"
+            app:drawableHeight="22dp"
+            app:drawablePosition="top"
+            app:drawableSrc="@mipmap/faduanxin"
+            app:drawableWidth="22dp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

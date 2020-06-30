@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_f5"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title_more" />
+
+    <TextView
+        android:id="@+id/tv_department"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginLeft="8dp"
+        android:gravity="center"
+        android:text="工程部"
+        android:textColor="#FF9F9F9F"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="选择成员 "
+            android:textColor="#FF101010"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_member"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="43dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="center|right"
+            android:background="@null"
+            android:hint="请选择"
+            android:textColor="#FF6F6D6D"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/iv_member"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="19dp"
+            android:src="@mipmap/icon_more" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="职务  "
+            android:textColor="#FF101010"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_post"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="43dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="center|right"
+            android:background="@null"
+            android:text="选择职务"
+            android:textColor="#FF6F6D6D"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/iv_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="19dp"
+            android:src="@mipmap/icon_more" />
+    </LinearLayout>
+
+</LinearLayout>

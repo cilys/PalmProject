@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_dialog_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_submit_theme_stroke"
+        android:gravity="center|left"
+        android:padding="@dimen/phoenix_dimen_5"
+        android:text="项目施工员"
+        android:textColor="@color/theme_color"
+        android:textSize="17sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center|left"
+            android:text="工单管理"
+            android:textColor="@color/theme_font_black"
+            android:textSize="17sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:gravity="center"
+        android:text="创建并负责管理工单添加、删除及修改；所有工单可查看。"
+        android:textColor="@color/theme_font_6f"
+        android:textSize="12sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center|left"
+        android:text="工单派发"
+        android:textColor="@color/theme_font_black"
+        android:textSize="17sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center|left"
+        android:text="谁创建的工单由谁负责派发、改派、删除、修改、并控制过程的暂停、取消、终止"
+        android:textColor="@color/theme_font_6f"
+        android:textSize="12sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:gravity="center|left"
+        android:text="成本上报"
+        android:textColor="@color/theme_font_black"
+        android:textSize="17sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center|left"
+        android:text="谁创建的工单就要负责为该工单添加、删除、修改、申请各项支出"
+        android:textColor="@color/theme_font_6f"
+        android:textSize="12sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:gravity="center|left"
+        android:text="预算查看"
+        android:textColor="@color/theme_font_black"
+        android:textSize="17sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center|left"
+        android:text="可查看项目预算"
+        android:textColor="@color/theme_font_6f"
+        android:textSize="12sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f4f4f4" />
+
+    <TextView
+        android:id="@+id/tv_sure"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="知道了"
+        android:textColor="@color/theme_color" />
+</LinearLayout>

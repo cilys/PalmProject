@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_white"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="155dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_map_location_et"
+            android:drawableLeft="@mipmap/icon_et_search"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:hint="按手机号查找"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingLeft="5dp"
+            android:singleLine="true"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_qr_code"
+        android:layout_width="176dp"
+        android:layout_marginTop="30dp"
+        android:layout_height="176dp"
+        android:layout_gravity="center_horizontal"
+
+        android:src="@mipmap/icon_qr_code" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="广州市锋云计算机科技有限公司"
+        android:textColor="@color/theme_font_black"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_no"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="15dp"
+        android:text="团队编码：AA99001 "
+        android:textColor="@color/theme_font_black"
+        android:textSize="14sp" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_add_input"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="1"
+            android:text="输入手机号直接邀请 "
+            android:textColor="#FF101010"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="19dp"
+            android:src="@mipmap/icon_more" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/theme_background_f5" />
+
+    <LinearLayout
+        android:id="@+id/ll_add_contacts"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:background="@color/theme_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="1"
+            android:text="输入手机号直接邀请 "
+            android:textColor="#FF101010"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="19dp"
+            android:src="@mipmap/icon_more" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/theme_background_f5" />
+
+    <LinearLayout
+        android:id="@+id/ll_add_qr"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:background="@color/theme_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="1"
+            android:text="扫个人二维码添加"
+            android:textColor="#FF101010"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="19dp"
+            android:src="@mipmap/icon_more" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/theme_background_f5" />
+
+    <LinearLayout
+        android:id="@+id/ll_share"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+        android:background="@color/theme_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="1"
+            android:text="分享团队企业编码 "
+            android:textColor="#FF101010"
+            android:textSize="16sp" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="19dp"
+            android:src="@mipmap/icon_more" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/theme_background_f5"></LinearLayout>
+
+</LinearLayout>

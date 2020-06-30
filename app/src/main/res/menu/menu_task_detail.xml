@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_qr_code"
+        android:icon="@mipmap/icon_qr_code"
+        android:title="二维码"/>
+
+    <item
+        android:id="@+id/menu_scan"
+        android:icon="@mipmap/icon_scan"
+        android:title="扫一扫"/>
+
+
+</menu>

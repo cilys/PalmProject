@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.otaliastudios.cameraview.CameraView
+        android:id="@+id/camera_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/rl_head_layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/shape_camera_menu_bg"
+            android:padding="5dp"
+            android:src="@mipmap/icon_close" />
+
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true">
+
+            <Switch
+                android:id="@+id/switch_view"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:showText="true"
+                android:switchTextAppearance="@style/switch_text_color_white"
+                android:textColor="@color/theme_white"
+                android:textOff="拍照"
+                android:textOn="录像"
+                android:thumb="@drawable/selector_switch_thumb_camera"
+                android:track="@drawable/selector_switch_track_camera" />
+
+            <TextView
+                android:id="@+id/tv_take_picture"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="拍照"
+                android:textColor="@color/theme_white"
+
+                android:textSize="14sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/tv_take_video"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:text="录像"
+                android:textColor="@color/theme_white"
+                android:textSize="14sp"
+                android:visibility="visible" />
+
+
+        </RelativeLayout>
+
+
+        <ImageView
+            android:id="@+id/iv_refresh"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/shape_camera_menu_bg"
+            android:padding="5dp"
+            android:src="@mipmap/icon_refresh" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_time_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_above="@+id/rl_bottom_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/shape_camera_time_bg"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:background="@drawable/shape_camera_action_video_bg" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="00:00"
+            android:textColor="@color/theme_white"
+            android:textSize="12sp" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:layout_alignParentBottom="true"
+        android:background="#AA101010">
+
+
+        <RelativeLayout
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/shape_camera_action_stroke_bg"
+            android:gravity="center">
+
+
+            <ImageView
+                android:id="@+id/iv_picture"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/shape_camera_action_picture_bg"
+                android:padding="10dp"
+                android:visibility="visible"
+                android:src="@mipmap/paizhao" />
+
+            <ImageView
+                android:id="@+id/iv_video"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/shape_camera_action_video_bg"
+                android:visibility="gone" />
+
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="50dp"
+                android:gravity="center"
+                android:layout_height="50dp"
+                android:textColor="@color/theme_white"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tv_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:gravity="center"
+            android:text="完成"
+            android:textColor="@color/theme_white"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

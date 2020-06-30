@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_f5"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title_more" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="13dp"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="姓名"
+            android:textColor="#FF101010"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="43dp"
+            android:layout_marginRight="15dp"
+            android:background="@null"
+            android:text="周祚栋" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="手机号 "
+            android:textColor="#FF101010"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="43dp"
+            android:layout_marginRight="15dp"
+            android:background="@null"
+            android:text="+86-13823800000" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="13dp"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="工号 "
+            android:textColor="#FF101010"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_worker_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="43dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="center|right"
+            android:background="@null"
+            android:text="No.00000001"
+            android:textColor="#FF6F6D6D"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="19dp"
+            android:src="@mipmap/icon_more" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="入职时间 "
+            android:textColor="#FF101010"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_worker_start_time"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="43dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:gravity="center|right"
+            android:background="@null"
+            android:text="2019-09-09"
+            android:textColor="#FF6F6D6D"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="19dp"
+            android:src="@mipmap/icon_more" />
+    </LinearLayout>
+
+</LinearLayout>

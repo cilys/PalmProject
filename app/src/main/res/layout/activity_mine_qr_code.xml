@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_f5"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/theme_background_f5">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="66dp"
+            android:background="@drawable/shape_mine_qr_code_bg">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="59dp"
+                android:text="周祚栋"
+                android:textColor="@color/theme_white"
+                android:textSize="20sp" />
+
+
+            <ImageView
+                android:id="@+id/iv_sex"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="59dp"
+                android:layout_toEndOf="@+id/tv_name"
+                android:src="@mipmap/icon_sex_boy" />
+
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_name"
+                android:layout_centerHorizontal="true"
+
+                android:layout_marginTop="4dp"
+                android:text="广东 广州"
+                android:textColor="@color/theme_white"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/iv_qr_code"
+                android:layout_width="219dp"
+                android:layout_height="219dp"
+                android:layout_below="@+id/tv_address"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/shape_mine_card_bg"
+                android:padding="10dp"
+                 />
+
+
+            <TextView
+                android:id="@+id/tv_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_qr_code"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:text="使用掌项APP扫描上面二维码即可加入企业团队或班组团队"
+                android:textColor="@color/theme_white"
+                android:textSize="11sp" />
+        </RelativeLayout>
+
+        <com.aopcloud.palmproject.view.CircleImageView
+            android:id="@+id/iv_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:src="@color/theme_color"
+            app:border_color="@color/theme_white"
+            app:border_width="1dp" />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

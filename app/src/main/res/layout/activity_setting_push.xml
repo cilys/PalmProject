@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title" />
+
+    <RelativeLayout
+        android:id="@+id/rl_push_new"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:gravity="center"
+            android:text="新消息推送"
+            android:textColor="@color/theme_font_black"
+            android:textSize="14sp" />
+
+        <Switch
+            android:id="@+id/sw_new_push"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            android:checked="true"
+            android:thumb="@drawable/selector_switch_thumb"
+            android:track="@drawable/selector_switch_track" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_push_audio"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:gravity="center"
+            android:text="推送声音"
+            android:textColor="@color/theme_font_black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_push_audio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="默认"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="39dp"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/theme_font_6f"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="18dp"
+            android:src="@mipmap/icon_more" />
+    </RelativeLayout>
+
+
+</LinearLayout>

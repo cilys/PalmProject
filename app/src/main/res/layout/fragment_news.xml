@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_f5"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/theme_white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="消息"
+            android:textColor="@color/theme_font_black"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_gravity="fill_vertical"
+
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/theme_background_color"
+            android:orientation="vertical">
+
+
+            <vip.devkit.view.common.banner.BannerV
+                android:id="@+id/banner_view"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@color/theme_white"
+                app:banner_default_image="@drawable/ic_default_image"
+                app:banner_image_scale_type="center_crop"
+                app:indicator_drawable_selected="@drawable/banner_indicator_selected"
+                app:indicator_drawable_unselected="@drawable/banner_indicator_unselected"
+                app:indicator_height="5dp"
+                app:indicator_width="5dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:background="@color/theme_white"
+                android:layout_height="38dp">
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_marginLeft="29dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="14sp"
+                    android:text="星期一"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_weather"
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="29dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="14sp"
+                    android:text="晴 10°C 西北风≤3级"
+                    />
+            </RelativeLayout>
+            <com.flyco.tablayout.SlidingTabLayout
+                android:id="@+id/tab_view"
+                android:layout_width="match_parent"
+                android:layout_height="45dip"
+                android:layout_marginTop="10dp"
+                android:background="#ffffffff"
+                android:paddingBottom="5.0dip"
+                app:tl_indicator_color="@color/theme_color"
+                app:tl_indicator_corner_radius="1.5dip"
+                app:tl_indicator_height="3.0dip"
+                app:tl_indicator_width="15.0dip"
+                app:tl_tab_space_equal="false"
+                app:tl_textSelectColor="@color/theme_color"
+                app:tl_textUnselectColor="@color/theme_font_black"
+                app:tl_textsize="16.0sp" />
+
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/page_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/theme_white" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/theme_background_f5"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_card_bg_10_8"
+        android:elevation="2dp"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="高压配电柜 1AH"
+            android:textColor="#FF101010"
+            android:textSize="14sp" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_layout_left"
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/tv_title"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_title"
+                android:text="工量：2 台"
+                android:textColor="#FF888888"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_manager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_count"
+                android:text="发起:周祚栋"
+                android:textColor="#FF101010"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/tv_manager"
+                android:text="11.25-11.28"
+                android:textColor="#FF101010"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_state"
+            android:layout_width="wrap_content"
+            android:layout_toEndOf="@+id/ll_layout_left"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_title"
+            android:text="作业中"
+            android:textColor="#FFB90BB9"
+            android:textSize="14sp" />
+
+
+
+        <TextView
+            android:id="@+id/tv_project_time"
+            android:layout_width="wrap_content"
+            android:layout_toEndOf="@+id/ll_layout_left"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_alignBottom="@+id/ll_layout_left"
+            android:text="限期:30天"
+            android:textColor="#FF888888"
+            android:textSize="12sp" />
+
+
+
+        <TextView
+            android:id="@+id/tv_project_time_count"
+            android:layout_width="wrap_content"
+            android:layout_toEndOf="@+id/tv_project_time"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_alignBottom="@+id/ll_layout_left"
+
+            android:text="剩余20天"
+            android:textColor="#FF888888"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/tv_progress"
+            android:layout_width="60dp"
+            android:gravity="center"
+            android:background="@drawable/shape_submit"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:text="100%"
+            android:textColor="#ffff"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

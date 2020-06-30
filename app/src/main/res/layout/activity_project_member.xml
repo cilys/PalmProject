@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_f5"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/theme_white"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/et_search"
+                    android:layout_width="155dp"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_map_location_et"
+                    android:drawableLeft="@mipmap/icon_et_search"
+                    android:drawablePadding="5dp"
+                    android:gravity="center_vertical"
+                    android:hint="请输入姓名/首字母/手机号"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/theme_white"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            android:layout_marginEnd="3dp"
+                            android:background="@drawable/shape_submit"
+                            android:padding="3dp"
+                            android:src="@mipmap/gongsibiao1" />
+
+                        <TextView
+                            android:id="@+id/tv_project_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            android:layout_marginLeft="12dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="平潭站房坑线F2负荷增长工程"
+                            android:textColor="#FF101010"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:id="@+id/iv_qr_code"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_marginRight="27dp"
+                            android:src="@mipmap/icon_qr_code" />
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_leader"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/theme_white"
+                        android:gravity="center_vertical">
+
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="3dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="21dp"
+                            android:background="@drawable/shape_line" />
+
+                        <TextView
+                            android:id="@+id/tv_leader"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="69dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="管理员"
+                            android:textColor="#FF101010"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_leader_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_toEndOf="@+id/tv_leader"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="（2人）"
+                            android:textColor="#FF6F6D6D"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="27dp"
+                            android:src="@mipmap/icon_more" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_user"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/theme_white"
+                        android:gravity="center_vertical">
+
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="3dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="21dp"
+                            android:background="@drawable/shape_line" />
+
+                        <TextView
+                            android:id="@+id/tv_user"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="69dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="施工员"
+                            android:textColor="#FF101010"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_users"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_toEndOf="@+id/tv_user"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="（2人）"
+                            android:textColor="#FF6F6D6D"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="27dp"
+                            android:src="@mipmap/icon_more" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_team"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/theme_white"
+                        android:gravity="center_vertical">
+
+                        <View
+                            android:layout_width="15dp"
+                            android:layout_height="3dp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="21dp"
+                            android:background="@drawable/shape_line" />
+
+                        <TextView
+                            android:id="@+id/tv_team"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="69dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="班组"
+                            android:textColor="#FF101010"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_teams_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_toEndOf="@+id/tv_team"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="（2人）"
+                            android:textColor="#FF6F6D6D"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="27dp"
+                            android:src="@mipmap/icon_more" />
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="3dp"
+                    android:layout_height="160dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="36dp"
+                    android:background="@drawable/shape_sale_stage_select_line" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="8dp"
+                android:gravity="center"
+                android:text="全部成员 (30人)"
+                android:textColor="#FF9F9F9F"
+                android:textSize="14sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

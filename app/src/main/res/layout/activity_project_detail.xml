@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/ll_common_layout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/theme_color"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_header_back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/icon_head_back" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_header_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="项目详情"
+            android:textColor="@color/theme_white"
+            android:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/tv_team"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toEndOf="@+id/tv_header_title"
+            android:background="@drawable/shape_bg_white_stroke"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="项目成员"
+            android:textColor="@color/theme_white"
+            android:textSize="12sp" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_header_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:minWidth="50dp">
+
+            <ImageView
+                android:id="@+id/iv_header_more"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="8dp"
+                android:src="@mipmap/icon_header_more" />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            app:elevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:background="@color/theme_color"
+                android:orientation="vertical"
+                app:layout_scrollFlags="scroll">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/iv_qr_code"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="15dp"
+                        android:padding="6dp"
+                        android:background="@drawable/shape_enterprise_qr_code_bg" />
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toEndOf="@+id/iv_qr_code"
+                        android:text="平潭站房坑线F2负荷增长工程"
+                        android:textColor="@color/white"
+                        android:textSize="16sp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_progress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_name"
+                        android:layout_alignBottom="@+id/iv_qr_code"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="19dp"
+                        android:layout_toEndOf="@+id/iv_qr_code"
+                        android:gravity="center_vertical">
+
+                        <SeekBar
+                            android:id="@+id/progress_view"
+                            style="@style/progress_project_home"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="0"
+                            android:paddingLeft="0dp"
+                            android:paddingRight="0dp"
+                            android:progress="70"
+                            android:thumbOffset="0dp" />
+
+                        <TextView
+                            android:id="@+id/tv_progress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="20%"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tv_state"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="进行中"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_more" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="50dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#33000000"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/iv_qr_code"
+                            android:text="项目负责人"
+                            android:textColor="#BBBBBB"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_manager"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/iv_qr_code"
+                            android:text="谢荣锋"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#33000000"
+                        android:gravity="center"
+
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/iv_qr_code"
+                            android:text="开始日期"
+                            android:textColor="#BBBBBB"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_start_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/iv_qr_code"
+                            android:text="2019-12-1"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="#33000000"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/iv_qr_code"
+                            android:text="截止日期"
+                            android:textColor="#BBBBBB"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_end_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/iv_qr_code"
+                            android:text="2019-12-30"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <com.flyco.tablayout.SlidingTabLayout
+                android:id="@+id/tab_view"
+                android:layout_width="match_parent"
+                android:layout_height="45dip"
+                android:background="#ffffffff"
+                android:paddingBottom="5.0dip"
+                app:tl_indicator_color="@color/theme_color"
+                app:tl_indicator_corner_radius="1.5dip"
+                app:tl_indicator_height="3.0dip"
+                app:tl_indicator_width="15.0dip"
+                app:tl_tab_space_equal="true"
+                app:tl_textSelectColor="@color/theme_color"
+                app:tl_textUnselectColor="@color/theme_font_black"
+                app:tl_textsize="16.0sp" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/theme_background_f5"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/page_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

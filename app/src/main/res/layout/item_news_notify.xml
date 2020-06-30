@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_type"
+        android:layout_width="39dp"
+        android:layout_height="39dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="11dp"
+        android:background="@drawable/shape_news_notify_project_bg"
+        android:gravity="center"
+        android:text="通知"
+        android:textColor="@color/theme_white"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_type_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="58dp"
+        android:layout_marginTop="18dp"
+        android:text="工作通知"
+        android:textColor="@color/theme_font_black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_notify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_type_name"
+        android:layout_marginLeft="58dp"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:maxLength="18"
+        android:text="[任务] 有一个任务派发到您..."
+        android:textColor="@color/theme_font_6f"
+        android:textSize="14dp" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="@dimen/sp_16"
+        android:text="2020-02-14"
+        android:textColor="@color/theme_font_6f"
+        android:textSize="12dp" />
+</RelativeLayout>

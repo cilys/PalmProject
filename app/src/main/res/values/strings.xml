@@ -1,0 +1,110 @@
+<resources>
+    <string name="app_name">掌项</string>
+    <string name="mine_setting">设置</string>
+    <string name="mine_qr_code">我的二维码</string>
+    <string name="mine_qr_code_save">存本地</string>
+    <string name="dialog_cancel">取消</string>
+    <string name="dialog_sure">确定</string>
+    <string name="call_phone">呼叫</string>
+
+    <string-array name="industry">
+        <item>电力</item>
+        <item>水利</item>
+        <item>公路</item>
+        <item>IT</item>
+    </string-array>
+
+    <string-array name="department_project">
+        <item>全部</item>
+        <item>新建项目</item>
+        <item>查看企业所有项目</item>
+        <item>编辑企业所有项目</item>
+    </string-array>
+    <string-array name="department_budget">
+        <item>全部</item>
+        <item>仅查看</item>
+        <item>可编辑</item>
+    </string-array>
+    <string-array name="department_purchase">
+        <item>全部</item>
+        <item>仅查看</item>
+        <item>可编辑</item>
+    </string-array>
+
+    <string-array name="spinner_default">
+        <item>全部</item>
+    </string-array>
+
+    <string-array name="spinner_team_type">
+        <item>自营</item>
+        <item>外包</item>
+    </string-array>
+
+    <string-array name="spinner_team_function">
+        <item>土建</item>
+        <item>水电</item>
+        <item>吊顶</item>
+        <item>安卓</item>
+        <item>苹果</item>
+        <item>JAVA</item>
+    </string-array>
+
+    <string-array name="spinner_team_member_type">
+        <item>班长</item>
+        <item>成员</item>
+    </string-array>
+
+    <string-array name="spinner_team_majors">
+        <item>土建</item>
+        <item>水电</item>
+        <item>吊顶</item>
+        <item>安卓</item>
+        <item>苹果</item>
+        <item>JAVA</item>
+    </string-array>
+
+    <string-array name="spinner_task_level">
+        <item>普通</item>
+        <item>重要</item>
+        <item>紧急</item>
+    </string-array>
+    <string-array name="spinner_task_scenes_type">
+        <item>全部</item>
+        <item>进度</item>
+        <item>质量</item>
+        <item>安全</item>
+        <item>签到</item>
+        <item>签退</item>
+        <item>材料</item>
+        <item>机械</item>
+        <item>其他</item>
+
+
+    </string-array>
+
+    <string-array name="spinner_home_project_type">
+        <item>我负责的项目</item>
+        <item>我参与的项目</item>
+        <item>所有公开项目</item>
+    </string-array>
+
+
+    <string-array name="spinner_home_task_type">
+        <item>我负责的任务</item>
+        <item>我参与的任务</item>
+        <item>我发起的任务</item>
+    </string-array>
+
+
+    <string-array name="spinner_project_img">
+        <item>全部</item>
+        <item>进度</item>
+        <item>质量</item>
+        <item>安全</item>
+        <item>签到</item>
+        <item>签退</item>
+        <item>材料</item>
+        <item>机械</item>
+        <item>其他</item>
+    </string-array>
+</resources>

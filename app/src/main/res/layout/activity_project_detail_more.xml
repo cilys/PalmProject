@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_f5"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title_more" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22dp"
+            android:text="项目编号"
+            android:textColor="#FF101010"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text=" XMBH2019092500001"
+            android:textColor="#FF7FB8F6"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_card_bg_4"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_qr_code"
+                    android:layout_width="126dp"
+                    android:layout_height="126dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/shape_card_bg_10_8"
+                    android:padding="4dp"
+                    android:src="@mipmap/icon_qr_code" />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="7dp">
+
+                    <TextView
+                        android:id="@+id/tv_start_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:text="2020-03-10起"
+                        android:textColor="#FF101010"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="18dp"
+                        android:text="设计阶段"
+                        android:textColor="#FFEAAF13"
+                        android:textSize="14sp" />
+
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_line_left" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_line" />
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_line_right" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="25dp"
+
+                    android:text="平潭站房坑线F2负荷增长工程"
+                    android:textColor="#FF101010"
+                    android:textSize="14sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-1dp"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_line_left" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_line" />
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_line_right" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="25dp"
+                        android:text="浙江省杭州市滨江区江虹路纳爱斯大厦"
+                        android:textColor="#FF101010"
+                        android:textSize="14sp" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/theme_background_f5" />
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:src="@mipmap/daohan" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/shape_card_bg_4"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="25dp"
+                    android:text="概况"
+                    android:textColor="#FF101010"
+                    android:textSize="14sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-1dp"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_line_left" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="3dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_line" />
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/shape_line_right" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="25dp"
+                        android:text="更新："
+                        android:textColor="#FF6F6D6D"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_update_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="2019-09-25"
+                        android:textColor="#FF101010"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="25dp"
+                        android:text="简称："
+                        android:textColor="#FF6F6D6D"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_abbreviation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="平潭站工程"
+                        android:textColor="#FF101010"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="25dp"
+                        android:text="类型："
+                        android:textColor="#FF6F6D6D"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="电力安装"
+                        android:textColor="#FF101010"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="25dp"
+                        android:text="限期："
+                        android:textColor="#FF6F6D6D"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="25dp"
+                        android:text="面积："
+                        android:textColor="#FF6F6D6D"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:textColor="#FF101010"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="25dp"
+                        android:text="造价："
+                        android:textColor="#FF6F6D6D"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_cost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="150万"
+                        android:textColor="#FF101010"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="35dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="25dp"
+                        android:text="简介："
+                        android:textColor="#FF6F6D6D"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_desc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:maxLines="5"
+                        android:paddingLeft="10dp"
+                        android:text="项目为占地面积33,441平方米，总建筑面积27,879平方米，简单装修，包含...."
+                        android:textColor="#FF101010"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="25dp"
+                        android:text="用材："
+                        android:textColor="#FF6F6D6D"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_material"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="20dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="电梯:无电梯
+外墙:涂料，真石漆
+装修:简单装修
+
+可能采购的材料设备清单：
+1、内外墙装饰材料，抛光砖石材，耐磨砖，石
+材，木材，油漆涂料。
+2、照明器材，电器开关，电线电缆，防雷接地
+强弱电设施。
+3、给排水管件，阀门，供水设备，管材管件。
+4、卫浴洁具，通风设备，仪器仪表。
+5、消防设施，消火栓系统。
+6、书桌家具，景观绿化......."
+                        android:textColor="#FF101010"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical">
+
+
+        <TextView
+            android:id="@+id/tv_comment"
+            android:layout_width="160dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/shape_map_location_et"
+            android:drawableLeft="@mipmap/bianji3"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:hint="互动区评论.."
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:paddingLeft="5dp"
+            android:singleLine="true"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/iv_comment"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_toStartOf="@+id/iv_star"
+            android:src="@mipmap/icon_send_sms" />
+
+        <ImageView
+            android:id="@+id/iv_star"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+
+            android:layout_marginRight="20dp"
+            android:layout_toStartOf="@+id/iv_share"
+            android:src="@mipmap/dianzan" />
+
+        <ImageView
+            android:id="@+id/iv_share"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="29dp"
+            android:src="@mipmap/fenxiang" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,135 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'palm'
+            keyPassword '123456'
+            storeFile file('../doc/sign.jks')
+            storePassword 'aA123456'
+        }
+    }
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId "com.aopcloud.palmproject"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        signingConfig signingConfigs.config
+        multiDexEnabled true
+
+        ndk {
+            abiFilters 'armeabi'
+//            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a',"x86"
+        }
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "01cd9c0b5396b621c4bdc96c", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
+    }
+    //命令打包apk重命名
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "palmproject_${variant.name}_${variant.versionName}_${new Date().format("yyyyMMddHHmm")}.apk"
+        }
+    }
+    buildTypes {
+        release {
+            buildConfigField('String', 'BASE_URL', '\"http://zhj.gzfy.tech:31004\"')
+
+            minifyEnabled false
+            signingConfig signingConfigs.config
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField('String', 'BASE_URL', '\"http://zhj.gzfy.tech:31004\"')
+            signingConfig signingConfigs.config
+
+        }
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            //   res.srcDirs = ['src/main/res', 'src/main/res_im', 'src/main/res-rp'] //自定义资源文件夹
+        }
+    }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'assets/location_map_gps_locked.png'
+        exclude 'assets/location_map_gps_3d.png'
+
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    api 'com.android.support:appcompat-v7:28.0.0'
+    api 'com.android.support:support-v4:28.0.0'
+    api 'com.android.support:design:28.0.0'
+    api 'com.android.support:multidex:1.0.3'
+    api 'com.github.bumptech.glide:glide:4.8.0'
+    api 'com.jakewharton:butterknife:9.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0'
+    implementation project(':base')
+    implementation project(':indexlib')
+    api 'com.alibaba:fastjson:1.2.68'
+    api 'com.contrarywind:Android-PickerView:4.1.8'
+    api 'com.hjq:xxpermissions:5.2'
+    api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-22'
+    api 'vip.devkit:common.widget:2.0.3'
+    api('cn.yipianfengye.android:zxing-library:2.2') {
+        exclude module: 'support-v4'
+        exclude group: 'com.android.support'
+    }
+    //   //3D地图so及jar
+    //    api 'com.amap.api:3dmap:latest.integration '
+    //2D地图
+    implementation 'com.amap.api:map2d:latest.integration'
+    //导航
+    implementation 'com.amap.api:navi-3dmap:latest.integration'
+    //搜索
+    implementation 'com.amap.api:search:latest.integration'
+    //定位
+    implementation 'com.amap.api:location:latest.integration'
+    //自定义tablayout
+    api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    api 'com.github.bmelnychuk:atv:1.2.9'
+    //图片/视频选择、预览、编辑与拍照
+    api 'com.github.guoxiaoxing:phoenix:1.0.15'
+    api 'com.github.guoxiaoxing:phoenix-compress-picture:1.0.15'
+    api 'com.github.guoxiaoxing:phoenix-compress-video:1.0.15'
+    //拍照 拍视频
+    api 'cjt.library.wheel:camera:1.1.9'
+    api 'com.xw.repo:bubbleseekbar:3.20'
+    api 'com.missmess.calendarview:calendarview:2.5.3'
+    api 'cn.yc:YCVideoPlayerLib:2.6.6'
+    api 'com.otaliastudios:cameraview:1.5.1'
+    api 'cn.jiguang.sdk:jpush:3.6.6'
+    // 此处以JPush 3.6.6 版本为例。
+    api 'cn.jiguang.sdk:jcore:2.3.8'
+    // 此处以JCore 2.3.8 版本为例。
+//    implementation files('lib/jcore-android-2.3.8.jar')
+//    implementation files('lib/jpush-android-3.6.6.jar')
+}

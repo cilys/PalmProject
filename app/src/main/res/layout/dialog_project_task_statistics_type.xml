@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#00000000"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/theme_background_f5"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_day"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/shape_dialog_head_withe_bg"
+            android:gravity="center"
+            android:text="工日"
+            android:textColor="#FF41484D"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_hours"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/theme_white"
+            android:gravity="center"
+            android:text="工时"
+            android:textColor="#FF41484D"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_salary"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/theme_white"
+            android:gravity="center"
+            android:text="工资"
+            android:textColor="#FF101010"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/theme_white"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="#FF41484D"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+</LinearLayout>

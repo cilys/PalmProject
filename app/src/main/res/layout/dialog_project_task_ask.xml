@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_dialog_bg_10"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+
+            <com.aopcloud.palmproject.view.CircleImageView
+                android:id="@+id/iv_img"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:border_color="@color/transparent"
+                app:border_width="0dp" />
+
+            <TextView
+                android:id="@+id/tv_leader_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="张三"
+                android:textColor="@color/theme_font_black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_task_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="张三"
+                android:textColor="@color/theme_font_black"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/tv_project_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="张三"
+                android:textColor="@color/theme_font_black"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/tv_leader_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="张三"
+                android:textColor="@color/theme_font_black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:maxLines="5"
+        android:gravity="top|left"
+        android:textSize="14sp"
+        android:background="@drawable/shape_et_bg" />
+
+
+    <TextView
+        android:id="@+id/tv_submit"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/shape_submit_4dp"
+        android:gravity="center"
+        android:text="确定"
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/theme_white"
+        android:textSize="14sp" />
+</LinearLayout>

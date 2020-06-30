@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_work_task_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_work_task_head_bg"
+        android:gravity="center"
+        android:text="请选择工单(未安排)"
+        android:textColor="@color/theme_white"
+        android:textSize="14sp" />
+
+    <ListView
+        android:id="@+id/lv_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="1dp"
+        android:divider="@color/theme_background_f5"
+        android:layout_marginBottom="20dp" />
+
+</LinearLayout>

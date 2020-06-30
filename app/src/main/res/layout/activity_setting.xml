@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_background_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_common_title" />
+
+    <RelativeLayout
+        android:id="@+id/rl_account_setting"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:gravity="center"
+            android:text="账户设置"
+            android:textColor="@color/theme_font_black"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="18dp"
+            android:src="@mipmap/icon_more" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_about"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:gravity="center"
+            android:text="关于我们"
+            android:textColor="@color/theme_font_black"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="18dp"
+            android:src="@mipmap/icon_more" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_clean_cache"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:gravity="center"
+            android:text="清除缓存"
+            android:textColor="@color/theme_font_black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_cache_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="39dp"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/theme_font_6f"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="18dp"
+            android:src="@mipmap/icon_more" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_push_setting"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:gravity="center"
+            android:text="消息推送设置"
+            android:textColor="@color/theme_font_black"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="22dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="18dp"
+            android:src="@mipmap/icon_more" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_fingerprint_setting"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:gravity="center"
+            android:text="指纹解锁"
+            android:textColor="@color/theme_font_black"
+            android:textSize="14sp" />
+
+        <Switch
+            android:id="@+id/sw_fingerprint_setting"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+
+            android:checked="true"
+            android:thumb="@drawable/selector_switch_thumb"
+            android:track="@drawable/selector_switch_track" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_no_disturb"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/theme_white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:gravity="center"
+            android:text="夜间勿扰"
+            android:textColor="@color/theme_font_black"
+            android:textSize="14sp" />
+
+        <Switch
+            android:id="@+id/sw_no_disturb"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            android:checked="true"
+            android:thumb="@drawable/selector_switch_thumb"
+            android:track="@drawable/selector_switch_track" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="开启后，23:00~7:00 新消息不会发出声音与震动"
+        android:textColor="@color/theme_font_black"
+        android:textSize="14sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:id="@+id/ll_logout"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/theme_white"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:gravity="center"
+                android:text="退出登录"
+                android:textColor="#FFE11C23"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

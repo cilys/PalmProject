@@ -1,0 +1,71 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/theme_color</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="ThemeSplash" parent="AppTheme">
+        <item name="android:background">@color/transparent</item>
+        <item name="android:windowFullscreen">true</item>
+        <!--        <item name="windowActionBar">false</item>-->
+        <!--        <item name="windowNoTitle">true</item>-->
+    </style>
+
+    <!--自定义seek bar style-->
+    <style name="progress_log_statistics" >
+        <item name="android:maxHeight">3dp</item>
+        <item name="android:progressDrawable">@drawable/shape_progress_drawable</item>
+        <item name="android:minHeight">3dp</item>
+        <item name="android:thumb">@drawable/shape_progress_thumb</item>
+    </style>
+
+
+    <style name="BottomSheet_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:backgroundDimAmount">0.5</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+
+    <style name="TreeNodeStyleCustom">
+        <item name="android:paddingLeft">20dp</item>
+        <!--<item name="android:showDividers">middle</item>-->
+        <!--<item name="android:divider">@android:drawable/divider_horizontal_bright</item>-->
+    </style>
+
+    <style name="TreeNodeStyleDivided">
+        <item name="android:showDividers">middle</item>
+        <item name="android:divider">@android:drawable/divider_horizontal_bright</item>
+    </style>
+
+    <!--自定义seek bar style-->
+    <style name="progress_project_home" >
+        <item name="android:maxHeight">6dp</item>
+        <item name="android:progressDrawable">@drawable/shape_progress_drawable_project</item>
+        <item name="android:minHeight">6dp</item>
+        <item name="android:thumb">@null</item>
+    </style>
+
+    <style name="PopContextMenu" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_menu_show</item>
+        <item name="android:windowExitAnimation">@anim/anim_menu_hide</item>
+    </style>
+
+    <style name="DarkAnimation">
+        <item name="android:windowEnterAnimation">@anim/dark_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/dark_fade_out</item>
+    </style>
+    <style name="switch_text_color_white" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/theme_white</item>
+    </style>
+</resources>

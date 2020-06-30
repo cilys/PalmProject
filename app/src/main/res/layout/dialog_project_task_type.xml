@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_work_task_bg_2"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="工单状态"
+        android:textColor="#FF999898"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/theme_background_f5"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_all"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/theme_white"
+            android:gravity="center"
+            android:text="全都"
+            android:textColor="#FF101010"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_arrange"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/theme_white"
+            android:gravity="center"
+            android:text="未安排"
+            android:textColor="#FF101010"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_start_before"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/theme_white"
+            android:gravity="center"
+            android:text="未开始"
+            android:textColor="#FF101010"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_progress"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/theme_white"
+            android:gravity="center"
+            android:text="进行中"
+            android:textColor="#FF101010"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_time_out"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/theme_white"
+            android:gravity="center"
+            android:text="已逾期"
+            android:textColor="#FF101010"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_complete"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/theme_white"
+            android:gravity="center"
+            android:text="已完成"
+            android:textColor="#FFE51C23"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_stop"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/theme_white"
+            android:gravity="center"
+            android:text="已暂停"
+            android:textColor="#FFEAAF13"
+            android:textSize="16sp" />
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/theme_white"
+            android:gravity="center"
+            android:text="已取消"
+            android:textColor="#FF6F6D6D"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_close"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/theme_white"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="#FF41484D"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>
