@@ -62,18 +62,18 @@ public class DownLoadUtil {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         ToastUtil.showToast("保存出错,请重试");
-                        Logcat.e("getPictureSuffix:" + getPictureSuffix(url));
-                        Logcat.e("url:" + url);
-                        Logcat.e("getPath:" + appDir.getPath());
-                        Logcat.e("getAbsolutePath:" + appDir.getAbsolutePath());
+                        Logcat.e("getPictureSuffix:" + getPictureSuffix(url)
+                                + "\turl:" + url
+                                + "\tgetPath:" + appDir.getPath()
+                                + "\tgetAbsolutePath:" + appDir.getAbsolutePath());
                     }
 
                     @Override
                     public void onResponse(File response, int id) {
-                        Logcat.e("getAbsolutePath:" + response.getAbsolutePath());
-                        Logcat.e("getPath:" + response.getPath());
-                        Logcat.e("getName:" + response.getName());
-                        Logcat.e("getPictureSuffix:" + getPictureSuffix(url));
+                        Logcat.i("getAbsolutePath:" + response.getAbsolutePath()
+                                + "\tgetPath:" + response.getPath()
+                                + "\tgetName:" + response.getName()
+                                +"\tgetPictureSuffix:" + getPictureSuffix(url));
 
                         ToastUtil.showToast("保存成功 \n路径：" + appDir.getAbsolutePath() + "/" + response);
                         AppContext.getInstance().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file:" + response.getPath())));

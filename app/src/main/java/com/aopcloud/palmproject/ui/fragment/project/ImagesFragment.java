@@ -143,7 +143,7 @@ public class ImagesFragment extends BaseFragment implements TextView.OnEditorAct
     }
 
     private void setFilter( String type, int id) {
-        Logcat.e("---------" + type +  "/" + id);
+        Logcat.d("---------" + type +  "/" + id);
 
         List<ProjectSceneBean.ScenesBean> beans = new ArrayList<>();
 

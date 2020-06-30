@@ -773,7 +773,7 @@ public class ProjectTaskDetailActivity extends BaseActivity {
                         try {
                             Date startDate = format.parse(startTime);
                             Date endDate = format.parse(endTime);
-                            Logcat.e("" + startTime + "/" + endTime);
+                            Logcat.d("" + startTime + "/" + endTime);
                             long betweenDays = ((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
                             mTvUpdateDays.setText("" + betweenDays);
                         } catch (ParseException e) {

@@ -91,29 +91,29 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
     @BindView(R.id.spinner_type)
     Spinner mSpinnerType;
     @BindView(R.id.checkbox_state_all)
-    CheckBox mCheckboxStateAll;
+    CheckBox mCheckboxStateAll; //任务进行状态：全部
     @BindView(R.id.checkbox_state_progress)
-    CheckBox mCheckboxStateProgress;
+    CheckBox mCheckboxStateProgress;    //任务进行状态：进行中
     @BindView(R.id.checkbox_state_expect)
-    CheckBox mCheckboxStateExpect;
+    CheckBox mCheckboxStateExpect;      //任务进行状态：已超期
     @BindView(R.id.checkbox_state_complete)
-    CheckBox mCheckboxStateComplete;
+    CheckBox mCheckboxStateComplete;    //任务进行状态：已完成
     @BindView(R.id.checkbox_state_no_start)
-    CheckBox mCheckboxStateNoStart;
+    CheckBox mCheckboxStateNoStart;     //任务进行状态：未开始
     @BindView(R.id.checkbox_state_cancel)
-    CheckBox mCheckboxStateCancel;
+    CheckBox mCheckboxStateCancel;      //任务进行状态：已取消
     @BindView(R.id.checkbox_state_pause)
-    CheckBox mCheckboxStatePause;
+    CheckBox mCheckboxStatePause;       //任务进行状态：暂停中
     @BindView(R.id.checkbox_state_operation)
-    CheckBox mCheckboxStateOperation;
+    CheckBox mCheckboxStateOperation;   //任务进行状态：作业中
     @BindView(R.id.checkbox_level_all)
-    CheckBox mCheckboxLevelAll;
+    CheckBox mCheckboxLevelAll;         //优先级：全部
     @BindView(R.id.checkbox_level_ordinary)
-    CheckBox mCheckboxLevelOrdinary;
+    CheckBox mCheckboxLevelOrdinary;    //优先级：普通
     @BindView(R.id.checkbox_level_important)
-    CheckBox mCheckboxLevelImportant;
+    CheckBox mCheckboxLevelImportant;   //优先级：重要
     @BindView(R.id.checkbox_level_urgent)
-    CheckBox mCheckboxLevelUrgent;
+    CheckBox mCheckboxLevelUrgent;      //优先级：紧急
     @BindView(R.id.spinner_company)
     Spinner mSpinnerCompany;
     @BindView(R.id.tv_reset)
@@ -268,23 +268,155 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
         mCheckboxStateAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mCheckboxStateProgress.setChecked(isChecked);
-                mCheckboxStateExpect.setChecked(isChecked);
-                mCheckboxStateComplete.setChecked(isChecked);
-                mCheckboxStateNoStart.setChecked(isChecked);
-                mCheckboxStateCancel.setChecked(isChecked);
-                mCheckboxStatePause.setChecked(isChecked);
-                mCheckboxStateOperation.setChecked(isChecked);
+                if (isChecked) {
+                    mCheckboxStateProgress.setChecked(!isChecked);
+                    mCheckboxStateExpect.setChecked(!isChecked);
+                    mCheckboxStateComplete.setChecked(!isChecked);
+                    mCheckboxStateNoStart.setChecked(!isChecked);
+                    mCheckboxStateCancel.setChecked(!isChecked);
+                    mCheckboxStatePause.setChecked(!isChecked);
+                    mCheckboxStateOperation.setChecked(!isChecked);
+                }
             }
         });
+        mCheckboxStateProgress.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    mCheckboxStateAll.setChecked(!isChecked);
+                    mCheckboxStateExpect.setChecked(!isChecked);
+                    mCheckboxStateComplete.setChecked(!isChecked);
+                    mCheckboxStateNoStart.setChecked(!isChecked);
+                    mCheckboxStateCancel.setChecked(!isChecked);
+                    mCheckboxStatePause.setChecked(!isChecked);
+                    mCheckboxStateOperation.setChecked(!isChecked);
+                }
+            }
+        });
+        mCheckboxStateExpect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    mCheckboxStateAll.setChecked(!isChecked);
+                    mCheckboxStateProgress.setChecked(!isChecked);
+                    mCheckboxStateComplete.setChecked(!isChecked);
+                    mCheckboxStateNoStart.setChecked(!isChecked);
+                    mCheckboxStateCancel.setChecked(!isChecked);
+                    mCheckboxStatePause.setChecked(!isChecked);
+                    mCheckboxStateOperation.setChecked(!isChecked);
+                }
+            }
+        });
+        mCheckboxStateComplete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    mCheckboxStateAll.setChecked(!isChecked);
+                    mCheckboxStateProgress.setChecked(!isChecked);
+                    mCheckboxStateExpect.setChecked(!isChecked);
+                    mCheckboxStateNoStart.setChecked(!isChecked);
+                    mCheckboxStateCancel.setChecked(!isChecked);
+                    mCheckboxStatePause.setChecked(!isChecked);
+                    mCheckboxStateOperation.setChecked(!isChecked);
+                }
+            }
+        });
+        mCheckboxStateNoStart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    mCheckboxStateAll.setChecked(!isChecked);
+                    mCheckboxStateProgress.setChecked(!isChecked);
+                    mCheckboxStateExpect.setChecked(!isChecked);
+                    mCheckboxStateComplete.setChecked(!isChecked);
+                    mCheckboxStateCancel.setChecked(!isChecked);
+                    mCheckboxStatePause.setChecked(!isChecked);
+                    mCheckboxStateOperation.setChecked(!isChecked);
+                }
+            }
+        });
+        mCheckboxStateCancel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    mCheckboxStateAll.setChecked(!isChecked);
+                    mCheckboxStateProgress.setChecked(!isChecked);
+                    mCheckboxStateExpect.setChecked(!isChecked);
+                    mCheckboxStateComplete.setChecked(!isChecked);
+                    mCheckboxStateNoStart.setChecked(!isChecked);
+                    mCheckboxStatePause.setChecked(!isChecked);
+                    mCheckboxStateOperation.setChecked(!isChecked);
+                }
+            }
+        });
+        mCheckboxStatePause.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    mCheckboxStateAll.setChecked(!isChecked);
+                    mCheckboxStateProgress.setChecked(!isChecked);
+                    mCheckboxStateExpect.setChecked(!isChecked);
+                    mCheckboxStateComplete.setChecked(!isChecked);
+                    mCheckboxStateNoStart.setChecked(!isChecked);
+                    mCheckboxStateCancel.setChecked(!isChecked);
+                    mCheckboxStateOperation.setChecked(!isChecked);
+                }
+            }
+        });
+        mCheckboxStateOperation.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    mCheckboxStateAll.setChecked(!isChecked);
+                    mCheckboxStateProgress.setChecked(!isChecked);
+                    mCheckboxStateExpect.setChecked(!isChecked);
+                    mCheckboxStateComplete.setChecked(!isChecked);
+                    mCheckboxStateNoStart.setChecked(!isChecked);
+                    mCheckboxStateCancel.setChecked(!isChecked);
+                    mCheckboxStatePause.setChecked(!isChecked);
+                }
+            }
+        });
+
 
         mCheckboxLevelAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mCheckboxLevelImportant.setChecked(isChecked);
-                mCheckboxLevelOrdinary.setChecked(isChecked);
-                mCheckboxLevelUrgent.setChecked(isChecked);
-
+                if (isChecked) {
+                    mCheckboxLevelImportant.setChecked(!isChecked);
+                    mCheckboxLevelOrdinary.setChecked(!isChecked);
+                    mCheckboxLevelUrgent.setChecked(!isChecked);
+                }
+            }
+        });
+        mCheckboxLevelImportant.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mCheckboxLevelAll.setChecked(!isChecked);
+                    mCheckboxLevelOrdinary.setChecked(!isChecked);
+                    mCheckboxLevelUrgent.setChecked(!isChecked);
+                }
+            }
+        });
+        mCheckboxLevelOrdinary.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mCheckboxLevelAll.setChecked(!isChecked);
+                    mCheckboxLevelImportant.setChecked(!isChecked);
+                    mCheckboxLevelUrgent.setChecked(!isChecked);
+                }
+            }
+        });
+        mCheckboxLevelUrgent.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mCheckboxLevelAll.setChecked(!isChecked);
+                    mCheckboxLevelImportant.setChecked(!isChecked);
+                    mCheckboxLevelOrdinary.setChecked(!isChecked);
+                }
             }
         });
     }
@@ -306,8 +438,19 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
                 }
                 break;
             case R.id.tv_reset:
-                mCheckboxLevelAll.setChecked(true);
-                mCheckboxStateAll.setChecked(true);
+                mCheckboxLevelAll.setChecked(false);
+                mCheckboxStateProgress.setChecked(false);
+                mCheckboxStateExpect.setChecked(false);
+                mCheckboxStateComplete.setChecked(false);
+                mCheckboxStateNoStart.setChecked(false);
+                mCheckboxStateCancel.setChecked(false);
+                mCheckboxStatePause.setChecked(false);
+                mCheckboxStateOperation.setChecked(false);
+
+                mCheckboxStateAll.setChecked(false);
+                mCheckboxLevelImportant.setChecked(false);
+                mCheckboxLevelOrdinary.setChecked(false);
+                mCheckboxLevelUrgent.setChecked(false);
                 task_type = "0";
                 break;
             case R.id.tv_sure:
@@ -321,9 +464,6 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
                 } else if (type.equals("我发起的任务")) {
                     task_type = "1";
                 }
-
-
-
                 break;
         }
     }
@@ -547,8 +687,8 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
                 Bundle bundle = new Bundle();
                 bundle.putString("task_id", taskBean.getTask_id() + "");
                 bundle.putString("project_id", taskBean.getProject_id() + "");
-                bundle.putString("task_name",taskBean.getName() + "");
-                bundle.putString("team_id",taskBean.getTeam_id() + "");
+                bundle.putString("task_name", taskBean.getName() + "");
+                bundle.putString("team_id", taskBean.getTeam_id() + "");
                 gotoActivity(TaskDetailActivity.class, bundle, 0);
             }
         });

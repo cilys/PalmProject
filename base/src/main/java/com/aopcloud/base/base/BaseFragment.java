@@ -124,7 +124,7 @@ public abstract class BaseFragment extends Fragment implements ICommonViewUi {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        Logcat.e("Fragment Visible:" + this.getClass().getSimpleName() + "/" + hidden);
+        Logcat.i("Fragment Visible:" + this.getClass().getSimpleName() + "/" + hidden);
         isHidden = hidden;
         if (!hidden) {
         }

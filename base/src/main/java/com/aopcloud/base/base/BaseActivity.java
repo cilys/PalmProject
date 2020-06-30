@@ -90,7 +90,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseQuic
             layoutResId = setLayoutId();
         }
         if (layoutResId == -1) {
-            Logcat.e(ResourceUtil.getString(R.string.base_exception_layout_null));
+            Logcat.i(ResourceUtil.getString(R.string.base_exception_layout_null));
         }
     }
 
@@ -133,7 +133,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseQuic
 
     protected void initImmersionBar() {
         mImmersionBar = ImmersionBar.with(this);
-        mImmersionBar.barColor("#FF108CF7");
+        mImmersionBar.barColor(getBarColor());
         mImmersionBar.fitsSystemWindows(true);
         mImmersionBar.statusBarDarkFont(true);//解决部分手机默认白色状态栏
         mImmersionBar.flymeOSStatusBarFontColor("#ffffff");
@@ -145,9 +145,13 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseQuic
                 .init();
     }
 
+    protected String getBarColor(){
+        return "#FF108CF7";
+    }
+
     private void showTips() {
         Date date = new Date();
-        date.setTime(BuildConfig.DEBUG_DURATION);
+//        date.setTime(BuildConfig.DEBUG_DURATION);
         long s = System.currentTimeMillis();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String msg = null;

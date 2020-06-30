@@ -92,7 +92,7 @@ public class TodatCacheDataSource implements LoaderManager.LoaderCallbacks<Curso
         imageFolders.clear();
         mLoadedCount = data.getCount();
         ArrayList<ImageItem> allImages = new ArrayList<>();   //所有图片的集合,不分文件夹
-        Logcat.e("--------------"+ JSON.toJSONString(data));
+        Logcat.d("--------------"+ JSON.toJSONString(data));
         while (data.moveToNext()) {
             //查询数据
             String imageName = data.getString(data.getColumnIndexOrThrow(IMAGE_PROJECTION[0]));

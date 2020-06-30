@@ -24,6 +24,9 @@ allprojects {
         google()
         maven { url 'https://jitpack.io' }
         maven { url 'https://dl.bintray.com/yingzi/maven' }
+        maven {
+            url 'http://192.168.1.3:7070/nexus/content/repositories/thirdparty/'
+        }
     }
 }
 

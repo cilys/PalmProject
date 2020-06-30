@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-       android:orientation="vertical">
+        android:orientation="vertical">
 
         <FrameLayout
             android:id="@+id/container_frameLayout"
@@ -31,14 +31,14 @@
 
             <RadioButton
                 android:id="@+id/rb_home"
-                android:text="掌项"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawablePadding="3dp"
                 android:button="@null"
+                android:drawablePadding="3dp"
                 android:drawableTop="@drawable/shape_nav_home"
                 android:gravity="center"
+                android:text="掌项"
                 android:textColor="@drawable/main_bottom_navigation"
                 android:textSize="14sp" />
 
@@ -46,8 +46,9 @@
                 android:id="@+id/rb_news"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:drawablePadding="3dp"                android:layout_weight="1"
+                android:layout_weight="1"
                 android:button="@null"
+                android:drawablePadding="3dp"
                 android:drawableTop="@drawable/shape_nav_news"
                 android:gravity="center_horizontal"
                 android:text="消息"
@@ -56,9 +57,9 @@
 
             <LinearLayout
                 android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1.2"
-                android:gravity="center"
-                android:layout_height="match_parent">
+                android:gravity="center">
 
 
                 <ImageView
@@ -68,14 +69,13 @@
                     android:src="@mipmap/icon_nav_add" />
             </LinearLayout>
 
-
             <RadioButton
                 android:id="@+id/rb_project"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawablePadding="3dp"
                 android:button="@null"
+                android:drawablePadding="3dp"
                 android:drawableTop="@drawable/shape_nav_project"
                 android:gravity="center_horizontal"
                 android:text="应用"
@@ -87,8 +87,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawablePadding="3dp"
                 android:button="@null"
+                android:drawablePadding="3dp"
                 android:drawableTop="@drawable/shape_nav_find"
                 android:gravity="center_horizontal"
                 android:text="发现"
@@ -119,8 +119,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="5dp"
                 android:layout_marginRight="12dp"
+                android:layout_marginTop="5dp"
                 android:text="切换企业"
                 android:textColor="@color/theme_color"
                 android:textSize="14sp" />
@@ -129,11 +129,11 @@
                 android:id="@+id/iv_img"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                app:border_color="#00000000"
-                app:border_width="0dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="14dp"
-                android:src="@color/design_default_color_primary" />
+                android:src="@color/design_default_color_primary"
+                app:border_color="#00000000"
+                app:border_width="0dp" />
 
 
             <TextView
@@ -143,10 +143,10 @@
                 android:layout_alignTop="@+id/iv_img"
                 android:layout_marginLeft="11dp"
                 android:layout_toEndOf="@+id/iv_img"
-                android:maxWidth="140dp"
-                android:lines="1"
                 android:ellipsize="end"
                 android:gravity="left"
+                android:lines="1"
+                android:maxWidth="140dp"
                 android:text="、冰凡"
                 android:textColor="@color/theme_font_black"
                 android:textSize="16dp" />

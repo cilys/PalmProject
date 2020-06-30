@@ -85,27 +85,27 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
     @BindView(R.id.spinner_type)
     Spinner mSpinnerType;
     @BindView(R.id.checkbox_state_all)
-    CheckBox mCheckboxStateAll;
+    CheckBox mCheckboxStateAll;             //状态：全部
     @BindView(R.id.checkbox_state_design)
-    CheckBox mCheckboxStateDesign;
+    CheckBox mCheckboxStateDesign;          //状态：勘察设计
     @BindView(R.id.checkbox_state_ready)
-    CheckBox mCheckboxStateReady;
+    CheckBox mCheckboxStateReady;           //状态：开工预备
     @BindView(R.id.checkbox_state_build)
-    CheckBox mCheckboxStateBuild;
+    CheckBox mCheckboxStateBuild;           //状态：在建
     @BindView(R.id.checkbox_state_completed)
-    CheckBox mCheckboxStateCompleted;
+    CheckBox mCheckboxStateCompleted;       //状态：竣工验收
     @BindView(R.id.checkbox_state_finish)
-    CheckBox mCheckboxStateFinish;
+    CheckBox mCheckboxStateFinish;          //状态：完结维保
     @BindView(R.id.checkbox_state_termination)
-    CheckBox mCheckboxStateTermination;
+    CheckBox mCheckboxStateTermination;     //状态：已终止
     @BindView(R.id.checkbox_state_stop)
-    CheckBox mCheckboxStateStop;
+    CheckBox mCheckboxStateStop;            //状态：已停工
     @BindView(R.id.checkbox_follow_all)
-    CheckBox mCheckboxFollowAll;
+    CheckBox mCheckboxFollowAll;            //关注：全部
     @BindView(R.id.checkbox_follow_s)
-    CheckBox mCheckboxFollowS;
+    CheckBox mCheckboxFollowS;              //关注：已关注
     @BindView(R.id.checkbox_follow_n)
-    CheckBox mCheckboxFollowN;
+    CheckBox mCheckboxFollowN;              //关注：未关注
     @BindView(R.id.spinner_company)
     Spinner mSpinnerCompany;
     @BindView(R.id.tv_reset)
@@ -194,9 +194,7 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
         for (int i = 0; i < beanList.size(); i++) {
             //icon_task_progress  icon_project_home
             addMarker(beanList.get(i), R.mipmap.icon_task_progress);
-
         }
-
     }
 
     public void addMarker(ProjectListBean bean, int resId) {
@@ -215,20 +213,141 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
         mCheckboxStateAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mCheckboxStateDesign.setChecked(isChecked);
-                mCheckboxStateReady.setChecked(isChecked);
-                mCheckboxStateBuild.setChecked(isChecked);
-                mCheckboxStateCompleted.setChecked(isChecked);
-                mCheckboxStateFinish.setChecked(isChecked);
-                mCheckboxStateTermination.setChecked(isChecked);
-                mCheckboxStateStop.setChecked(isChecked);
+                if (isChecked) {
+                    mCheckboxStateDesign.setChecked(!isChecked);
+                    mCheckboxStateReady.setChecked(!isChecked);
+                    mCheckboxStateBuild.setChecked(!isChecked);
+                    mCheckboxStateCompleted.setChecked(!isChecked);
+                    mCheckboxStateFinish.setChecked(!isChecked);
+                    mCheckboxStateTermination.setChecked(!isChecked);
+                    mCheckboxStateStop.setChecked(!isChecked);
+                }
             }
         });
+        mCheckboxStateDesign.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mCheckboxStateAll.setChecked(!isChecked);
+                    mCheckboxStateReady.setChecked(!isChecked);
+                    mCheckboxStateBuild.setChecked(!isChecked);
+                    mCheckboxStateCompleted.setChecked(!isChecked);
+                    mCheckboxStateFinish.setChecked(!isChecked);
+                    mCheckboxStateTermination.setChecked(!isChecked);
+                    mCheckboxStateStop.setChecked(!isChecked);
+                }
+            }
+        });
+        mCheckboxStateReady.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mCheckboxStateAll.setChecked(!isChecked);
+                    mCheckboxStateDesign.setChecked(!isChecked);
+                    mCheckboxStateBuild.setChecked(!isChecked);
+                    mCheckboxStateCompleted.setChecked(!isChecked);
+                    mCheckboxStateFinish.setChecked(!isChecked);
+                    mCheckboxStateTermination.setChecked(!isChecked);
+                    mCheckboxStateStop.setChecked(!isChecked);
+                }
+            }
+        });
+        mCheckboxStateBuild.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mCheckboxStateAll.setChecked(!isChecked);
+                    mCheckboxStateDesign.setChecked(!isChecked);
+                    mCheckboxStateReady.setChecked(!isChecked);
+                    mCheckboxStateCompleted.setChecked(!isChecked);
+                    mCheckboxStateFinish.setChecked(!isChecked);
+                    mCheckboxStateTermination.setChecked(!isChecked);
+                    mCheckboxStateStop.setChecked(!isChecked);
+                }
+            }
+        });
+        mCheckboxStateCompleted.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mCheckboxStateAll.setChecked(!isChecked);
+                    mCheckboxStateDesign.setChecked(!isChecked);
+                    mCheckboxStateReady.setChecked(!isChecked);
+                    mCheckboxStateBuild.setChecked(!isChecked);
+                    mCheckboxStateFinish.setChecked(!isChecked);
+                    mCheckboxStateTermination.setChecked(!isChecked);
+                    mCheckboxStateStop.setChecked(!isChecked);
+                }
+            }
+        });
+        mCheckboxStateFinish.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mCheckboxStateAll.setChecked(!isChecked);
+                    mCheckboxStateDesign.setChecked(!isChecked);
+                    mCheckboxStateReady.setChecked(!isChecked);
+                    mCheckboxStateBuild.setChecked(!isChecked);
+                    mCheckboxStateCompleted.setChecked(!isChecked);
+                    mCheckboxStateTermination.setChecked(!isChecked);
+                    mCheckboxStateStop.setChecked(!isChecked);
+                }
+            }
+        });
+        mCheckboxStateTermination.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mCheckboxStateAll.setChecked(!isChecked);
+                    mCheckboxStateDesign.setChecked(!isChecked);
+                    mCheckboxStateReady.setChecked(!isChecked);
+                    mCheckboxStateBuild.setChecked(!isChecked);
+                    mCheckboxStateCompleted.setChecked(!isChecked);
+                    mCheckboxStateFinish.setChecked(!isChecked);
+                    mCheckboxStateStop.setChecked(!isChecked);
+                }
+            }
+        });
+        mCheckboxStateStop.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mCheckboxStateAll.setChecked(!isChecked);
+                    mCheckboxStateDesign.setChecked(!isChecked);
+                    mCheckboxStateReady.setChecked(!isChecked);
+                    mCheckboxStateBuild.setChecked(!isChecked);
+                    mCheckboxStateCompleted.setChecked(!isChecked);
+                    mCheckboxStateFinish.setChecked(!isChecked);
+                    mCheckboxStateTermination.setChecked(!isChecked);
+                }
+            }
+        });
+
         mCheckboxFollowAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mCheckboxFollowN.setChecked(isChecked);
-                mCheckboxFollowS.setChecked(isChecked);
+                if (isChecked) {
+                    mCheckboxFollowN.setChecked(!isChecked);
+                    mCheckboxFollowS.setChecked(!isChecked);
+                }
+            }
+        });
+        mCheckboxFollowN.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mCheckboxFollowAll.setChecked(!isChecked);
+                    mCheckboxFollowS.setChecked(!isChecked);
+                }
+            }
+        });
+        mCheckboxFollowS.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mCheckboxFollowAll.setChecked(!isChecked);
+                    mCheckboxFollowN.setChecked(!isChecked);
+                }
             }
         });
     }
@@ -250,8 +369,20 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
                 }
                 break;
             case R.id.tv_reset:
-                mCheckboxFollowAll.setChecked(true);
-                mCheckboxStateAll.setChecked(true);
+                mCheckboxFollowAll.setChecked(false);
+                mCheckboxStateDesign.setChecked(false);
+                mCheckboxStateReady.setChecked(false);
+                mCheckboxStateBuild.setChecked(false);
+                mCheckboxStateCompleted.setChecked(false);
+                mCheckboxStateFinish.setChecked(false);
+                mCheckboxStateTermination.setChecked(false);
+                mCheckboxStateStop.setChecked(false);
+
+
+                mCheckboxStateAll.setChecked(false);
+                mCheckboxFollowN.setChecked(false);
+                mCheckboxFollowS.setChecked(false);
+
                 break;
             case R.id.tv_sure:
                 mDrawerLayout.closeDrawers();

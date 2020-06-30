@@ -333,7 +333,7 @@ public class TaskExecuteFragment extends BaseFragment implements
 
     private void setAttendanceView(List<DashboardAttendanceBean> beanList) {
 
-        Logcat.e("--------setAttendanceView-----------" + JSON.toJSONString(beanList));
+        Logcat.i("--------setAttendanceView-----------" + JSON.toJSONString(beanList));
 
         if (ListUtil.isEmpty(beanList)) {
             setBottomView(1);

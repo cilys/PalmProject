@@ -193,7 +193,7 @@ public class ProjectLogFragment extends BaseFragment implements OnRefreshListene
 
 
     private void setFilter(int type, int currentTypeId, int id) {
-        Logcat.e("---------" + type + "/" + currentTypeId + "/" + id);
+        Logcat.d("---------" + type + "/" + currentTypeId + "/" + id);
         mBeanList.clear();
         if (id == -1) {
             mBeanList.addAll(mAllBeanList);

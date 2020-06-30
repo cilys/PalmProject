@@ -201,7 +201,7 @@ public class TaskReportLocationActivity extends BaseActivity implements
         mPileLayout.setSpWidth(25);
         mPileLayout.setData(pileList);
         user_ids = stringBuffer.toString();
-        Logcat.e("--------------" + user_ids);
+        Logcat.d("--------------" + user_ids);
         if (!TextUtils.isEmpty(user_ids)) {
             mTvSubmit.setText("确认代签");
             mLlReplace.setVisibility(View.VISIBLE);

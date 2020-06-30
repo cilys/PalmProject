@@ -38,7 +38,7 @@ public class StaffTrendAdapter extends BaseQuickAdapter<Object, BaseViewHolder> 
     @Override
     protected void convert(BaseViewHolder helper, Object item) {
         String json = JSON.toJSONString(item);
-        Logcat.e("---------"+json);
+        Logcat.d("---------"+json);
         TrendsBean trendsBean =JSON.parseObject(json,TrendsBean.class);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");

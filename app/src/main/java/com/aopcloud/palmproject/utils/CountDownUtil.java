@@ -49,7 +49,7 @@ public class CountDownUtil {
         mCountDownTimer = new CountDownTimer(time * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                Logcat.e("-----------" + millisUntilFinished);
+                Logcat.i("-----------" + millisUntilFinished);
                 runTime--;
                 btnSure.setEnabled(false);
                 btnSure.setText("重获验证码(" + runTime + ")");
@@ -70,7 +70,7 @@ public class CountDownUtil {
         mCountDownTimer = new CountDownTimer(time * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                Logcat.e("-----------" + millisUntilFinished);
+                Logcat.d("-----------" + millisUntilFinished);
                 runTime--;
                 btnSure.setEnabled(false);
                 btnSure.setText("" + runTime + "s后再发送");

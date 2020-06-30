@@ -163,7 +163,7 @@ public class MainActivity extends BaseActivity {
 
     private void setLoginUser(UserBean userBean) {
         if (userBean != null) {
-            Logcat.e("------" + JSON.toJSONString(userBean));
+            Logcat.d("------" + JSON.toJSONString(userBean));
             AppImageLoader.loadCircleImage(this, BuildConfig.BASE_URL + userBean.getAvatar(), mIvImg);
             mTvName.setText("" + userBean.getNickname());
             mTvRealName.setText(userBean.getStatus() == 1 ? "已实名" : "未实名");
@@ -391,15 +391,16 @@ public class MainActivity extends BaseActivity {
         animation.setFillAfter(true);
         imageView.startAnimation(animation);
         Calendar calendar = Calendar.getInstance();
-        calendar.setFirstDayOfWeek(7);
+//        calendar.setFirstDayOfWeek(7);
+        calendar.setFirstDayOfWeek(Calendar.SATURDAY);
         mTvDate.setText((calendar.get(Calendar.MONTH) + 1) + "/" + calendar.get(Calendar.DAY_OF_MONTH));
         mTvWeek.setText(getWeek(calendar));
 
         mTvName.setText("Hi，" + LoginUserUtil.getLoginUserBean(this).getNickname());
         mTvTodo.setText("0");
 
-        long startTime = LoginUserUtil.getLoginUserBean(this).getMake_time()*1000;
-        long endTime =System.currentTimeMillis();
+        long startTime = LoginUserUtil.getLoginUserBean(this).getMake_time() * 1000;
+        long endTime = System.currentTimeMillis();
         long betweenDays = 0;
         betweenDays = ((endTime - startTime) / (1000 * 60 * 60 * 24));
         mTvDayConut.setText("" + betweenDays);

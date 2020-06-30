@@ -128,7 +128,7 @@ public class TaskFragment extends BaseFragment implements OnTaskFilterListener {
 
 
     public void setFilter(String k, List<String> state, List<String> level) {
-        Logcat.e("" + k + "/" + state.toString() + "/" + level.toString());
+        Logcat.d("" + k + "/" + state.toString() + "/" + level.toString());
         List list = new ArrayList();
         for (int i = 0; i < mAllBeanList.size(); i++) {
             for (int j = 0; j < state.size(); j++) {

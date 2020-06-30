@@ -197,7 +197,7 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
 
         mUserBean = userBean;
         LoginUserUtil.setLoginUserBean(this, userBean);
-        Logcat.e("------" + JSON.toJSONString(userBean));
+        Logcat.i("------" + JSON.toJSONString(userBean));
         AppImageLoader.loadCircleImage(this, BuildConfig.BASE_URL + userBean.getAvatar(), mIvImg);
 
         avatar = userBean.getAvatar();

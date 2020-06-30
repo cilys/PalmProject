@@ -128,7 +128,7 @@ public class PreviewActivity extends BaseActivity {
                 mTvHeaderTitle.setText((i+1)+"/"+mPreviewBeans.size());
 
                 for(int position:mPreviewAdapter.getPlayers().keySet()){
-                    Logcat.e(""+position+"/"+i);
+                    Logcat.d(""+position+"/"+i);
                     if (position!=i){
                         mPreviewAdapter.getPlayers().get(position).pause();
                     }

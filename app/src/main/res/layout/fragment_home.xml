@@ -28,6 +28,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="2dp"
             android:layout_toStartOf="@+id/tv_city"
+            android:visibility="gone"
             android:src="@mipmap/icon_about_logo" />
 
         <TextView
@@ -37,6 +38,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
             android:text="梅州市"
+            android:visibility="gone"
             android:textColor="@color/theme_font_black"
             android:textSize="14sp" />
         <ImageView
@@ -46,6 +48,7 @@
             android:layout_marginLeft="1dp"
             android:layout_alignTop="@+id/tv_city"
             android:layout_marginRight="2dp"
+            android:visibility="gone"
             android:layout_toEndOf="@+id/tv_city"
             android:src="@mipmap/icon_down" />
 
@@ -84,7 +87,7 @@
             android:textColor="@color/theme_font_black"
             android:textSize="16dp" />
     </RelativeLayout>
- <android.support.v4.view.ViewPager
+ <com.cilys.app.view.NoScrollViewPager
      android:id="@+id/page_view"
      android:layout_width="match_parent"
      android:layout_height="match_parent"/>

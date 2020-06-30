@@ -130,7 +130,7 @@ public class TaskScenesActivity extends BaseActivity implements TextView.OnEdito
 
 
     private void setFilter(String type) {
-        Logcat.e("---------" + type + "/" + 1);
+        Logcat.i("---------" + type + "/" + 1);
         List<TaskScenesBean> beans = new ArrayList<>();
         if (!TextUtils.isEmpty(type) && type.contains("全部")) {
             beans.addAll(mAllBeanList);
@@ -146,7 +146,7 @@ public class TaskScenesActivity extends BaseActivity implements TextView.OnEdito
         mAdapter.notifyDataSetChanged();
     }
     private void setUserFilter(String name) {
-        Logcat.e("---------" + name + "/" + 1);
+        Logcat.d("---------" + name + "/" + 1);
         List<TaskScenesBean> beans = new ArrayList<>();
         if (!TextUtils.isEmpty(name) && name.contains("全部")) {
             beans.addAll(mAllBeanList);

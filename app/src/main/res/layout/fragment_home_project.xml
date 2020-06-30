@@ -330,7 +330,7 @@
                     android:layout_marginLeft="12dp"
                     android:button="@null"
                     android:gravity="center_vertical"
-                    android:text="状态"
+                    android:text="关注"
                     android:textColor="#FF101010"
                     android:textSize="14sp"
                     android:textStyle="bold" />

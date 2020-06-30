@@ -132,4 +132,5 @@ dependencies {
     // 此处以JCore 2.3.8 版本为例。
 //    implementation files('lib/jcore-android-2.3.8.jar')
 //    implementation files('lib/jpush-android-3.6.6.jar')
+    api 'com.cilys:utils-app:1.0.0@aar'
 }

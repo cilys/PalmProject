@@ -494,7 +494,7 @@ public class EnterpriseInfoActivity extends BaseActivity implements FileListAdap
                 result.remove(entity);
                 uploadFile(result);
             } else {
-                Logcat.e("-----file-----" + JSON.toJSONString(entity));
+                Logcat.d("-----file-----" + JSON.toJSONString(entity));
                 OkHttpUtils.post().url(ApiConstants.file_upload)
                         .addParams("token", "" + LoginUserUtil.getToken(this))
                         .addFile("file", getPictureSuffix(entity.getLocalPath()), new File(entity.getLocalPath()))
@@ -564,7 +564,7 @@ public class EnterpriseInfoActivity extends BaseActivity implements FileListAdap
     }
 
     private String getPictureSuffix(String path) {
-        Logcat.e("----------" + path);
+        Logcat.i("----------" + path);
         if (path.contains(".")) {
             return "live_" + System.currentTimeMillis() + path.substring(path.lastIndexOf("."), path.length());
         }

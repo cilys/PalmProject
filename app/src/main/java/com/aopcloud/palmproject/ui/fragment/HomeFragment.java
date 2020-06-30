@@ -28,6 +28,7 @@ import com.aopcloud.palmproject.ui.fragment.home.HomeProjectFragment;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.view.CircleImageView;
+import com.cilys.app.view.NoScrollViewPager;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.XXPermissions;
 
@@ -65,7 +66,8 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     @BindView(R.id.tv_project)
     TextView mTvProject;
     @BindView(R.id.page_view)
-    ViewPager mPageView;
+//    ViewPager mPageView;
+    NoScrollViewPager mPageView;
 
 
     private DrawerLayout mDrawerLayout;
@@ -100,13 +102,17 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                 .navigationBarEnable(true)
                 .autoNavigationBarDarkModeEnable(true, 0.2f)
                 .navigationBarColor("#111111")
-                .statusBarColor(R.color.theme_color)
+                .statusBarColor(R.color.theme_transparent)
                 .init();
     }
 
     @Override
     protected void initView(View view) {
         super.initView(view);
+        if (mPageView != null){
+            mPageView.setScrollable(false);
+        }
+
         mPageView.addOnPageChangeListener(this);
 
         if (LoginUserUtil.isLogin(mActivity) && null != LoginUserUtil.getLoginUserBean(mActivity)) {
@@ -122,7 +128,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
 
     private void setLoginUser(UserBean userBean) {
         if (userBean != null) {
-            Logcat.e("------" + JSON.toJSONString(userBean));
+            Logcat.d("------" + JSON.toJSONString(userBean));
             if (LoginUserUtil.isLogin(mActivity) && null != LoginUserUtil.getLoginUserBean(mActivity)) {
                 AppImageLoader.loadCircleImage(mActivity, BuildConfig.BASE_URL + LoginUserUtil.getLoginUserBean(mActivity).getAvatar(), mIvAvatar);
             }

@@ -69,7 +69,7 @@ public class TaskDetailActivity extends BaseActivity {
             project_id = bundle.getString("project_id");
             task_name =bundle.getString("task_name");
             team_id = bundle.getString("team_id");
-            Logcat.e("-----team_id----"+team_id);
+            Logcat.d("-----team_id----"+team_id);
         }
     }
 

@@ -75,13 +75,12 @@ public class NewsFragment extends BaseFragment implements WeatherSearch.OnWeathe
     @Override
     protected void initImmersionBar() {
         mImmersionBar = ImmersionBar.with(this);
-        mImmersionBar.fitsSystemWindows(true)
+        mImmersionBar.reset().fitsSystemWindows(true)
                 .statusBarDarkFont(true)
-                .navigationBarColor("#111111")
                 .navigationBarEnable(true)
                 .autoNavigationBarDarkModeEnable(true, 0.2f)
                 .navigationBarColor("#111111")
-                .statusBarColor(R.color.theme_color)
+                .statusBarColor(R.color.theme_white)
                 .init();
     }
 

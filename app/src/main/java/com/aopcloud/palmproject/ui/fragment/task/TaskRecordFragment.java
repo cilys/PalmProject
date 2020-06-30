@@ -152,7 +152,7 @@ public class TaskRecordFragment extends BaseFragment implements TaskWorkRecordAd
             mMonthBeans.add(bean);
             calendar.add(Calendar.DATE, +1);
         }
-        Logcat.e("---------------" + JSON.toJSONString(map));
+        Logcat.i("---------------" + JSON.toJSONString(map));
         for (String s : map.keySet()) {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date=null;
@@ -166,7 +166,7 @@ public class TaskRecordFragment extends BaseFragment implements TaskWorkRecordAd
             }
             Calendar calendar1 = Calendar.getInstance();
             calendar1.setTime(date);
-            Logcat.e("---------------"+s+"/"+date.getTime()+"/"+calendar1.get(Calendar.DATE));
+            Logcat.i("---------------"+s+"/"+date.getTime()+"/"+calendar1.get(Calendar.DATE));
             if (!map.get(s)) {
                 mMonthBeans.get(calendar1.get(Calendar.DAY_OF_MONTH)).setType(1);
             } else {

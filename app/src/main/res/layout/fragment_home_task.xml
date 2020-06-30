@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <!-- 内容区 -->
         <RelativeLayout
             android:layout_width="match_parent"
@@ -23,7 +22,6 @@
                 android:id="@+id/map_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-
 
             <TextView
                 android:id="@+id/tv_filter"
@@ -42,8 +40,8 @@
                 android:layout_width="130dp"
                 android:layout_height="38dp"
                 android:layout_alignParentBottom="true"
-                android:layout_marginLeft="20dp"
                 android:layout_marginBottom="17dp"
+                android:layout_marginLeft="20dp"
                 android:background="@drawable/shape_home_menu_bg"
                 android:orientation="horizontal">
 
@@ -80,16 +78,14 @@
                 android:id="@+id/iv_refresh"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginRight="6dp" android:layout_alignBottom="@+id/map_view"
+                android:layout_alignBottom="@+id/map_view"
                 android:layout_alignParentRight="true"
                 android:layout_marginBottom="90dp"
+                android:layout_marginRight="6dp"
                 android:background="@drawable/shape_task_location"
                 android:padding="3dp"
                 android:src="@mipmap/dingwei" />
-
-
         </RelativeLayout>
-
 
         <!-- 左边菜单 -->
         <LinearLayout
@@ -98,6 +94,7 @@
             android:layout_gravity="start"
             android:background="#ffffff"
             android:orientation="vertical">
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -113,7 +110,6 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="12dp"
                     android:entries="@array/spinner_home_task_type" />
-
             </LinearLayout>
 
             <View
@@ -140,10 +136,10 @@
                     android:id="@+id/checkbox_state_all"
                     android:layout_width="60dp"
                     android:layout_height="30dp"
-                    android:background="@drawable/selector_home_checkbox_filter"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
+                    android:background="@drawable/selector_home_checkbox_filter"
                     android:button="@null"
                     android:gravity="center"
                     android:text="全部"
@@ -173,8 +169,6 @@
                         android:text="进行中"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12sp" />
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -193,8 +187,6 @@
                         android:text="已超期"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12sp" />
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -213,11 +205,7 @@
                         android:text="已完成"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12sp" />
-
-
                 </LinearLayout>
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -242,8 +230,6 @@
                         android:text="未开始"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12sp" />
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -262,8 +248,6 @@
                         android:text="已取消"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12sp" />
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -282,11 +266,7 @@
                         android:text="暂停中"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12sp" />
-
-
                 </LinearLayout>
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -312,11 +292,7 @@
                         android:text="作业中"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12sp" />
-
-
                 </LinearLayout>
-
-
             </LinearLayout>
 
             <RelativeLayout
@@ -373,8 +349,6 @@
                         android:text="普通"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12sp" />
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -393,9 +367,8 @@
                         android:text="重要"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12dp" />
-
-
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -412,10 +385,7 @@
                         android:text="紧急"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12dp" />
-
-
                 </LinearLayout>
-
             </LinearLayout>
 
             <RelativeLayout
@@ -463,7 +433,6 @@
                         android:textColor="#FF888888"
                         android:textSize="14sp" />
 
-
                     <TextView
                         android:id="@+id/tv_sure"
                         android:layout_width="match_parent"
@@ -476,14 +445,8 @@
                         android:text="确定"
                         android:textColor="@color/theme_white"
                         android:textSize="14sp" />
-
-
                 </LinearLayout>
-
-
             </RelativeLayout>
-
         </LinearLayout>
-
     </android.support.v4.widget.DrawerLayout>
 </LinearLayout>

@@ -114,7 +114,7 @@ LinearLayout mLLEmil;
     private void setLoginUser(UserBean userBean) {
         mUserBean = userBean;
         LoginUserUtil.setLoginUserBean(this, userBean);
-        Logcat.e("------" + JSON.toJSONString(userBean));
+        Logcat.d("------" + JSON.toJSONString(userBean));
         AppImageLoader.loadCircleImage(this, BuildConfig.BASE_URL + userBean.getAvatar(), mIvImg);
 
 

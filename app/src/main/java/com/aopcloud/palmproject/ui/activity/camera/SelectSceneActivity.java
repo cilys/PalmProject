@@ -93,7 +93,7 @@ public class SelectSceneActivity extends BaseActivity implements TodayCacheAdapt
      * @author 刘鹏博
      */
     public static boolean isToday(long s) {
-        Logcat.e("------------" + s);
+        Logcat.i("------------" + s);
 
         Date addTime = new Date();
         addTime.setTime(s);
@@ -179,7 +179,7 @@ public class SelectSceneActivity extends BaseActivity implements TodayCacheAdapt
         String FileColumns = MediaStore.Files.FileColumns.DATA + " like ?";
         Cursor cursor = this.getContentResolver().query(MediaStore.Files.getContentUri("external"),
                 null, FileColumns, selectionArgs, null);
-        Logcat.e("------------" + JSON.toJSONString(cursor));
+        Logcat.i("------------" + JSON.toJSONString(cursor));
         while (cursor.moveToNext()) {
 
             String filePath = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.DATA));
@@ -189,7 +189,7 @@ public class SelectSceneActivity extends BaseActivity implements TodayCacheAdapt
             String DISPLAY_NAME = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.DISPLAY_NAME));
             String fileName = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.TITLE));
 
-            Logcat.e("------------" + fileName + "/" + DISPLAY_NAME);
+            Logcat.i("------------" + fileName + "/" + DISPLAY_NAME);
             File file = new File(filePath);
             if (!file.exists() || file.length() <= 0) {
                 continue;
@@ -210,7 +210,7 @@ public class SelectSceneActivity extends BaseActivity implements TodayCacheAdapt
             }
         }
         cursor.close();
-        Logcat.e("------------" + JSON.toJSONString(mImageItems));
+        Logcat.d("------------" + JSON.toJSONString(mImageItems));
         ThreadUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {

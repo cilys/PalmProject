@@ -305,11 +305,11 @@ public class PictureOrVideoActivity extends BaseActivity {
                                 }
                                 String fileName = System.currentTimeMillis() + ".mp4";
                                 File file = new File(appDir, fileName);
-                                Logcat.e("------isCapturingVideo------------------" +file.exists());
+                                Logcat.i("------isCapturingVideo------------------" +file.exists());
                                 if (!file.exists()) {
                                     try {
                                         file.createNewFile();
-                                        Logcat.e("------isCapturingVideo------------------" +file.exists());
+                                        Logcat.i("------isCapturingVideo------------------" +file.exists());
                                     } catch (IOException e) {
                                         Logcat.e("------isCapturingVideo------------------");
                                         e.printStackTrace();
