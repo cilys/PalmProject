@@ -43,7 +43,6 @@
                     android:text="人脸采集"
                     android:textColor="@color/theme_font_black"
                     android:textSize="13dp" />
-
             </LinearLayout>
 
 
@@ -114,7 +113,6 @@
                     android:textColor="@color/theme_font_black"
                     android:textSize="15sp" />
 
-
                 <TextView
                     android:id="@+id/tv_sex"
                     android:layout_width="wrap_content"
@@ -154,7 +152,6 @@
                     android:textColor="@color/theme_font_black"
                     android:textSize="15sp" />
 
-
                 <TextView
                     android:id="@+id/tv_city"
                     android:layout_width="wrap_content"
@@ -179,6 +176,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
@@ -225,6 +223,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="8dp"
@@ -275,6 +274,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_phone"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -315,6 +315,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_email"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -351,10 +352,12 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="18dp"
+                    android:alpha="0.5"
                     android:src="@mipmap/icon_more" />
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_address"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -395,6 +398,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_real_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -470,6 +474,7 @@
                 android:textSize="15sp" />
 
             <RelativeLayout
+                android:id="@+id/rl_blank_name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -511,6 +516,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/rl_blank_no"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -561,6 +567,7 @@
                 android:textSize="15sp" />
 
             <RelativeLayout
+                android:id="@+id/rl_education"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -601,6 +608,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_school"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -641,6 +649,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_work_type"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -681,6 +690,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rl_skill"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
@@ -729,7 +739,6 @@
                 android:background="@color/theme_white"
                 android:orientation="vertical">
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
@@ -748,7 +757,6 @@
                     android:layout_marginTop="13dp"
                     android:layout_marginBottom="11dp" />
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

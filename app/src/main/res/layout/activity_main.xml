@@ -94,10 +94,7 @@
                 android:text="发现"
                 android:textColor="@drawable/main_bottom_navigation"
                 android:textSize="14sp" />
-
         </RadioGroup>
-
-
     </LinearLayout>
 
     <!-- 左边菜单 -->
@@ -112,7 +109,6 @@
             android:layout_width="match_parent"
             android:layout_height="139dp"
             android:background="@color/theme_white">
-
 
             <TextView
                 android:id="@+id/tv_switch_enterprise"
@@ -173,7 +169,6 @@
                 android:layout_toEndOf="@+id/tv_real_name"
                 android:src="@mipmap/icon_qr_code" />
 
-
             <TextView
                 android:id="@+id/tv_state"
                 android:layout_width="wrap_content"
@@ -200,8 +195,6 @@
                 android:text="我的信息>"
                 android:textColor="@color/theme_color"
                 android:textSize="12sp" />
-
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -210,7 +203,6 @@
             android:layout_height="55dp"
             android:layout_marginTop="4dp"
             android:background="@color/theme_white"
-
             android:gravity="center_vertical">
 
             <ImageView
@@ -243,7 +235,6 @@
             android:layout_height="55dp"
             android:layout_marginTop="1dp"
             android:background="@color/theme_white"
-
             android:gravity="center_vertical">
 
             <ImageView
@@ -300,7 +291,6 @@
                 android:layout_marginRight="18dp"
                 android:src="@mipmap/icon_more" />
         </RelativeLayout>
-
     </LinearLayout>
 
 

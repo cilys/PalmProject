@@ -1,10 +1,13 @@
 package com.aopcloud.palmproject.ui.activity.mine;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,6 +25,7 @@ import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.bean.AddressDataBean;
 import com.aopcloud.palmproject.bean.UserBean;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.dialog.InputDialog;
 import com.aopcloud.palmproject.loader.AppImageLoader;
 import com.aopcloud.palmproject.ui.activity.enterprise.EnterpriseInfoActivity;
 import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;
@@ -191,10 +195,126 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
         mFileListAdapter.setOnItemChildClickListener(this);
         mRvListImg.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mRvListImg.setAdapter(mFileListAdapter);
+
+
+        findViewById(R.id.rl_mine_card).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog("昵称", mEtNikeName);
+            }
+        });
+        findViewById(R.id.rl_desc).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog("个性签名", mEtDesc);
+            }
+        });
+        findViewById(R.id.rl_name).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog("姓名", mEtName);
+            }
+        });
+        findViewById(R.id.rl_email).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog("电子邮箱", mEtEmail);
+            }
+        });
+        findViewById(R.id.rl_address).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog("联系地址", mEtAddress);
+            }
+        });
+//        findViewById(R.id.rl_real_name).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showInputDialog("实名认证", mTvRealName);
+//            }
+//        });
+        findViewById(R.id.rl_blank_name).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog("开户行", mEtBlankName);
+
+            }
+        });
+        findViewById(R.id.rl_blank_no).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog("银行账号", mEtBlankNo);
+
+            }
+        });
+        findViewById(R.id.rl_education).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog("学历", mEtEducation);
+            }
+        });
+        findViewById(R.id.rl_school).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog("毕业院校", mEtSchool);
+            }
+        });
+        findViewById(R.id.rl_work_type).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog("工种", mEtWorkType);
+            }
+        });
+        findViewById(R.id.rl_skill).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showInputDialog("技能", mEtSkill);
+            }
+        });
+    }
+
+    private InputDialog inputDialog;
+    private void showInputDialog(String title, final EditText ed){
+        InputMethodManager inputManager=(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+        inputDialog = new InputDialog(this);
+        inputDialog.getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        inputDialog.setTitle(title)
+                .setCanceledOnTouchOutside(false)
+                .setCancelBtn(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dismissInputDialog();
+                    }
+                }).setCommitBtn(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        EditText ed_input = (EditText)inputDialog.getChildView(R.id.ed_input);
+                        if (ed_input != null){
+                            String input = ed_input.getText().toString().trim();
+
+                            if (ed != null){
+                                ed.setText(input);
+                            }
+                        }
+                        dismissInputDialog();
+                    }
+                }).show();
+    }
+    private void dismissInputDialog(){
+        if (inputDialog != null){
+            inputDialog.dismiss();
+        }
+        inputDialog = null;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dismissInputDialog();
     }
 
     private void setLoginUser(UserBean userBean) {
-
         mUserBean = userBean;
         LoginUserUtil.setLoginUserBean(this, userBean);
         Logcat.i("------" + JSON.toJSONString(userBean));
@@ -248,13 +368,9 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
 
         mEtMobile.setFocusableInTouchMode(false);
         mEtMobile.setFocusable(false);
-
-
     }
 
     public void showEdit() {
-
-
         mEtNikeName.setHint("请输入昵称");
         mEtDesc.setHint("请输入个性签名");
         mEtMobile.setHint("请输入手机好号");
@@ -316,16 +432,13 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
         mEtAddress.setFocusable(true);
         mEtAddress.requestFocus();
 
-
         mEtMobile.setFocusableInTouchMode(true);
         mEtMobile.setFocusable(true);
         mEtMobile.requestFocus();
-
     }
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
         if (mTvHeaderRight.getText().equals("保存")) {
             List list = new ArrayList();
             list.addAll(mMediaEntities);
@@ -353,7 +466,6 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
         } else {
 
         }
-
     }
 
     @Override
@@ -362,8 +474,6 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
             mMediaEntities.remove(position);
             mFileListAdapter.notifyDataSetChanged();
         }
-
-
     }
 
     @OnClick({R.id.ll_header_back, R.id.iv_img, R.id.tv_sex, R.id.tv_city, R.id.tv_header_right})
@@ -431,7 +541,6 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
         education = mEtEducation.getText().toString();
         school = mEtSchool.getText().toString();
         skills = mEtSkill.getText().toString();
-
 
         if (TextUtils.isEmpty(nickname)) {
             nickname = "";
