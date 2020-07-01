@@ -129,6 +129,22 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
     private AMapLocationClientOption mLocationOption;
     private List<ProjectListBean> mProjectListBeans = new ArrayList<>();
 
+    private final String STATE_all = "全部";
+    private final String STATE_design = "勘察设计";
+    private final String STATE_ready = "开工预备";
+    private final String STATE_build = "在建";
+    private final String STATE_completed = "竣工验收";
+    private final String STATE_finish = "完结维保";
+    private final String STATE_termination = "已终止";
+    private final String STATE_stop = "已停工";
+
+    private final String FOLLOW_all = "全部";
+    private final String FOLLOW_s = "已关注";
+    private final String FOLLOW_n = "未关注";
+
+    private String state = STATE_all;
+    private String follow = FOLLOW_all;
+
     @Override
     protected boolean isImmersionBarEnabled() {
         return false;
@@ -169,7 +185,6 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
         mUiSettings = mAMap.getUiSettings();
         mUiSettings.setZoomControlsEnabled(true);
         mAMap.setOnMarkerClickListener(this);
-
     }
 
     private void initLocation() {
@@ -186,14 +201,32 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
 
     private void setViewData(List<ProjectListBean> beanList) {
         mAMap.clear();
+
+        //筛选
         mProjectListBeans.clear();
-        mProjectListBeans.addAll(beanList);
 
-        mTvCount.setText("" + beanList.size());
+        if (beanList == null || beanList.size() < 1) {
+            mTvCount.setText("0");
+            return;
+        }
+        List<ProjectListBean> ls = new ArrayList<>();
+        for (ProjectListBean b : beanList){
+            String status = b.getStatus();
+            if (state == null || STATE_all.equals(state) || "".equals(state)){
+                //不筛选状态
+                ls.add(b);
+            } else {
+                if (state.equals(status)){
+                    ls.add(b);
+                }
+            }
+        }
+        mProjectListBeans.addAll(ls);
+        mTvCount.setText("" + ls.size());
 
-        for (int i = 0; i < beanList.size(); i++) {
+        for (int i = 0; i < ls.size(); i++) {
             //icon_task_progress  icon_project_home
-            addMarker(beanList.get(i), R.mipmap.icon_task_progress);
+            addMarker(ls.get(i), R.mipmap.icon_task_progress);
         }
     }
 
@@ -214,6 +247,7 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    state = STATE_all;
                     mCheckboxStateDesign.setChecked(!isChecked);
                     mCheckboxStateReady.setChecked(!isChecked);
                     mCheckboxStateBuild.setChecked(!isChecked);
@@ -228,6 +262,8 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    state = STATE_design;
+
                     mCheckboxStateAll.setChecked(!isChecked);
                     mCheckboxStateReady.setChecked(!isChecked);
                     mCheckboxStateBuild.setChecked(!isChecked);
@@ -242,6 +278,8 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    state = STATE_ready;
+
                     mCheckboxStateAll.setChecked(!isChecked);
                     mCheckboxStateDesign.setChecked(!isChecked);
                     mCheckboxStateBuild.setChecked(!isChecked);
@@ -256,6 +294,8 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    state = STATE_build;
+
                     mCheckboxStateAll.setChecked(!isChecked);
                     mCheckboxStateDesign.setChecked(!isChecked);
                     mCheckboxStateReady.setChecked(!isChecked);
@@ -270,6 +310,8 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    state = STATE_completed;
+
                     mCheckboxStateAll.setChecked(!isChecked);
                     mCheckboxStateDesign.setChecked(!isChecked);
                     mCheckboxStateReady.setChecked(!isChecked);
@@ -284,6 +326,8 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    state = STATE_finish;
+
                     mCheckboxStateAll.setChecked(!isChecked);
                     mCheckboxStateDesign.setChecked(!isChecked);
                     mCheckboxStateReady.setChecked(!isChecked);
@@ -298,6 +342,8 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    state = STATE_termination;
+
                     mCheckboxStateAll.setChecked(!isChecked);
                     mCheckboxStateDesign.setChecked(!isChecked);
                     mCheckboxStateReady.setChecked(!isChecked);
@@ -312,6 +358,8 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    state = STATE_stop;
+
                     mCheckboxStateAll.setChecked(!isChecked);
                     mCheckboxStateDesign.setChecked(!isChecked);
                     mCheckboxStateReady.setChecked(!isChecked);
@@ -327,6 +375,8 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    follow = FOLLOW_all;
+
                     mCheckboxFollowN.setChecked(!isChecked);
                     mCheckboxFollowS.setChecked(!isChecked);
                 }
@@ -336,6 +386,8 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    follow = FOLLOW_n;
+
                     mCheckboxFollowAll.setChecked(!isChecked);
                     mCheckboxFollowS.setChecked(!isChecked);
                 }
@@ -345,6 +397,8 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    follow = FOLLOW_s;
+
                     mCheckboxFollowAll.setChecked(!isChecked);
                     mCheckboxFollowN.setChecked(!isChecked);
                 }
@@ -369,7 +423,9 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
                 }
                 break;
             case R.id.tv_reset:
-                mCheckboxFollowAll.setChecked(false);
+                mCheckboxStateAll.setChecked(true);
+                state = STATE_all;
+
                 mCheckboxStateDesign.setChecked(false);
                 mCheckboxStateReady.setChecked(false);
                 mCheckboxStateBuild.setChecked(false);
@@ -378,14 +434,18 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
                 mCheckboxStateTermination.setChecked(false);
                 mCheckboxStateStop.setChecked(false);
 
+                mCheckboxFollowAll.setChecked(true);
+                follow = FOLLOW_all;
 
-                mCheckboxStateAll.setChecked(false);
                 mCheckboxFollowN.setChecked(false);
                 mCheckboxFollowS.setChecked(false);
 
                 break;
             case R.id.tv_sure:
                 mDrawerLayout.closeDrawers();
+                //重新请求数据
+                toRequest(ApiConstants.EventTags.project_all);
+
                 break;
         }
     }
@@ -425,7 +485,6 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-
         for (int i = 0; i < mProjectListBeans.size(); i++) {
             if (mProjectListBeans.get(i).getProject_id() == marker.getPeriod()) {
                 showProjectInfo(mProjectListBeans.get(i));
@@ -447,7 +506,6 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
                 longitude = amapLocation.getLongitude();
                 latitude = amapLocation.getLatitude();
                 address = mAMapLocation.getAddress();
-
 
                 LatLng latLng = new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude());//构造一个位置
                 mAMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
@@ -494,7 +552,6 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
         mlocationClient = null;
     }
 
-
     @Override
     public void toRequest(int eventTag) {
         super.toRequest(eventTag);
@@ -521,7 +578,6 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -529,7 +585,6 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
         super.onRequestFailureException(eventTag, msg);
         Logcat.i("------------" + eventTag + "/" + msg);
     }
-
 
     public void showProjectInfo(ProjectListBean projectListBean) {
         BottomSheetDialog dialog = new BottomSheetDialog(mActivity);
@@ -545,7 +600,6 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
         TextView mTvState = dialog.findViewById(R.id.tv_state);
         TextView mTvAddress = dialog.findViewById(R.id.tv_address);
         TextView mTvDistance = dialog.findViewById(R.id.tv_distance);
-
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date current = new Date();
@@ -566,7 +620,6 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
             days = "逾期" + (-betweenDays) + "天";
         }
 
-
         LatLng latLng1 = new LatLng(Double.valueOf(projectListBean.getLatitude()), Double.valueOf(projectListBean.getLongitue()));
         LatLng latLng2 = new LatLng(latitude, longitude);
         int distance = (int) AMapUtils.calculateLineDistance(latLng1, latLng2);
@@ -578,8 +631,6 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
         mTvState.setText("在建");
         mTvAddress.setText("" + projectListBean.getAddress());
         mTvDistance.setText(distance > 1000 ? "距你" + (distance / 1000) + "km" : "距你" + distance + "米");
-
-
     }
 
     public void showTaskList() {

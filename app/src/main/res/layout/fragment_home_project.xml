@@ -173,8 +173,6 @@
                         android:text="勘察设计"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12sp" />
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -193,8 +191,6 @@
                         android:text="开工预备"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12sp" />
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -213,11 +209,7 @@
                         android:text="在建"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12sp" />
-
-
                 </LinearLayout>
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -242,8 +234,6 @@
                         android:text="竣工验收"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12sp" />
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -262,8 +252,6 @@
                         android:text="完结维保"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12sp" />
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -282,11 +270,7 @@
                         android:text="已终止"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12sp" />
-
-
                 </LinearLayout>
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -312,8 +296,6 @@
                         android:text="已停工"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12sp" />
-
-
                 </LinearLayout>
 
 
@@ -373,8 +355,6 @@
                         android:text="已关注"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12sp" />
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -458,11 +438,7 @@
                         android:text="确定"
                         android:textColor="@color/theme_white"
                         android:textSize="14sp" />
-
-
                 </LinearLayout>
-
-
             </RelativeLayout>
 
         </LinearLayout>
