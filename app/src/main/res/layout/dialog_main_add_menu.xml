@@ -105,7 +105,6 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-
                 <ImageView
                     android:layout_width="70dp"
                     android:layout_height="70dp"
@@ -120,11 +119,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="新建项目"
-
                     android:textColor="@color/theme_font_black"
                     android:textSize="14sp" />
-
-
             </LinearLayout>
 
             <View
