@@ -526,6 +526,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
                 } else if (type.equals("我发起的任务")) {
                     task_type = "1";
                 }
+                toRequest(ApiConstants.EventTags.task_all);
                 break;
         }
     }

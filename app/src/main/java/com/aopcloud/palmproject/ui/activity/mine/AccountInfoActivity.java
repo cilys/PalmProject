@@ -302,6 +302,9 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
                 }).show();
     }
     private void dismissInputDialog(){
+        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
         if (inputDialog != null){
             inputDialog.dismiss();
         }
