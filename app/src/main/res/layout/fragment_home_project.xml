@@ -373,11 +373,7 @@
                         android:text="未关注"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12dp" />
-
-
                 </LinearLayout>
-
-
             </LinearLayout>
 
             <RelativeLayout

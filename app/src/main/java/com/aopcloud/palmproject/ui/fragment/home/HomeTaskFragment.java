@@ -228,7 +228,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
 
 //        setFilter("全部");
         setFilter(null);
-        mTvCount.setText("" + beanList.size());
+
     }
 
     private void setFilter(String type) {
@@ -251,19 +251,28 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
         for (ProjectTaskBean b : mAllList){
             String state_str = b.getStatus_str();
             String level_str = b.getLevel();
-            if (state_str == null || state_str.equals("")){
+
+            if (state_str == null || state_str.equals("")) {
                 state_str = STATE_all;
             }
-            if (level_str == null || level_str.equals("")){
+            if (STATE_all.equals(state)) {
+                state_str = state;
+            }
+
+            if (level_str == null || level_str.equals("")) {
                 level_str = LEVEL_all;
             }
+            if (LEVEL_all.equals(level)) {
+                level_str = level;
+            }
+
             if (state_str.equals(state) && level_str.equals(level)){
                 ls.add(b);
             }
         }
         mTaskBeans.addAll(ls);
 
-
+        mTvCount.setText("" + ls.size());
 
         for (int i = 0; i < mAllList.size(); i++) {
             if (mAllList.get(i).getStatus_str().equals("未开始")) {
