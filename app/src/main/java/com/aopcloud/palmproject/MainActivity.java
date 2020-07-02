@@ -43,6 +43,7 @@ import com.aopcloud.palmproject.ui.activity.mine.MyInfoCardActivity;
 import com.aopcloud.palmproject.ui.activity.mine.QrCodeActivity;
 import com.aopcloud.palmproject.ui.activity.project.AddProjectActivity;
 import com.aopcloud.palmproject.ui.activity.setting.SettingActivity;
+import com.aopcloud.palmproject.ui.activity.task.AddTaskActivity;
 import com.aopcloud.palmproject.ui.activity.web.WebActivity;
 import com.aopcloud.palmproject.ui.adapter.file.PreviewAdapter;
 import com.aopcloud.palmproject.ui.fragment.FindFragment;
@@ -429,6 +430,13 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 gotoActivity(AddWorkLogActivity.class);
+                dialog.dismiss();
+            }
+        });
+        dialog.findViewById(R.id.ll_add_task).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gotoActivity(AddTaskActivity.class);
                 dialog.dismiss();
             }
         });

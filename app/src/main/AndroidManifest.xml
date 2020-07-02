@@ -291,6 +291,7 @@
         <activity android:name=".ui.activity.team.TeamEditMemberActivity" />
         <activity android:name=".ui.activity.team.ProjectCopyTeamActivity" />
 
+        <activity android:name=".ui.activity.task.AddTaskActivity" />
 
         <!--end-->
 
