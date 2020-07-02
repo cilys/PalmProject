@@ -1,7 +1,9 @@
 package com.aopcloud.palmproject.ui.activity.mine;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -186,7 +188,10 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
     @Override
     protected void initView() {
         mTvHeaderTitle.setText("我的信息");
-        mTvHeaderRight.setText("编辑");
+//        mTvHeaderRight.setText("编辑");
+        mTvHeaderRight.setText("保存");
+        mTvHeaderRight.setVisibility(View.GONE);
+
         toRequest(ApiConstants.EventTags.user_info);
 
         mAddMediaEntity = new MediaEntity();
@@ -195,7 +200,6 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
         mFileListAdapter.setOnItemChildClickListener(this);
         mRvListImg.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mRvListImg.setAdapter(mFileListAdapter);
-
 
         findViewById(R.id.rl_mine_card).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -271,44 +275,64 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
                 showInputDialog("技能", mEtSkill);
             }
         });
+        findViewById(R.id.tv_save).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkParams();
+            }
+        });
     }
 
     private InputDialog inputDialog;
     private void showInputDialog(String title, final EditText ed){
         InputMethodManager inputManager=(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+
         inputDialog = new InputDialog(this);
         inputDialog.getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        if (ed != null) {
+            inputDialog.setMsg(ed.getText().toString());
+        }
         inputDialog.setTitle(title)
                 .setCanceledOnTouchOutside(false)
-                .setCancelBtn(new View.OnClickListener() {
+                .setCancelBtn(new InputDialog.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
+                    public void onClick(Dialog dialog, View view, CharSequence input) {
                         dismissInputDialog();
                     }
-                }).setCommitBtn(new View.OnClickListener() {
+                }).setCommitBtn(new InputDialog.OnClickListener() {
                     @Override
-                    public void onClick(View v) {
-                        EditText ed_input = (EditText)inputDialog.getChildView(R.id.ed_input);
-                        if (ed_input != null){
-                            String input = ed_input.getText().toString().trim();
-
-                            if (ed != null){
+                    public void onClick(Dialog dialog, View view, CharSequence input) {
+                        if (input != null) {
+                            if (ed != null) {
                                 ed.setText(input);
                             }
                         }
-                        dismissInputDialog();
                     }
                 }).show();
     }
     private void dismissInputDialog(){
-        InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-
         if (inputDialog != null){
             inputDialog.dismiss();
+
+//            InputMethodManager inputManager=(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+//            inputManager.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
         }
         inputDialog = null;
+    }
+
+    /**
+     * 收起键盘
+     *
+     * @param v 一般为光标所在的EditView
+     */
+    protected void hideInput(View v) {
+        if (v == null) {
+            return;
+        }
+
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
     @Override

@@ -13,6 +13,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.aopcloud.palmproject.R;
@@ -82,6 +83,25 @@ public class InputDialog {
         return this;
     }
 
+    private EditText ed_input;
+    public InputDialog setMsg(String msg) {
+        if (msg == null) {
+            return this;
+        }
+        if (ed_input == null) {
+            if (rootView != null){
+                ed_input = (EditText)rootView.findViewById(R.id.ed_input);
+            }
+        }
+        if (ed_input != null){
+            ed_input.setText(msg);
+            ed_input.setSelection(msg.length());
+            getDialogWindow().clearFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
+            ed_input.requestFocus();
+        }
+        return this;
+    }
+
     public void show() {
         if (!finishing(ac) && mDialog != null && !mDialog.isShowing()) {
             mDialog.show();
@@ -127,35 +147,51 @@ public class InputDialog {
             }
         }
     }
-    public InputDialog setCancelBtn(String text, View.OnClickListener listener){
+    public InputDialog setCancelBtn(String text, final OnClickListener listener){
         TextView tv_left = (TextView) getChildView(R.id.tv_cancel);
         if (tv_left != null) {
             if (text != null) {
                 tv_left.setText(text);
             }
             if (listener != null) {
-                tv_left.setOnClickListener(listener);
+                tv_left.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        listener.onClick(getDialog(), v, null);
+                    }
+                });
             }
         }
         return this;
     }
-    public InputDialog setCancelBtn(View.OnClickListener listener){
+    public InputDialog setCancelBtn(OnClickListener listener){
         return setCancelBtn(null, listener);
     }
 
-    public InputDialog setCommitBtn(String text, View.OnClickListener listener){
+    public InputDialog setCommitBtn(String text, final OnClickListener listener){
         TextView tv_right = (TextView) getChildView(R.id.tv_ok);
         if (tv_right != null) {
             if (text != null) {
                 tv_right.setText(text);
             }
             if (listener != null) {
-                tv_right.setOnClickListener(listener);
+                tv_right.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (listener != null){
+                            String input = null;
+                            if (ed_input != null) {
+                                input = ed_input.getText().toString();
+                            }
+                            listener.onClick(getDialog(), v, input);
+                        }
+                    }
+                });
             }
         }
         return this;
     }
-    public InputDialog setCommitBtn(View.OnClickListener listener){
+    public InputDialog setCommitBtn(OnClickListener listener){
         return setCommitBtn(null, listener);
     }
 
@@ -202,4 +238,9 @@ public class InputDialog {
         ac.getWindowManager().getDefaultDisplay().getMetrics(dm);
         return dm.heightPixels;
     }
+
+    public interface OnClickListener{
+        void onClick(Dialog dialog, View view, CharSequence input);
+    }
+
 }
