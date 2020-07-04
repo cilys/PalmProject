@@ -25,7 +25,7 @@ public class LoginUserUtil {
      */
     public static void setLoginUserBean(Context context, UserBean bean) {
         if (bean == null) {
-            Logcat.e("set login bean is empty");
+            Logcat.d("set login bean is empty");
         }
         SharedPreferencesUtils.setSP(context, "loginUser", JSON.toJSONString(bean));
     }

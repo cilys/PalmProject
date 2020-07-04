@@ -1,5 +1,7 @@
 package com.aopcloud.palmproject.ui.fragment.home;
 
+import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -34,8 +36,10 @@ import com.amap.api.maps.model.MyLocationStyle;
 import com.aopcloud.base.base.BaseFragment;
 import com.aopcloud.base.common.BaseEvent;
 import com.aopcloud.base.log.Logcat;
+import com.aopcloud.base.util.GpsUtls;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
+import com.aopcloud.palmproject.Conf;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.MassageEvent;
@@ -46,6 +50,7 @@ import com.aopcloud.palmproject.ui.adapter.home.HomeProjectAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.view.decoration.DividerItemDecoration;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.cjt2325.cameralibrary.util.LogUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -172,6 +177,12 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
 
         initMap();
         initLocation();
+
+        if (GpsUtls.isOPen(getActivity())){
+
+        } else {
+            showOpenGpsDialog();
+        }
     }
 
     @Override
@@ -183,6 +194,7 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
     private void initMap() {
         mAMap = mMapView.getMap();
         mUiSettings = mAMap.getUiSettings();
+//        mUiSettings.setScrollGesturesEnabled(false);
         mUiSettings.setZoomControlsEnabled(true);
         mAMap.setOnMarkerClickListener(this);
     }
@@ -192,15 +204,17 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
         mAMap.setMyLocationEnabled(true);
         myLocationStyle = new MyLocationStyle();//初始化定位蓝点样式类myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);//连续定位、且将视角移动到地图中心点，定位点依照设备方向旋转，并且会跟随设备移动。（1秒1次定位）如果不设置myLocationType，默认也会执行此种模式。
         myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE);//定位一次，且将视角移动到地图中心点。
+//        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_FOLLOW);//定位多次，且将视角移动到地图中心点。
         myLocationStyle.strokeColor(ResourceUtil.getColor("#FF108CF7"));
         myLocationStyle.radiusFillColor(ResourceUtil.getColor("#30108CF7"));
         myLocationStyle.strokeWidth(2);
         mAMap.setMyLocationStyle(myLocationStyle);
     }
 
-
     private void setViewData(List<ProjectListBean> beanList) {
-        mAMap.clear();
+        if (mAMap != null) {
+            mAMap.clear();
+        }
 
         //筛选
         mProjectListBeans.clear();
@@ -508,8 +522,14 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
                 address = mAMapLocation.getAddress();
 
                 LatLng latLng = new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude());//构造一个位置
-                mAMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
+                mAMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, Conf.MAP_ZOOM_LEVEL));
 //                Logcat.i("onLocationChanged:" + JSON.toJSONString(amapLocation));
+
+                //绘制定位点
+//                addLocationMarker(latLng);
+                if (mlocationClient != null){
+                    mlocationClient.stopLocation();
+                }
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
                 Logcat.e("AmapErr", errText);
@@ -679,5 +699,33 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
         } else if (postResult.type.equals(MassageEvent.SWITCH_COMPANY)) {
             toRequest(ApiConstants.EventTags.project_all);
         }
+    }
+
+    private void addLocationMarker(LatLng latLng){
+        if (mAMap == null || latLng == null){
+            return;
+        }
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.draggable(true);
+        markerOptions.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.dingwei)));
+        mAMap.addMarker(markerOptions.position(latLng));
+
+        mAMap.setOnMarkerDragListener(new AMap.OnMarkerDragListener() {
+            @Override
+            public void onMarkerDragStart(Marker marker) {
+
+            }
+
+            @Override
+            public void onMarkerDrag(Marker marker) {
+
+            }
+
+            @Override
+            public void onMarkerDragEnd(Marker marker) {
+                LogUtil.d(HomeProjectFragment.class.getSimpleName(), "onMarkerDragEnd----->" + marker.getPosition());
+                LogUtil.d(HomeProjectFragment.class.getSimpleName(), "onMarkerDragEnd----->" + marker.getPosition());
+            }
+        });
     }
 }

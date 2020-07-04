@@ -704,13 +704,13 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         dismissPopupLoading();
-                        Logcat.e("add live video exception :" + e + "/");
+                        Logcat.w("add live video exception :" + e + "/");
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         dismissPopupLoading();
-                        Logcat.e("add Serices Course  response :" + response);
+                        Logcat.i("add Serices Course  response :" + response);
                         ResultBean bean = JSON.parseObject(response, ResultBean.class);
                         if (bean != null && bean.getCode() == 0) {
                             avatar = JsonUtil.parserField(bean.getData(), "path");

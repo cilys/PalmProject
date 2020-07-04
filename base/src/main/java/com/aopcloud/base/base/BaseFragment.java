@@ -1,9 +1,12 @@
 package com.aopcloud.base.base;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,11 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.aopcloud.base.R;
 import com.aopcloud.base.common.BaseEvent;
 import com.aopcloud.base.common.ICommonViewUi;
 import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.presenter.ICommonRequestPresenter;
 import com.aopcloud.base.presenter.impl.CommonRequestPresenterImpl;
+import com.aopcloud.base.util.GpsUtls;
 import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.List;
@@ -65,6 +70,22 @@ public abstract class BaseFragment extends Fragment implements ICommonViewUi {
         }
     }
 
+    protected void showOpenGpsDialog() {
+        new AlertDialog.Builder(getActivity())
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .setTitle("提示：")
+                .setMessage("开启定位")
+                .setNegativeButton("取消",null)
+                .setPositiveButton("打开", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivityForResult(intent,887);
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
+    }
 
     @Nullable
     @Override

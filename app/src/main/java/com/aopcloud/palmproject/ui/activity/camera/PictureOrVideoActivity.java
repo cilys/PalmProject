@@ -143,7 +143,7 @@ public class PictureOrVideoActivity extends BaseActivity {
             @Override
             public void onPictureTaken(byte[] jpeg) {
                 super.onPictureTaken(jpeg);
-                Logcat.e("-------onPictureTaken----");
+                Logcat.d("-------onPictureTaken----");
                 Bitmap bitmap = BitmapUtil.Bytes2Bimap(jpeg);
                 Bitmap watermark = WatermarkUtil.createWatermark(PictureOrVideoActivity.this,
                         "测试项目"
@@ -195,7 +195,7 @@ public class PictureOrVideoActivity extends BaseActivity {
                     mTvCount.setText("");
                 }
 //                sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + video.getPath())));
-                Logcat.e("-------onVideoTaken----" + video.getPath());
+                Logcat.i("-------onVideoTaken----" + video.getPath());
             }
 
             @Override
@@ -311,7 +311,6 @@ public class PictureOrVideoActivity extends BaseActivity {
                                         file.createNewFile();
                                         Logcat.i("------isCapturingVideo------------------" +file.exists());
                                     } catch (IOException e) {
-                                        Logcat.e("------isCapturingVideo------------------");
                                         e.printStackTrace();
                                     }
                                 }

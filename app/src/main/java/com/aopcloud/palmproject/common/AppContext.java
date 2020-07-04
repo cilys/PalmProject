@@ -9,14 +9,12 @@ import android.widget.ImageView;
 import com.aopcloud.base.common.AppHelper;
 import com.aopcloud.base.log.LogConfig;
 import com.aopcloud.palmproject.loader.AppImageLoader;
+import com.aopcloud.palmproject.net.LoggerInterceptor;
 import com.guoxiaoxing.phoenix.core.listener.ImageLoader;
 import com.guoxiaoxing.phoenix.picker.Phoenix;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.cookie.CookieJarImpl;
-import com.zhy.http.okhttp.cookie.store.PersistentCookieStore;
 import com.zhy.http.okhttp.https.HttpsUtils;
-import com.zhy.http.okhttp.log.LoggerInterceptor;
 
 import java.util.concurrent.TimeUnit;
 

@@ -39,6 +39,7 @@ import com.aopcloud.base.common.BaseEvent;
 import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
+import com.aopcloud.palmproject.Conf;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.MassageEvent;
@@ -199,12 +200,11 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
         mAMap = mMapView.getMap();
 
         mUiSettings = mAMap.getUiSettings();
-        mUiSettings.setScrollGesturesEnabled(false);
+//        mUiSettings.setScrollGesturesEnabled(false);
         mUiSettings.setRotateGesturesEnabled(false);
         mUiSettings.setTiltGesturesEnabled(false);
         mUiSettings.setZoomControlsEnabled(true);
         mAMap.setOnMarkerClickListener(this);
-
     }
 
     private void initLocation() {
@@ -601,7 +601,12 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
                 address = mAMapLocation.getAddress();
 
                 LatLng latLng = new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude());//构造一个位置
-                mAMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
+                mAMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, Conf.MAP_ZOOM_LEVEL));
+
+                if (mlocationClient != null){
+                    mlocationClient.stopLocation();
+                }
+//
 //                Logcat.i("onLocationChanged:" + JSON.toJSONString(amapLocation));
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
@@ -627,7 +632,6 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
             mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
 
             mLocationOption.setLocationPurpose(AMapLocationClientOption.AMapLocationPurpose.SignIn);
-
 
             //设置定位参数
             mlocationClient.setLocationOption(mLocationOption);

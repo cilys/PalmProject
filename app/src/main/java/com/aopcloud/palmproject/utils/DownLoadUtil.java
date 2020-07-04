@@ -62,7 +62,7 @@ public class DownLoadUtil {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         ToastUtil.showToast("保存出错,请重试");
-                        Logcat.e("getPictureSuffix:" + getPictureSuffix(url)
+                        Logcat.w("getPictureSuffix:" + getPictureSuffix(url)
                                 + "\turl:" + url
                                 + "\tgetPath:" + appDir.getPath()
                                 + "\tgetAbsolutePath:" + appDir.getAbsolutePath());

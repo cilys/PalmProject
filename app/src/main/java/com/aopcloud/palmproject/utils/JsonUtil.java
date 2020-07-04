@@ -40,7 +40,7 @@ public class JsonUtil {
      */
     public String toJsonByF(Object o){
         if (null==o){
-            Logcat.e("metadata is empty");
+            Logcat.d("metadata is empty");
             return null;
         }
         return JSON.toJSONString(o);

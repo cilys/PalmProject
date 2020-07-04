@@ -114,7 +114,7 @@ public class SelectSceneActivity extends BaseActivity implements TodayCacheAdapt
             parseEndTime = dateFormat.parse(endTime);
 
         } catch (ParseException e) {
-            Logcat.e(e.getMessage());
+            Logcat.e(e);
         }
         if (addTime.after(parseBeginTime) && addTime.before(parseEndTime)) {
             flag = true;

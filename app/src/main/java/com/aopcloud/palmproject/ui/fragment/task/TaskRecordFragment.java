@@ -161,7 +161,7 @@ public class TaskRecordFragment extends BaseFragment implements TaskWorkRecordAd
             } catch (ParseException e) {
                 e.printStackTrace();
                 date = new Date();
-                Logcat.e("----ParseException-----------" +date.getTime()+"/"+1);
+                Logcat.d("----ParseException-----------" +date.getTime()+"/"+1);
 
             }
             Calendar calendar1 = Calendar.getInstance();

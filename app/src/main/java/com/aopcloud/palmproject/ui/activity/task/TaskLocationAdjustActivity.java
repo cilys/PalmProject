@@ -31,6 +31,7 @@ import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
+import com.aopcloud.palmproject.Conf;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
@@ -149,28 +150,24 @@ public class TaskLocationAdjustActivity extends BaseActivity implements
         if (bundle != null) {
             task_id = bundle.getString("task_id");
             String taskBeanJson = bundle.getString("taskBean");
-            mTaskDetailBean= JSON.parseObject(taskBeanJson,ProjectTaskDetailBean.class);
-
+            mTaskDetailBean = JSON.parseObject(taskBeanJson, ProjectTaskDetailBean.class);
         }
     }
 
     @Override
     protected void initView() {
-
-
         mTvHeaderTitle.setText("上报现场位置较准");
         mTvHeaderRight.setText("确认");
 
-
-        if (mTaskDetailBean!=null){
+        if (mTaskDetailBean != null) {
             mRlTaskInfo.setVisibility(View.VISIBLE);
             mTvTaskTime.setText(mTaskDetailBean.getStart_date());
             mTvTaskState.setText(mTaskDetailBean.getStatus_str());
             mTvTaskLeader.setText(mTaskDetailBean.getLeader_name());
             mTvTaskAddress.setText(mTaskDetailBean.getAddress());
-            mTvProgress.setText(""+mTaskDetailBean.getProgress()+"%");
+            mTvProgress.setText("" + mTaskDetailBean.getProgress() + "%");
             mTvEnterprise.setText("");
-        }else {
+        } else {
             mRlTaskInfo.setVisibility(View.GONE);
             mTvTaskTime.setText("");
             mTvTaskState.setText("");
@@ -180,11 +177,8 @@ public class TaskLocationAdjustActivity extends BaseActivity implements
             mTvEnterprise.setText("");
         }
 
-
-
         initMap();
         initLocation();
-
 
         mAddMediaEntity = new MediaEntity();
         mMediaEntities.add(mAddMediaEntity);
@@ -217,7 +211,6 @@ public class TaskLocationAdjustActivity extends BaseActivity implements
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
         if (position == mMediaEntities.size() - 1) {
             List list = new ArrayList();
             list.addAll(mMediaEntities);
@@ -245,7 +238,6 @@ public class TaskLocationAdjustActivity extends BaseActivity implements
         } else {
 
         }
-
     }
 
     @Override
@@ -260,8 +252,6 @@ public class TaskLocationAdjustActivity extends BaseActivity implements
             Logcat.d("--2-" + JSON.toJSONString(mMediaEntities));
             mFileListAdapter.notifyDataSetChanged();
         }
-
-
     }
 
     @Override
@@ -437,23 +427,27 @@ public class TaskLocationAdjustActivity extends BaseActivity implements
             List<MediaEntity> result = Phoenix.result(data);
             Logcat.i("------------" + JSON.toJSONString(result));
             mMediaEntities.clear();
-            mMediaEntities.addAll(result);
+            if (result != null) {
+                mMediaEntities.addAll(result);
+            }
             mMediaEntities.add(mAddMediaEntity);
             mFileListAdapter.notifyDataSetChanged();
         } else if (requestCode == 1) {
-
+            if (resultCode != RESULT_OK){
+                return;
+            }
             Bundle bundle = data.getExtras();
             if (bundle != null) {
                 longitude = bundle.getDouble("longitude");
                 latitude = bundle.getDouble("latitude");
                 Logcat.i("------------" + latitude + "/" + longitude);
                 LatLng latLng = new LatLng(latitude, longitude);//构造一个位置
-                mAMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
-                mLocationClient.stopLocation();
+                mAMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, Conf.MAP_ZOOM_LEVEL));
+                if (mLocationClient != null) {
+                    mLocationClient.stopLocation();
+                }
             }
-
         }
-
     }
 
     private void uploadFile(List<MediaEntity> result) {
@@ -477,14 +471,14 @@ public class TaskLocationAdjustActivity extends BaseActivity implements
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 dismissPopupLoading();
-                                Logcat.e("add live video exception :" + e + "/");
+                                Logcat.w("add live video exception :" + e + "/");
                                 ToastUtil.showToast("文件上传失败，请重试");
                             }
 
                             @Override
                             public void onResponse(String response, int id) {
                                 dismissPopupLoading();
-                                Logcat.e("add Serices Course  response :" + response);
+                                Logcat.i("add Serices Course  response :" + response);
                                 ResultBean bean = JSON.parseObject(response, ResultBean.class);
                                 if (bean != null && bean.getCode() == 0) {
                                     if (TextUtils.isEmpty(attach)) {

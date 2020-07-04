@@ -133,7 +133,7 @@ public class MapLocationConfirmActivity extends BaseActivity
                 bundle.putString("address", "" + address);
                 Intent intent = new Intent();
                 intent.putExtras(bundle);
-                setResult(0, intent);
+                setResult(RESULT_OK, intent);
                 finish();
                 break;
         }

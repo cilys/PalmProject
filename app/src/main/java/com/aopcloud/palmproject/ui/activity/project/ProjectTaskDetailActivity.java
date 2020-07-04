@@ -348,7 +348,7 @@ public class ProjectTaskDetailActivity extends BaseActivity {
                 showEditTimeDialog();
                 break;
             case R.id.tv_assign:
-                Logcat.e("--------"+mTaskDetailBean.getTeam_id());
+                Logcat.d("--------"+mTaskDetailBean.getTeam_id());
                 if (mTaskDetailBean.getTeam_id() == 0 &&TextUtils.isEmpty(mTaskDetailBean.getTeam_name())) {
                     showAssignTaskDialog();
                 }else {
