@@ -61,7 +61,12 @@ public class JoinEnterpriseActivity extends BaseActivity {
     @Override
     protected void initView() {
         mTvTitle.setText("加入团队");
+        String activityTo = getIntent().getStringExtra("activityTo");
+        if ("QrCodeScanActivity".equals(activityTo)){
+            toQrCodeActivity();
+        } else {
 
+        }
     }
 
 
@@ -72,25 +77,7 @@ public class JoinEnterpriseActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.iv_scan:
-                List<String> list = new ArrayList<>();
-                list.add(Manifest.permission.READ_EXTERNAL_STORAGE);
-                list.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-                list.add(Manifest.permission.CAMERA);
-                XXPermissions.with(this).permission(list).request(new OnPermission() {
-                    @Override
-                    public void hasPermission(List<String> granted, boolean isAll) {
-                        if (isAll) {
-                            gotoActivity(QrCodeScanActivity.class, 2);
-                        } else {
-                            ToastUtil.showToast("请先开启权限");
-                        }
-                    }
-
-                    @Override
-                    public void noPermission(List<String> denied, boolean quick) {
-                        ToastUtil.showToast("请开启相机以及内存卡读写权限");
-                    }
-                });
+                toQrCodeActivity();
                 break;
             case R.id.tv_submit:
                 enterpriseNo = mEtNumber.getText().toString();
@@ -137,7 +124,6 @@ public class JoinEnterpriseActivity extends BaseActivity {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -156,5 +142,27 @@ public class JoinEnterpriseActivity extends BaseActivity {
             enterpriseNo = data.getStringExtra("code");
             mEtNumber.setText(""+enterpriseNo);
         }
+    }
+
+    private void toQrCodeActivity(){
+        List<String> list = new ArrayList<>();
+        list.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        list.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        list.add(Manifest.permission.CAMERA);
+        XXPermissions.with(this).permission(list).request(new OnPermission() {
+            @Override
+            public void hasPermission(List<String> granted, boolean isAll) {
+                if (isAll) {
+                    gotoActivity(QrCodeScanActivity.class, 2);
+                } else {
+                    ToastUtil.showToast("请先开启权限");
+                }
+            }
+
+            @Override
+            public void noPermission(List<String> denied, boolean quick) {
+                ToastUtil.showToast("请开启相机以及内存卡读写权限");
+            }
+        });
     }
 }

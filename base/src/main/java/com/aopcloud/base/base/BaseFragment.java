@@ -112,6 +112,9 @@ public abstract class BaseFragment extends Fragment implements ICommonViewUi {
         mImmersionBar.fitsSystemWindows(true);
         mImmersionBar.statusBarDarkFont(true);//解决部分手机默认白色状态栏
         mImmersionBar.flymeOSStatusBarFontColor("#ffffff");
+        mImmersionBar.navigationBarColor("#111111"); //导航栏颜色，不写默认黑色
+        mImmersionBar.navigationBarEnable(true);
+        mImmersionBar.autoNavigationBarDarkModeEnable(true, 0.2f);
         mImmersionBar.keyboardEnable(true)
                 .navigationBarWithKitkatEnable(false)
                 .init();

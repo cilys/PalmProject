@@ -2,6 +2,7 @@ package com.aopcloud.palmproject.ui.fragment;
 
 import android.Manifest;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -23,6 +24,7 @@ import com.aopcloud.palmproject.bean.UserBean;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.loader.AppImageLoader;
 import com.aopcloud.palmproject.ui.activity.QrCodeScanActivity;
+import com.aopcloud.palmproject.ui.activity.enterprise.JoinEnterpriseActivity;
 import com.aopcloud.palmproject.ui.adapter.feagment.AppFragmentPagerAdapter;
 import com.aopcloud.palmproject.ui.fragment.home.HomeProjectFragment;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
@@ -156,7 +158,10 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                     @Override
                     public void hasPermission(List<String> granted, boolean isAll) {
                         if (isAll) {
-                            gotoActivity(QrCodeScanActivity.class, 0);
+//                            gotoActivity(QrCodeScanActivity.class, 0);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("activityTo", "QrCodeScanActivity");
+                            gotoActivity(JoinEnterpriseActivity.class, bundle);
                         } else {
                             ToastUtil.showToast("请先开启权限");
                         }

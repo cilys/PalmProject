@@ -629,7 +629,6 @@ public class TaskExecuteFragment extends BaseFragment implements
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -778,7 +777,6 @@ public class TaskExecuteFragment extends BaseFragment implements
         mLocationClient = null;
     }
 
-
     public static Long getStartTime(Calendar calendar) {
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
@@ -794,7 +792,6 @@ public class TaskExecuteFragment extends BaseFragment implements
         calendar.set(Calendar.MILLISECOND, 999);
         return calendar.getTimeInMillis() / 1000;
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -812,6 +809,4 @@ public class TaskExecuteFragment extends BaseFragment implements
             Logcat.i("--------" + JSON.toJSONString(bundle.toString()));
         }
     }
-
-
 }

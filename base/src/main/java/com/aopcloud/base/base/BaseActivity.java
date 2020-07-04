@@ -1,5 +1,6 @@
 package com.aopcloud.base.base;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -14,8 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-
-import com.aopcloud.base.BuildConfig;
 import com.aopcloud.base.R;
 import com.aopcloud.base.common.AppManager;
 import com.aopcloud.base.common.BaseEvent;
@@ -96,7 +95,6 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseQuic
 
 
     protected void init() {
-
 
     }
 

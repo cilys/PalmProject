@@ -77,7 +77,7 @@ public class QrCodeScanActivity extends BaseActivity {
                             Logcat.i("解析结果11:" + result);
                             Intent intent = new Intent();
                             intent.putExtra("code","" +result);
-                            setResult(0, intent);
+                            setResult(RESULT_OK, intent);
                             finish();
                         }
 

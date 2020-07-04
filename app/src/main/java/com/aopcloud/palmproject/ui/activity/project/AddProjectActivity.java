@@ -141,7 +141,6 @@ public class AddProjectActivity extends BaseActivity {
         if (bundle != null) {
             isChild = bundle.getBoolean("child", false);
         }
-
     }
 
     @Override
