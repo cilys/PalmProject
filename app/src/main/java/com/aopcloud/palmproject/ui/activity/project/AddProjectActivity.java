@@ -21,6 +21,7 @@ import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
+import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
@@ -218,8 +219,6 @@ public class AddProjectActivity extends BaseActivity {
     }
 
     private void checkParams() {
-
-
         name = mEtProjectName.getText().toString();
         short_name = mEtProjectTitle.getText().toString();
         price = mEtPrice.getText().toString();
@@ -244,8 +243,12 @@ public class AddProjectActivity extends BaseActivity {
             ToastUtil.showToast("请选择项目负责人");
             return;
         }
-        if (TextUtils.isEmpty(start_date) || TextUtils.isEmpty(end_date)) {
-            ToastUtil.showToast("请选择开始时间和结束时间");
+//        if (TextUtils.isEmpty(start_date) || TextUtils.isEmpty(end_date)) {
+//            ToastUtil.showToast("请选择开始时间和结束时间");
+//            return;
+//        }
+        if (TextUtils.isEmpty(end_date)) {
+            ToastUtil.showToast("请选择结束时间");
             return;
         }
         if (TextUtils.isEmpty(address)) {
@@ -386,7 +389,10 @@ public class AddProjectActivity extends BaseActivity {
             map.put("name", "" + name);//项目名称
             map.put("short_name", "" + short_name);//项目简介
             map.put("leader_id", "" + leader_id);//管理员ID
-            map.put("start_date", "" + start_date);//开始时间
+//            map.put("start_date", "" + start_date);//开始时间
+            SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+            start_date = dateFormat1.format(new Date(System.currentTimeMillis()));
+            map.put("start_date", start_date);
             map.put("end_date", "" + end_date);//结束时间
             map.put("address", "" + address);//地址
             map.put("longitue", "" + longitude);//精度
@@ -433,6 +439,18 @@ public class AddProjectActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (BuildConfig.DEBUG) {
+            if (requestCode == 1) {
+
+                longitude = "116.39585";
+                latitude = "39.909068";
+                address = "北京天安门";
+                range = "300";
+
+                mTvAddress.setText("" + address);
+            }
+        }
+
         if (data == null) {
             return;
 
