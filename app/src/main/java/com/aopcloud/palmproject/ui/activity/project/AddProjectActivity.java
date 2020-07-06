@@ -396,7 +396,7 @@ public class AddProjectActivity extends BaseActivity {
             map.put("end_date", "" + end_date);//结束时间
             map.put("address", "" + address);//地址
             map.put("longitue", "" + longitude);//精度
-            map.put("longitude", "" + longitude);//精度
+//            map.put("longitude", "" + longitude);//精度
             map.put("latitude", "" + latitude);//维度
             map.put("status", "" + status);//状态  状态，勘查设计|开工预备|在建|竣工验收|完结维保|已终止|已暂停
             map.put("rights", "" + rights);//范围 范围，0：公开|1：私有|2：企业可见
