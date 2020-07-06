@@ -92,7 +92,7 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
     @BindView(R.id.checkbox_state_all)
     CheckBox mCheckboxStateAll;             //状态：全部
     @BindView(R.id.checkbox_state_design)
-    CheckBox mCheckboxStateDesign;          //状态：勘察设计
+    CheckBox mCheckboxStateDesign;          //状态：勘查设计
     @BindView(R.id.checkbox_state_ready)
     CheckBox mCheckboxStateReady;           //状态：开工预备
     @BindView(R.id.checkbox_state_build)
@@ -135,7 +135,7 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
     private List<ProjectListBean> mProjectListBeans = new ArrayList<>();
 
     private final String STATE_all = "全部";
-    private final String STATE_design = "勘察设计";
+    private final String STATE_design = "勘查设计";
     private final String STATE_ready = "开工预备";
     private final String STATE_build = "在建";
     private final String STATE_completed = "竣工验收";

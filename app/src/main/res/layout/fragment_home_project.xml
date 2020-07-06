@@ -170,7 +170,7 @@
                         android:background="@drawable/selector_home_checkbox_filter"
                         android:button="@null"
                         android:gravity="center"
-                        android:text="勘察设计"
+                        android:text="勘查设计"
                         android:textColor="@color/color_home_checkbox_filter"
                         android:textSize="12sp" />
                 </LinearLayout>
