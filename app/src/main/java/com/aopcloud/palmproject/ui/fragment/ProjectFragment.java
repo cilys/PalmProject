@@ -63,16 +63,7 @@ public class ProjectFragment extends BaseFragment {
     LinearLayout mLlList;
     @BindView(R.id.ll_work)
     LinearLayout mLlWork;
-    @BindView(R.id.tv_todo_left)
-    TextView mTvTodoLeft;
-    @BindView(R.id.tv_todo_count)
-    TextView mTvTodoCount;
-    @BindView(R.id.tv_todo_right)
-    TextView mTvTodoRight;
-    @BindView(R.id.tv_todo_more)
-    TextView mTvTodoMore;
-    @BindView(R.id.rv_todo)
-    RecyclerView mRvTodo;
+
     @BindView(R.id.tv_project_left)
     TextView mTvProjectLeft;
     @BindView(R.id.tv_project_count)
@@ -95,11 +86,9 @@ public class ProjectFragment extends BaseFragment {
     RecyclerView mRvTask;
     @BindView(R.id.tv_enterprise_name)
     TextView mTvEnterpriseName;
-    @BindView(R.id.tv_switch_enterprise)
-    TextView mTvSwitchEnterpriseName;
 
 
-    private EnterpriseTodoAdapter mTodoAdapter;
+//    private EnterpriseTodoAdapter mTodoAdapter;
     private EnterpriseProjectAdapter mProjectAdapter;
     private EnterpriseTaskAdapter mTaskAdapter;
     private List todoList = new ArrayList();
@@ -158,12 +147,10 @@ public class ProjectFragment extends BaseFragment {
                 .width(ViewUtil.dp2px(mActivity,10))
                 .height(ViewUtil.dp2px(mActivity,10))
                 .build();
-        mTodoAdapter = new EnterpriseTodoAdapter(R.layout.item_enterprise_todo, todoList);
+//        mTodoAdapter = new EnterpriseTodoAdapter(R.layout.item_enterprise_todo, todoList);
         mProjectAdapter = new EnterpriseProjectAdapter(R.layout.item_enterprise_project, projectList);
         mTaskAdapter = new EnterpriseTaskAdapter(R.layout.item_enterprise_task, mTaskBeans);
-        mRvTodo.setLayoutManager(new LinearLayoutManager(mActivity));
-        mRvTodo.addItemDecoration(decoration);
-        mRvTodo.setAdapter(mTodoAdapter);
+
         mRvProject.addItemDecoration(decoration);
         mRvProject.setLayoutManager(new LinearLayoutManager(mActivity));
         mRvProject.setAdapter(mProjectAdapter);
@@ -221,7 +208,7 @@ public class ProjectFragment extends BaseFragment {
         mProjectAdapter.notifyDataSetChanged();
     }
 
-    @OnClick({R.id.ll_info, R.id.ll_list, R.id.ll_work, R.id.tv_todo_more, R.id.tv_project_more, R.id.tv_task_more, R.id.tv_switch_enterprise})
+    @OnClick({R.id.ll_info, R.id.ll_list, R.id.ll_work, R.id.tv_project_more, R.id.tv_task_more, R.id.tv_enterprise_name})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_info:
@@ -252,8 +239,6 @@ public class ProjectFragment extends BaseFragment {
                     gotoActivity(WorkLogManagerActivity.class, 0);
                 }
                 break;
-            case R.id.tv_todo_more:
-                break;
             case R.id.tv_project_more:
                 if (!LoginUserUtil.isLogin(mActivity)) {
                     gotoActivity(LoginActivity.class, 0);
@@ -273,7 +258,7 @@ public class ProjectFragment extends BaseFragment {
                     gotoActivity(TaskManageActivity.class, 0);
                 }
                 break;
-            case R.id.tv_switch_enterprise:
+            case R.id.tv_enterprise_name:
                 gotoActivity(SwitchEnterpriseActivity.class, 0);
                 break;
         }

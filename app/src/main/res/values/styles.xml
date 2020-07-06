@@ -79,4 +79,15 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
+
+    <style name="style_project_circle_tv">
+        <item name="android:layout_width">@dimen/dp_project_circle_tv_size</item>
+        <item name="android:layout_height">@dimen/dp_project_circle_tv_size</item>
+        <item name="android:textColor">@color/theme_white</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">0</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
 </resources>

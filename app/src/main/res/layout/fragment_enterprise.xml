@@ -20,21 +20,6 @@
             android:text=""
             android:textColor="@color/theme_white"
             android:textSize="18sp" />
-
-
-
-
-        <TextView
-            android:id="@+id/tv_switch_enterprise"
-            android:layout_width="wrap_content"
-            android:gravity="center"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="25dp"
-            android:text="切换"
-            android:textColor="@color/theme_white"
-            android:textSize="16sp" />
     </RelativeLayout>
 
     <LinearLayout
@@ -50,10 +35,9 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/iv_cancel"
             android:layout_centerHorizontal="true"
-            android:layout_weight="0.8"
+            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
-
 
             <ImageView
                 android:layout_width="24dp"
@@ -71,8 +55,6 @@
                 android:text="企业信息"
                 android:textColor="@color/theme_white"
                 android:textSize="14sp" />
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -81,10 +63,9 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/iv_cancel"
             android:layout_centerHorizontal="true"
-            android:layout_weight="0.8"
+            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
-
 
             <ImageView
                 android:layout_width="24dp"
@@ -102,8 +83,6 @@
                 android:text="通讯录"
                 android:textColor="@color/theme_white"
                 android:textSize="12sp" />
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -112,10 +91,9 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/iv_cancel"
             android:layout_centerHorizontal="true"
-            android:layout_weight="0.8"
+            android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical">
-
 
             <ImageView
                 android:layout_width="24dp"
@@ -133,28 +111,41 @@
                 android:text="工作汇报"
                 android:textColor="@color/theme_white"
                 android:textSize="12sp" />
-
-
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_apply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/iv_cancel"
             android:layout_centerHorizontal="true"
-            android:layout_weight="1.6"
+            android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@mipmap/icon_enterprise_todo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="申请审批"
+                android:textColor="@color/theme_white"
+                android:textSize="12sp" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="28dp"
-
         android:background="@mipmap/img_enterprise_header">
-
-
     </LinearLayout>
 
     <android.support.v4.widget.NestedScrollView
@@ -168,68 +159,94 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="33dp"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/tv_todo_left"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_toStartOf="@+id/tv_todo_count"
-                    android:gravity="center"
-                    android:text="------"
-                    android:textColor="@color/theme_font_6f"
-                    android:textSize="12dp" />
-
-                <TextView
-                    android:id="@+id/tv_todo_count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:gravity="center"
-                    android:minWidth="100dp"
-                    android:text="待办 (0) "
-                    android:textColor="@color/theme_font_6f"
-                    android:textSize="12dp" />
-
-                <TextView
-                    android:id="@+id/tv_todo_right"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_toEndOf="@+id/tv_todo_count"
-                    android:gravity="center"
-                    android:text="------"
-                    android:textColor="@color/theme_font_6f"
-                    android:textSize="12dp" />
-
-                <TextView
-                    android:id="@+id/tv_todo_more"
-                    android:layout_width="58dp"
-                    android:layout_height="24dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/shape_head_more"
-                    android:gravity="center"
-                    android:text="更多"
-                    android:textColor="@color/theme_font_6f"
-                    android:textSize="12dp" />
-
-            </RelativeLayout>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_todo"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/shape_enterprise_item_bg"
                 android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp" />
+                android:layout_marginRight="8dp"
+                android:orientation="vertical" >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="我的任务"
+                        android:layout_margin="@dimen/dp_10"
+                        android:paddingLeft="@dimen/dp_10"
+                        android:paddingRight="@dimen/dp_10" />
+
+                    <View
+                        android:layout_width="100dp"
+                        android:layout_height="1dp"
+                        android:background="@color/theme_color"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="派给我的"
+                        android:layout_margin="@dimen/dp_10"
+                        android:paddingLeft="@dimen/dp_10"
+                        android:paddingRight="@dimen/dp_10" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_undo"
+                            android:background="@drawable/shape_circle_light_yellow"
+                            style="@style/style_project_circle_tv" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:text="未完成" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_done"
+                            style="@style/style_project_circle_tv"
+                            android:background="@drawable/shape_circle_light_blue"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:text="已完成" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/tv_outTime"
+                            android:background="@drawable/shape_circle_light_red"
+                            style="@style/style_project_circle_tv" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:text="已逾期" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -353,8 +370,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_task"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-       />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

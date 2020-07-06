@@ -108,11 +108,8 @@ public class ProjectDetailActivity extends BaseActivity {
         toRequest(ApiConstants.EventTags.project_get);
     }
 
-
     @Override
     protected void initView() {
-
-
         mFragments = new ArrayList<>();
         mTabs = new ArrayList<>();
         mTabs.add("看板");
@@ -135,8 +132,6 @@ public class ProjectDetailActivity extends BaseActivity {
         mPageView.setOffscreenPageLimit(mFragments.size());
         mProgressView.setPadding(0, 0, 0, 0);
         mProgressView.setMax(100);
-
-
     }
 
     @Override
@@ -161,8 +156,6 @@ public class ProjectDetailActivity extends BaseActivity {
         mTvState.setText(detailBean.getStatus());
         Bitmap mLogo = CodeUtils.createImage(detailBean.getCode(), 500, 500, null);
         AppImageLoader.load(this, mLogo, mIvQrCode);
-
-
     }
 
 
@@ -187,10 +180,14 @@ public class ProjectDetailActivity extends BaseActivity {
             case R.id.ll_header_right:
 
                 final List<PopMenuBean> menuItems = new ArrayList<>();
-                menuItems.add(new PopMenuBean("关注"));
+//                menuItems.add(new PopMenuBean("关注"));
+//                menuItems.add(new PopMenuBean("编辑"));
+//                menuItems.add(new PopMenuBean("完成"));
+//                menuItems.add(new PopMenuBean("移交/退出"));
                 menuItems.add(new PopMenuBean("编辑"));
-                menuItems.add(new PopMenuBean("完成"));
-                menuItems.add(new PopMenuBean("移交/退出"));
+                menuItems.add(new PopMenuBean("状态"));
+                menuItems.add(new PopMenuBean("分部"));
+                menuItems.add(new PopMenuBean("删除"));
                 PopContextMenu contextMenu = new PopContextMenu(this)
                         .addMenuList(menuItems)
                         .dimBackground(true)
