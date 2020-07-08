@@ -134,18 +134,18 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
     private AMapLocationClientOption mLocationOption;
     private List<ProjectListBean> mProjectListBeans = new ArrayList<>();
 
-    private final String STATE_all = "全部";
-    private final String STATE_design = "勘查设计";
-    private final String STATE_ready = "开工预备";
-    private final String STATE_build = "在建";
-    private final String STATE_completed = "竣工验收";
-    private final String STATE_finish = "完结维保";
-    private final String STATE_termination = "已终止";
-    private final String STATE_stop = "已停工";
+    public final static String STATE_all = "全部";
+    public final static String STATE_design = "勘查设计";
+    public final static String STATE_ready = "开工预备";
+    public final static String STATE_build = "在建";
+    public final static String STATE_completed = "竣工验收";
+    public final static String STATE_finish = "完结维保";
+    public final static String STATE_termination = "已终止";
+    public final static String STATE_stop = "已停工";
 
-    private final String FOLLOW_all = "全部";
-    private final String FOLLOW_s = "已关注";
-    private final String FOLLOW_n = "未关注";
+    public final static String FOLLOW_all = "全部";
+    public final static String FOLLOW_s = "已关注";
+    public final static String FOLLOW_n = "未关注";
 
     private String state = STATE_all;
     private String follow = FOLLOW_all;
@@ -532,7 +532,7 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
                 }
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
-                Logcat.e("AmapErr", errText);
+                Logcat.w("AmapErr", errText);
             }
         }
     }

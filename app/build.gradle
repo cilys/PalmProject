@@ -45,8 +45,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-//            buildConfigField('String', 'BASE_URL', '\"http://zhj.gzfy.tech:31004\"')
-            buildConfigField('String', 'BASE_URL', '\"http://61.146.161.106:31004\"')
+            buildConfigField('String', 'BASE_URL', '\"http://zhj.gzfy.tech:31004\"')
+//            buildConfigField('String', 'BASE_URL', '\"http://61.146.161.106:31004\"')
             signingConfig signingConfigs.config
 
         }
@@ -83,7 +83,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
     api 'com.android.support:appcompat-v7:28.0.0'
     api 'com.android.support:support-v4:28.0.0'
     api 'com.android.support:design:28.0.0'
@@ -131,7 +130,8 @@ dependencies {
     // 此处以JPush 3.6.6 版本为例。
     api 'cn.jiguang.sdk:jcore:2.3.8'
     // 此处以JCore 2.3.8 版本为例。
-//    implementation files('lib/jcore-android-2.3.8.jar')
-//    implementation files('lib/jpush-android-3.6.6.jar')
+    //    implementation files('lib/jcore-android-2.3.8.jar')
+    //    implementation files('lib/jpush-android-3.6.6.jar')
     api 'com.cilys:utils-app:1.0.0@aar'
+    implementation files('libs/utils-base-1.0.4.jar')
 }

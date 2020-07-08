@@ -39,14 +39,21 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:adjustViewBounds="true"
-                android:scaleType="fitXY"
-                android:src="@mipmap/icon_enterprise_info" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/icon_enterprise_info" />
+
+                <TextView
+                    android:id="@+id/tv_company_count"
+                    android:layout_alignParentRight="true"
+                    style="@style/style_tv_oval_red" />
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -67,14 +74,21 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:adjustViewBounds="true"
-                android:scaleType="fitXY"
-                android:src="@mipmap/icon_enterprise_tell" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/icon_enterprise_tell" />
+
+                <TextView
+                    android:id="@+id/tv_tell_count"
+                    android:layout_alignParentRight="true"
+                    style="@style/style_tv_oval_red" />
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -95,14 +109,22 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:adjustViewBounds="true"
-                android:scaleType="fitXY"
-                android:src="@mipmap/icon_enterprise_todo" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/icon_enterprise_todo" />
+
+                <TextView
+                    android:id="@+id/tv_work_count"
+                    android:layout_alignParentRight="true"
+                    style="@style/style_tv_oval_red" />
+            </RelativeLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -123,14 +145,21 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:adjustViewBounds="true"
-                android:scaleType="fitXY"
-                android:src="@mipmap/icon_enterprise_todo" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:scaleType="fitXY"
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/icon_enterprise_todo" />
+
+                <TextView
+                    android:id="@+id/tv_apply_count"
+                    android:layout_alignParentRight="true"
+                    style="@style/style_tv_oval_red" />
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"

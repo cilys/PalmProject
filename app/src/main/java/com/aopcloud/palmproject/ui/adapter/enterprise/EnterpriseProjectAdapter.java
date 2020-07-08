@@ -56,7 +56,8 @@ public class EnterpriseProjectAdapter extends BaseQuickAdapter<ProjectListBean, 
         progressBar.setProgress(item.getProgress());
         helper.setText(R.id.tv_title, item.getName())
                 .setText(R.id.tv_progress, "" + item.getProgress() + "%")
-                .setText(R.id.tv_manager_time, "负责 " + item.getLeader_name() + "| "+d);
+                .setText(R.id.tv_manager_time, "负责 " + item.getLeader_name() + "| "+d)
+                .setText(R.id.tv_state, item.getStatus());
 
 
     }

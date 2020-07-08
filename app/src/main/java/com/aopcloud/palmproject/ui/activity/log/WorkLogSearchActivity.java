@@ -152,8 +152,6 @@ public class WorkLogSearchActivity extends BaseActivity implements TextView.OnEd
             map.put("page_size", "20");
             map.put("type", "" + type);//(可选)类型；1：日报，2：周报，3：月报，不填则代表获取全部
 
-
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.reportjob_all, map);
         }
     }
@@ -161,7 +159,6 @@ public class WorkLogSearchActivity extends BaseActivity implements TextView.OnEd
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.reportjob_all) {

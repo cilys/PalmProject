@@ -45,35 +45,35 @@ public class LoggerInterceptor implements Interceptor {
     private Response logForResponse(Response response) {
         try {
             //===>response log
-            Log.d(tag, "========response'log=======");
+            Log.i(tag, "========response'log=======");
             Response.Builder builder = response.newBuilder();
             Response clone = builder.build();
-            Log.d(tag, "url : " + clone.request().url());
-            Log.d(tag, "code : " + clone.code());
-            Log.d(tag, "protocol : " + clone.protocol());
+            Log.i(tag, "url : " + clone.request().url());
+            Log.i(tag, "code : " + clone.code());
+            Log.i(tag, "protocol : " + clone.protocol());
             if (!TextUtils.isEmpty(clone.message()))
-                Log.d(tag, "message : " + clone.message());
+                Log.i(tag, "message : " + clone.message());
 
             if (showResponse) {
                 ResponseBody body = clone.body();
                 if (body != null) {
                     MediaType mediaType = body.contentType();
                     if (mediaType != null) {
-                        Log.d(tag, "responseBody's contentType : " + mediaType.toString());
+                        Log.i(tag, "responseBody's contentType : " + mediaType.toString());
                         if (isText(mediaType)) {
                             String resp = body.string();
-                            Log.d(tag, "responseBody's content : " + resp);
+                            Log.i(tag, "responseBody's content : " + resp);
 
                             body = ResponseBody.create(mediaType, resp);
                             return response.newBuilder().body(body).build();
                         } else {
-                            Log.d(tag, "responseBody's content : " + " maybe [file part] , too large too print , ignored!");
+                            Log.i(tag, "responseBody's content : " + " maybe [file part] , too large too print , ignored!");
                         }
                     }
                 }
             }
 
-            Log.d(tag, "========response'log=======end");
+            Log.i(tag, "========response'log=======end");
         } catch (Exception e) {
 //            e.printStackTrace();
         }
@@ -86,25 +86,25 @@ public class LoggerInterceptor implements Interceptor {
             String url = request.url().toString();
             Headers headers = request.headers();
 
-            Log.d(tag, "========request'log=======");
-            Log.d(tag, "method : " + request.method());
-            Log.d(tag, "url : " + url);
+            Log.i(tag, "========request'log=======");
+            Log.i(tag, "method : " + request.method());
+            Log.i(tag, "url : " + url);
             if (headers != null && headers.size() > 0) {
-                Log.d(tag, "headers : " + headers.toString());
+                Log.i(tag, "headers : " + headers.toString());
             }
             RequestBody requestBody = request.body();
             if (requestBody != null) {
                 MediaType mediaType = requestBody.contentType();
                 if (mediaType != null) {
-                    Log.d(tag, "requestBody's contentType : " + mediaType.toString());
+                    Log.i(tag, "requestBody's contentType : " + mediaType.toString());
                     if (isText(mediaType)) {
-                        Log.d(tag, "requestBody's content : " + bodyToString(request));
+                        Log.i(tag, "requestBody's content : " + bodyToString(request));
                     } else {
-                        Log.d(tag, "requestBody's content : " + " maybe [file part] , too large too print , ignored!");
+                        Log.i(tag, "requestBody's content : " + " maybe [file part] , too large too print , ignored!");
                     }
                 }
             }
-            Log.d(tag, "========request'log=======end");
+            Log.i(tag, "========request'log=======end");
         } catch (Exception e) {
 //            e.printStackTrace();
         }
@@ -136,4 +136,3 @@ public class LoggerInterceptor implements Interceptor {
         }
     }
 }
-

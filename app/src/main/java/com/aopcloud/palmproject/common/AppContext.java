@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.aopcloud.base.common.AppHelper;
 import com.aopcloud.base.log.LogConfig;
+import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.loader.AppImageLoader;
 import com.aopcloud.palmproject.net.LoggerInterceptor;
 import com.guoxiaoxing.phoenix.core.listener.ImageLoader;
@@ -89,7 +90,7 @@ public class AppContext extends Application {
     public static void initOkHttp() {
         HttpsUtils.SSLParams sslParams = HttpsUtils.getSslSocketFactory(null, null, null);
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(new LoggerInterceptor("dk_log", false))
+                .addInterceptor(new LoggerInterceptor("dk_log", BuildConfig.DEBUG))
                 .connectTimeout(30000L, TimeUnit.MILLISECONDS)
                 .readTimeout(30000L, TimeUnit.MILLISECONDS)
                 .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)

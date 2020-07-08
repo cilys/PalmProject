@@ -198,7 +198,7 @@ public class CommonRequestInteractorImpl implements ICommonRequestInteractor {
         if (context instanceof Activity) {
             return (Activity) context;
         }
-        Log.e("Ok","Unable to get Activity.");
+        Log.w("Ok","Unable to get Activity.");
         return null;
     }
 

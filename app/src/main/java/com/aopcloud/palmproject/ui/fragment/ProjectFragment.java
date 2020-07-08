@@ -23,20 +23,25 @@ import com.aopcloud.palmproject.ui.activity.department.EnterpriseDepartmentHomeA
 import com.aopcloud.palmproject.ui.activity.enterprise.EnterpriseHomeActivity;
 import com.aopcloud.palmproject.ui.activity.enterprise.SwitchEnterpriseActivity;
 import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseInfoBean;
+import com.aopcloud.palmproject.ui.activity.log.bean.WorkLogStatisticsBean;
 import com.aopcloud.palmproject.ui.activity.mine.LoginActivity;
 import com.aopcloud.palmproject.ui.activity.project.ProjectDetailActivity;
 import com.aopcloud.palmproject.ui.activity.project.ProjectManagerActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectListBean;
 import com.aopcloud.palmproject.ui.activity.log.WorkLogManagerActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
+import com.aopcloud.palmproject.ui.activity.staff.bean.StaffListBean;
 import com.aopcloud.palmproject.ui.activity.task.TaskDetailActivity;
 import com.aopcloud.palmproject.ui.activity.task.TaskManageActivity;
 import com.aopcloud.palmproject.ui.adapter.enterprise.EnterpriseProjectAdapter;
 import com.aopcloud.palmproject.ui.adapter.enterprise.EnterpriseTaskAdapter;
 import com.aopcloud.palmproject.ui.adapter.enterprise.EnterpriseTodoAdapter;
+import com.aopcloud.palmproject.ui.fragment.home.HomeProjectFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.view.decoration.DividerItemDecoration;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.cily.utils.base.time.TimeType;
+import com.cily.utils.base.time.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -87,6 +92,21 @@ public class ProjectFragment extends BaseFragment {
     @BindView(R.id.tv_enterprise_name)
     TextView mTvEnterpriseName;
 
+    @BindView(R.id.tv_undo)
+    TextView mTvUndo;       //未完成数量
+    @BindView(R.id.tv_done)
+    TextView mTvDone;       //已完成数量
+    @BindView(R.id.tv_outTime)
+    TextView mTvOutTime;    //已逾期数量
+
+    @BindView(R.id.tv_company_count)
+    TextView mTvCompanyCount;       //企业数量
+    @BindView(R.id.tv_tell_count)
+    TextView mTvTellCount;          //通讯录数量
+    @BindView(R.id.tv_work_count)
+    TextView mTvWorkCount;          //工作汇报数量
+    @BindView(R.id.tv_apply_count)
+    TextView mTvApplyCount;         //申请审批数量
 
 //    private EnterpriseTodoAdapter mTodoAdapter;
     private EnterpriseProjectAdapter mProjectAdapter;
@@ -108,6 +128,8 @@ public class ProjectFragment extends BaseFragment {
             toRequest(ApiConstants.EventTags.company_get);
             toRequest(ApiConstants.EventTags.project_all);
             toRequest(ApiConstants.EventTags.task_all);
+            toRequest(ApiConstants.EventTags.company_usermange);
+            toRequest(ApiConstants.EventTags.reportjob_statistics);
         }
     }
 
@@ -169,7 +191,14 @@ public class ProjectFragment extends BaseFragment {
 
     private void setViewTaskData(List<ProjectTaskBean> beanList) {
         mTaskBeans.clear();
-        mTaskBeans.addAll(beanList);
+        if (beanList != null){
+            if (beanList.size() > 3){
+                mTaskBeans.addAll(beanList.subList(0, 3));
+            }else {
+                mTaskBeans.addAll(beanList);
+            }
+        }
+//        mTaskBeans.addAll(beanList);
         mTaskAdapter.notifyDataSetChanged();
     }
 
@@ -204,7 +233,14 @@ public class ProjectFragment extends BaseFragment {
 
     private void setViewData(List<ProjectListBean> beanList) {
         projectList.clear();
-        projectList.addAll(beanList);
+        if (beanList != null){
+            if (beanList.size() > 3) {
+                projectList.addAll(beanList.subList(0, 3));
+            }else {
+                projectList.addAll(beanList);
+            }
+        }
+//        projectList.addAll(beanList);
         mProjectAdapter.notifyDataSetChanged();
     }
 
@@ -271,22 +307,56 @@ public class ProjectFragment extends BaseFragment {
         map.put("token", "" + LoginUserUtil.getToken(mActivity));
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(mActivity));
         if (eventTag == ApiConstants.EventTags.company_get) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.company_get, map);
         } else if (eventTag == ApiConstants.EventTags.project_all) {
             map.put("type", "1");//类型，1：我负责的，2：我参与的，3：企业全部
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.project_all, map);
-        } if (eventTag == ApiConstants.EventTags.task_all) {
+        } else if (eventTag == ApiConstants.EventTags.task_all) {
             map.put("type",""+1);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.task_all, map);
+        } else if (eventTag == ApiConstants.EventTags.company_usermange) {
+            map.put("status", "" + 1);
+            iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.company_usermange, map);
+        } else if (eventTag == ApiConstants.EventTags.reportjob_statistics) {
+            map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(mActivity));
+            map.put("role","1");
+            iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.reportjob_statistics, map);
+        }
+    }
+
+    private void parseProjectCount(List<ProjectListBean> beanList){
+        if (beanList == null || beanList.size() < 1){
+            mTvUndo.setText("0");
+            mTvDone.setText("0");
+            mTvOutTime.setText("0");
+        } else {
+            int undo = 0;
+            int done = 0;
+            int outTime = 0;
+            for (ProjectListBean b : beanList){
+                String status = b.getStatus();
+                if (HomeProjectFragment.STATE_completed.equals(status)
+                    || HomeProjectFragment.STATE_finish.equals(status)){
+                    done ++;
+                }else {
+                    String end_data = b.getEnd_date();
+                    long endDate = TimeUtils.strToMil(end_data, TimeType.DAY_LINE, System.currentTimeMillis());
+                    if (System.currentTimeMillis() > endDate){
+                        outTime ++;
+                    }else {
+                        undo ++;
+                    }
+                }
+            }
+            mTvUndo.setText(String.valueOf(undo));
+            mTvDone.setText(String.valueOf(done));
+            mTvOutTime.setText(String.valueOf(outTime));
         }
     }
 
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.company_get) {
@@ -295,9 +365,47 @@ public class ProjectFragment extends BaseFragment {
             } else if (eventTag == ApiConstants.EventTags.project_all) {
                 List<ProjectListBean> beanList = JSON.parseArray(bean.getData(), ProjectListBean.class);
                 setViewData(beanList);
-            }if (eventTag == ApiConstants.EventTags.task_all) {
+                parseProjectCount(beanList);
+            } else if (eventTag == ApiConstants.EventTags.task_all) {
                 List<ProjectTaskBean> beanList = JSON.parseArray(bean.getData(), ProjectTaskBean.class);
                 setViewTaskData(beanList);
+                if (beanList != null && beanList.size() > 0){
+                    if (beanList.size() > 99){
+                        mTvApplyCount.setText("99+");
+                    }else {
+                        mTvApplyCount.setText(String.valueOf(beanList.size()));
+                    }
+                    mTvApplyCount.setVisibility(View.VISIBLE);
+                }else {
+                    mTvApplyCount.setVisibility(View.GONE);
+                }
+            } else if (eventTag == ApiConstants.EventTags.company_usermange){
+                List<StaffListBean> beanList = JSON.parseArray(bean.getData(), StaffListBean.class);
+                if (beanList != null && beanList.size() > 0){
+                    if (beanList.size() > 99){
+                        mTvTellCount.setText("99+");
+                    }else {
+                        mTvTellCount.setText(String.valueOf(beanList.size()));
+                    }
+                    mTvTellCount.setVisibility(View.VISIBLE);
+                }else {
+                    mTvTellCount.setVisibility(View.GONE);
+                }
+            } else if (eventTag == ApiConstants.EventTags.reportjob_statistics) {
+                WorkLogStatisticsBean statisticsBean = JSON.parseObject(bean.getData(), WorkLogStatisticsBean.class);
+                if (statisticsBean != null){
+                    int total = statisticsBean.getTotal();
+                    if (total < 1){
+                        mTvWorkCount.setVisibility(View.GONE);
+                    } else {
+                        mTvWorkCount.setVisibility(View.VISIBLE);
+                        if (total > 99){
+                            mTvWorkCount.setText("99+");
+                        }else {
+                            mTvWorkCount.setText(String.valueOf(total));
+                        }
+                    }
+                }
             }
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");

@@ -90,4 +90,16 @@
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
     </style>
+
+    <style name="style_tv_oval_red">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">20dp</item>
+        <item name="android:minHeight">20dp</item>
+        <item name="android:background">@drawable/shape_tv_oval_red</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/theme_white</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:layout_marginRight">2dp</item>
+    </style>
 </resources>
