@@ -3,56 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.aopcloud.palmproject">
 
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <!-- 访问网络，进行地图相关业务数据请求，包括地图数据，路线规划，POI检索等 -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- 读取外置存储。如果开发者使用了so动态加载功能并且把so文件放在了外置存储区域，则需要申请该权限，否则不需要 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!-- 写外置存储。如果开发者使用了离线地图，并且数据写在外置存储区域，则需要申请该权限 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!-- 这个权限用于进行网络定位-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!-- 这个权限用于访问GPS定位-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <!-- 通讯录邀请好友-->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 访问网络，进行地图相关业务数据请求，包括地图数据，路线规划，POI检索等 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 读取外置存储。如果开发者使用了so动态加载功能并且把so文件放在了外置存储区域，则需要申请该权限，否则不需要 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 写外置存储。如果开发者使用了离线地图，并且数据写在外置存储区域，则需要申请该权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 通讯录邀请好友 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
-
-
     <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-
-
-
-    <!--华为角标-->
-    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
-
-    <!-- Required -->
+    <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 华为角标 -->
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" /> <!-- Required -->
     <permission
         android:name="${applicationId}.permission.JPUSH_MESSAGE"
-        android:protectionLevel="signature" />
-
-    <!-- Required  一些系统要求的权限，如访问网络等-->
+        android:protectionLevel="signature" /> <!-- Required  一些系统要求的权限，如访问网络等 -->
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
-    <!-- Optional for location -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- Optional for location -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /><!-- Android Q后台定位权限-->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /> <!-- Android Q后台定位权限 -->
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
-       
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-       
+
     <application
         android:name=".common.AppContext"
         android:allowBackup="true"
@@ -64,6 +41,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.activity.task.list.TaskListAc"></activity>
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait"
@@ -75,24 +53,20 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-
-
-        <activity android:name="com.aopcloud.palmproject.SchemaActivity">
+        <activity android:name=".SchemaActivity">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-                <!--需要被js调起必须设置-->
+                <!-- 需要被js调起必须设置 -->
                 <category android:name="android.intent.category.BROWSABLE" />
-                <!--协议部分-->
+                <!-- 协议部分 -->
                 <data
                     android:host="${applicationId}"
                     android:path="/detail"
                     android:scheme="aopkit" />
             </intent-filter>
-        </activity>
-
-        <!--        ui-->
+        </activity> <!-- ui -->
         <activity android:name=".ui.activity.mine.RegisterActivity" />
         <activity android:name=".ui.activity.mine.LoginActivity" />
         <activity android:name=".ui.activity.mine.RetrievePasswordActivity" />
@@ -102,27 +76,16 @@
         <activity android:name=".ui.activity.mine.QrCodeActivity" />
         <activity android:name=".ui.activity.mine.MyInfoCardActivity" />
         <activity android:name=".ui.activity.mine.AccountSettingActivity" />
-
-
         <activity android:name=".ui.activity.news.NotifyActivity" />
-
         <activity android:name=".ui.activity.QrCodeScanActivity" />
-
         <activity android:name=".ui.activity.web.WebActivity" />
-
         <activity
             android:name=".ui.activity.map.SelectLocationActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.activity.map.MapLocationConfirmActivity" />
-
-
         <activity android:name=".ui.activity.setting.SettingActivity" />
         <activity android:name=".ui.activity.setting.AboutActivity" />
-        <activity android:name=".ui.activity.setting.PushSettingActivity" />
-
-
-        <!--      enterprise  -->
-
+        <activity android:name=".ui.activity.setting.PushSettingActivity" /> <!-- enterprise -->
         <activity android:name=".ui.activity.enterprise.SwitchEnterpriseActivity" />
         <activity android:name=".ui.activity.enterprise.CreateOrJoinActivity" />
         <activity android:name=".ui.activity.enterprise.JoinEnterpriseActivity" />
@@ -143,15 +106,11 @@
         <activity android:name=".ui.activity.department.DepartmentSelectActivity" />
         <activity android:name=".ui.activity.department.EnterpriseDepartmentActivity" />
         <activity android:name=".ui.activity.department.EnterpriseDepartmentHomeActivity" />
-
         <activity android:name=".ui.activity.log.AddWorkLogActivity" />
         <activity android:name=".ui.activity.log.WorkLogManagerActivity" />
         <activity android:name=".ui.activity.log.WorkLogSearchActivity" />
-
         <activity android:name=".ui.activity.department.DepartmentHomeActivity" />
         <activity android:name=".ui.activity.department.DepartmentAddMemberActivity" />
-
-
         <activity android:name=".ui.activity.staff.StaffInfoEditActivity" />
         <activity android:name=".ui.activity.staff.StaffDetailActivity" />
         <activity android:name=".ui.activity.staff.StaffInviteActivity" />
@@ -162,16 +121,12 @@
         <activity android:name=".ui.activity.staff.StaffInviteByAddActivity" />
         <activity android:name=".ui.activity.staff.StaffInviteByMobileActivity" />
         <activity android:name=".ui.activity.staff.StaffRefuseApplyDetailActivity" />
-
-
         <activity android:name=".ui.activity.tag.DepartmentTagManagerActivity" />
         <activity android:name=".ui.activity.tag.DepartmentTagAddActivity" />
         <activity android:name=".ui.activity.tag.DepartmentTagSelectActivity" />
         <activity android:name=".ui.activity.tag.DepartmentTagEditActivity" />
         <activity android:name=".ui.activity.department.DepartmentAbsentActivity" />
         <activity android:name=".ui.activity.department.DepartmentLeaderSelectActivity" />
-
-
         <activity android:name=".ui.activity.project.ProjectManagerActivity" />
         <activity android:name=".ui.activity.project.AddProjectActivity" />
         <activity android:name=".ui.activity.project.EditProjectActivity" />
@@ -191,7 +146,6 @@
         <activity android:name=".ui.activity.project.ProjectMemberDetailActivity" />
         <activity android:name=".ui.activity.project.ProjectScenesAddActivity" />
         <activity android:name=".ui.activity.project.ProjectTaskUpdateTeamActivity" />
-
         <activity android:name=".ui.activity.task.TaskManageActivity" />
         <activity android:name=".ui.activity.task.TaskDetailActivity" />
         <activity android:name=".ui.activity.task.ReplaceMemberSignActivity" />
@@ -204,49 +158,30 @@
         <activity android:name=".ui.activity.task.TaskLocationAdjustActivity" />
         <activity android:name=".ui.activity.task.AddChildTaskActivity" />
         <activity android:name=".ui.activity.task.SelectTaskLeaderActivity" />
-
-
         <activity android:name=".ui.activity.camera.TestCameraActivity" />
-
-
         <activity android:name=".ui.activity.staff.SelectPhoneListActivity" />
-
         <activity android:name=".ui.activity.camera.PreviewActivity" />
         <activity android:name=".ui.activity.camera.PictureOrVideoActivity" />
         <activity android:name=".ui.activity.camera.SelectSceneActivity" />
-
-
         <activity android:name=".ui.activity.team.TeamAddActivity" />
         <activity android:name=".ui.activity.team.TeamEditActivity" />
         <activity android:name=".ui.activity.team.TeamMemberListActivity" />
         <activity android:name=".ui.activity.team.TeamAddMemberActivity" />
         <activity android:name=".ui.activity.team.TeamEditMemberActivity" />
         <activity android:name=".ui.activity.team.ProjectCopyTeamActivity" />
-
-        <activity android:name=".ui.activity.task.AddTaskActivity" />
-
-        <!--end-->
-
+        <activity android:name=".ui.activity.task.AddTaskActivity" /> <!-- end -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="62acfda90c925950bc9b0cb3ce458d97"></meta-data>
-
+            android:value="62acfda90c925950bc9b0cb3ce458d97" />
         <meta-data
             android:name="android.max_aspect"
-            android:value="2.4" />
-
-
-        <!--适配华为（huawei）刘海屏-->
+            android:value="2.4" /> <!-- 适配华为（huawei）刘海屏 -->
         <meta-data
             android:name="android.notch_support"
-            android:value="true" />
-        <!--适配小米（xiaomi）刘海屏-->
+            android:value="true" /> <!-- 适配小米（xiaomi）刘海屏 -->
         <meta-data
             android:name="notch.config"
-            android:value="portrait|landscape" />
-
-
-        <!-- Since JCore2.0.0 Required SDK核心功能-->
+            android:value="portrait|landscape" /> <!-- Since JCore2.0.0 Required SDK核心功能 -->
         <!-- 可配置android:process参数将Service放在其他进程中；android:enabled属性不能是false -->
         <!-- 这个是自定义Service，要继承极光JCommonService，可以在更多手机平台上使得推送通道保持的更稳定 -->
         <service
@@ -257,9 +192,7 @@
             <intent-filter>
                 <action android:name="cn.jiguang.user.service.action" />
             </intent-filter>
-        </service>
-
-        <!-- Required since 3.0.7 -->
+        </service> <!-- Required since 3.0.7 -->
         <!-- 新的 tag/alias 接口结果返回需要开发者配置一个自定的广播 -->
         <!-- 3.3.0开始所有事件将通过该类回调 -->
         <!-- 该广播需要继承 JPush 提供的 JPushMessageReceiver 类, 并如下新增一个 Intent-Filter -->
@@ -269,6 +202,7 @@
             android:exported="false">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
+
                 <category android:name="com.aopcloud.palmproject" />
             </intent-filter>
         </receiver>
