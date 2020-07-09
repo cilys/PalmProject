@@ -157,6 +157,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:visibility="gone"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -193,21 +194,54 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:text="项目状态"
+                    android:textColor="#FF101010"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="#FFCF3131"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_project_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|right"
+                    android:text="勘查设计"
+                    android:textColor="#FF888888"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/iv_project_status"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginRight="12dp"
+                    android:src="@mipmap/icon_more" />
+            </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:background="@color/theme_background_f5"
                 android:visibility="gone" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/theme_background_f5"
-                android:visibility="gone" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:visibility="gone"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -254,6 +288,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:visibility="gone"
                 android:background="@color/theme_background_f5" />
 
             <LinearLayout
@@ -459,7 +494,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="（万元）"
+                        android:text=""
                         android:textColor="#FF888888"
                         android:textSize="14sp" />
 

@@ -143,19 +143,19 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
 
     private String task_type = "0";
 
-    private final String STATE_all = "全部";
-    private final String STATE_progress = "进行中";
-    private final String STATE_expect = "已超期";
-    private final String STATE_complete = "已完成";
-    private final String STATE_no_start = "未开始";
-    private final String STATE_cancel = "已取消";
-    private final String STATE_pause = "暂停中";
-    private final String STATE_operation = "作业中";
+    public final static String STATE_all = "全部";
+    public final static String STATE_progress = "进行中";
+    public final static String STATE_expect = "已超期";
+    public final static String STATE_complete = "已完成";
+    public final static String STATE_no_start = "未开始";
+    public final static String STATE_cancel = "已取消";
+    public final static String STATE_pause = "暂停中";
+    public final static String STATE_operation = "作业中";
 
-    private final String LEVEL_all = "全部";
-    private final String LEVEL_ordinary = "普通";
-    private final String LEVEL_important = "重要";
-    private final String LEVEL_urgent = "紧急";
+    public final static String LEVEL_all = "全部";
+    public final static String LEVEL_ordinary = "普通";
+    public final static String LEVEL_important = "重要";
+    public final static String LEVEL_urgent = "紧急";
 
     private String state = STATE_all;
     private String level = LEVEL_all;

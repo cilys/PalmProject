@@ -113,6 +113,11 @@ public class AddProjectActivity extends BaseActivity {
     ImageView mIvMoreAttribute;
     @BindView(R.id.ll_more_attribute)
     LinearLayout mLLMoreAttribute;
+    @BindView(R.id.tv_project_status)
+    TextView mTvProjectStatus;
+
+
+
     private String longitude;
     private String latitude;
     private String address;
@@ -134,6 +139,7 @@ public class AddProjectActivity extends BaseActivity {
 
     private boolean more;
     private boolean isChild;
+
 
     @Override
     protected void initData() {
@@ -166,7 +172,7 @@ public class AddProjectActivity extends BaseActivity {
     }
 
     @OnClick({R.id.ll_header_back, R.id.ll_header_right, R.id.tv_enterprise_name, R.id.tv_project_type,R.id.tv_range_type, R.id.tv_range_more, R.id.tv_name, R.id.ll_more_attribute
-            , R.id.iv_address_more, R.id.tv_address, R.id.tv_start_time, R.id.tv_end_time, R.id.tv_submit
+            , R.id.iv_address_more, R.id.tv_address, R.id.tv_start_time, R.id.tv_end_time, R.id.tv_submit, R.id.tv_project_status
     })
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -183,6 +189,11 @@ public class AddProjectActivity extends BaseActivity {
             case R.id.tv_project_type:
                 showType();
                 break;
+
+            case R.id.tv_project_status:
+                showStatus();
+                break;
+
             case R.id.tv_range_type:
             case R.id.tv_range_more:
                 showAddRange();
@@ -270,6 +281,27 @@ public class AddProjectActivity extends BaseActivity {
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
                 type = list.get(options1).toString();
                 mTvProjectType.setText(""+type);
+
+            }
+        }).build();
+        pickerView.setNPicker(list,null,null);
+        pickerView.show();
+    }
+
+    public void showStatus() {
+        List list = new ArrayList();
+        list.add("勘查设计");
+        list.add("开工预备");
+        list.add("在建");
+        list.add("竣工验收");
+        list.add("完结维保");
+        list.add("已终止");
+        list.add("已停工");
+        OptionsPickerView pickerView = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int options2, int options3, View v) {
+                status = list.get(options1).toString();
+                mTvProjectStatus.setText("" + status);
 
             }
         }).build();
@@ -409,7 +441,6 @@ public class AddProjectActivity extends BaseActivity {
             map.put("start_date_real", "" + start_date);//(可选)实际开工日期
             map.put("end_date_real", "" + end_date);//(可选)实际竣工日期
 
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.project_add, map);
         }
     }
@@ -417,7 +448,6 @@ public class AddProjectActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.project_add) {
@@ -433,7 +463,6 @@ public class AddProjectActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override
@@ -453,7 +482,6 @@ public class AddProjectActivity extends BaseActivity {
 
         if (data == null) {
             return;
-
         }
         if (requestCode == 0) {
 

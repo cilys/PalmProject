@@ -1,6 +1,8 @@
 package com.aopcloud.palmproject.ui.fragment;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -36,12 +38,15 @@ import com.aopcloud.palmproject.ui.activity.task.TaskManageActivity;
 import com.aopcloud.palmproject.ui.adapter.enterprise.EnterpriseProjectAdapter;
 import com.aopcloud.palmproject.ui.adapter.enterprise.EnterpriseTaskAdapter;
 import com.aopcloud.palmproject.ui.adapter.enterprise.EnterpriseTodoAdapter;
+import com.aopcloud.palmproject.ui.adapter.feagment.AppFragmentPagerAdapter;
 import com.aopcloud.palmproject.ui.fragment.home.HomeProjectFragment;
+import com.aopcloud.palmproject.ui.fragment.task.TaskCountFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.view.decoration.DividerItemDecoration;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cily.utils.base.time.TimeType;
 import com.cily.utils.base.time.TimeUtils;
+import com.cilys.app.view.NoScrollViewPager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -92,12 +97,12 @@ public class ProjectFragment extends BaseFragment {
     @BindView(R.id.tv_enterprise_name)
     TextView mTvEnterpriseName;
 
-    @BindView(R.id.tv_undo)
-    TextView mTvUndo;       //未完成数量
-    @BindView(R.id.tv_done)
-    TextView mTvDone;       //已完成数量
-    @BindView(R.id.tv_outTime)
-    TextView mTvOutTime;    //已逾期数量
+//    @BindView(R.id.tv_undo)
+//    TextView mTvUndo;       //未完成数量
+//    @BindView(R.id.tv_done)
+//    TextView mTvDone;       //已完成数量
+//    @BindView(R.id.tv_outTime)
+//    TextView mTvOutTime;    //已逾期数量
 
     @BindView(R.id.tv_company_count)
     TextView mTvCompanyCount;       //企业数量
@@ -107,6 +112,13 @@ public class ProjectFragment extends BaseFragment {
     TextView mTvWorkCount;          //工作汇报数量
     @BindView(R.id.tv_apply_count)
     TextView mTvApplyCount;         //申请审批数量
+
+    @BindView(R.id.view_splite_line_0)
+    View mViewSpliteLine0;
+    @BindView(R.id.view_splite_line_1)
+    View mViewSpliteLine1;
+    @BindView(R.id.view_splite_line_2)
+    View mViewSpliteLine2;
 
 //    private EnterpriseTodoAdapter mTodoAdapter;
     private EnterpriseProjectAdapter mProjectAdapter;
@@ -153,7 +165,6 @@ public class ProjectFragment extends BaseFragment {
     protected void onVisible() {
         super.onVisible();
         initImmersionBar();
-        Logcat.i("-------" + this.getClass().getSimpleName());
     }
 
     @Override
@@ -187,6 +198,97 @@ public class ProjectFragment extends BaseFragment {
         if (LoginUserUtil.isLogin(mActivity) && TextUtils.isEmpty(LoginUserUtil.getCurrentEnterpriseNo(mActivity))) {
             mTvEnterpriseName.setText("请先选择或加入企业");
         }
+
+        NoScrollViewPager noVp = (NoScrollViewPager)view.findViewById(R.id.noVp_count);
+        List<Fragment> mFragments = new ArrayList<>();
+        TaskCountFragment fg0 = new TaskCountFragment();
+        Bundle b0 = new Bundle();
+        b0.putString("type", "2");
+        fg0.setArguments(b0);
+        mFragments.add(fg0);
+
+        TaskCountFragment fg1 = new TaskCountFragment();
+        Bundle b1 = new Bundle();
+        b1.putString("type", "3");
+        fg1.setArguments(b1);
+        mFragments.add(fg1);
+
+        TaskCountFragment fg2 = new TaskCountFragment();
+        Bundle b2 = new Bundle();
+        b2.putString("type", "1");
+        fg2.setArguments(b2);
+        mFragments.add(fg2);
+
+        LinearLayout ll_0 = (LinearLayout)view.findViewById(R.id.ll_0);
+        ll_0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                noVp.setCurrentItem(0);
+            }
+        });
+        LinearLayout ll_1 = (LinearLayout)view.findViewById(R.id.ll_1);
+        ll_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                noVp.setCurrentItem(1);
+            }
+        });
+        LinearLayout ll_2 = (LinearLayout)view.findViewById(R.id.ll_2);
+        ll_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                noVp.setCurrentItem(2);
+            }
+        });
+
+        noVp.setAdapter(new AppFragmentPagerAdapter(getChildFragmentManager(), mFragments, null));
+        noVp.setCurrentItem(0);
+        noVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                if (i == 0){
+                    if (mViewSpliteLine0 != null){
+                        mViewSpliteLine0.setVisibility(View.VISIBLE);
+                    }
+                    if (mViewSpliteLine1 != null){
+                        mViewSpliteLine1.setVisibility(View.INVISIBLE);
+                    }
+                    if (mViewSpliteLine2 != null){
+                        mViewSpliteLine2.setVisibility(View.INVISIBLE);
+                    }
+                } else if (i == 1){
+                    if (mViewSpliteLine0 != null){
+                        mViewSpliteLine0.setVisibility(View.INVISIBLE);
+                    }
+                    if (mViewSpliteLine1 != null){
+                        mViewSpliteLine1.setVisibility(View.VISIBLE);
+                    }
+                    if (mViewSpliteLine2 != null){
+                        mViewSpliteLine2.setVisibility(View.INVISIBLE);
+                    }
+                } else if (i == 2){
+                    if (mViewSpliteLine0 != null){
+                        mViewSpliteLine0.setVisibility(View.INVISIBLE);
+                    }
+                    if (mViewSpliteLine1 != null){
+                        mViewSpliteLine1.setVisibility(View.INVISIBLE);
+                    }
+                    if (mViewSpliteLine2 != null){
+                        mViewSpliteLine2.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
     }
 
     private void setViewTaskData(List<ProjectTaskBean> beanList) {
@@ -325,33 +427,33 @@ public class ProjectFragment extends BaseFragment {
     }
 
     private void parseProjectCount(List<ProjectListBean> beanList){
-        if (beanList == null || beanList.size() < 1){
-            mTvUndo.setText("0");
-            mTvDone.setText("0");
-            mTvOutTime.setText("0");
-        } else {
-            int undo = 0;
-            int done = 0;
-            int outTime = 0;
-            for (ProjectListBean b : beanList){
-                String status = b.getStatus();
-                if (HomeProjectFragment.STATE_completed.equals(status)
-                    || HomeProjectFragment.STATE_finish.equals(status)){
-                    done ++;
-                }else {
-                    String end_data = b.getEnd_date();
-                    long endDate = TimeUtils.strToMil(end_data, TimeType.DAY_LINE, System.currentTimeMillis());
-                    if (System.currentTimeMillis() > endDate){
-                        outTime ++;
-                    }else {
-                        undo ++;
-                    }
-                }
-            }
-            mTvUndo.setText(String.valueOf(undo));
-            mTvDone.setText(String.valueOf(done));
-            mTvOutTime.setText(String.valueOf(outTime));
-        }
+//        if (beanList == null || beanList.size() < 1){
+//            mTvUndo.setText("0");
+//            mTvDone.setText("0");
+//            mTvOutTime.setText("0");
+//        } else {
+//            int undo = 0;
+//            int done = 0;
+//            int outTime = 0;
+//            for (ProjectListBean b : beanList){
+//                String status = b.getStatus();
+//                if (HomeProjectFragment.STATE_completed.equals(status)
+//                    || HomeProjectFragment.STATE_finish.equals(status)){
+//                    done ++;
+//                }else {
+//                    String end_data = b.getEnd_date();
+//                    long endDate = TimeUtils.strToMil(end_data, TimeType.DAY_LINE, System.currentTimeMillis());
+//                    if (System.currentTimeMillis() > endDate){
+//                        outTime ++;
+//                    }else {
+//                        undo ++;
+//                    }
+//                }
+//            }
+//            mTvUndo.setText(String.valueOf(undo));
+//            mTvDone.setText(String.valueOf(done));
+//            mTvOutTime.setText(String.valueOf(outTime));
+//        }
     }
 
     @Override
@@ -369,43 +471,47 @@ public class ProjectFragment extends BaseFragment {
             } else if (eventTag == ApiConstants.EventTags.task_all) {
                 List<ProjectTaskBean> beanList = JSON.parseArray(bean.getData(), ProjectTaskBean.class);
                 setViewTaskData(beanList);
-                if (beanList != null && beanList.size() > 0){
-                    if (beanList.size() > 99){
-                        mTvApplyCount.setText("99+");
-                    }else {
-                        mTvApplyCount.setText(String.valueOf(beanList.size()));
-                    }
-                    mTvApplyCount.setVisibility(View.VISIBLE);
-                }else {
-                    mTvApplyCount.setVisibility(View.GONE);
-                }
+                // TODO: 2020/7/9 先解决其它问题
+//                if (beanList != null && beanList.size() > 0){
+//                    if (beanList.size() > 99){
+//                        mTvApplyCount.setText("99+");
+//                    }else {
+//                        mTvApplyCount.setText(String.valueOf(beanList.size()));
+//                    }
+//                    mTvApplyCount.setVisibility(View.VISIBLE);
+//                }else {
+//                    mTvApplyCount.setVisibility(View.GONE);
+//                }
             } else if (eventTag == ApiConstants.EventTags.company_usermange){
                 List<StaffListBean> beanList = JSON.parseArray(bean.getData(), StaffListBean.class);
-                if (beanList != null && beanList.size() > 0){
-                    if (beanList.size() > 99){
-                        mTvTellCount.setText("99+");
-                    }else {
-                        mTvTellCount.setText(String.valueOf(beanList.size()));
-                    }
-                    mTvTellCount.setVisibility(View.VISIBLE);
-                }else {
-                    mTvTellCount.setVisibility(View.GONE);
-                }
+                // TODO: 2020/7/9 先解决其它问题
+//                if (beanList != null && beanList.size() > 0){
+//                    if (beanList.size() > 99){
+//                        mTvTellCount.setText("99+");
+//                    }else {
+//                        mTvTellCount.setText(String.valueOf(beanList.size()));
+//                    }
+//                    mTvTellCount.setVisibility(View.VISIBLE);
+//                }else {
+//                    mTvTellCount.setVisibility(View.GONE);
+//                }
             } else if (eventTag == ApiConstants.EventTags.reportjob_statistics) {
                 WorkLogStatisticsBean statisticsBean = JSON.parseObject(bean.getData(), WorkLogStatisticsBean.class);
-                if (statisticsBean != null){
-                    int total = statisticsBean.getTotal();
-                    if (total < 1){
-                        mTvWorkCount.setVisibility(View.GONE);
-                    } else {
-                        mTvWorkCount.setVisibility(View.VISIBLE);
-                        if (total > 99){
-                            mTvWorkCount.setText("99+");
-                        }else {
-                            mTvWorkCount.setText(String.valueOf(total));
-                        }
-                    }
-                }
+                // TODO: 2020/7/9 先解决其它问题
+
+                //                if (statisticsBean != null){
+//                    int total = statisticsBean.getTotal();
+//                    if (total < 1){
+//                        mTvWorkCount.setVisibility(View.GONE);
+//                    } else {
+//                        mTvWorkCount.setVisibility(View.VISIBLE);
+//                        if (total > 99){
+//                            mTvWorkCount.setText("99+");
+//                        }else {
+//                            mTvWorkCount.setText(String.valueOf(total));
+//                        }
+//                    }
+//                }
             }
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
