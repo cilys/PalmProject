@@ -131,7 +131,7 @@ public class AddProjectActivity extends BaseActivity {
     protected String rights = "1";
     private String pid = "0";
     private String project_code = "";
-    private String type = "";
+    private String type = "土建工程";
     private String price = "";
     private String summary = "";
     private String area = "";

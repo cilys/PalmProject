@@ -532,7 +532,7 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
                 }
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
-                Logcat.w("AmapErr", errText);
+                Logcat.d("AmapErr", errText);
             }
         }
     }

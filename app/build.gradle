@@ -135,4 +135,6 @@ dependencies {
     //    implementation files('lib/jpush-android-3.6.6.jar')
     api 'com.cilys:utils-app:1.0.0@aar'
     implementation files('libs/utils-base-1.0.4.jar')
+
+//    api 'com.squareup.okhttp3:logging-interceptor:3.11.0'
 }

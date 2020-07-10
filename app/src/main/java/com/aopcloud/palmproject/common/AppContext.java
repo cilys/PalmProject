@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.aopcloud.base.common.AppHelper;
@@ -77,8 +78,7 @@ public class AppContext extends Application {
     }
 
     private void initPhoenix() {
-        Phoenix.config()
-                .imageLoader(new ImageLoader() {
+        Phoenix.config().imageLoader(new ImageLoader() {
                     @Override
                     public void loadImage(Context mContext, ImageView imageView, String imagePath, int type) {
                         AppImageLoader.load(mContext, imagePath, imageView);
@@ -90,7 +90,12 @@ public class AppContext extends Application {
     public static void initOkHttp() {
         HttpsUtils.SSLParams sslParams = HttpsUtils.getSslSocketFactory(null, null, null);
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(new LoggerInterceptor("dk_log", BuildConfig.DEBUG))
+                .addInterceptor(new LoggerInterceptor(new LoggerInterceptor.Logger() {
+                    @Override
+                    public void log(String message) {
+                        Log.i(AppContext.class.getSimpleName(), message);
+                    }
+                }))
                 .connectTimeout(30000L, TimeUnit.MILLISECONDS)
                 .readTimeout(30000L, TimeUnit.MILLISECONDS)
                 .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)

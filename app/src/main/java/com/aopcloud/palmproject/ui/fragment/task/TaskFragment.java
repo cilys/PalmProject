@@ -123,7 +123,6 @@ public class TaskFragment extends BaseFragment implements OnTaskFilterListener {
 
         mTvTimeOut.setText("超期任务" + timeOutList.size());
         mTvCurrentCount.setText("当前任务" + currentTaskList.size());
-
     }
 
 
@@ -220,7 +219,6 @@ public class TaskFragment extends BaseFragment implements OnTaskFilterListener {
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(mActivity));
         if (eventTag == ApiConstants.EventTags.task_all) {
             map.put("type", "" + type);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.task_all, map);
         }
     }
@@ -228,7 +226,6 @@ public class TaskFragment extends BaseFragment implements OnTaskFilterListener {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.task_all) {
@@ -238,13 +235,11 @@ public class TaskFragment extends BaseFragment implements OnTaskFilterListener {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
 
@@ -399,7 +394,6 @@ public class TaskFragment extends BaseFragment implements OnTaskFilterListener {
                     break;
             }
         }
-
     }
 }
 

@@ -102,4 +102,18 @@
         <item name="android:visibility">gone</item>
         <item name="android:layout_marginRight">2dp</item>
     </style>
+    
+    <style name="style_bar_tv">
+        <item name="android:layout_width">@dimen/dp_72</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/selected_bar_textcolor</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:background">@color/theme_color</item>
+        <item name="android:button">@null</item>
+    </style>
 </resources>

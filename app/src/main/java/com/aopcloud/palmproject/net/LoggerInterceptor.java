@@ -3,8 +3,12 @@ package com.aopcloud.palmproject.net;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.io.EOFException;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.Connection;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
@@ -12,127 +16,287 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okhttp3.internal.http.HttpHeaders;
+import okhttp3.internal.platform.Platform;
 import okio.Buffer;
+import okio.BufferedSource;
+import okio.GzipSource;
+
+import static okhttp3.internal.platform.Platform.INFO;
 
 /**
  * Created by zhy on 16/3/1.
  */
 public class LoggerInterceptor implements Interceptor {
-    public static final String TAG = "OkHttpUtils";
-    private String tag;
-    private boolean showResponse;
+    private static final Charset UTF8 = Charset.forName("UTF-8");
 
-    public LoggerInterceptor(String tag, boolean showResponse) {
-        if (TextUtils.isEmpty(tag)) {
-            tag = TAG;
-        }
-        this.showResponse = showResponse;
-        this.tag = tag;
+    public enum Level {
+        /** No logs. */
+        NONE,
+        /**
+         * Logs request and response lines.
+         *
+         * <p>Example:
+         * <pre>{@code
+         * --> POST /greeting http/1.1 (3-byte body)
+         *
+         * <-- 200 OK (22ms, 6-byte body)
+         * }</pre>
+         */
+        BASIC,
+        /**
+         * Logs request and response lines and their respective headers.
+         *
+         * <p>Example:
+         * <pre>{@code
+         * --> POST /greeting http/1.1
+         * Host: example.com
+         * Content-Type: plain/text
+         * Content-Length: 3
+         * --> END POST
+         *
+         * <-- 200 OK (22ms)
+         * Content-Type: plain/text
+         * Content-Length: 6
+         * <-- END HTTP
+         * }</pre>
+         */
+        HEADERS,
+        /**
+         * Logs request and response lines and their respective headers and bodies (if present).
+         *
+         * <p>Example:
+         * <pre>{@code
+         * --> POST /greeting http/1.1
+         * Host: example.com
+         * Content-Type: plain/text
+         * Content-Length: 3
+         *
+         * Hi?
+         * --> END POST
+         *
+         * <-- 200 OK (22ms)
+         * Content-Type: plain/text
+         * Content-Length: 6
+         *
+         * Hello!
+         * <-- END HTTP
+         * }</pre>
+         */
+        BODY
     }
 
-    public LoggerInterceptor(String tag) {
-        this(tag, false);
+    public interface Logger {
+        void log(String message);
+
+        /** A {@link LoggerInterceptor.Logger} defaults output appropriate for the current platform. */
+        LoggerInterceptor.Logger DEFAULT = new LoggerInterceptor.Logger() {
+            @Override public void log(String message) {
+                Platform.get().log(INFO, message, null);
+            }
+        };
     }
 
-    @Override
-    public Response intercept(Chain chain) throws IOException {
+    public LoggerInterceptor() {
+        this(LoggerInterceptor.Logger.DEFAULT);
+    }
+
+    public LoggerInterceptor(LoggerInterceptor.Logger logger) {
+        this.logger = logger;
+    }
+
+    private final LoggerInterceptor.Logger logger;
+
+    private volatile LoggerInterceptor.Level level = Level.BODY;
+
+    /** Change the level at which this interceptor logs. */
+    public LoggerInterceptor setLevel(LoggerInterceptor.Level level) {
+        if (level == null) throw new NullPointerException("level == null. Use Level.NONE instead.");
+        this.level = level;
+        return this;
+    }
+
+    public LoggerInterceptor.Level getLevel() {
+        return level;
+    }
+
+    @Override public Response intercept(Chain chain) throws IOException {
+        LoggerInterceptor.Level level = this.level;
+
         Request request = chain.request();
-        logForRequest(request);
-        Response response = chain.proceed(request);
-        return logForResponse(response);
-    }
+        if (level == LoggerInterceptor.Level.NONE) {
+            return chain.proceed(request);
+        }
 
-    private Response logForResponse(Response response) {
-        try {
-            //===>response log
-            Log.i(tag, "========response'log=======");
-            Response.Builder builder = response.newBuilder();
-            Response clone = builder.build();
-            Log.i(tag, "url : " + clone.request().url());
-            Log.i(tag, "code : " + clone.code());
-            Log.i(tag, "protocol : " + clone.protocol());
-            if (!TextUtils.isEmpty(clone.message()))
-                Log.i(tag, "message : " + clone.message());
+        boolean logBody = level == LoggerInterceptor.Level.BODY;
+        boolean logHeaders = logBody || level == LoggerInterceptor.Level.HEADERS;
 
-            if (showResponse) {
-                ResponseBody body = clone.body();
-                if (body != null) {
-                    MediaType mediaType = body.contentType();
-                    if (mediaType != null) {
-                        Log.i(tag, "responseBody's contentType : " + mediaType.toString());
-                        if (isText(mediaType)) {
-                            String resp = body.string();
-                            Log.i(tag, "responseBody's content : " + resp);
+        RequestBody requestBody = request.body();
+        boolean hasRequestBody = requestBody != null;
 
-                            body = ResponseBody.create(mediaType, resp);
-                            return response.newBuilder().body(body).build();
-                        } else {
-                            Log.i(tag, "responseBody's content : " + " maybe [file part] , too large too print , ignored!");
-                        }
-                    }
+        Connection connection = chain.connection();
+        String requestStartMessage = "--> "
+                + request.method()
+                + ' ' + request.url()
+                + (connection != null ? " " + connection.protocol() : "");
+        if (!logHeaders && hasRequestBody) {
+            requestStartMessage += " (" + requestBody.contentLength() + "-byte body)";
+        }
+        logger.log(requestStartMessage);
+
+        if (logHeaders) {
+            if (hasRequestBody) {
+                // Request body headers are only present when installed as a network interceptor. Force
+                // them to be included (when available) so there values are known.
+                if (requestBody.contentType() != null) {
+                    logger.log("Content-Type: " + requestBody.contentType());
+                }
+                if (requestBody.contentLength() != -1) {
+                    logger.log("Content-Length: " + requestBody.contentLength());
                 }
             }
 
-            Log.i(tag, "========response'log=======end");
+            Headers headers = request.headers();
+            for (int i = 0, count = headers.size(); i < count; i++) {
+                String name = headers.name(i);
+                // Skip headers from the request body as they are explicitly logged above.
+                if (!"Content-Type".equalsIgnoreCase(name) && !"Content-Length".equalsIgnoreCase(name)) {
+                    logger.log(name + ": " + headers.value(i));
+                }
+            }
+
+            if (!logBody || !hasRequestBody) {
+                logger.log("--> END " + request.method());
+            } else if (bodyHasUnknownEncoding(request.headers())) {
+                logger.log("--> END " + request.method() + " (encoded body omitted)");
+            } else {
+                Buffer buffer = new Buffer();
+                requestBody.writeTo(buffer);
+
+                Charset charset = UTF8;
+                MediaType contentType = requestBody.contentType();
+                if (contentType != null) {
+                    charset = contentType.charset(UTF8);
+                }
+
+                logger.log("");
+                if (isPlaintext(buffer)) {
+                    logger.log(buffer.readString(charset));
+                    logger.log("--> END " + request.method()
+                            + " (" + requestBody.contentLength() + "-byte body)");
+                } else {
+                    logger.log("--> END " + request.method() + " (binary "
+                            + requestBody.contentLength() + "-byte body omitted)");
+                }
+            }
+        }
+
+        long startNs = System.nanoTime();
+        Response response;
+        try {
+            response = chain.proceed(request);
         } catch (Exception e) {
-//            e.printStackTrace();
+            logger.log("<-- HTTP FAILED: " + e);
+            throw e;
+        }
+        long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
+
+        ResponseBody responseBody = response.body();
+        long contentLength = responseBody.contentLength();
+        String bodySize = contentLength != -1 ? contentLength + "-byte" : "unknown-length";
+        logger.log("<-- "
+                + response.code()
+                + (response.message().isEmpty() ? "" : ' ' + response.message())
+                + ' ' + response.request().url()
+                + " (" + tookMs + "ms" + (!logHeaders ? ", " + bodySize + " body" : "") + ')');
+
+        if (logHeaders) {
+            Headers headers = response.headers();
+            for (int i = 0, count = headers.size(); i < count; i++) {
+                logger.log(headers.name(i) + ": " + headers.value(i));
+            }
+
+            if (!logBody || !HttpHeaders.hasBody(response)) {
+                logger.log("<-- END HTTP");
+            } else if (bodyHasUnknownEncoding(response.headers())) {
+                logger.log("<-- END HTTP (encoded body omitted)");
+            } else {
+                BufferedSource source = responseBody.source();
+                source.request(Long.MAX_VALUE); // Buffer the entire body.
+                Buffer buffer = source.buffer();
+
+                Long gzippedLength = null;
+                if ("gzip".equalsIgnoreCase(headers.get("Content-Encoding"))) {
+                    gzippedLength = buffer.size();
+                    GzipSource gzippedResponseBody = null;
+                    try {
+                        gzippedResponseBody = new GzipSource(buffer.clone());
+                        buffer = new Buffer();
+                        buffer.writeAll(gzippedResponseBody);
+                    } finally {
+                        if (gzippedResponseBody != null) {
+                            gzippedResponseBody.close();
+                        }
+                    }
+                }
+
+                Charset charset = UTF8;
+                MediaType contentType = responseBody.contentType();
+                if (contentType != null) {
+                    charset = contentType.charset(UTF8);
+                }
+
+                if (!isPlaintext(buffer)) {
+                    logger.log("");
+                    logger.log("<-- END HTTP (binary " + buffer.size() + "-byte body omitted)");
+                    return response;
+                }
+
+                if (contentLength != 0) {
+                    logger.log("");
+                    logger.log(buffer.clone().readString(charset));
+                }
+
+                if (gzippedLength != null) {
+                    logger.log("<-- END HTTP (" + buffer.size() + "-byte, "
+                            + gzippedLength + "-gzipped-byte body)");
+                } else {
+                    logger.log("<-- END HTTP (" + buffer.size() + "-byte body)");
+                }
+            }
         }
 
         return response;
     }
 
-    private void logForRequest(Request request) {
+    /**
+     * Returns true if the body in question probably contains human readable text. Uses a small sample
+     * of code points to detect unicode control characters commonly used in binary file signatures.
+     */
+    static boolean isPlaintext(Buffer buffer) {
         try {
-            String url = request.url().toString();
-            Headers headers = request.headers();
-
-            Log.i(tag, "========request'log=======");
-            Log.i(tag, "method : " + request.method());
-            Log.i(tag, "url : " + url);
-            if (headers != null && headers.size() > 0) {
-                Log.i(tag, "headers : " + headers.toString());
-            }
-            RequestBody requestBody = request.body();
-            if (requestBody != null) {
-                MediaType mediaType = requestBody.contentType();
-                if (mediaType != null) {
-                    Log.i(tag, "requestBody's contentType : " + mediaType.toString());
-                    if (isText(mediaType)) {
-                        Log.i(tag, "requestBody's content : " + bodyToString(request));
-                    } else {
-                        Log.i(tag, "requestBody's content : " + " maybe [file part] , too large too print , ignored!");
-                    }
+            Buffer prefix = new Buffer();
+            long byteCount = buffer.size() < 64 ? buffer.size() : 64;
+            buffer.copyTo(prefix, 0, byteCount);
+            for (int i = 0; i < 16; i++) {
+                if (prefix.exhausted()) {
+                    break;
+                }
+                int codePoint = prefix.readUtf8CodePoint();
+                if (Character.isISOControl(codePoint) && !Character.isWhitespace(codePoint)) {
+                    return false;
                 }
             }
-            Log.i(tag, "========request'log=======end");
-        } catch (Exception e) {
-//            e.printStackTrace();
-        }
-    }
-
-    private boolean isText(MediaType mediaType) {
-        if (mediaType.type() != null && mediaType.type().equals("text")) {
             return true;
+        } catch (EOFException e) {
+            return false; // Truncated UTF-8 sequence.
         }
-        if (mediaType.subtype() != null) {
-            if (mediaType.subtype().equals("json") ||
-                    mediaType.subtype().equals("xml") ||
-                    mediaType.subtype().equals("html") ||
-                    mediaType.subtype().equals("webviewhtml")
-            )
-                return true;
-        }
-        return false;
     }
 
-    private String bodyToString(final Request request) {
-        try {
-            final Request copy = request.newBuilder().build();
-            final Buffer buffer = new Buffer();
-            copy.body().writeTo(buffer);
-            return buffer.readUtf8();
-        } catch (final IOException e) {
-            return "something error when show requestBody.";
-        }
+    private boolean bodyHasUnknownEncoding(Headers headers) {
+        String contentEncoding = headers.get("Content-Encoding");
+        return contentEncoding != null
+                && !contentEncoding.equalsIgnoreCase("identity")
+                && !contentEncoding.equalsIgnoreCase("gzip");
     }
 }

@@ -8,12 +8,57 @@
 
     <include layout="@layout/layout_common_title" />
 
-    <LinearLayout
+    <HorizontalScrollView
+        android:id="@+id/hsv"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
 
-    </LinearLayout>
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content" >
+            <RadioButton
+                android:id="@+id/rbt_all"
+                style="@style/style_bar_tv"
+                android:checked="true"
+                android:text="全部" />
+            <RadioButton
+                android:id="@+id/rbt_progress"
+                style="@style/style_bar_tv"
+                android:text="进行中" />
+            <RadioButton
+                android:id="@+id/rbt_expect"
+                style="@style/style_bar_tv"
+                android:text="已超期" />
+            <RadioButton
+                android:id="@+id/rbt_complete"
+                style="@style/style_bar_tv"
+                android:text="已完成" />
+
+            <RadioButton
+                android:id="@+id/rbt_no_start"
+                style="@style/style_bar_tv"
+                android:text="未开始" />
+
+            <RadioButton
+                android:id="@+id/rbt_cancel"
+                style="@style/style_bar_tv"
+                android:text="已取消" />
+            <RadioButton
+                android:id="@+id/rbt_pause"
+                style="@style/style_bar_tv"
+                android:text="暂停中" />
+            <RadioButton
+                android:id="@+id/rbt_operation"
+                style="@style/style_bar_tv"
+                android:text="作业中" />
+        </RadioGroup>
+
+    </HorizontalScrollView>
+
+
 
     <com.cilys.app.view.NoScrollViewPager
         android:id="@+id/noVp"

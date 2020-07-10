@@ -12,6 +12,7 @@ import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
+import com.aopcloud.palmproject.ui.activity.task.list.TaskListAc;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.cily.utils.base.time.TimeType;
@@ -45,6 +46,34 @@ public class TaskCountFragment extends BaseFragment {
         mTvUndo = (TextView)view.findViewById(R.id.tv_undo);
         mTvDone = (TextView)view.findViewById(R.id.tv_done);
         mTvOutTime = (TextView)view.findViewById(R.id.tv_outTime);
+
+        mTvUndo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle b = new Bundle();
+                b.putString("type", type);
+                b.putString("state", HomeTaskFragment.STATE_all);
+                gotoActivity(TaskListAc.class, b);
+            }
+        });
+        mTvDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle b = new Bundle();
+                b.putString("type", type);
+                b.putString("state", HomeTaskFragment.STATE_complete);
+                gotoActivity(TaskListAc.class, b);
+            }
+        });
+        mTvOutTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle b = new Bundle();
+                b.putString("type", type);
+                b.putString("state", HomeTaskFragment.STATE_expect);
+                gotoActivity(TaskListAc.class, b);
+            }
+        });
     }
 
     @Override
@@ -59,17 +88,16 @@ public class TaskCountFragment extends BaseFragment {
     @Override
     protected void initData() {
         super.initData();
-
     }
 
     @Override
     public void toRequest(int eventTag) {
         super.toRequest(eventTag);
         Map map = new HashMap();
-        map.put("token", "" + LoginUserUtil.getToken(mActivity));
-        map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(mActivity));
+        map.put("token", LoginUserUtil.getToken(mActivity));
+        map.put("code", LoginUserUtil.getCurrentEnterpriseNo(mActivity));
         if (eventTag == ApiConstants.EventTags.task_all) {
-            map.put("type",type);
+            map.put("type", type);
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.task_all, map);
         }
     }
@@ -86,7 +114,6 @@ public class TaskCountFragment extends BaseFragment {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -108,10 +135,8 @@ public class TaskCountFragment extends BaseFragment {
                 String status = b.getStatus_str();
                 if (HomeTaskFragment.STATE_complete.equals(status)){
                     done ++;
-                }else {
-                    String end_data = b.getEnd_date();
-                    long endDate = TimeUtils.strToMil(end_data, TimeType.DAY_LINE, System.currentTimeMillis());
-                    if (System.currentTimeMillis() > endDate){
+                } else {
+                    if (HomeTaskFragment.STATE_expect.equals(status)){
                         outTime ++;
                     }else {
                         undo ++;
