@@ -115,6 +115,8 @@ public class ProjectListFragment extends BaseFragment implements ProjectListAdap
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         Bundle bundle = new Bundle();
         bundle.putString("project_id", mBeanList.get(position).getProject_id() + "");
+        bundle.putString("project_name", mBeanList.get(position).getName());
+        bundle.putString("company_id", mBeanList.get(position).getCompany_code());
         gotoActivity(ProjectDetailActivity.class, 0, bundle);
     }
 

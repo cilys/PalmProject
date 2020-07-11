@@ -348,7 +348,6 @@ public class ProjectTaskDetailActivity extends BaseActivity {
                 showEditTimeDialog();
                 break;
             case R.id.tv_assign:
-                Logcat.d("--------"+mTaskDetailBean.getTeam_id());
                 if (mTaskDetailBean.getTeam_id() == 0 &&TextUtils.isEmpty(mTaskDetailBean.getTeam_name())) {
                     showAssignTaskDialog();
                 }else {
@@ -371,14 +370,11 @@ public class ProjectTaskDetailActivity extends BaseActivity {
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         map.put("task_id", "" + task_id);
         if (eventTag == ApiConstants.EventTags.task_get) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.task_get, map);
         } else if (eventTag == ApiConstants.EventTags.task_del) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.task_del, map);
         } else if (eventTag == ApiConstants.EventTags.project_team) {
             map.put("project_id", "" + project_id);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.project_team, map);
         } else if (eventTag == ApiConstants.EventTags.task_assign) {
             map.put("start_date", "" + assignStartTime);
@@ -389,7 +385,6 @@ public class ProjectTaskDetailActivity extends BaseActivity {
 //            map.put("longitue", "" + assignLongitude);
 //            map.put("latitude", "" + assignLatitude);
 //            map.put("scope", "" + assignRange);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.task_assign, map);
         } else if (eventTag == ApiConstants.EventTags.task_update) {
             if (operate) {
@@ -400,7 +395,6 @@ public class ProjectTaskDetailActivity extends BaseActivity {
                 map.put("level", "" + updateLevel);
             }
             operate = false;
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.task_update, map);
         }
     }
@@ -408,7 +402,6 @@ public class ProjectTaskDetailActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -437,7 +430,6 @@ public class ProjectTaskDetailActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     private TextView mTvAssignDays;

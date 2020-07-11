@@ -323,6 +323,8 @@ public class ProjectFragment extends BaseFragment {
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Bundle bundle = new Bundle();
                 bundle.putString("project_id", projectList.get(position).getProject_id() + "");
+                bundle.putString("project_name", projectList.get(position).getName());
+                bundle.putString("company_id", projectList.get(position).getCompany_code());
                 gotoActivity(ProjectDetailActivity.class, 0, bundle);
             }
         });

@@ -26,7 +26,6 @@ import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.ui.activity.map.SelectLocationActivity;
-import com.aopcloud.palmproject.ui.activity.project.ProjectTaskAddActivity;
 import com.aopcloud.palmproject.ui.activity.project.ProjectTaskDetailActivity;
 import com.aopcloud.palmproject.ui.activity.team.bean.TeamMemberBean;
 import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;

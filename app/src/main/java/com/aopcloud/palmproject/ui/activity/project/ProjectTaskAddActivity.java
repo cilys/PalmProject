@@ -16,17 +16,22 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
+import com.aopcloud.base.common.BaseEvent;
 import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
+import com.aopcloud.palmproject.common.MassageEvent;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.enterprise.SwitchEnterpriseActivity;
+import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseListBean;
 import com.aopcloud.palmproject.ui.activity.map.SelectLocationActivity;
 import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;
 import com.aopcloud.palmproject.utils.JsonUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.cily.utils.base.StrUtils;
 import com.guoxiaoxing.phoenix.core.PhoenixOption;
 import com.guoxiaoxing.phoenix.core.model.MediaEntity;
 import com.guoxiaoxing.phoenix.core.model.MimeType;
@@ -37,6 +42,7 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -52,7 +58,7 @@ import okhttp3.Call;
  * @Author : K
  * @E-mail : vip@devkit.vip
  * @Version : V 1.0
- * @Describe ：
+ * @Describe ：创建工单
  */
 @Layout(R.layout.activity_project_task_add)
 public class ProjectTaskAddActivity extends BaseActivity implements FileListAdapter.OnItemChildClickListener,
@@ -87,6 +93,16 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
     @BindView(R.id.tv_address)
     TextView mTvAddress;
 
+    @BindView(R.id.ll_company)
+    LinearLayout ll_company;    //公司
+    @BindView(R.id.tv_company)
+    TextView tv_company;
+    @BindView(R.id.ll_project_name)
+    LinearLayout ll_project_name;   //项目
+    @BindView(R.id.tv_project_name)
+    TextView tv_project_name;
+
+
     private String project_id;
     private String pid = "0";
     private String name;
@@ -104,18 +120,37 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
     private List<MediaEntity> mMediaEntities = new ArrayList<>();
     private MediaEntity mAddMediaEntity;
 
+    private String project_name;
+    private String company_id;
+    private String company_name;
     @Override
     protected void initData() {
         super.initData();
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             project_id = bundle.getString("project_id");
+            project_name = bundle.getString("project_name");
+
+            company_id = bundle.getString("company_id");
+            company_name = bundle.getString("company_name");
         }
     }
 
     @Override
     protected void initView() {
         mTvHeaderTitle.setText("创建工单");
+
+        if (!StrUtils.isEmpty(company_name)) {
+            tv_company.setText(company_name);
+        }
+        if (!StrUtils.isEmpty(company_id)){
+            toRequest(ApiConstants.EventTags.company_my);
+        }
+
+        if (!StrUtils.isEmpty(project_name)) {
+            tv_project_name.setText(project_name);
+        }
+        ll_project_name.setEnabled(StrUtils.isEmpty(project_id));
 
         mAddMediaEntity = new MediaEntity();
         mMediaEntities.add(mAddMediaEntity);
@@ -125,7 +160,6 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
         mFileListAdapter.setOnItemChildClickListener(this);
         mRvListImg.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mRvListImg.setAdapter(mFileListAdapter);
-
     }
 
     @Override
@@ -158,7 +192,6 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
         } else {
 
         }
-
     }
 
     @Override
@@ -169,15 +202,14 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
             entities.remove(position);
             mMediaEntities.clear();
             mMediaEntities.addAll(entities);
-            Logcat.w("-1--" + JSON.toJSONString(entities));
-            Logcat.d("--2-" + JSON.toJSONString(mMediaEntities));
+            Logcat.i("-1--" + JSON.toJSONString(entities));
+            Logcat.d("-2-" + JSON.toJSONString(mMediaEntities));
             mFileListAdapter.notifyDataSetChanged();
         }
-
-
     }
 
-    @OnClick({R.id.ll_header_back, R.id.ll_header_right, R.id.iv_name_more, R.id.iv_unit_more,R.id.tv_address, R.id.tv_submit})
+    @OnClick({R.id.ll_header_back, R.id.ll_header_right, R.id.iv_name_more, R.id.iv_unit_more,R.id.tv_address,
+            R.id.tv_submit, R.id.ll_company, R.id.ll_project_name})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_header_back:
@@ -199,6 +231,24 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
                 work_des = mEtContent.getText().toString();
                 checkParams();
                 break;
+
+            case R.id.ll_company:
+                //获取公司列表
+                if (StrUtils.isEmpty(company_id)){
+                    gotoActivity(SwitchEnterpriseActivity.class, 0);
+                } else {
+                    toRequest(ApiConstants.EventTags.company_my);
+                }
+                break;
+
+            case R.id.ll_project_name:
+                //获取企业下的项目
+                if (StrUtils.isEmpty(company_id)){
+                    ToastUtil.showToast("请先选择企业");
+                }else {
+                    //TODO 新页面，跳转到项目选择页
+                }
+                break;
         }
     }
 
@@ -215,15 +265,15 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
             ToastUtil.showToast("请输入单位");
             return;
         }
-        if (TextUtils.isEmpty(assignAddress)) {
-            ToastUtil.showToast("请选择地址");
-            return;
-        }
+//        if (TextUtils.isEmpty(assignAddress)) {
+//            ToastUtil.showToast("请选择地址");
+//            return;
+//        }
 
-        if (TextUtils.isEmpty(work_des)) {
-            ToastUtil.showToast("请输入工单描述");
-            return;
-        }
+//        if (TextUtils.isEmpty(work_des)) {
+//            ToastUtil.showToast("请输入工单描述");
+//            return;
+//        }
         attach = "";
         List<MediaEntity> list = new ArrayList();
         list.addAll(mMediaEntities);
@@ -241,32 +291,64 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         map.put("project_id", "" + project_id);
         if (eventTag == ApiConstants.EventTags.task_add) {
-            map.put("name", "" + name);
-            map.put("pid", "" + pid);
-            map.put("attach", "" + attach);
-            map.put("work_value", "" + work_value);
-            map.put("work_unit", "" + work_unit);
-            map.put("work_des", "" + work_des);
-            map.put("address", "" +assignAddress);
-            map.put("longitue", "" + assignLongitude);
-            map.put("longitude",""+assignLongitude);
-            map.put("latitude", "" + assignLatitude);
-            map.put("scope", "" + assignRange);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
+            if (!StrUtils.isEmpty(name)) {
+                map.put("name", name);
+            }
+            if (!StrUtils.isEmpty(pid)) {
+                map.put("pid", pid);
+            }
+            if (!StrUtils.isEmpty(attach)) {
+                map.put("attach", attach);
+            }
+            if (!StrUtils.isEmpty(work_value)) {
+                map.put("work_value", work_value);
+            }
+            if (!StrUtils.isEmpty(work_unit)) {
+                map.put("work_unit", work_unit);
+            }
+            if (!StrUtils.isEmpty(work_des)) {
+                map.put("work_des", work_des);
+            }
+            if (!StrUtils.isEmpty(assignAddress)) {
+                map.put("address", assignAddress);
+            }
+            if (!StrUtils.isEmpty(assignLongitude)) {
+                map.put("longitue", assignLongitude);
+            }
+            if (!StrUtils.isEmpty(assignLatitude)) {
+                map.put("latitude", assignLatitude);
+            }
+            if (!StrUtils.isEmpty(assignRange)) {
+                map.put("scope", assignRange);
+            }
+
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.task_add, map);
+        } else if (eventTag == ApiConstants.EventTags.company_my) {
+            iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.company_my, map);
         }
     }
 
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.task_add) {
                 String task_id = JsonUtil.parserField(bean.getData(), "task_id");
                 showSuccess(task_id);
 
+            } else if (eventTag == ApiConstants.EventTags.company_my) {
+                List<EnterpriseListBean> beanList = JSON.parseArray(bean.getData(), EnterpriseListBean.class);
+                if (beanList != null && beanList.size() > 0){
+                    for (EnterpriseListBean b : beanList){
+                        String n = b.getCode();
+                        if (!StrUtils.isEmpty(n)){
+                            if (n.equals(company_id)) {
+                                tv_company.setText(b.getName());
+                            }
+                        }
+                    }
+                }
             }
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
@@ -276,7 +358,6 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
         ToastUtil.showToast("网络错误");
     }
 
@@ -286,7 +367,6 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 2 && resultCode == RESULT_OK) {
             List<MediaEntity> result = Phoenix.result(data);
-            Logcat.i("------------" + JSON.toJSONString(result));
             mMediaEntities.clear();
             mMediaEntities.addAll(result);
             mMediaEntities.add(mAddMediaEntity);
@@ -304,6 +384,7 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
 
             mTvAddress.setText("" + assignAddress);
         }
+
     }
 
     private void uploadFile(List<MediaEntity> result) {
@@ -318,7 +399,6 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
                 result.remove(entity);
                 uploadFile(result);
             } else {
-                Logcat.i("------------" + getPictureSuffix(entity.getLocalPath()));
                 OkHttpUtils.post().url(ApiConstants.file_upload)
                         .addParams("token", "" + LoginUserUtil.getToken(this))
                         .addFile("file", getPictureSuffix(entity.getLocalPath()), new File(entity.getLocalPath()))
@@ -327,14 +407,12 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 dismissPopupLoading();
-                                Logcat.w("add live video exception :" + e + "/");
                                 ToastUtil.showToast("文件上传失败，请重试");
                             }
 
                             @Override
                             public void onResponse(String response, int id) {
                                 dismissPopupLoading();
-                                Logcat.i("add Serices Course  response :" + response);
                                 ResultBean bean = JSON.parseObject(response, ResultBean.class);
                                 if (bean != null && bean.getCode() == 0) {
                                     if (TextUtils.isEmpty(attach)) {
@@ -351,7 +429,6 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
                         });
             }
         } else {
-            Logcat.i("-------" + attach);
             toRequest(ApiConstants.EventTags.task_add);
         }
     }
@@ -385,5 +462,15 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onEvent(BaseEvent postResult) {
+        super.onEvent(postResult);
+        if (postResult.type.equals(MassageEvent.SWITCH_COMPANY)) {
+            company_name = LoginUserUtil.getCurrentEnterpriseBean(this).getName();
+            tv_company.setText("" + company_name);
+            company_id = LoginUserUtil.getCurrentEnterpriseNo(this);
+        }
     }
 }

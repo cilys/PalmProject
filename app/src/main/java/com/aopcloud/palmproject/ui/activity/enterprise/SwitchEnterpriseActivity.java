@@ -140,7 +140,6 @@ public class SwitchEnterpriseActivity extends BaseActivity {
         Map map = new HashMap();
         map.put("token", "" + LoginUserUtil.getToken(this));
         if (eventTag == ApiConstants.EventTags.company_my) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.company_my, map);
         }
     }
@@ -148,7 +147,6 @@ public class SwitchEnterpriseActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -165,7 +163,6 @@ public class SwitchEnterpriseActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
 }

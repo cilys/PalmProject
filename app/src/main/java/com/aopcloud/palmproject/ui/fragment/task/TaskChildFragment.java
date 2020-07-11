@@ -15,8 +15,6 @@ import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
-import com.aopcloud.palmproject.ui.activity.project.ProjectTaskAddActivity;
-import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.aopcloud.palmproject.ui.activity.task.AddChildTaskActivity;
 import com.aopcloud.palmproject.ui.activity.task.bean.TaskChildBean;
 import com.aopcloud.palmproject.ui.adapter.task.TaskChildAdapter;

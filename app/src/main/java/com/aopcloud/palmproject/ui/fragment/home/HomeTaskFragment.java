@@ -662,7 +662,6 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(mActivity));
         if (eventTag == ApiConstants.EventTags.task_all) {
             map.put("type", "" + task_type);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.task_all, map);
         }
     }
@@ -670,7 +669,6 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.task_all) {
@@ -686,7 +684,6 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
 
@@ -716,7 +713,6 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
 
         long betweenDays = ((eDate.getTime() - current.getTime()) / (1000 * 60 * 60 * 24));
 
-        Logcat.i("--------" + betweenDays);
         String days = "";
         if (betweenDays > 0) {
             days = "剩余" + betweenDays + "天";

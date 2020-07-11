@@ -104,10 +104,14 @@ public class ProjectDetailActivity extends BaseActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             project_id = bundle.getString("project_id");
+            project_name = bundle.getString("project_name");
+            company_id = bundle.getString("company_id");
+            company_name = bundle.getString("company_name");
         }
         toRequest(ApiConstants.EventTags.project_get);
     }
 
+    private String project_name, company_id, company_name;
     @Override
     protected void initView() {
         mFragments = new ArrayList<>();
@@ -120,7 +124,16 @@ public class ProjectDetailActivity extends BaseActivity {
         mTabs.add("影像");
         mTabs.add("日报");
         mFragments.add(DashboardFragment.getInstance(project_id));
-        mFragments.add(ProjectTaskFragment.getInstance(project_id));
+
+        ProjectTaskFragment projectTaskFragment = new ProjectTaskFragment();
+        Bundle taskBundle = new Bundle();
+        taskBundle.putString("project_id", project_id);
+        taskBundle.putString("project_name", project_name);
+        taskBundle.putString("company_id", company_id);
+        taskBundle.putString("company_name", company_name);
+        projectTaskFragment.setArguments(taskBundle);
+        mFragments.add(projectTaskFragment);
+//        mFragments.add(ProjectTaskFragment.getInstance(project_id));
 //        mFragments.add(AwaitFragment.getInstance());
 //        mFragments.add(AwaitFragment.getInstance());
 //        mFragments.add(AwaitFragment.getInstance());

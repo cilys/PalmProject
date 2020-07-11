@@ -30,8 +30,6 @@ import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
-import com.aopcloud.palmproject.ui.activity.map.SelectLocationActivity;
-import com.aopcloud.palmproject.ui.activity.project.ProjectScenesAddActivity;
 import com.aopcloud.palmproject.ui.activity.project.ProjectTaskAddActivity;
 import com.aopcloud.palmproject.ui.activity.project.ProjectTaskDetailActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
@@ -99,6 +97,9 @@ public class ProjectTaskFragment extends BaseFragment implements TextView.OnEdit
 
     private String project_id;
     private String task_type = "0";
+    private String project_name;
+    private String company_id;
+    private String company_name;
 
     @Override
     protected void initData() {
@@ -106,6 +107,9 @@ public class ProjectTaskFragment extends BaseFragment implements TextView.OnEdit
         Bundle bundle = getArguments();
         if (bundle != null) {
             project_id = bundle.getString("project_id");
+            project_name = bundle.getString("project_name");
+            company_id = bundle.getString("company_id");
+            company_name = bundle.getString("company_name");
         }
         toRequest(ApiConstants.EventTags.project_tasks);
         toRequest(ApiConstants.EventTags.project_team);
@@ -204,6 +208,10 @@ public class ProjectTaskFragment extends BaseFragment implements TextView.OnEdit
             case R.id.tv_create:
                 Bundle bundle = new Bundle();
                 bundle.putString("project_id", "" + project_id);
+                bundle.putString("project_name", project_name);
+                bundle.putString("company_id", company_id);
+                bundle.putString("company_name", company_name);
+
                 gotoActivity(ProjectTaskAddActivity.class, 0, bundle);
                 break;
             case R.id.tv_assign:

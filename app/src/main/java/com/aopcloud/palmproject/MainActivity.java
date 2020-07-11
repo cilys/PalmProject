@@ -42,6 +42,7 @@ import com.aopcloud.palmproject.ui.activity.mine.LoginActivity;
 import com.aopcloud.palmproject.ui.activity.mine.MyInfoCardActivity;
 import com.aopcloud.palmproject.ui.activity.mine.QrCodeActivity;
 import com.aopcloud.palmproject.ui.activity.project.AddProjectActivity;
+import com.aopcloud.palmproject.ui.activity.project.ProjectTaskAddActivity;
 import com.aopcloud.palmproject.ui.activity.setting.SettingActivity;
 import com.aopcloud.palmproject.ui.activity.task.AddTaskActivity;
 import com.aopcloud.palmproject.ui.activity.web.WebActivity;
@@ -437,6 +438,15 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 gotoActivity(AddTaskActivity.class);
+                dialog.dismiss();
+            }
+        });
+        dialog.findViewById(R.id.ll_add_project_task).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("company_id", LoginUserUtil.getCurrentEnterpriseNo(MainActivity.this));
+                gotoActivity(ProjectTaskAddActivity.class, bundle);
                 dialog.dismiss();
             }
         });

@@ -22,7 +22,6 @@ import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.ui.activity.project.ProjectDetailActivity;
-import com.aopcloud.palmproject.ui.activity.project.ProjectMoreDetailActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.DashboardAttendanceBean;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectChildDashboardBean;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectDetailBean;
@@ -244,6 +243,8 @@ private   Calendar calendar;
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Bundle bundle = new Bundle();
                 bundle.putString("project_id", mBeanList.get(position).getProject_id() + "");
+                bundle.putString("project_name", mBeanList.get(position).getName());
+                bundle.putString("company_id", mBeanList.get(position).getCompany_code());
                 gotoActivity(ProjectDetailActivity.class, bundle, 0);
             }
         });
