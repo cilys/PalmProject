@@ -173,7 +173,6 @@ public class ProjectTaskUpdateTeamActivity extends BaseActivity implements TextV
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         if (eventTag == ApiConstants.EventTags.project_team) {
             map.put("project_id", "" + mTaskDetailBean.getProject_id());//项目名称
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.project_team, map);
         } else if (eventTag == ApiConstants.EventTags.task_assign) {
             map.put("task_id", "" + mTaskDetailBean.getTask_id());
@@ -181,7 +180,6 @@ public class ProjectTaskUpdateTeamActivity extends BaseActivity implements TextV
             map.put("end_date", "" + mTaskDetailBean.getEnd_date());
             map.put("level", "" + mTaskDetailBean.getLevel());
             map.put("team_id", "" + mTeamListBean.getTeam_id());
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.task_assign, map);
         }
     }
@@ -189,7 +187,6 @@ public class ProjectTaskUpdateTeamActivity extends BaseActivity implements TextV
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.project_team) {
@@ -208,13 +205,10 @@ public class ProjectTaskUpdateTeamActivity extends BaseActivity implements TextV
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-
-
         String s = mEtSearch.getText().toString();
         if (TextUtils.isEmpty(s)) {
             ToastUtil.showToast("请输入搜索内容");
