@@ -82,13 +82,10 @@ public class EnterpriseDepartmentActivity extends BaseActivity {
 
     private void setViewData(List<DepartmentNodeBean> beanList) {
         root = TreeNode.root();
-        Logcat.i("--setViewData---:" + JSON.toJSONString(beanList));
         List<TreeNode> node = new ArrayList();
         for (int i = 0; i < beanList.size(); i++) {
             TreeNode treeNode = new TreeNode(beanList.get(i)).setViewHolder(new MyHolder(this));
-            Logcat.i("----addNode---1--" + beanList.get(i).getChilden() + "/");
             if (null != beanList.get(i).getChilden() && beanList.get(i).getChilden().size() > 0) {
-                Logcat.i("----addNode---2--" + 1 + "/");
                 addNode(beanList.get(i).getChilden(), treeNode);
             }
             node.add(treeNode);
@@ -104,7 +101,6 @@ public class EnterpriseDepartmentActivity extends BaseActivity {
 
 
     private void addNode(List<DepartmentNodeBean> beanList, TreeNode node) {
-        Logcat.i("----addNode-----" + JSON.toJSONString(beanList) + "/");
         List treeNodes = new ArrayList();
         for (int i = 0; i < beanList.size(); i++) {
             TreeNode treeNode = new TreeNode(beanList.get(i)).setViewHolder(new MyHolder(this));
@@ -143,10 +139,8 @@ public class EnterpriseDepartmentActivity extends BaseActivity {
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         if (eventTag == ApiConstants.EventTags.department_all) {
             map.put("loop", "1");
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.department_all, map);
         } else if (eventTag == ApiConstants.EventTags.department_del) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             map.put("department_id", "" + del_department_id);
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.department_del, map);
         }
@@ -155,7 +149,6 @@ public class EnterpriseDepartmentActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -175,7 +168,6 @@ public class EnterpriseDepartmentActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
 

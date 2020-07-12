@@ -1,60 +1,25 @@
 package com.aopcloud.palmproject.ui.activity.camera;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
-import com.amap.api.maps.model.BitmapDescriptor;
-import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
-import com.aopcloud.base.util.ToastUtil;
-import com.aopcloud.base.util.ViewUtil;
-import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
-import com.aopcloud.palmproject.common.GlideRoundTransform;
 import com.aopcloud.palmproject.ui.adapter.file.PreviewAdapter;
 import com.aopcloud.palmproject.utils.DownLoadUtil;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.load.resource.SimpleResource;
-import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.Target;
-import com.bumptech.glide.request.transition.Transition;
-import com.guoxiaoxing.phoenix.core.PhoenixOption;
-import com.guoxiaoxing.phoenix.core.model.MediaEntity;
-import com.zhy.http.okhttp.OkHttpUtils;
 
 import org.yczbj.ycvideoplayerlib.manager.VideoPlayerManager;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -96,7 +61,6 @@ public class PreviewActivity extends BaseActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             List<PreviewAdapter.PreviewBean> val = (List<PreviewAdapter.PreviewBean>) bundle.getSerializable("PreviewBean");
-            Logcat.i("======="+ JSON.toJSONString(val));
             mPreviewBeans.clear();
             mPreviewBeans.addAll(val);
         }
@@ -108,7 +72,6 @@ public class PreviewActivity extends BaseActivity {
     protected void initView() {
         mTvHeaderTitle.setText(+1+"/"+mPreviewBeans.size());
 
-        Logcat.i("======="+ JSON.toJSONString(mPreviewBeans));
         mPreviewAdapter = new PreviewAdapter(this, mPreviewBeans);
         mPageView.setAdapter(mPreviewAdapter);
         mPageView.setOffscreenPageLimit(1);
@@ -128,7 +91,7 @@ public class PreviewActivity extends BaseActivity {
                 mTvHeaderTitle.setText((i+1)+"/"+mPreviewBeans.size());
 
                 for(int position:mPreviewAdapter.getPlayers().keySet()){
-                    Logcat.d(""+position+"/"+i);
+                    Log.d(TAG, ""+position+"/"+i);
                     if (position!=i){
                         mPreviewAdapter.getPlayers().get(position).pause();
                     }

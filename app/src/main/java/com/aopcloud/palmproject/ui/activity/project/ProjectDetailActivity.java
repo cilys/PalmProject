@@ -16,19 +16,14 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
-import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.bean.PopMenuBean;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.loader.AppImageLoader;
-import com.aopcloud.palmproject.ui.activity.camera.PreviewActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectDetailBean;
 import com.aopcloud.palmproject.ui.adapter.feagment.AppFragmentPagerAdapter;
-import com.aopcloud.palmproject.ui.adapter.file.PreviewAdapter;
-import com.aopcloud.palmproject.ui.fragment.AwaitFragment;
 import com.aopcloud.palmproject.ui.fragment.project.DashboardFragment;
 import com.aopcloud.palmproject.ui.fragment.project.ImagesFragment;
 import com.aopcloud.palmproject.ui.fragment.project.ProjectLogFragment;
@@ -38,7 +33,6 @@ import com.aopcloud.palmproject.view.PopContextMenu;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -210,7 +204,6 @@ public class ProjectDetailActivity extends BaseActivity {
                         .setOnItemSelectListener(new PopContextMenu.OnItemSelectListener() {
                             @Override
                             public void onItemSelect(int position) {
-                                Logcat.i("点击了菜单：" + menuItems.get(position));
                                 if (position == 1) {
                                     Bundle bundle = new Bundle();
                                     bundle.putString("bean", "" + JSON.toJSONString(mProjectDetailBean));

@@ -13,12 +13,10 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
-import com.aopcloud.palmproject.ui.activity.project.bean.ProjectDetailBean;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTrendsBean;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectProgressAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
@@ -127,7 +125,6 @@ public class ProjectProgressActivity extends BaseActivity implements ProjectProg
         map.put("project_id", "" + project_id);//项目名称
         map.put("type", "0");//项目名称
         if (eventTag == ApiConstants.EventTags.trends_all) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.trends_all, map);
         }
     }
@@ -135,7 +132,6 @@ public class ProjectProgressActivity extends BaseActivity implements ProjectProg
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.trends_all) {
@@ -151,7 +147,6 @@ public class ProjectProgressActivity extends BaseActivity implements ProjectProg
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override

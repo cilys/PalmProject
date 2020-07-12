@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,7 +12,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
@@ -22,7 +20,6 @@ import com.aopcloud.palmproject.ui.activity.tag.bean.DepartmentTagBean;
 import com.aopcloud.palmproject.ui.adapter.tag.DepartmentTagSelectAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.callback.ItemDragAndSwipeCallback;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +28,6 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import okio.Buffer;
 
 /**
  * @PackageName : com.aopcloud.palmproject.ui.activity.worker
@@ -145,11 +141,9 @@ public class DepartmentTagSelectActivity extends BaseActivity implements Departm
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         if (eventTag == ApiConstants.EventTags.roletag_all) {
             map.put("department_id", "" + department_id);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.roletag_all, map);
         } else if (eventTag == ApiConstants.EventTags.roletag_del) {
             map.put("tag_id", "" + del_tag_id);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.roletag_del, map);
         }
     }
@@ -158,7 +152,6 @@ public class DepartmentTagSelectActivity extends BaseActivity implements Departm
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
         dismissPopupLoading();
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.roletag_all) {
@@ -178,7 +171,6 @@ public class DepartmentTagSelectActivity extends BaseActivity implements Departm
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override

@@ -4,10 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.amap.api.maps.CoordinateConverter;
-import com.amap.api.maps.model.LatLng;
-import com.aopcloud.base.log.Logcat;
-
 import java.io.File;
 import java.net.URISyntaxException;
 import java.text.NumberFormat;
@@ -154,7 +150,7 @@ public class LbsUtil {
                     "&mode=driving&" + "&src=appname#Intent;scheme=bdapp;package=com.baidu.BaiduMap;end");
             context.startActivity(intent); //启动调用
         } catch (URISyntaxException e) {
-            Logcat.e("intent", e.getMessage());
+            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }

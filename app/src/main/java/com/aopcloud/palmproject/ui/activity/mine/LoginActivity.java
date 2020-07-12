@@ -14,7 +14,6 @@ import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.common.BaseEvent;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.MainActivity;
 import com.aopcloud.palmproject.R;
@@ -154,7 +153,6 @@ public class LoginActivity extends BaseActivity {
                     mEtMobile.setError("请输入正确的手机号码");
                     return;
                 }
-                Logcat.i("---------" + isVerifyCodeLogin);
                 if (isVerifyCodeLogin) {
                     if (TextUtils.isEmpty(verifyCode)) {
                         ToastUtil.showToast("请输入验证码");
@@ -179,18 +177,14 @@ public class LoginActivity extends BaseActivity {
         map.put("tel", "" + mobile);
         if (eventTag == ApiConstants.EventTags.login_pwd) {
             map.put("password", "" + password);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.login_pwd, map);
         } else if (eventTag == ApiConstants.EventTags.login_sms_code) {
             map.put("code", "" + verifyCode);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.login_sms_code, map);
         } else if (eventTag == ApiConstants.EventTags.sms_code_send) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.sms_code_send, map);
         } else if (eventTag == ApiConstants.EventTags.company_my) {
             map.put("token", "" + LoginUserUtil.getToken(this));
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.company_my, map);
         }
     }
@@ -198,7 +192,6 @@ public class LoginActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -207,7 +200,6 @@ public class LoginActivity extends BaseActivity {
                 String is_in_company = JsonUtil.parserField(bean.getData(), "is_in_company");
                 LoginUserUtil.setToken(this, token);
                 EventBus.getDefault().post(new BaseEvent(BaseEvent.EVENT_LOGIN));
-                Logcat.i("------------" + token + "/" + LoginUserUtil.getToken(this));
                 if (is_in_company.equals("1")) {
                     toRequest(ApiConstants.EventTags.company_my);
                 } else {
@@ -234,7 +226,6 @@ public class LoginActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override

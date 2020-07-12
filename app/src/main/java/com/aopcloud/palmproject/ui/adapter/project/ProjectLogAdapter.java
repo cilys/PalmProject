@@ -8,8 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.alibaba.fastjson.JSON;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
@@ -25,7 +23,6 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -63,7 +60,6 @@ public class ProjectLogAdapter extends BaseQuickAdapter<ProjectLogBean, BaseView
                 list.add(BuildConfig.BASE_URL+url[i]);
             }
         }
-        Logcat.i("-------"+ JSON.toJSONString(list));
         ProjectProgressImgAdapter adapter = new ProjectProgressImgAdapter(R.layout.item_project_progress_img, list);
         RecyclerView recyclerView = helper.getView(R.id.rv_list);
         recyclerView.setVisibility(list.size()>0? View.VISIBLE:View.GONE);

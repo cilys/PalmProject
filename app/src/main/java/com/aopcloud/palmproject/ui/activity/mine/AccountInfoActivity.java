@@ -19,7 +19,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
@@ -344,7 +343,6 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
     private void setLoginUser(UserBean userBean) {
         mUserBean = userBean;
         LoginUserUtil.setLoginUserBean(this, userBean);
-        Logcat.i("------" + JSON.toJSONString(userBean));
         AppImageLoader.loadCircleImage(this, BuildConfig.BASE_URL + userBean.getAvatar(), mIvImg);
 
         avatar = userBean.getAvatar();

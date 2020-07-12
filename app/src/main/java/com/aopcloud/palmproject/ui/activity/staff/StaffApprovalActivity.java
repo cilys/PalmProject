@@ -128,7 +128,6 @@ public class StaffApprovalActivity extends BaseActivity implements ViewPager.OnP
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         if (eventTag == ApiConstants.EventTags.company_allstatus) {
             map.put("status", "1");
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.company_allstatus, map);
         }
     }
@@ -136,7 +135,6 @@ public class StaffApprovalActivity extends BaseActivity implements ViewPager.OnP
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.company_allstatus) {
@@ -152,6 +150,5 @@ public class StaffApprovalActivity extends BaseActivity implements ViewPager.OnP
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 }

@@ -1,25 +1,19 @@
 package com.aopcloud.palmproject.utils;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.common.AppContext;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Request;
 import okhttp3.Response;
 
 import static com.autonavi.amap.navicore.eyrie.AMapNaviCoreEyrieView.TAG;
@@ -62,7 +56,7 @@ public class DownLoadUtil {
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         ToastUtil.showToast("保存出错,请重试");
-                        Logcat.w("getPictureSuffix:" + getPictureSuffix(url)
+                        Log.w(TAG, "getPictureSuffix:" + getPictureSuffix(url)
                                 + "\turl:" + url
                                 + "\tgetPath:" + appDir.getPath()
                                 + "\tgetAbsolutePath:" + appDir.getAbsolutePath());
@@ -70,7 +64,7 @@ public class DownLoadUtil {
 
                     @Override
                     public void onResponse(File response, int id) {
-                        Logcat.i("getAbsolutePath:" + response.getAbsolutePath()
+                        Log.i(TAG, "getAbsolutePath:" + response.getAbsolutePath()
                                 + "\tgetPath:" + response.getPath()
                                 + "\tgetName:" + response.getName()
                                 +"\tgetPictureSuffix:" + getPictureSuffix(url));

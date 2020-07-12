@@ -127,10 +127,8 @@ public class EnterpriseSettingDirectorActivity extends BaseActivity {
         params.put("token", "" + LoginUserUtil.getToken(this));
         params.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         if (eventTag == ApiConstants.EventTags.company_del) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(params));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.company_del, params);
         }else  if (eventTag == ApiConstants.EventTags.company_get) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(params));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.company_get, params);
         }
     }
@@ -138,7 +136,6 @@ public class EnterpriseSettingDirectorActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -162,7 +159,6 @@ public class EnterpriseSettingDirectorActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override

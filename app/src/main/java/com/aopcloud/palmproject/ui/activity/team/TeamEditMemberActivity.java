@@ -148,7 +148,6 @@ public class TeamEditMemberActivity extends BaseActivity {
             map.put("majors", "" + majors);
             map.put("salary", "" + salary);
             map.put("type", "" + type);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.teammember_edit, map);
         }
     }
@@ -156,7 +155,6 @@ public class TeamEditMemberActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.teammember_edit) {
@@ -173,7 +171,6 @@ public class TeamEditMemberActivity extends BaseActivity {
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
         ToastUtil.showToast("网络错误，请重试");
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
 }

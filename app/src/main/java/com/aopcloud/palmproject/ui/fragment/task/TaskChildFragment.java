@@ -183,7 +183,6 @@ public class TaskChildFragment extends BaseFragment {
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(mActivity));
         map.put("task_id", "" + task_id);
         if (eventTag == ApiConstants.EventTags.task_tasks) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.task_tasks, map);
         }
     }
@@ -191,7 +190,6 @@ public class TaskChildFragment extends BaseFragment {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.task_tasks) {
@@ -201,13 +199,10 @@ public class TaskChildFragment extends BaseFragment {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
-
 }

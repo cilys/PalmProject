@@ -1,14 +1,13 @@
 package com.aopcloud.palmproject.ui.activity.task;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,10 +26,8 @@ import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.UiSettings;
-import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
-import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.maps.model.Poi;
 import com.amap.api.services.core.PoiItem;
@@ -38,14 +35,12 @@ import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
-import com.aopcloud.palmproject.ui.activity.map.adapter.SelectLocationSearchAdapter;
 import com.aopcloud.palmproject.ui.activity.project.bean.DashboardAttendanceBean;
 import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;
 import com.aopcloud.palmproject.utils.JsonUtil;
@@ -201,7 +196,7 @@ public class TaskReportLocationActivity extends BaseActivity implements
         mPileLayout.setSpWidth(25);
         mPileLayout.setData(pileList);
         user_ids = stringBuffer.toString();
-        Logcat.d("--------------" + user_ids);
+        Log.d(TAG, "--------------" + user_ids);
         if (!TextUtils.isEmpty(user_ids)) {
             mTvSubmit.setText("确认代签");
             mLlReplace.setVisibility(View.VISIBLE);
@@ -293,8 +288,8 @@ public class TaskReportLocationActivity extends BaseActivity implements
             entities.remove(position);
             mMediaEntities.clear();
             mMediaEntities.addAll(entities);
-            Logcat.w("-1--" + JSON.toJSONString(entities));
-            Logcat.d("--2-" + JSON.toJSONString(mMediaEntities));
+            Log.w(TAG, "-1--" + JSON.toJSONString(entities));
+            Log.d(TAG, "--2-" + JSON.toJSONString(mMediaEntities));
             mFileListAdapter.notifyDataSetChanged();
         }
 
@@ -374,13 +369,13 @@ public class TaskReportLocationActivity extends BaseActivity implements
             if (!TextUtils.isEmpty(attach)) {
                 map.put("attach", "" + attach);
             }
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
+            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.attendance_signup, map);
         } else if (eventTag == ApiConstants.EventTags.trajectory_add) {
             map.put("longitue", "" + longitude);
             map.put("longitude", "" + longitude);
             map.put("latitude", "" + latitude);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
+            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.trajectory_add, map);
         }
     }
@@ -388,7 +383,7 @@ public class TaskReportLocationActivity extends BaseActivity implements
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
+        Log.i(TAG, "------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.attendance_signup) {
@@ -406,7 +401,7 @@ public class TaskReportLocationActivity extends BaseActivity implements
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
+        Log.i(TAG, "------------" + eventTag + "/" + msg);
         ToastUtil.showToast("网络错误");
     }
 
@@ -416,7 +411,7 @@ public class TaskReportLocationActivity extends BaseActivity implements
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 2 && resultCode == RESULT_OK) {
             List<MediaEntity> result = Phoenix.result(data);
-            Logcat.i("------------" + JSON.toJSONString(result));
+            Log.i(TAG, "------------" + JSON.toJSONString(result));
             mMediaEntities.clear();
             mMediaEntities.addAll(result);
             mMediaEntities.add(mAddMediaEntity);
@@ -437,7 +432,7 @@ public class TaskReportLocationActivity extends BaseActivity implements
                 result.remove(entity);
                 uploadFile(result);
             } else {
-                Logcat.i("------------" + getPictureSuffix(entity.getLocalPath()));
+                Log.i(TAG, "------------" + getPictureSuffix(entity.getLocalPath()));
                 OkHttpUtils.post().url(ApiConstants.file_upload)
                         .addParams("token", "" + LoginUserUtil.getToken(this))
                         .addFile("file", getPictureSuffix(entity.getLocalPath()), new File(entity.getLocalPath()))
@@ -446,14 +441,14 @@ public class TaskReportLocationActivity extends BaseActivity implements
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 dismissPopupLoading();
-                                Logcat.w("add live video exception :" + e + "/");
+                                Log.w(TAG, "add live video exception :" + e + "/");
                                 ToastUtil.showToast("文件上传失败，请重试");
                             }
 
                             @Override
                             public void onResponse(String response, int id) {
                                 dismissPopupLoading();
-                                Logcat.i("add Serices Course  response :" + response);
+                                Log.i(TAG, "add Serices Course  response :" + response);
                                 ResultBean bean = JSON.parseObject(response, ResultBean.class);
                                 if (bean != null && bean.getCode() == 0) {
                                     if (TextUtils.isEmpty(attach)) {
@@ -470,7 +465,7 @@ public class TaskReportLocationActivity extends BaseActivity implements
                         });
             }
         } else {
-            Logcat.i("-------" + attach);
+            Log.i(TAG, "-------" + attach);
             toRequest(ApiConstants.EventTags.attendance_signup);
         }
     }
@@ -552,11 +547,11 @@ public class TaskReportLocationActivity extends BaseActivity implements
                     isScope = false;
                     mTvRange.setText("打卡有效范围" + scope + "m,当前距离项目" + distance + "m");
                 }
-                Logcat.i("onLocationChanged:" + distance);
-//                Logcat.i("onLocationChanged:" + JSON.toJSONString(amapLocation));
+                Log.i(TAG, "onLocationChanged:" + distance);
+//                Log.i("onLocationChanged:" + JSON.toJSONString(amapLocation));
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
-                Logcat.e("AmapErr", errText);
+                Log.e("AmapErr", errText);
             }
         }
     }

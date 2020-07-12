@@ -222,10 +222,8 @@ public class DepartmentHomeActivity extends BaseActivity {
         map.put("department_id", "" + department_id);
         if (eventTag == ApiConstants.EventTags.department_department) {
             map.put("loop", "" + 0);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.department_department, map);
         } else if (eventTag == ApiConstants.EventTags.department_alluser) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.department_alluser, map);
         } else if (eventTag == ApiConstants.EventTags.department_deluser) {
             map.put("department_id", "" + department_id);
@@ -233,7 +231,6 @@ public class DepartmentHomeActivity extends BaseActivity {
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.department_deluser, map);
         }else if (eventTag == ApiConstants.EventTags.department_all) {
             map.put("loop", "1");
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.department_all, map);
         }
     }
@@ -241,7 +238,6 @@ public class DepartmentHomeActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.department_department) {
@@ -282,7 +278,6 @@ public class DepartmentHomeActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override

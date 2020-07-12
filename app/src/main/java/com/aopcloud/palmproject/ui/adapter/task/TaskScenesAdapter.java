@@ -64,7 +64,6 @@ public class TaskScenesAdapter extends BaseQuickAdapter<TaskScenesBean, BaseView
                 list.add(BuildConfig.BASE_URL + url[i]);
             }
         }
-        Logcat.i("-------" + JSON.toJSONString(list));
         helper.setText(R.id.tv_name, "" + item.getTask_name())
                 .setText(R.id.tv_count, "" + list.size())
                 .setText(R.id.tv_time, "" + dateFormat.format(date))

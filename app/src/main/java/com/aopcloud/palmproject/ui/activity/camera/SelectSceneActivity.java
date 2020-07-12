@@ -1,16 +1,14 @@
 package com.aopcloud.palmproject.ui.activity.camera;
 
 import android.Manifest;
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.app.LoaderManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,13 +16,10 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
-import com.aopcloud.palmproject.bean.ImageFolder;
 import com.aopcloud.palmproject.bean.ImageItem;
-import com.aopcloud.palmproject.loader.TodatCacheDataSource;
 import com.aopcloud.palmproject.ui.adapter.file.TodayCacheAdapter;
 import com.aopcloud.palmproject.utils.RegUtil;
 import com.aopcloud.palmproject.utils.ThreadUtil;
@@ -36,16 +31,13 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.io.File;
 import java.io.Serializable;
-import java.net.IDN;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -93,7 +85,7 @@ public class SelectSceneActivity extends BaseActivity implements TodayCacheAdapt
      * @author 刘鹏博
      */
     public static boolean isToday(long s) {
-        Logcat.i("------------" + s);
+        Log.i(SelectSceneActivity.class.getSimpleName(), "------------" + s);
 
         Date addTime = new Date();
         addTime.setTime(s);
@@ -114,7 +106,7 @@ public class SelectSceneActivity extends BaseActivity implements TodayCacheAdapt
             parseEndTime = dateFormat.parse(endTime);
 
         } catch (ParseException e) {
-            Logcat.e(e);
+            e.printStackTrace();
         }
         if (addTime.after(parseBeginTime) && addTime.before(parseEndTime)) {
             flag = true;
@@ -179,7 +171,7 @@ public class SelectSceneActivity extends BaseActivity implements TodayCacheAdapt
         String FileColumns = MediaStore.Files.FileColumns.DATA + " like ?";
         Cursor cursor = this.getContentResolver().query(MediaStore.Files.getContentUri("external"),
                 null, FileColumns, selectionArgs, null);
-        Logcat.i("------------" + JSON.toJSONString(cursor));
+        Log.i(TAG, "------------" + JSON.toJSONString(cursor));
         while (cursor.moveToNext()) {
 
             String filePath = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.DATA));
@@ -189,7 +181,7 @@ public class SelectSceneActivity extends BaseActivity implements TodayCacheAdapt
             String DISPLAY_NAME = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.DISPLAY_NAME));
             String fileName = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.TITLE));
 
-            Logcat.i("------------" + fileName + "/" + DISPLAY_NAME);
+            Log.i(TAG, "------------" + fileName + "/" + DISPLAY_NAME);
             File file = new File(filePath);
             if (!file.exists() || file.length() <= 0) {
                 continue;
@@ -210,7 +202,7 @@ public class SelectSceneActivity extends BaseActivity implements TodayCacheAdapt
             }
         }
         cursor.close();
-        Logcat.d("------------" + JSON.toJSONString(mImageItems));
+        Log.d(TAG, "------------" + JSON.toJSONString(mImageItems));
         ThreadUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {

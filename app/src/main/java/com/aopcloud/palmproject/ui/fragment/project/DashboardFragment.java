@@ -316,20 +316,16 @@ private   Calendar calendar;
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(mActivity));
         map.put("project_id", "" + project_id);//项目名称
         if (eventTag == ApiConstants.EventTags.project_get) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.project_get, map);
         } else if (eventTag == ApiConstants.EventTags.project_projects) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.project_projects, map);
         } else if (eventTag == ApiConstants.EventTags.attendance_project) {
             map.put("start_time", "" + getStartTime(calendar));
             map.put("end_time", "" + getEndTime(calendar));
             map.put("page", "" + 1);
             map.put("page_size", "" + 1000);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.attendance_project, map);
         } else if (eventTag == ApiConstants.EventTags.project_tasks) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.project_tasks, map);
         }
     }
@@ -337,7 +333,6 @@ private   Calendar calendar;
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.project_get) {
@@ -386,7 +381,6 @@ private   Calendar calendar;
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     public static Long getStartTime(Calendar calendar) {

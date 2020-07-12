@@ -1,7 +1,8 @@
 package com.aopcloud.palmproject.utils;
 
+import android.util.Log;
+
 import com.alibaba.fastjson.JSON;
-import com.aopcloud.base.log.Logcat;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,6 +19,7 @@ import java.util.List;
  * @Describe ：
  */
 public class JsonUtil {
+    protected static String TAG = JsonUtil.class.getSimpleName();
     /**
      * @param json
      * @param field
@@ -40,7 +42,7 @@ public class JsonUtil {
      */
     public String toJsonByF(Object o){
         if (null==o){
-            Logcat.d("metadata is empty");
+            Log.d(TAG, "metadata is empty");
             return null;
         }
         return JSON.toJSONString(o);

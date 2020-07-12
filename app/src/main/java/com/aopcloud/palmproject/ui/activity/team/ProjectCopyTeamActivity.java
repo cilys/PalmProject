@@ -11,13 +11,11 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTeamListBean;
-import com.aopcloud.palmproject.ui.activity.team.bean.TeamMemberBean;
 import com.aopcloud.palmproject.ui.adapter.team.ProjectCopyTeamAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -29,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -144,12 +141,10 @@ public class ProjectCopyTeamActivity extends BaseActivity {
         map.put("token", "" + LoginUserUtil.getToken(this));
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         if (eventTag == ApiConstants.EventTags.company_team) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.company_team, map);
         } else if (eventTag == ApiConstants.EventTags.team_copy) {
             map.put("project_id", "" + project_id);
             map.put("copy_team_id", "" + copy_team_id);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.team_copy, map);
         }
     }
@@ -157,7 +152,6 @@ public class ProjectCopyTeamActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.company_team) {
@@ -176,7 +170,6 @@ public class ProjectCopyTeamActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
 

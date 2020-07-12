@@ -4,14 +4,12 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresPermission;
-import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -24,16 +22,12 @@ import android.widget.TextView;
 
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
-import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.R;
-import com.aopcloud.palmproject.common.Constants;
 import com.aopcloud.palmproject.ui.activity.project.ProjectScenesAddActivity;
 import com.aopcloud.palmproject.utils.BitmapUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.utils.WatermarkUtil;
-import com.guoxiaoxing.phoenix.picker.util.BitmapUtils;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.XXPermissions;
 import com.otaliastudios.cameraview.CameraException;
@@ -54,11 +48,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static com.aopcloud.palmproject.R2.id.ll_add_join;
-import static com.aopcloud.palmproject.R2.id.picture;
 
 /**
  * @PackageName : com.aopcloud.palmproject.ui.activity.camera
@@ -143,7 +133,7 @@ public class PictureOrVideoActivity extends BaseActivity {
             @Override
             public void onPictureTaken(byte[] jpeg) {
                 super.onPictureTaken(jpeg);
-                Logcat.d("-------onPictureTaken----");
+                Log.d(TAG, "-------onPictureTaken----");
                 Bitmap bitmap = BitmapUtil.Bytes2Bimap(jpeg);
                 Bitmap watermark = WatermarkUtil.createWatermark(PictureOrVideoActivity.this,
                         "测试项目"
@@ -195,7 +185,7 @@ public class PictureOrVideoActivity extends BaseActivity {
                     mTvCount.setText("");
                 }
 //                sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + video.getPath())));
-                Logcat.i("-------onVideoTaken----" + video.getPath());
+                Log.i(TAG, "-------onVideoTaken----" + video.getPath());
             }
 
             @Override
@@ -305,11 +295,11 @@ public class PictureOrVideoActivity extends BaseActivity {
                                 }
                                 String fileName = System.currentTimeMillis() + ".mp4";
                                 File file = new File(appDir, fileName);
-                                Logcat.i("------isCapturingVideo------------------" +file.exists());
+                                Log.i(TAG, "------isCapturingVideo------------------" +file.exists());
                                 if (!file.exists()) {
                                     try {
                                         file.createNewFile();
-                                        Logcat.i("------isCapturingVideo------------------" +file.exists());
+                                        Log.i(TAG, "------isCapturingVideo------------------" +file.exists());
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }

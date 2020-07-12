@@ -11,20 +11,14 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
-import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
-import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.ui.activity.project.ProjectTaskDiscussActivity;
-import com.aopcloud.palmproject.ui.activity.project.bean.ProjectLogBean;
 import com.aopcloud.palmproject.ui.activity.task.bean.TaskTrendsBean;
-import com.aopcloud.palmproject.ui.adapter.project.ProjectLogAdapter;
 import com.aopcloud.palmproject.ui.adapter.task.TaskTrendsAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
-import com.aopcloud.palmproject.view.decoration.HorizontalDividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +26,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import vip.devkit.view.common.dtextview.DrawableTextView;
 
@@ -124,7 +117,6 @@ public class TaskTrendsActivity extends BaseActivity {
         if (eventTag == ApiConstants.EventTags.trends_all) {
             map.put("task_id", "" + task_id);//项目名称
             map.put("type", "-1");
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.trends_all, map);
         }
     }
@@ -132,7 +124,6 @@ public class TaskTrendsActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.trends_all) {
@@ -148,7 +139,6 @@ public class TaskTrendsActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override

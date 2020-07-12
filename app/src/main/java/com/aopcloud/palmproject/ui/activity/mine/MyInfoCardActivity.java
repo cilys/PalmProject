@@ -3,6 +3,7 @@ package com.aopcloud.palmproject.ui.activity.mine;
 import android.app.Dialog;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,7 +13,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
@@ -114,7 +114,7 @@ LinearLayout mLLEmil;
     private void setLoginUser(UserBean userBean) {
         mUserBean = userBean;
         LoginUserUtil.setLoginUserBean(this, userBean);
-        Logcat.d("------" + JSON.toJSONString(userBean));
+        Log.d(TAG, "------" + JSON.toJSONString(userBean));
         AppImageLoader.loadCircleImage(this, BuildConfig.BASE_URL + userBean.getAvatar(), mIvImg);
 
 
@@ -183,7 +183,6 @@ LinearLayout mLLEmil;
         Map map = new HashMap();
         map.put("token", "" + LoginUserUtil.getToken(this));
         if (eventTag == ApiConstants.EventTags.user_info) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.user_info, map);
         }
     }
@@ -191,7 +190,6 @@ LinearLayout mLLEmil;
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -208,6 +206,5 @@ LinearLayout mLLEmil;
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 }

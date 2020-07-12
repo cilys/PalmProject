@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -16,7 +17,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.R;
@@ -204,8 +204,8 @@ public class ProjectTaskEditActivity extends BaseActivity implements FileListAda
             entities.remove(position);
             mMediaEntities.clear();
             mMediaEntities.addAll(entities);
-            Logcat.w("-1--" + JSON.toJSONString(entities));
-            Logcat.d("--2-" + JSON.toJSONString(mMediaEntities));
+            Log.w(TAG, "-1--" + JSON.toJSONString(entities));
+            Log.d(TAG, "--2-" + JSON.toJSONString(mMediaEntities));
             mFileListAdapter.notifyDataSetChanged();
         }
 
@@ -288,7 +288,7 @@ public class ProjectTaskEditActivity extends BaseActivity implements FileListAda
             map.put("longitude", "" + assignLongitude);
             map.put("latitude", "" + assignLatitude);
             map.put("scope", "" + assignRange);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
+            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.task_add, map);
         } else if (eventTag == ApiConstants.EventTags.task_update) {
             map.put("task_id", "" + task_id);
@@ -303,7 +303,7 @@ public class ProjectTaskEditActivity extends BaseActivity implements FileListAda
             map.put("longitude", "" + assignLongitude);
             map.put("latitude", "" + assignLatitude);
             map.put("scope", "" + assignRange);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
+            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.task_update, map);
         }
     }
@@ -311,7 +311,7 @@ public class ProjectTaskEditActivity extends BaseActivity implements FileListAda
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
+        Log.i(TAG, "------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.task_add) {
@@ -329,7 +329,7 @@ public class ProjectTaskEditActivity extends BaseActivity implements FileListAda
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
+        Log.i(TAG, "------------" + eventTag + "/" + msg);
         ToastUtil.showToast("网络错误");
     }
 
@@ -338,7 +338,7 @@ public class ProjectTaskEditActivity extends BaseActivity implements FileListAda
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 2 && resultCode == RESULT_OK) {
             List<MediaEntity> result = Phoenix.result(data);
-            Logcat.i("------------" + JSON.toJSONString(result));
+            Log.i(TAG, "------------" + JSON.toJSONString(result));
             mMediaEntities.clear();
             mMediaEntities.addAll(result);
             mMediaEntities.add(mAddMediaEntity);
@@ -370,7 +370,7 @@ public class ProjectTaskEditActivity extends BaseActivity implements FileListAda
                 result.remove(entity);
                 uploadFile(result);
             } else {
-                Logcat.i("------------" + getPictureSuffix(entity.getLocalPath()));
+                Log.i(TAG, "------------" + getPictureSuffix(entity.getLocalPath()));
                 OkHttpUtils.post().url(ApiConstants.file_upload)
                         .addParams("token", "" + LoginUserUtil.getToken(this))
                         .addFile("file", getPictureSuffix(entity.getLocalPath()), new File(entity.getLocalPath()))
@@ -379,14 +379,14 @@ public class ProjectTaskEditActivity extends BaseActivity implements FileListAda
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 dismissPopupLoading();
-                                Logcat.w("add live video exception :" + e + "/");
+                                Log.w(TAG, "add live video exception :" + e + "/");
                                 ToastUtil.showToast("文件上传失败，请重试");
                             }
 
                             @Override
                             public void onResponse(String response, int id) {
                                 dismissPopupLoading();
-                                Logcat.i("add Serices Course  response :" + response);
+                                Log.i(TAG, "add Serices Course  response :" + response);
                                 ResultBean bean = JSON.parseObject(response, ResultBean.class);
                                 if (bean != null && bean.getCode() == 0) {
                                     if (TextUtils.isEmpty(attach)) {
@@ -403,7 +403,7 @@ public class ProjectTaskEditActivity extends BaseActivity implements FileListAda
                         });
             }
         } else {
-            Logcat.i("-------" + attach);
+            Log.i(TAG, "-------" + attach);
             if (edit) {
                 toRequest(ApiConstants.EventTags.task_update);
             } else {

@@ -67,7 +67,6 @@ public class ProjectTaskTrendsAdapter extends BaseQuickAdapter<ProjectTaskDetail
                 list.add(BuildConfig.BASE_URL + url[i]);
             }
         }
-        Logcat.i("-------" + JSON.toJSONString(list));
         ProjectProgressImgAdapter adapter = new ProjectProgressImgAdapter(R.layout.item_project_progress_img, list);
         RecyclerView recyclerView = helper.getView(R.id.rv_list);
         recyclerView.setVisibility(list.size() > 0 ? View.VISIBLE : View.GONE);

@@ -16,14 +16,11 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
-import com.aopcloud.palmproject.ui.activity.department.DepartmentHomeActivity;
-import com.aopcloud.palmproject.ui.activity.project.bean.ProjectDetailBean;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectMemberBean;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectMemberAdapter;
 import com.aopcloud.palmproject.utils.JumpActionUtil;
@@ -220,11 +217,9 @@ public class ProjectMemberActivity extends BaseActivity implements ProjectMember
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         if (eventTag == ApiConstants.EventTags.project_member) {
             map.put("project_id", "" + project_id);//项目名称
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.project_member, map);
         } else if (eventTag == ApiConstants.EventTags.project_deluser) {
             map.put("project_user_id", "" + project_user_id);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.project_deluser, map);
         }
     }
@@ -232,7 +227,6 @@ public class ProjectMemberActivity extends BaseActivity implements ProjectMember
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.project_member) {
@@ -250,7 +244,6 @@ public class ProjectMemberActivity extends BaseActivity implements ProjectMember
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
 

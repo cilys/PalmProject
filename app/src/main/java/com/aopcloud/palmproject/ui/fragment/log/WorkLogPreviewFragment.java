@@ -122,7 +122,6 @@ public class WorkLogPreviewFragment extends BaseFragment {
         if (eventTag == ApiConstants.EventTags.reportjob_all) {
             map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(mActivity));
             map.put("role","2");
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.reportjob_all, map);
         }
     }
@@ -130,7 +129,6 @@ public class WorkLogPreviewFragment extends BaseFragment {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.reportjob_all) {
@@ -146,8 +144,5 @@ public class WorkLogPreviewFragment extends BaseFragment {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
-
-
 }

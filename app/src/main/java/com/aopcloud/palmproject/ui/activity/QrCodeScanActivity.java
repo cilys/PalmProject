@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -74,7 +75,7 @@ public class QrCodeScanActivity extends BaseActivity {
                     CodeUtils.analyzeBitmap(getRealFilePath(this, uri), new CodeUtils.AnalyzeCallback() {
                         @Override
                         public void onAnalyzeSuccess(Bitmap mBitmap, String result) {
-                            Logcat.i("解析结果11:" + result);
+                            Log.i(TAG, "解析结果11:" + result);
                             Intent intent = new Intent();
                             intent.putExtra("code","" +result);
                             setResult(RESULT_OK, intent);
@@ -83,12 +84,12 @@ public class QrCodeScanActivity extends BaseActivity {
 
                         @Override
                         public void onAnalyzeFailed() {
-                            Logcat.i("解析结果11失败:");
+                            Log.i(TAG, "解析结果11失败:");
                             ToastUtil.showToast("解析二维码失败");
                         }
                     });
                 } catch (Exception e) {
-                    Logcat.i("解析结果11失败:" + e.toString());
+                    Log.i(TAG, "解析结果11失败:" + e.toString());
                     e.printStackTrace();
                 }
             }
@@ -105,7 +106,7 @@ public class QrCodeScanActivity extends BaseActivity {
         @Override
         public void onAnalyzeSuccess(Bitmap mBitmap, String result) {
 
-            Logcat.i("二维码内容：" + result);
+            Log.i(TAG, "二维码内容：" + result);
             Intent intent = new Intent();
             intent.putExtra("code","" +result);
             setResult(0, intent);

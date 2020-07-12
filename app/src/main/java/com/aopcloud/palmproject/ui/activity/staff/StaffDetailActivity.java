@@ -15,14 +15,12 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.loader.AppImageLoader;
-import com.aopcloud.palmproject.ui.activity.mine.MyInfoCardActivity;
 import com.aopcloud.palmproject.ui.activity.staff.bean.StaffSDetailBean;
 import com.aopcloud.palmproject.ui.adapter.staff.StaffTrendAdapter;
 import com.aopcloud.palmproject.utils.JumpActionUtil;
@@ -239,13 +237,11 @@ public class StaffDetailActivity extends BaseActivity {
         map.put("user_id", "" + user_id);
 //        map.put("team_id", "" + team_id);
         if (eventTag == ApiConstants.EventTags.user_info) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.user_info, map);
         } else if (eventTag == ApiConstants.EventTags.company_status) {
             map.put("company_user_id", "" + company_user_id);
             map.put("status", "" + 3);//设置用户状态，1:正常，2:已拒绝，3:已离职，4：黑名单
 
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.company_status, map);
         }
     }
@@ -253,7 +249,6 @@ public class StaffDetailActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -273,7 +268,6 @@ public class StaffDetailActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override

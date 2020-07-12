@@ -67,7 +67,6 @@ public class TestCameraActivity extends BaseActivity implements JCameraListener{
 
     @Override
     public void captureSuccess(Bitmap bitmap) {
-        Logcat.i("-------captureSuccess---"+1);
         Bundle bundle = new Bundle();
         bundle.putString("task_id",""+task_id);
         gotoActivity(ProjectScenesAddActivity.class,bundle,0);
@@ -76,7 +75,6 @@ public class TestCameraActivity extends BaseActivity implements JCameraListener{
 
     @Override
     public void recordSuccess(String url, Bitmap firstFrame) {
-        Logcat.i("-------recordSuccess---"+2);
         Bundle bundle = new Bundle();
         bundle.putString("task_id",""+task_id);
         gotoActivity(ProjectScenesAddActivity.class,bundle,0);

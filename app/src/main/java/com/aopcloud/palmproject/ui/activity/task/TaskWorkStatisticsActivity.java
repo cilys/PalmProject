@@ -263,7 +263,6 @@ public class TaskWorkStatisticsActivity extends BaseActivity implements TaskWork
         map.put("start_date", "" + getStartTime(year, month));
         map.put("end_date", "" + getEndTime(year, month));
         if (eventTag == ApiConstants.EventTags.salary_all) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.salary_all, map);
         }
     }
@@ -271,7 +270,6 @@ public class TaskWorkStatisticsActivity extends BaseActivity implements TaskWork
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.salary_all) {
@@ -287,7 +285,6 @@ public class TaskWorkStatisticsActivity extends BaseActivity implements TaskWork
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
 

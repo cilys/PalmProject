@@ -79,13 +79,10 @@ public class DepartmentSelectActivity extends BaseActivity {
     private void setViewData(List<DepartmentNodeBean> beanList) {
         mNodeBeans = beanList;
         root = TreeNode.root();
-        Logcat.i("--setViewData---:" + JSON.toJSONString(mNodeBeans));
         List<TreeNode> node = new ArrayList();
         for (int i = 0; i < mNodeBeans.size(); i++) {
             TreeNode treeNode = new TreeNode(mNodeBeans.get(i)).setViewHolder(new MyHolder(this));
-            Logcat.i("----addNode---1--" + mNodeBeans.get(i).getChilden() + "/");
             if (null != mNodeBeans.get(i).getChilden() && mNodeBeans.get(i).getChilden().size() > 0) {
-                Logcat.i("----addNode---2--" + 1 + "/");
                 addNode(mNodeBeans.get(i).getChilden(), treeNode);
             }
             node.add(treeNode);
@@ -101,7 +98,6 @@ public class DepartmentSelectActivity extends BaseActivity {
 
 
     private void addNode(List<DepartmentNodeBean> beanList, TreeNode node) {
-        Logcat.i("----addNode-----" + JSON.toJSONString(beanList) + "/");
         List treeNodes = new ArrayList();
         for (int i = 0; i < beanList.size(); i++) {
             TreeNode treeNode = new TreeNode(beanList.get(i)).setViewHolder(new MyHolder(this));
@@ -124,7 +120,6 @@ public class DepartmentSelectActivity extends BaseActivity {
                 break;
             case R.id.tv_next:
                 getSelect(mNodeBeans);
-                Logcat.i("----------" + JSON.toJSONString(selectDepartments));
                 if (selectDepartments.size() > 1) {
                     ToastUtil.showToast("只能选择一个上级部门");
                     return;
@@ -161,7 +156,6 @@ public class DepartmentSelectActivity extends BaseActivity {
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         if (eventTag == ApiConstants.EventTags.department_all) {
             map.put("loop", "1");
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.department_all, map);
         }
     }
@@ -169,7 +163,6 @@ public class DepartmentSelectActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -189,7 +182,6 @@ public class DepartmentSelectActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
 

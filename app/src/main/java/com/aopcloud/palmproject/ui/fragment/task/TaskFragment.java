@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -13,7 +14,6 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.base.BaseFragment;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.R;
@@ -127,7 +127,7 @@ public class TaskFragment extends BaseFragment implements OnTaskFilterListener {
 
 
     public void setFilter(String k, List<String> state, List<String> level) {
-        Logcat.d("" + k + "/" + state.toString() + "/" + level.toString());
+        Log.d(TAG, "" + k + "/" + state.toString() + "/" + level.toString());
         List list = new ArrayList();
         for (int i = 0; i < mAllBeanList.size(); i++) {
             for (int j = 0; j < state.size(); j++) {

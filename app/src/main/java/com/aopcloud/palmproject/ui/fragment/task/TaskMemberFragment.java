@@ -3,15 +3,11 @@ package com.aopcloud.palmproject.ui.fragment.task;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.base.BaseFragment;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
@@ -160,11 +156,9 @@ public class TaskMemberFragment extends BaseFragment {
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(mActivity));
         map.put("task_id", "" + task_id);
         if (eventTag == ApiConstants.EventTags.task_get) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.task_get, map);
         } else if (eventTag == ApiConstants.EventTags.teammember_all) {
             map.put("team_id", "" + team_id);//项目名称
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.teammember_all, map);
         }
     }
@@ -172,7 +166,6 @@ public class TaskMemberFragment extends BaseFragment {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.task_get) {
@@ -185,7 +178,5 @@ public class TaskMemberFragment extends BaseFragment {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
-
 }

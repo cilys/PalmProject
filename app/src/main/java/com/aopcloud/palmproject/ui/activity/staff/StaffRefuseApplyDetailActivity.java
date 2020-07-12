@@ -160,12 +160,10 @@ public class StaffRefuseApplyDetailActivity extends BaseActivity {
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         if (eventTag == ApiConstants.EventTags.user_info) {
             map.put("user_id", "" + user_id);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.user_info, map);
         } else if (eventTag == ApiConstants.EventTags.company_status) {
             map.put("company_user_id", "" + company_user_id);
             map.put("status", "" + status);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.company_status, map);
         }
     }
@@ -173,7 +171,6 @@ public class StaffRefuseApplyDetailActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -193,7 +190,6 @@ public class StaffRefuseApplyDetailActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
 }

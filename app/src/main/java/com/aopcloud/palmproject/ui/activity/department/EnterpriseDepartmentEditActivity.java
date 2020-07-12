@@ -186,10 +186,8 @@ public class EnterpriseDepartmentEditActivity extends BaseActivity {
             map.put("name", "" + name);
             map.put("leader_id", "" + LoginUserUtil.getLoginUserBean(this).getId());
             map.put("status", mSwGoneDepartment.isChecked() ? "2" : "1");
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.department_update, map);
         } else if (eventTag == ApiConstants.EventTags.department_del) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.department_del, map);
         }
     }
@@ -197,7 +195,6 @@ public class EnterpriseDepartmentEditActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.department_update) {
@@ -218,7 +215,6 @@ public class EnterpriseDepartmentEditActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override

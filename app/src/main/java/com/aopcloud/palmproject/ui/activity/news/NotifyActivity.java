@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
@@ -98,7 +97,6 @@ public class NotifyActivity extends BaseActivity {
         map.put("token", "" + LoginUserUtil.getToken(this));
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         if (eventTag == ApiConstants.EventTags.msg_my) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.msg_my, map);
         }
     }
@@ -106,7 +104,6 @@ public class NotifyActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -118,6 +115,5 @@ public class NotifyActivity extends BaseActivity {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
             mRefreshLayout.finishRefresh();
         }
-
     }
 }

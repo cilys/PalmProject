@@ -59,6 +59,7 @@ public abstract class BaseFragment extends Fragment implements ICommonViewUi {
     private boolean isDataLoaded; // 数据是否已请求, isNeedReload()返回false的时起作用
     private boolean isHidden = true; // 记录当前fragment的是否隐藏
 
+    protected String TAG = getClass().getSimpleName();
 
     @Override
     public void onAttach(Context context) {
@@ -148,7 +149,6 @@ public abstract class BaseFragment extends Fragment implements ICommonViewUi {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        Logcat.i("Fragment Visible:" + this.getClass().getSimpleName() + "/" + hidden);
         isHidden = hidden;
         if (!hidden) {
         }

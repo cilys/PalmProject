@@ -169,11 +169,9 @@ public class TeamMemberListActivity extends BaseActivity {
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         map.put("team_id", "" + team_id);//项目名称
         if (eventTag == ApiConstants.EventTags.teammember_all) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.teammember_all, map);
         }if (eventTag == ApiConstants.EventTags.teammember_del) {
             map.put("user_ids", "" + user_ids);//项目名称
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.teammember_del, map);
         }
     }
@@ -181,7 +179,6 @@ public class TeamMemberListActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.teammember_all) {
@@ -199,7 +196,6 @@ public class TeamMemberListActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
 

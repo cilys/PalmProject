@@ -6,18 +6,17 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSON;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.loader.AppImageLoader;
 import com.aopcloud.palmproject.ui.activity.camera.PreviewActivity;
-import com.aopcloud.palmproject.ui.activity.project.bean.ProjectDetailBean;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTrendsBean;
 import com.aopcloud.palmproject.ui.adapter.file.PreviewAdapter;
 import com.aopcloud.palmproject.view.CircleImageView;
@@ -68,7 +67,7 @@ public class ProjectProgressAdapter extends BaseQuickAdapter<ProjectTrendsBean, 
             }
         }
         helper.getView(R.id.ll_task_img).setVisibility(list.size()>0 ? View.VISIBLE : View.GONE);
-        Logcat.i("-------"+helper.getAdapterPosition()+"/"+ JSON.toJSONString(list));
+        Log.i(ProjectProgressAdapter.class.getSimpleName(), "-------"+helper.getAdapterPosition()+"/"+ JSON.toJSONString(list));
         ProjectProgressImgAdapter adapter = new ProjectProgressImgAdapter(R.layout.item_project_progress_img, list);
         RecyclerView recyclerView = helper.getView(R.id.rv_list);
         recyclerView.setVisibility(list.size()>0? View.VISIBLE:View.GONE);

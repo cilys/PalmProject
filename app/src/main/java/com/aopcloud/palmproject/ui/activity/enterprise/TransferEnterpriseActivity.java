@@ -140,11 +140,9 @@ public class TransferEnterpriseActivity extends BaseActivity implements Departme
         params.put("token", "" + LoginUserUtil.getToken(this));
         params.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         if (eventTag == ApiConstants.EventTags.manage_all) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(params));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.manage_all, params);
         } else if (eventTag == ApiConstants.EventTags.company_update) {
             params.put("leader_id", "" + leaderBean.getUser_id());
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(params));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.company_update, params);
         }
     }
@@ -152,7 +150,6 @@ public class TransferEnterpriseActivity extends BaseActivity implements Departme
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -172,6 +169,5 @@ public class TransferEnterpriseActivity extends BaseActivity implements Departme
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 }

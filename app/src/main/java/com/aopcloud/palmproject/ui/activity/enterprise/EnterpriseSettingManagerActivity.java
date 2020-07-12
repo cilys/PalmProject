@@ -91,7 +91,6 @@ public class EnterpriseSettingManagerActivity extends BaseActivity {
         super.initData();
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            Logcat.i("----------" + edit + "/" + (getIntent().getExtras() == null));
             edit = true;
             mManagerBean = JSON.parseObject(bundle.getString("info"), EnterpriseManagerBean.class);
         }
@@ -99,7 +98,6 @@ public class EnterpriseSettingManagerActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        Logcat.i("----------" + edit + "/" + (getIntent().getExtras() == null));
         mTvHeaderTitle.setText(edit ? "编辑管理员" : "添加管理员");
         mTvHeaderRight.setText(edit ? "保存" : "添加");
         mTvDel.setVisibility(edit ? View.VISIBLE : View.GONE);
@@ -235,12 +233,10 @@ public class EnterpriseSettingManagerActivity extends BaseActivity {
                 for (int i = 0; i < mPermissionBeans.size(); i++) {
                     mPermissionBeans.get(i).setSelect(false);
                 }
-                Logcat.i("----1--" + JSON.toJSONString(mPermissionBeans) + "/" + mPermissionBeans.size());
 
                 mPermissionBeans.get(position).setSelect(!permissionBean1.isSelect());
                 rights = permissionAdapter.getItem(position).getPermission();
                 permissionAdapter.notifyDataSetChanged();
-                Logcat.i("------" + JSON.toJSONString(mPermissionBeans) + "/" + JSON.toJSONString(permissionAdapter.getData()));
             }
         });
 
@@ -285,16 +281,13 @@ public class EnterpriseSettingManagerActivity extends BaseActivity {
         if (eventTag == ApiConstants.EventTags.manage_add) {
             map.put("user_id", "" + user_id);
             map.put("rights", "" + rights);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.manage_add, map);
         } else if (eventTag == ApiConstants.EventTags.manage_update) {
             map.put("user_id", "" + user_id);
             map.put("rights", "" + rights);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.manage_update, map);
         } else if (eventTag == ApiConstants.EventTags.manage_del) {
             map.put("user_id", "" + user_id);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.manage_del, map);
         }
     }
@@ -302,7 +295,6 @@ public class EnterpriseSettingManagerActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -328,7 +320,6 @@ public class EnterpriseSettingManagerActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override

@@ -124,7 +124,6 @@ public class TeamAddActivity extends BaseActivity {
             map.put("industry", "" + industry);
             map.put("district", "" + district);
             map.put("status", "" + status);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.team_add, map);
         }
     }
@@ -132,7 +131,6 @@ public class TeamAddActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.team_add) {
@@ -149,7 +147,6 @@ public class TeamAddActivity extends BaseActivity {
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
         ToastUtil.showToast("网络错误，请重试");
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
 

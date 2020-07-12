@@ -2,9 +2,9 @@ package com.aopcloud.palmproject.utils;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.palmproject.bean.UserBean;
 import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseListBean;
 
@@ -18,6 +18,7 @@ import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseListBean;
  * @Describe ：
  */
 public class LoginUserUtil {
+    protected static String TAG = LoginUserUtil.class.getSimpleName();
 
     /**
      * @param context
@@ -25,7 +26,7 @@ public class LoginUserUtil {
      */
     public static void setLoginUserBean(Context context, UserBean bean) {
         if (bean == null) {
-            Logcat.d("set login bean is empty");
+            Log.d(TAG, "set login bean is empty");
         }
         SharedPreferencesUtils.setSP(context, "loginUser", JSON.toJSONString(bean));
     }

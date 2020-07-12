@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,7 +17,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.KeyboardUtil;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
@@ -130,7 +130,7 @@ public class TaskScenesActivity extends BaseActivity implements TextView.OnEdito
 
 
     private void setFilter(String type) {
-        Logcat.i("---------" + type + "/" + 1);
+        Log.i(TAG, "---------" + type + "/" + 1);
         List<TaskScenesBean> beans = new ArrayList<>();
         if (!TextUtils.isEmpty(type) && type.contains("全部")) {
             beans.addAll(mAllBeanList);
@@ -146,7 +146,7 @@ public class TaskScenesActivity extends BaseActivity implements TextView.OnEdito
         mAdapter.notifyDataSetChanged();
     }
     private void setUserFilter(String name) {
-        Logcat.d("---------" + name + "/" + 1);
+        Log.d(TAG, "---------" + name + "/" + 1);
         List<TaskScenesBean> beans = new ArrayList<>();
         if (!TextUtils.isEmpty(name) && name.contains("全部")) {
             beans.addAll(mAllBeanList);
@@ -222,7 +222,7 @@ public class TaskScenesActivity extends BaseActivity implements TextView.OnEdito
         map.put("page", "" + pageIndex);
         map.put("page_size", "20");
         if (eventTag == ApiConstants.EventTags.scenes_all) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
+            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.scenes_all, map);
         }
     }
@@ -230,7 +230,7 @@ public class TaskScenesActivity extends BaseActivity implements TextView.OnEdito
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
+        Log.i(TAG, "------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.scenes_all) {
@@ -246,7 +246,7 @@ public class TaskScenesActivity extends BaseActivity implements TextView.OnEdito
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
+        Log.i(TAG, "------------" + eventTag + "/" + msg);
     }
 
     @Override

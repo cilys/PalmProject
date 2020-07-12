@@ -15,13 +15,10 @@ import android.widget.TextView;
 
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.palmproject.R;
-import com.aopcloud.palmproject.utils.RegUtil;
 import com.aopcloud.palmproject.utils.UrlUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -92,7 +89,6 @@ public class WebActivity extends BaseActivity {
     WebViewClient mWebViewClient = new WebViewClient(){
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            Logcat.i("-----1-----" + url + "/" + RegUtil.checkURL(url));
             if (UrlUtil.isURL(url)) {
                 view.loadUrl(url);
                 return true;
@@ -103,7 +99,6 @@ public class WebActivity extends BaseActivity {
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-            Logcat.i("-----1-----" + url + "/" + RegUtil.checkURL(url));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 if (UrlUtil.isURL(request.getUrl().toString())) {
                     view.loadUrl(request.getUrl().toString());

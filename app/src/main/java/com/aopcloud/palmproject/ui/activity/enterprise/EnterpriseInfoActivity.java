@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,7 +15,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
@@ -25,7 +25,6 @@ import com.aopcloud.palmproject.loader.AppImageLoader;
 import com.aopcloud.palmproject.ui.activity.camera.PreviewActivity;
 import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseInfoBean;
 import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseManagerBean;
-import com.aopcloud.palmproject.ui.activity.mine.AccountInfoActivity;
 import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;
 import com.aopcloud.palmproject.ui.adapter.file.PreviewAdapter;
 import com.aopcloud.palmproject.utils.AssetsUtil;
@@ -393,7 +392,7 @@ public class EnterpriseInfoActivity extends BaseActivity implements FileListAdap
         }
         showPopXupLoading("更新中");
 
-        Logcat.i("-------mAddMediaEntity-----" + JSON.toJSONString(mMediaEntities));
+        Log.i(TAG, "-------mAddMediaEntity-----" + JSON.toJSONString(mMediaEntities));
         uploadFile(list);
     }
 
@@ -414,10 +413,10 @@ public class EnterpriseInfoActivity extends BaseActivity implements FileListAdap
             params.put("account_type", "" + account_type);
             params.put("account_cardno", "" + account_cardno);
             params.put("id_photo", "" + id_photo);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(params));
+            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(params));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.company_update, params);
         } else if (eventTag == ApiConstants.EventTags.manage_all) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(params));
+            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(params));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.manage_all, params);
         }
     }
@@ -425,7 +424,7 @@ public class EnterpriseInfoActivity extends BaseActivity implements FileListAdap
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
+        Log.i(TAG, "------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -461,7 +460,7 @@ public class EnterpriseInfoActivity extends BaseActivity implements FileListAdap
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
+        Log.i(TAG, "------------" + eventTag + "/" + msg);
     }
 
     @Override
@@ -469,11 +468,11 @@ public class EnterpriseInfoActivity extends BaseActivity implements FileListAdap
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
             List<MediaEntity> result = Phoenix.result(data);
-            Logcat.i("------------" + JSON.toJSONString(result));
+            Log.i(TAG, "------------" + JSON.toJSONString(result));
             uploadImg(result.get(0));
         } else if (requestCode == 2 && resultCode == RESULT_OK) {
             List<MediaEntity> result = Phoenix.result(data);
-            Logcat.i("------------" + JSON.toJSONString(result));
+            Log.i(TAG, "------------" + JSON.toJSONString(result));
             mMediaEntities.clear();
             mMediaEntities.addAll(result);
             mMediaEntities.add(mAddMediaEntity);
@@ -494,7 +493,7 @@ public class EnterpriseInfoActivity extends BaseActivity implements FileListAdap
                 result.remove(entity);
                 uploadFile(result);
             } else {
-                Logcat.d("-----file-----" + JSON.toJSONString(entity));
+                Log.d(TAG, "-----file-----" + JSON.toJSONString(entity));
                 OkHttpUtils.post().url(ApiConstants.file_upload)
                         .addParams("token", "" + LoginUserUtil.getToken(this))
                         .addFile("file", getPictureSuffix(entity.getLocalPath()), new File(entity.getLocalPath()))
@@ -503,14 +502,14 @@ public class EnterpriseInfoActivity extends BaseActivity implements FileListAdap
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 dismissPopupLoading();
-                                Logcat.w("add live video exception :" + e + "/");
+                                Log.w(TAG, "add live video exception :" + e + "/");
                                 ToastUtil.showToast("文件上传失败，请重试");
                             }
 
                             @Override
                             public void onResponse(String response, int id) {
                                 dismissPopupLoading();
-                                Logcat.i("add Serices Course  response :" + response);
+                                Log.i(TAG, "add Serices Course  response :" + response);
                                 ResultBean bean = JSON.parseObject(response, ResultBean.class);
                                 if (bean != null && bean.getCode() == 0) {
                                     if (TextUtils.isEmpty(id_photo)) {
@@ -518,7 +517,7 @@ public class EnterpriseInfoActivity extends BaseActivity implements FileListAdap
                                     } else {
                                         id_photo = id_photo + "," + JsonUtil.parserField(bean.getData(), "path");
                                     }
-                                    Logcat.i("-------" + id_photo);
+                                    Log.i(TAG, "-------" + id_photo);
                                     result.remove(result.size() - 1);
                                     uploadFile(result);
                                 } else {
@@ -543,13 +542,13 @@ public class EnterpriseInfoActivity extends BaseActivity implements FileListAdap
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         dismissPopupLoading();
-                        Logcat.w("add live video exception :" + e + "/");
+                        Log.w(TAG, "add live video exception :" + e + "/");
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         dismissPopupLoading();
-                        Logcat.i("add Serices Course  response :" + response);
+                        Log.i(TAG, "add Serices Course  response :" + response);
                         ResultBean bean = JSON.parseObject(response, ResultBean.class);
                         if (bean != null && bean.getCode() == 0) {
                             logo = JsonUtil.parserField(bean.getData(), "path");
@@ -564,7 +563,7 @@ public class EnterpriseInfoActivity extends BaseActivity implements FileListAdap
     }
 
     private String getPictureSuffix(String path) {
-        Logcat.i("----------" + path);
+        Log.i(TAG, "----------" + path);
         if (path.contains(".")) {
             return "live_" + System.currentTimeMillis() + path.substring(path.lastIndexOf("."), path.length());
         }
@@ -594,7 +593,7 @@ public class EnterpriseInfoActivity extends BaseActivity implements FileListAdap
                 district = options1Items.get(options1).getRegion_name() + "\t\t"
                         + options2Items.get(options1).get(options2).getRegion_name() + "\t\t"
                         + options3Items.get(options1).get(options2).get(options3).getRegion_name();
-                Logcat.i("选择的地址：" + district);
+                Log.i(TAG, "选择的地址：" + district);
                 mTvDistrict.setText(district);
             }
         })
@@ -619,10 +618,10 @@ public class EnterpriseInfoActivity extends BaseActivity implements FileListAdap
         }
 
         if (ListUtil.isEmpty(beanList)) {
-            Logcat.i("empty");
+            Log.i(TAG, "empty");
             return;
         }
-        Logcat.i("------开始---------" + System.currentTimeMillis() / 1000 + "/"
+        Log.i(TAG, "------开始---------" + System.currentTimeMillis() / 1000 + "/"
                 + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:").format(new Date()));
         int p = beanList.size();
         options1Items.addAll(beanList);
@@ -637,7 +636,7 @@ public class EnterpriseInfoActivity extends BaseActivity implements FileListAdap
             }
             options3Items.add(Province_AreaList);
         }
-        Logcat.i("------结束---------" + System.currentTimeMillis() / 1000 + "/"
+        Log.i(TAG, "------结束---------" + System.currentTimeMillis() / 1000 + "/"
                 + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
 
     }

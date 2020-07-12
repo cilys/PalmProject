@@ -162,7 +162,6 @@ public class DepartmentTagEditActivity extends BaseActivity {
             map.put("name", "" + name);
             map.put("rights", "" + rights);
             map.put("level", "" + mDepartmentTagBean.getLevel());
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.roletag_update, map);
         }
     }
@@ -171,7 +170,6 @@ public class DepartmentTagEditActivity extends BaseActivity {
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
         dismissPopupLoading();
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.roletag_update) {
@@ -187,8 +185,5 @@ public class DepartmentTagEditActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
-
-
 }

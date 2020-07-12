@@ -133,7 +133,6 @@ public class SettingPasswordActivity extends BaseActivity {
             map.put("code", "" + verifyCode);
             map.put("password", "" + password);
             map.put("repassword", "" + password);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.register, map);
         }
     }
@@ -141,7 +140,6 @@ public class SettingPasswordActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -158,6 +156,5 @@ public class SettingPasswordActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 }

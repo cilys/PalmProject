@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -17,7 +18,6 @@ import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.common.BaseEvent;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.R;
@@ -209,8 +209,8 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
             entities.remove(position);
             mMediaEntities.clear();
             mMediaEntities.addAll(entities);
-            Logcat.i("-1--" + JSON.toJSONString(entities));
-            Logcat.d("-2-" + JSON.toJSONString(mMediaEntities));
+            Log.i(TAG, "-1--" + JSON.toJSONString(entities));
+            Log.d(TAG, "-2-" + JSON.toJSONString(mMediaEntities));
             mFileListAdapter.notifyDataSetChanged();
         }
     }

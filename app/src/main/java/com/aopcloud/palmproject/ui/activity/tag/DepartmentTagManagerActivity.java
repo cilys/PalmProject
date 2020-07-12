@@ -1,7 +1,6 @@
 package com.aopcloud.palmproject.ui.activity.tag;
 
 import android.app.Dialog;
-import android.appwidget.AppWidgetProviderInfo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -19,7 +17,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
@@ -207,16 +204,13 @@ public class DepartmentTagManagerActivity extends BaseActivity implements Depart
         map.put("department_id", "" + department_id);
         if (eventTag == ApiConstants.EventTags.roletag_all) {
             map.put("department_id", "" + department_id);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.roletag_all, map);
         } else if (eventTag == ApiConstants.EventTags.roletag_del) {
             map.put("tag_id", "" + del_tag_id);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.roletag_del, map);
         } else if (eventTag == ApiConstants.EventTags.roletag_sort) {
             map.put("tag_ids", "" + getList(ids));
             map.put("levels", "" + getList(sort));
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.roletag_sort, map);
         }
     }
@@ -226,7 +220,6 @@ public class DepartmentTagManagerActivity extends BaseActivity implements Depart
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
         dismissPopupLoading();
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.roletag_all) {
@@ -249,7 +242,6 @@ public class DepartmentTagManagerActivity extends BaseActivity implements Depart
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override

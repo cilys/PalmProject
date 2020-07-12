@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -14,7 +15,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
@@ -37,7 +37,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
 
@@ -192,7 +191,6 @@ public class ProjectTaskDiscussActivity extends BaseActivity implements FileList
             }
             map.put("message", "" + message);
             map.put("attach", "" + attach);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.trends_debate, map);
         }
     }
@@ -200,7 +198,6 @@ public class ProjectTaskDiscussActivity extends BaseActivity implements FileList
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -217,7 +214,6 @@ public class ProjectTaskDiscussActivity extends BaseActivity implements FileList
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override
@@ -225,7 +221,6 @@ public class ProjectTaskDiscussActivity extends BaseActivity implements FileList
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 2 && resultCode == RESULT_OK) {
             List<MediaEntity> result = Phoenix.result(data);
-            Logcat.i("------------" + JSON.toJSONString(result));
             mTvCount.setText("(" + result.size() + "/9)");
             mMediaEntities.clear();
             mMediaEntities.addAll(result);
@@ -257,14 +252,14 @@ public class ProjectTaskDiscussActivity extends BaseActivity implements FileList
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 dismissPopupLoading();
-                                Logcat.w("add live video exception :" + e + "/");
+                                Log.w(TAG, "add live video exception :" + e + "/");
                                 ToastUtil.showToast("文件上传失败，请重试");
                             }
 
                             @Override
                             public void onResponse(String response, int id) {
                                 dismissPopupLoading();
-                                Logcat.i("add Serices Course  response :" + response);
+                                Log.i(TAG, "add Serices Course  response :" + response);
                                 ResultBean bean = JSON.parseObject(response, ResultBean.class);
                                 if (bean != null && bean.getCode() == 0) {
                                     if (TextUtils.isEmpty(attach)) {
@@ -281,7 +276,6 @@ public class ProjectTaskDiscussActivity extends BaseActivity implements FileList
                         });
             }
         } else {
-            Logcat.i("-------" + attach);
             finish();
             toRequest(ApiConstants.EventTags.trends_debate);
         }

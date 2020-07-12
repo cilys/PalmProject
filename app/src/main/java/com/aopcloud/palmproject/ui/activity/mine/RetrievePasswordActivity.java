@@ -121,10 +121,8 @@ public class RetrievePasswordActivity extends BaseActivity {
         if (eventTag == ApiConstants.EventTags.retrieve_password) {
             map.put("code", "" + verifyCode);
             map.put("password", "" + password);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.retrieve_password, map);
         }else if (eventTag == ApiConstants.EventTags.sms_code_send) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.sms_code_send, map);
         }
     }
@@ -132,7 +130,6 @@ public class RetrievePasswordActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -152,6 +149,5 @@ public class RetrievePasswordActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 }

@@ -132,10 +132,8 @@ public class RegisterActivity extends BaseActivity {
         map.put("tel", "" + mobile);
         if (eventTag == ApiConstants.EventTags.register) {
             map.put("code", "" + verifyCode);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.login_sms_code, map);
         } else if (eventTag == ApiConstants.EventTags.sms_code_send) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.sms_code_send, map);
         }
     }
@@ -143,7 +141,6 @@ public class RegisterActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -160,7 +157,6 @@ public class RegisterActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override

@@ -126,7 +126,6 @@ public class StaffApprovalFragment extends BaseFragment {
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(mActivity));
         if (eventTag == ApiConstants.EventTags.company_usermange) {
             map.put("status", "" + status);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.company_usermange, map);
         }
     }
@@ -134,7 +133,6 @@ public class StaffApprovalFragment extends BaseFragment {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.company_usermange) {
@@ -150,7 +148,6 @@ public class StaffApprovalFragment extends BaseFragment {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override

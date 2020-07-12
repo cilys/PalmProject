@@ -224,7 +224,6 @@ public class ReplaceMemberSignActivity extends BaseActivity implements ReplaceMe
             map.put("end_time", "" + getEndTime(Calendar.getInstance()));
 //            map.put("page", "" + 1);
 //            map.put("page_size", "" + 100000);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.attendance_all, map);
         }
     }
@@ -232,7 +231,6 @@ public class ReplaceMemberSignActivity extends BaseActivity implements ReplaceMe
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.attendance_all) {
@@ -249,7 +247,6 @@ public class ReplaceMemberSignActivity extends BaseActivity implements ReplaceMe
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     public static Long getStartTime(Calendar calendar) {

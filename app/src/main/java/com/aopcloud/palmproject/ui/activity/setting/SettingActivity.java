@@ -3,6 +3,7 @@ package com.aopcloud.palmproject.ui.activity.setting;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -79,7 +80,7 @@ public class SettingActivity extends BaseActivity {
         try {
             long cache = CleanUtil.getFolderSize(getCache);
             mTvCacheSize.setText(CleanUtil.getFormatSize(cache));
-            Logcat.i("缓存文件大小：" + cache + " 格式化之后：" + CleanUtil.getFormatSize(cache));
+            Log.i(TAG, "缓存文件大小：" + cache + " 格式化之后：" + CleanUtil.getFormatSize(cache));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -48,7 +48,6 @@ public class SplashActivity extends BaseActivity {
     @Override
     protected void initView() {
         boolean isFirstStart = (boolean) SharedPreferencesUtils.getSP(this, "isFirstStart", true);
-        Logcat.i("第一次启动？：" + isFirstStart );
         mTimeHandler.postDelayed(mTimeRunnable=new Runnable() {
             @Override
             public void run() {

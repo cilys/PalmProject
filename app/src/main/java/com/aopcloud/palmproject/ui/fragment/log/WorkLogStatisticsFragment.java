@@ -115,7 +115,6 @@ public class WorkLogStatisticsFragment extends BaseFragment {
             map.put("role","1");
             map.put("start_time", "" + start_time);
             map.put("end_time", "" + end_time);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.reportjob_statistics, map);
         }
     }
@@ -123,7 +122,6 @@ public class WorkLogStatisticsFragment extends BaseFragment {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.reportjob_statistics) {
@@ -133,14 +131,10 @@ public class WorkLogStatisticsFragment extends BaseFragment {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
-
-
 }

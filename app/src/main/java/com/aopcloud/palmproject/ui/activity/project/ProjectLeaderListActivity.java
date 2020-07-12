@@ -15,7 +15,6 @@ import android.widget.RelativeLayout;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
@@ -168,16 +167,13 @@ public class ProjectLeaderListActivity extends BaseActivity implements
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         map.put("project_id", "" + project_id);//项目名称
         if (eventTag == ApiConstants.EventTags.project_member) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.project_member, map);
         } else if (eventTag == ApiConstants.EventTags.project_adduser) {
             map.put("user_id", "" + user_id);
             map.put("type", "" + 0);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.project_adduser, map);
         } else if (eventTag == ApiConstants.EventTags.project_deluser) {
             map.put("project_user_id", "" + project_user_id);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.project_deluser, map);
         }
     }
@@ -185,7 +181,6 @@ public class ProjectLeaderListActivity extends BaseActivity implements
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.project_member) {
@@ -205,7 +200,6 @@ public class ProjectLeaderListActivity extends BaseActivity implements
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
 

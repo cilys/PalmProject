@@ -3,8 +3,6 @@ package com.aopcloud.base.common;
 import android.app.Application;
 import android.content.Context;
 
-import com.aopcloud.base.log.Logcat;
-
 /**
  * @PackageName : com.aopcloud.base.common
  * @File : AppHelper.java

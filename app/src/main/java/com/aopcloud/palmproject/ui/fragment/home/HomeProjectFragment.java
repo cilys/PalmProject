@@ -9,6 +9,7 @@ import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
@@ -532,7 +533,7 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
                 }
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
-                Logcat.d("AmapErr", errText);
+                Log.d("AmapErr", errText);
             }
         }
     }
@@ -629,7 +630,6 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
 
         long betweenDays = ((eDate.getTime() - current.getTime()) / (1000 * 60 * 60 * 24));
 
-        Logcat.i("--------" + betweenDays);
         String days = "";
         if (betweenDays > 0) {
             days = "剩余" + betweenDays + "天";

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -180,8 +181,8 @@ public class UpdateProjectProgressActivity extends BaseActivity implements FileL
             entities.remove(position);
             mMediaEntities.clear();
             mMediaEntities.addAll(entities);
-            Logcat.w("-1--" + JSON.toJSONString(entities));
-            Logcat.d("--2-" + JSON.toJSONString(mMediaEntities));
+            Log.w(TAG, "-1--" + JSON.toJSONString(entities));
+            Log.d(TAG, "--2-" + JSON.toJSONString(mMediaEntities));
             mFileListAdapter.notifyDataSetChanged();
         }
 
@@ -229,10 +230,8 @@ public class UpdateProjectProgressActivity extends BaseActivity implements FileL
             map.put("message", "" + message);
             map.put("attach", "" + attach);
             map.put("status", "" + status);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.project_feedback, map);
         }else if (eventTag==ApiConstants.EventTags.project_get){
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.project_get, map);
         }
     }
@@ -240,7 +239,6 @@ public class UpdateProjectProgressActivity extends BaseActivity implements FileL
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.project_feedback) {
@@ -258,7 +256,6 @@ public class UpdateProjectProgressActivity extends BaseActivity implements FileL
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
         ToastUtil.showToast("网络错误");
     }
 
@@ -268,7 +265,6 @@ public class UpdateProjectProgressActivity extends BaseActivity implements FileL
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 2 && resultCode == RESULT_OK) {
             List<MediaEntity> result = Phoenix.result(data);
-            Logcat.i("------------" + JSON.toJSONString(result));
             mMediaEntities.clear();
             mMediaEntities.addAll(result);
             mMediaEntities.add(mAddMediaEntity);
@@ -289,7 +285,6 @@ public class UpdateProjectProgressActivity extends BaseActivity implements FileL
                 result.remove(entity);
                 uploadFile(result);
             } else {
-                Logcat.i("------------" + getPictureSuffix(entity.getLocalPath()));
                 OkHttpUtils.post().url(ApiConstants.file_upload)
                         .addParams("token", "" + LoginUserUtil.getToken(this))
                         .addFile("file", getPictureSuffix(entity.getLocalPath()), new File(entity.getLocalPath()))
@@ -298,14 +293,14 @@ public class UpdateProjectProgressActivity extends BaseActivity implements FileL
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 dismissPopupLoading();
-                                Logcat.w("add live video exception :" + e + "/");
+                                Log.w(TAG, "add live video exception :" + e + "/");
                                 ToastUtil.showToast("文件上传失败，请重试");
                             }
 
                             @Override
                             public void onResponse(String response, int id) {
                                 dismissPopupLoading();
-                                Logcat.i("add Serices Course  response :" + response);
+                                Log.i(TAG, "add Serices Course  response :" + response);
                                 ResultBean bean = JSON.parseObject(response, ResultBean.class);
                                 if (bean != null && bean.getCode() == 0) {
                                     if (TextUtils.isEmpty(attach)) {
@@ -322,7 +317,6 @@ public class UpdateProjectProgressActivity extends BaseActivity implements FileL
                         });
             }
         } else {
-            Logcat.i("-------" + attach);
             toRequest(ApiConstants.EventTags.project_feedback);
         }
     }

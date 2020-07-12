@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
@@ -334,7 +333,6 @@ public class AddWorkLogActivity extends BaseActivity implements FileListAdapter.
             map.put("summary", "" + summary);
             map.put("plan", "" + plan);
             map.put("attach", "" + attach);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.reportjob_add, map);
         }
     }
@@ -342,7 +340,6 @@ public class AddWorkLogActivity extends BaseActivity implements FileListAdapter.
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -359,7 +356,6 @@ public class AddWorkLogActivity extends BaseActivity implements FileListAdapter.
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override
@@ -367,7 +363,6 @@ public class AddWorkLogActivity extends BaseActivity implements FileListAdapter.
         super.onActivityResult(requestCode, resultCode, data);
        if (requestCode == 2 && resultCode == RESULT_OK) {
             List<MediaEntity> result = Phoenix.result(data);
-            Logcat.i("------------" + JSON.toJSONString(result));
             mMediaEntities.clear();
             mMediaEntities.addAll(result);
             mMediaEntities.add(mAddMediaEntity);
@@ -396,14 +391,12 @@ public class AddWorkLogActivity extends BaseActivity implements FileListAdapter.
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 dismissPopupLoading();
-                                Logcat.w("add live video exception :" + e + "/");
                                 ToastUtil.showToast("文件上传失败，请重试");
                             }
 
                             @Override
                             public void onResponse(String response, int id) {
                                 dismissPopupLoading();
-                                Logcat.i("add Serices Course  response :" + response);
                                 ResultBean bean = JSON.parseObject(response, ResultBean.class);
                                 if (bean != null && bean.getCode() == 0) {
                                     if (TextUtils.isEmpty(attach)) {
@@ -420,7 +413,6 @@ public class AddWorkLogActivity extends BaseActivity implements FileListAdapter.
                         });
             }
         } else {
-            Logcat.i("-------" + attach);
             toRequest(ApiConstants.EventTags.reportjob_add);
         }
     }

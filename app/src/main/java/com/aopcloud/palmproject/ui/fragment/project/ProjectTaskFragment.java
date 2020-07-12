@@ -3,7 +3,6 @@ package com.aopcloud.palmproject.ui.fragment.project;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,7 +22,6 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.base.BaseFragment;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.KeyboardUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
@@ -422,10 +420,8 @@ public class ProjectTaskFragment extends BaseFragment implements TextView.OnEdit
         map.put("project_id", "" + project_id);//项目名称
         if (eventTag == ApiConstants.EventTags.project_tasks) {
             map.put("type", "" + task_type);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.project_tasks, map);
         } else if (eventTag == ApiConstants.EventTags.project_team) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.project_team, map);
         } else if (eventTag == ApiConstants.EventTags.task_assign) {
             map.put("task_id", "" + assignTaskId);
@@ -437,7 +433,6 @@ public class ProjectTaskFragment extends BaseFragment implements TextView.OnEdit
 //            map.put("longitue", "" + assignLongitude);
 //            map.put("latitude", "" + assignLatitude);
 //            map.put("scope", "" + assignRange);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.task_assign, map);
         }
     }
@@ -445,7 +440,6 @@ public class ProjectTaskFragment extends BaseFragment implements TextView.OnEdit
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.project_tasks) {
@@ -468,7 +462,6 @@ public class ProjectTaskFragment extends BaseFragment implements TextView.OnEdit
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     public void showTimePicker(int type) {

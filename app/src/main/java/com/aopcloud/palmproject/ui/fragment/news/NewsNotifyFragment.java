@@ -8,7 +8,6 @@ import android.view.View;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.base.BaseFragment;
 import com.aopcloud.base.common.BaseEvent;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
@@ -109,7 +108,6 @@ public class NewsNotifyFragment extends BaseFragment implements BaseQuickAdapter
         map.put("token", "" + LoginUserUtil.getToken(mActivity));
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(mActivity));
         if (eventTag == ApiConstants.EventTags.msg_my) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.msg_my, map);
         }
     }
@@ -117,7 +115,6 @@ public class NewsNotifyFragment extends BaseFragment implements BaseQuickAdapter
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         mActivity.dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -135,7 +132,6 @@ public class NewsNotifyFragment extends BaseFragment implements BaseQuickAdapter
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
         mRefreshLayout.finishRefresh();
     }
 

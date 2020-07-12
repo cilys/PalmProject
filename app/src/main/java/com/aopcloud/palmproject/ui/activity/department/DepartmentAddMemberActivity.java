@@ -127,7 +127,6 @@ public class DepartmentAddMemberActivity extends BaseActivity {
         if (eventTag == ApiConstants.EventTags.department_adduser) {
             map.put("user_id", "" + user_id);
             map.put("role_tag_id", "" + role_tag_id);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.department_adduser, map);
         }
     }
@@ -135,7 +134,6 @@ public class DepartmentAddMemberActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -152,7 +150,6 @@ public class DepartmentAddMemberActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override

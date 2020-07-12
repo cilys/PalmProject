@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,7 +15,6 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.base.BaseFragment;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.KeyboardUtil;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
@@ -143,7 +143,7 @@ public class ImagesFragment extends BaseFragment implements TextView.OnEditorAct
     }
 
     private void setFilter( String type, int id) {
-        Logcat.d("---------" + type +  "/" + id);
+        Log.d(TAG, "---------" + type +  "/" + id);
 
         List<ProjectSceneBean.ScenesBean> beans = new ArrayList<>();
 
@@ -249,10 +249,8 @@ public class ImagesFragment extends BaseFragment implements TextView.OnEditorAct
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(mActivity));
         map.put("project_id", "" + project_id);//项目名称
         if (eventTag == ApiConstants.EventTags.scenes_all) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.scenes_all, map);
         } else if (eventTag == ApiConstants.EventTags.project_tasks) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.project_tasks, map);
         }
     }
@@ -260,7 +258,6 @@ public class ImagesFragment extends BaseFragment implements TextView.OnEditorAct
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.scenes_all) {
@@ -277,7 +274,6 @@ public class ImagesFragment extends BaseFragment implements TextView.OnEditorAct
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override

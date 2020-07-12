@@ -95,7 +95,6 @@ public class NewsFragment extends BaseFragment implements WeatherSearch.OnWeathe
         super.onVisible();
         initImmersionBar();
         initWeather();
-        Logcat.i("-------" + this.getClass().getSimpleName());
     }
 
     @Override
@@ -168,7 +167,6 @@ public class NewsFragment extends BaseFragment implements WeatherSearch.OnWeathe
 
     @Override
     public void onWeatherLiveSearched(LocalWeatherLiveResult weatherLiveResult, int rCode) {
-        Logcat.i("rCode:" + rCode + "/" + JSON.toJSONString(weatherLiveResult));
         if (rCode == 1000) {
             if (weatherLiveResult != null && weatherLiveResult.getLiveResult() != null) {
                 LocalWeatherLive weatherlive = weatherLiveResult.getLiveResult();

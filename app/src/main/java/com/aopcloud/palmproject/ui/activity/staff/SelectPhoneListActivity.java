@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -151,7 +152,7 @@ public class SelectPhoneListActivity extends BaseActivity implements SelectMobil
                     String note = noteCursor.getString(noteCursor
                             .getColumnIndex(ContactsContract.CommonDataKinds.Nickname.NAME));
                     temp.setNote(note);
-                    Logcat.i("note:", note);
+                    Log.i(TAG, note);
                 } while (noteCursor.moveToNext());
             }
             contacts.add(temp);
@@ -164,6 +165,5 @@ public class SelectPhoneListActivity extends BaseActivity implements SelectMobil
         mBeanList.clear();
         mBeanList.addAll(contacts);
         mAdapter.notifyDataSetChanged();
-        Logcat.i("-------------:" + JSON.toJSONString(mBeanList));
     }
 }

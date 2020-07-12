@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -14,7 +15,6 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.base.BaseFragment;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
@@ -193,7 +193,7 @@ public class ProjectLogFragment extends BaseFragment implements OnRefreshListene
 
 
     private void setFilter(int type, int currentTypeId, int id) {
-        Logcat.d("---------" + type + "/" + currentTypeId + "/" + id);
+        Log.d(TAG, "---------" + type + "/" + currentTypeId + "/" + id);
         mBeanList.clear();
         if (id == -1) {
             mBeanList.addAll(mAllBeanList);
@@ -227,10 +227,10 @@ public class ProjectLogFragment extends BaseFragment implements OnRefreshListene
         if (eventTag == ApiConstants.EventTags.trends_project) {
             map.put("project_id", "" + project_id);//项目名称
             map.put("type", "-1");
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
+            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.trends_project, map);
         } else if (eventTag == ApiConstants.EventTags.project_tasks) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
+            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.project_tasks, map);
         }
     }
@@ -238,7 +238,7 @@ public class ProjectLogFragment extends BaseFragment implements OnRefreshListene
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
+        Log.i(TAG, "------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.trends_project) {
@@ -257,7 +257,7 @@ public class ProjectLogFragment extends BaseFragment implements OnRefreshListene
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
+        Log.i(TAG, "------------" + eventTag + "/" + msg);
         mRefreshLayout.finishLoadMore();
         mRefreshLayout.finishRefresh();
     }

@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.log.Logcat;
@@ -92,7 +93,7 @@ public class TodatCacheDataSource implements LoaderManager.LoaderCallbacks<Curso
         imageFolders.clear();
         mLoadedCount = data.getCount();
         ArrayList<ImageItem> allImages = new ArrayList<>();   //所有图片的集合,不分文件夹
-        Logcat.d("--------------"+ JSON.toJSONString(data));
+        Log.d(TodatCacheDataSource.class.getSimpleName(), "---"+ JSON.toJSONString(data));
         while (data.moveToNext()) {
             //查询数据
             String imageName = data.getString(data.getColumnIndexOrThrow(IMAGE_PROJECTION[0]));

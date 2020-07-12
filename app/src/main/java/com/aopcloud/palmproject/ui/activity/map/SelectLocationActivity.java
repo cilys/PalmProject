@@ -176,7 +176,7 @@ public class SelectLocationActivity extends BaseActivity implements LocationSour
                 mAMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
 
                 mAMap.clear();
-                Logcat.i(poiItem.getPoiId() + poiItem.getAdName());
+                Log.i(TAG, poiItem.getPoiId() + poiItem.getAdName());
                 MarkerOptions markOptiopns = new MarkerOptions();
                 markOptiopns.position(latLng);
                 TextView textView = new TextView(getApplicationContext());
@@ -299,10 +299,10 @@ public class SelectLocationActivity extends BaseActivity implements LocationSour
                 latitude = amapLocation.getLatitude();
                 address = mAMapLocation.getAddress();
                 doSearchPOI();
-                Logcat.i("onLocationChanged:" + JSON.toJSONString(amapLocation));
+                Log.i(TAG, "onLocationChanged:" + JSON.toJSONString(amapLocation));
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
-                Logcat.e("AmapErr", errText);
+                Log.e(TAG, errText);
             }
         }
     }
@@ -391,7 +391,7 @@ public class SelectLocationActivity extends BaseActivity implements LocationSour
 
     @Override
     public void onPoiSearched(PoiResult result, int rCode) {
-        Logcat.i("onPoiSearched:" + JSON.toJSONString(result));
+        Log.i(TAG, "onPoiSearched:" + JSON.toJSONString(result));
         if (rCode == AMapException.CODE_AMAP_SUCCESS) {
             if (result != null && result.getQuery() != null) {// 搜索poi的结果
                 if (result.getQuery().equals(mPoiSearchQuery)) {// 是否是同一条
@@ -407,7 +407,7 @@ public class SelectLocationActivity extends BaseActivity implements LocationSour
 
     @Override
     public void onPoiItemSearched(PoiItem poiItem, int i) {
-        Logcat.i("onPoiItemSearched:" + JSON.toJSONString(poiItem));
+        Log.i(TAG, "onPoiItemSearched:" + JSON.toJSONString(poiItem));
     }
 
     @Override

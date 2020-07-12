@@ -5,19 +5,12 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.GridView;
 
-import com.alibaba.fastjson.JSON;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
-import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectSceneBean;
-import com.aopcloud.palmproject.view.MyGridView;
 import com.aopcloud.palmproject.view.decoration.DividerItemDecoration;
-import com.aopcloud.palmproject.view.decoration.HorizontalDividerItemDecoration;
-import com.aopcloud.palmproject.view.decoration.VerticalDividerItemDecoration;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -60,7 +53,6 @@ public class ProjectScenesAdapter extends BaseQuickAdapter<ProjectSceneBean.Scen
                 list.add(BuildConfig.BASE_URL + url[i]);
             }
         }
-        Logcat.i("-------" + JSON.toJSONString(list));
         helper.setText(R.id.tv_name, "" + item.getTask_name())
                 .setText(R.id.tv_count, "" + list.size())
                 .setText(R.id.tv_time, "" + dateFormat.format(date))
@@ -84,9 +76,6 @@ public class ProjectScenesAdapter extends BaseQuickAdapter<ProjectSceneBean.Scen
             }
         });
     }
-
-
-
 
     public interface OnItemFileClickListener{
        void onItemClick(BaseQuickAdapter adapter, View view, int position);

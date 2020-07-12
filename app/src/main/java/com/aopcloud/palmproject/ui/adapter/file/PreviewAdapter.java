@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.support.v4.view.PagerAdapter;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.alibaba.fastjson.JSON;
-import com.aopcloud.base.log.Logcat;
-import com.aopcloud.base.util.ImageLoader;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.loader.AppImageLoader;
@@ -24,8 +22,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import butterknife.internal.Utils;
 
 /**
  * @PackageName : com.aopcloud.palmproject.ui.adapter.file
@@ -60,7 +56,7 @@ public class PreviewAdapter extends PagerAdapter {
         if (!v) {
             imageView.setVisibility(View.VISIBLE);
             mVideoPlayer.setVisibility(View.GONE);
-            Logcat.i("=======" + BuildConfig.BASE_URL + mPreviewBeans.get(position).getUrl());
+            Log.i(PreviewAdapter.class.getSimpleName(), "=======" + BuildConfig.BASE_URL + mPreviewBeans.get(position).getUrl());
             AppImageLoader.load(mActivity,  mPreviewBeans.get(position).getUrl(), imageView);
         } else {
             imageView.setVisibility(View.GONE);

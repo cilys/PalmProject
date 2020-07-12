@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,7 +29,6 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.Conf;
@@ -248,8 +248,8 @@ public class TaskLocationAdjustActivity extends BaseActivity implements
             entities.remove(position);
             mMediaEntities.clear();
             mMediaEntities.addAll(entities);
-            Logcat.w("-1--" + JSON.toJSONString(entities));
-            Logcat.d("--2-" + JSON.toJSONString(mMediaEntities));
+            Log.w(TAG, "-1--" + JSON.toJSONString(entities));
+            Log.d(TAG, "--2-" + JSON.toJSONString(mMediaEntities));
             mFileListAdapter.notifyDataSetChanged();
         }
     }
@@ -325,11 +325,11 @@ public class TaskLocationAdjustActivity extends BaseActivity implements
 
                 LatLng latLng = new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude());//构造一个位置
                 mAMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
-                Logcat.i("onLocationChanged:" + JSON.toJSONString(amapLocation));
+                Log.i(TAG, "onLocationChanged:" + JSON.toJSONString(amapLocation));
                 mLocationClient.startLocation();
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
-                Logcat.e("AmapErr", errText);
+                Log.w(TAG, "AmapErr：" + errText);
             }
         }
     }
@@ -393,7 +393,7 @@ public class TaskLocationAdjustActivity extends BaseActivity implements
             map.put("longitude", "" + longitude);
             map.put("latitude", "" + latitude);
 //            map.put("longitude", "" + longitude);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
+            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.trajectory_add, map);
         }
     }
@@ -401,7 +401,7 @@ public class TaskLocationAdjustActivity extends BaseActivity implements
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
+        Log.i(TAG, "------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.trajectory_add) {
@@ -416,7 +416,7 @@ public class TaskLocationAdjustActivity extends BaseActivity implements
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
+        Log.i(TAG, "------------" + eventTag + "/" + msg);
         ToastUtil.showToast("网络错误");
     }
 
@@ -425,7 +425,7 @@ public class TaskLocationAdjustActivity extends BaseActivity implements
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 2) {
             List<MediaEntity> result = Phoenix.result(data);
-            Logcat.i("------------" + JSON.toJSONString(result));
+            Log.i(TAG, "------------" + JSON.toJSONString(result));
             mMediaEntities.clear();
             if (result != null) {
                 mMediaEntities.addAll(result);
@@ -440,7 +440,7 @@ public class TaskLocationAdjustActivity extends BaseActivity implements
             if (bundle != null) {
                 longitude = bundle.getDouble("longitude");
                 latitude = bundle.getDouble("latitude");
-                Logcat.i("------------" + latitude + "/" + longitude);
+                Log.i(TAG, "------------" + latitude + "/" + longitude);
                 LatLng latLng = new LatLng(latitude, longitude);//构造一个位置
                 mAMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, Conf.MAP_ZOOM_LEVEL));
                 if (mLocationClient != null) {
@@ -462,7 +462,7 @@ public class TaskLocationAdjustActivity extends BaseActivity implements
                 result.remove(entity);
                 uploadFile(result);
             } else {
-                Logcat.i("------------" + getPictureSuffix(entity.getLocalPath()));
+                Log.i(TAG, "------------" + getPictureSuffix(entity.getLocalPath()));
                 OkHttpUtils.post().url(ApiConstants.file_upload)
                         .addParams("token", "" + LoginUserUtil.getToken(this))
                         .addFile("file", getPictureSuffix(entity.getLocalPath()), new File(entity.getLocalPath()))
@@ -471,14 +471,14 @@ public class TaskLocationAdjustActivity extends BaseActivity implements
                             @Override
                             public void onError(Call call, Exception e, int id) {
                                 dismissPopupLoading();
-                                Logcat.w("add live video exception :" + e + "/");
+                                Log.w(TAG, "add live video exception :" + e + "/");
                                 ToastUtil.showToast("文件上传失败，请重试");
                             }
 
                             @Override
                             public void onResponse(String response, int id) {
                                 dismissPopupLoading();
-                                Logcat.i("add Serices Course  response :" + response);
+                                Log.i(TAG, "add Serices Course  response :" + response);
                                 ResultBean bean = JSON.parseObject(response, ResultBean.class);
                                 if (bean != null && bean.getCode() == 0) {
                                     if (TextUtils.isEmpty(attach)) {
@@ -495,7 +495,7 @@ public class TaskLocationAdjustActivity extends BaseActivity implements
                         });
             }
         } else {
-            Logcat.i("-------" + attach);
+            Log.i(TAG, "-------" + attach);
             toRequest(ApiConstants.EventTags.trajectory_add);
         }
     }

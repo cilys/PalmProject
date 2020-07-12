@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -314,7 +315,6 @@ public class TaskExecuteFragment extends BaseFragment implements
      */
 
     private void setBottomView(int i) {
-        Logcat.i("----------" + i);
         if (i == 0) {
             mLlAttendance.setVisibility(View.GONE);
             mTvSign.setVisibility(View.GONE);
@@ -332,9 +332,6 @@ public class TaskExecuteFragment extends BaseFragment implements
 
 
     private void setAttendanceView(List<DashboardAttendanceBean> beanList) {
-
-        Logcat.i("--------setAttendanceView-----------" + JSON.toJSONString(beanList));
-
         if (ListUtil.isEmpty(beanList)) {
             setBottomView(1);
         }
@@ -578,7 +575,6 @@ public class TaskExecuteFragment extends BaseFragment implements
         map.put("task_id", "" + task_id);
 
         if (eventTag == ApiConstants.EventTags.task_get) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.task_get, map);
         } else if (eventTag == ApiConstants.EventTags.attendance_all) {
             map.put("project_id", "" + project_id);
@@ -586,18 +582,15 @@ public class TaskExecuteFragment extends BaseFragment implements
             map.put("end_time", "" + getEndTime(Calendar.getInstance()));
             map.put("page", "" + 1);
             map.put("page_size", "" + 1000);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.attendance_all, map);
         } else if (eventTag == ApiConstants.EventTags.trajectory_all) {
             map.put("start_time", "" + getStartTime(Calendar.getInstance()));
             map.put("end_time", "" + getEndTime(Calendar.getInstance()));
             map.put("page", "" + 1);
             map.put("page_size", "" + 10);
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.trajectory_all, map);
         } else if (eventTag == ApiConstants.EventTags.attendance_status) {
             map.put("status", pause ? "1" : "2");
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.attendance_status, map);
         }
     }
@@ -605,7 +598,6 @@ public class TaskExecuteFragment extends BaseFragment implements
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.task_get) {
@@ -634,7 +626,6 @@ public class TaskExecuteFragment extends BaseFragment implements
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
 
@@ -740,7 +731,7 @@ public class TaskExecuteFragment extends BaseFragment implements
 //                Logcat.i("onLocationChanged:" + JSON.toJSONString(amapLocation));
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
-                Logcat.e("AmapErr", errText);
+                Log.e(TAG, errText);
             }
         }
     }
@@ -806,7 +797,7 @@ public class TaskExecuteFragment extends BaseFragment implements
         }
         if (requestCode == 3) {
             Bundle bundle = data.getExtras();
-            Logcat.i("--------" + JSON.toJSONString(bundle.toString()));
+            Log.i(TAG, "--------" + JSON.toJSONString(bundle.toString()));
         }
     }
 }

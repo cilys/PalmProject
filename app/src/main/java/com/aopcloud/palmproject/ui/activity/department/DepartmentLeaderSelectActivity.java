@@ -149,7 +149,6 @@ public class DepartmentLeaderSelectActivity extends BaseActivity implements Depa
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         if (eventTag == ApiConstants.EventTags.company_usermange) {
             map.put("status","1");//(可选)用户状态，-1:所有，0:审核中，1:正常，2:已拒绝，3:已离职，默认：-1
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.company_usermange, map);
         }
     }
@@ -157,7 +156,6 @@ public class DepartmentLeaderSelectActivity extends BaseActivity implements Depa
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -174,6 +172,5 @@ public class DepartmentLeaderSelectActivity extends BaseActivity implements Depa
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 }

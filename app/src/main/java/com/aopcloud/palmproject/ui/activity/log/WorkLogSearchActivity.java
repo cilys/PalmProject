@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
@@ -106,7 +107,7 @@ public class WorkLogSearchActivity extends BaseActivity implements TextView.OnEd
 
     @Override
     public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-        Logcat.i("搜索内容：" + v.getText().toString());
+        Log.i(TAG, "搜索内容：" + v.getText().toString());
         String keyWord = v.getText().toString();
         if (TextUtils.isEmpty(keyWord)) {
             ToastUtil.showToast("请输入搜索内容");
@@ -175,6 +176,5 @@ public class WorkLogSearchActivity extends BaseActivity implements TextView.OnEd
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 }

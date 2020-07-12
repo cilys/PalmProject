@@ -11,6 +11,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -20,7 +21,6 @@ import com.aopcloud.base.common.AppManager;
 import com.aopcloud.base.common.BaseEvent;
 import com.aopcloud.base.common.ICommonViewUi;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.presenter.ICommonRequestPresenter;
 import com.aopcloud.base.presenter.impl.CommonRequestPresenterImpl;
 import com.aopcloud.base.util.KeyboardUtil;
@@ -61,6 +61,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseQuic
     protected Unbinder unbinder;
     protected ICommonRequestPresenter iCommonRequestPresenter;
 
+    protected String TAG = getClass().getSimpleName();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         init();
@@ -89,7 +91,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseQuic
             layoutResId = setLayoutId();
         }
         if (layoutResId == -1) {
-            Logcat.i(ResourceUtil.getString(R.string.base_exception_layout_null));
+            Log.i(TAG, ResourceUtil.getString(R.string.base_exception_layout_null));
         }
     }
 

@@ -1,10 +1,9 @@
 package com.aopcloud.palmproject.ui.adapter.staff;
 
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
+import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.loader.AppImageLoader;
@@ -38,7 +37,7 @@ public class StaffTrendAdapter extends BaseQuickAdapter<Object, BaseViewHolder> 
     @Override
     protected void convert(BaseViewHolder helper, Object item) {
         String json = JSON.toJSONString(item);
-        Logcat.d("---------"+json);
+        Log.d(TAG, "---------"+json);
         TrendsBean trendsBean =JSON.parseObject(json,TrendsBean.class);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");

@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
@@ -36,7 +37,6 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.aopcloud.base.base.BaseFragment;
 import com.aopcloud.base.common.BaseEvent;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.Conf;
@@ -590,8 +590,8 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        Logcat.i("---------" + marker.getSnippet());
-        Logcat.i("---------" + marker.getId());
+        Log.i(TAG, "---------" + marker.getSnippet());
+        Log.i(TAG, "---------" + marker.getId());
 
         for (int i = 0; i < mTaskBeans.size(); i++) {
             if (mTaskBeans.get(i).getTask_id() == marker.getPeriod()) {
@@ -625,7 +625,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
 //                Logcat.i("onLocationChanged:" + JSON.toJSONString(amapLocation));
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
-                Logcat.e("AmapErr", errText);
+                Log.e("AmapErr", errText);
                 if (amapLocation.getErrorCode() == 12) {
                     ToastUtil.showToast("请开启定位权限");
                 }

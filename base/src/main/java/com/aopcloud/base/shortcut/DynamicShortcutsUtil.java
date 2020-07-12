@@ -10,7 +10,6 @@ import android.support.annotation.DrawableRes;
 
 import com.aopcloud.base.common.AppException;
 import com.aopcloud.base.common.AppHelper;
-import com.aopcloud.base.log.Logcat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,7 +44,6 @@ public class DynamicShortcutsUtil {
     }
 
     private void init() {
-        Logcat.i("init DynamicShortcuts");
         mContext = AppHelper.getInstance().getContext();
         if (mContext == null) {
             throw new AppException("context is null,please init AppHelper . ");

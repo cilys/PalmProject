@@ -2,29 +2,23 @@ package com.aopcloud.palmproject.ui.activity.project;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
@@ -750,7 +744,7 @@ public class ProjectTaskDetailActivity extends BaseActivity {
                         try {
                             Date startDate = format.parse(startTime);
                             Date endDate = format.parse(endTime);
-                            Logcat.d("" + startTime + "/" + endTime);
+                            Log.d(TAG, "" + startTime + "/" + endTime);
                             long betweenDays = ((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
                             mTvUpdateDays.setText("" + betweenDays);
                         } catch (ParseException e) {
@@ -810,7 +804,7 @@ public class ProjectTaskDetailActivity extends BaseActivity {
                 .setOnItemSelectListener(new PopContextMenu.OnItemSelectListener() {
                     @Override
                     public void onItemSelect(int position) {
-                        Logcat.i("点击了菜单：" + menuItems.get(position));
+                        Log.i(TAG, "点击了菜单：" + menuItems.get(position));
                         mapMenuClicked(menuItems.get(position));
                     }
                 });
@@ -818,7 +812,7 @@ public class ProjectTaskDetailActivity extends BaseActivity {
     }
 
     private void mapMenuClicked(PopMenuBean yogaMenuBean) {
-        Logcat.i("latitude:" + mTaskDetailBean.getLatitude() + " longitude :" + mTaskDetailBean.getLongitue());
+        Log.i(TAG, "latitude:" + mTaskDetailBean.getLatitude() + " longitude :" + mTaskDetailBean.getLongitue());
         switch (yogaMenuBean.getText()) {
             case "高德地图":
                 LbsUtil.openAmap(this, mTaskDetailBean.getLatitude(), mTaskDetailBean.getLongitue(), mTaskDetailBean.getAddress());

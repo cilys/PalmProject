@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,11 +14,6 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
-import com.amap.api.maps.AMap;
-import com.amap.api.maps.LocationSource;
-import com.amap.api.maps.UiSettings;
-import com.amap.api.maps.model.LatLng;
-import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.services.core.AMapException;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
@@ -25,12 +21,9 @@ import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.ui.activity.map.adapter.SelectLocationConfirmAdapter;
-import com.aopcloud.palmproject.ui.activity.map.adapter.SelectLocationSearchAdapter;
-import com.aopcloud.palmproject.ui.activity.map.bean.LocationRangeBean;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -38,7 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -167,10 +159,10 @@ public class MapLocationConfirmActivity extends BaseActivity
                 latitude = amapLocation.getLatitude();
                 address = amapLocation.getAddress();
                 doSearchPOI();
-                Logcat.i("onLocationChanged:" + JSON.toJSONString(amapLocation));
+                Log.i(TAG, "onLocationChanged:" + JSON.toJSONString(amapLocation));
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
-                Logcat.e("AmapErr", errText);
+                Log.e(TAG, errText);
             }
         }
     }
@@ -197,7 +189,7 @@ public class MapLocationConfirmActivity extends BaseActivity
 
     @Override
     public void onPoiSearched(PoiResult result, int rCode) {
-        Logcat.i("onPoiSearched:" + JSON.toJSONString(result));
+        Log.i(TAG, "onPoiSearched:" + JSON.toJSONString(result));
         if (rCode == AMapException.CODE_AMAP_SUCCESS) {
             if (result != null && result.getQuery() != null) {// 搜索poi的结果
                 if (result.getQuery().equals(mPoiSearchQuery)) {// 是否是同一条
@@ -213,7 +205,7 @@ public class MapLocationConfirmActivity extends BaseActivity
 
     @Override
     public void onPoiItemSearched(PoiItem poiItem, int i) {
-        Logcat.i("onPoiItemSearched:" + JSON.toJSONString(poiItem));
+        Log.i(TAG, "onPoiItemSearched:" + JSON.toJSONString(poiItem));
     }
 
     @Override

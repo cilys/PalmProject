@@ -1,9 +1,8 @@
 package com.aopcloud.palmproject.utils;
 
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.widget.TextView;
-
-import com.aopcloud.base.log.Logcat;
 
 /**
  * @PackageName : com.aopcloud.basic.utils
@@ -19,6 +18,8 @@ public class CountDownUtil {
     private int runTime = time;
     private CountDownTimer mCountDownTimer;
     private TextView btnSure;
+
+    protected String TAG = getClass().getSimpleName();
 
 
     public CountDownUtil(TextView btnSure) {
@@ -49,7 +50,7 @@ public class CountDownUtil {
         mCountDownTimer = new CountDownTimer(time * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                Logcat.i("-----------" + millisUntilFinished);
+                Log.i(TAG, "-----------" + millisUntilFinished);
                 runTime--;
                 btnSure.setEnabled(false);
                 btnSure.setText("重获验证码(" + runTime + ")");
@@ -70,7 +71,7 @@ public class CountDownUtil {
         mCountDownTimer = new CountDownTimer(time * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                Logcat.d("-----------" + millisUntilFinished);
+                Log.d(TAG, "-----------" + millisUntilFinished);
                 runTime--;
                 btnSure.setEnabled(false);
                 btnSure.setText("" + runTime + "s后再发送");

@@ -4,7 +4,6 @@ import android.support.annotation.Nullable;
 
 import com.amap.api.maps.AMapUtils;
 import com.amap.api.maps.model.LatLng;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
@@ -56,7 +55,6 @@ public class HomeTaskAdapter extends BaseQuickAdapter<ProjectTaskBean, BaseViewH
 
         long betweenDays = ((eDate.getTime() - current.getTime()) / (1000 * 60 * 60 * 24));
 
-        Logcat.i("--------"+betweenDays);
         String days = "";
 
         if (betweenDays > 0) {
