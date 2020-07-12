@@ -2,6 +2,7 @@ package com.aopcloud.palmproject.ui.activity.task.list;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -15,9 +16,12 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.api.ApiConstants;
+import com.aopcloud.palmproject.ui.activity.project.ProjectTaskEditActivity;
 import com.aopcloud.palmproject.ui.adapter.feagment.AppFragmentPagerAdapter;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
 import com.cily.utils.base.StrUtils;
@@ -30,15 +34,27 @@ import java.util.List;
 public class TaskListAc extends BaseActivity {
     private List<Fragment> fgs;
     private TextView tv_title;
+    private RadioButton[] rbts;
+    private String type, state;
 
     @Override
     protected void initView() {
-        String type = getIntent().getStringExtra("type");
-        String state = getIntent().getStringExtra("state");
+        type = getIntent().getStringExtra("type");
+        state = getIntent().getStringExtra("state");
         if (StrUtils.isEmpty(type)) {
             type = "2";
         }
         tv_title = (TextView)findViewById(R.id.tv_header_title);
+        TextView tv_title_left = (TextView)findViewById(R.id.tv_header_left);
+        TextView tv_header_right = (TextView)findViewById(R.id.tv_header_right);
+        tv_header_right.setText("重要情况");
+        findViewById(R.id.ll_header_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         if ("3".equals(type)){
             tv_title.setText("我参与的∨");
         } else if ("1".equals(type)){
@@ -46,21 +62,70 @@ public class TaskListAc extends BaseActivity {
         } else {
             tv_title.setText("派给我的∨");
         }
+        if (StrUtils.isEmpty(state)){
+            state = HomeTaskFragment.STATE_UNDO;
+        }
+
+        final RadioButton rbt_all = (RadioButton)findViewById(R.id.rbt_all);
+        final RadioButton rbt_progress = (RadioButton)findViewById(R.id.rbt_progress);
+        final RadioButton rbt_complete = (RadioButton)findViewById(R.id.rbt_complete);
+        final RadioButton rbt_no_start = (RadioButton)findViewById(R.id.rbt_no_start);
+        final RadioButton rbt_cancel = (RadioButton)findViewById(R.id.rbt_cancel);
+        final RadioButton rbt_pause = (RadioButton)findViewById(R.id.rbt_pause);
+
+        rbts = new RadioButton[]{rbt_all, rbt_progress, rbt_complete, rbt_no_start, rbt_cancel, rbt_pause};
 
         NoScrollViewPager noVp = (NoScrollViewPager)findViewById(R.id.noVp);
-        String[] states = {
-                HomeTaskFragment.STATE_all,
-                HomeTaskFragment.STATE_progress,
-                HomeTaskFragment.STATE_expect,
-                HomeTaskFragment.STATE_complete,
-                HomeTaskFragment.STATE_no_start,
-                HomeTaskFragment.STATE_cancel,
-                HomeTaskFragment.STATE_pause,
-                HomeTaskFragment.STATE_operation
-        };
+        String[] states = null;
+        if (HomeTaskFragment.STATE_DONE.equals(state)){
+            states = new String[3];
+            states[0] = HomeTaskFragment.STATE_all;
+            states[1] = HomeTaskFragment.STATE_DONE_IN_TIME;
+            states[2] = HomeTaskFragment.STATE_DONE_OUT_OF_TIME;
 
-        int defaultItem = 0;
+            rbts[0].setText(states[0]);
+            rbts[1].setText(states[1]);
+            rbts[2].setText(states[2]);
 
+            rbts[3].setVisibility(View.GONE);
+            rbts[4].setVisibility(View.GONE);
+            rbts[5].setVisibility(View.GONE);
+
+            tv_title_left.setText("已完成");
+        } else if (HomeTaskFragment.STATE_OUT_OF_TIME.equals(state)){
+            states = new String[6];
+            states[0] = HomeTaskFragment.STATE_all;
+            states[1] = HomeTaskFragment.STATE_no_start;
+            states[2] = HomeTaskFragment.STATE_progress;
+            states[3] = HomeTaskFragment.STATE_operation;
+            states[4] = HomeTaskFragment.STATE_pause;
+            states[5] = HomeTaskFragment.STATE_complete;
+
+            rbts[0].setText(states[0]);
+            rbts[1].setText(states[1]);
+            rbts[2].setText(states[2]);
+            rbts[3].setText(states[3]);
+            rbts[4].setText(states[4]);
+            rbts[5].setText(states[5]);
+
+            tv_title_left.setText("已逾期");
+        } else {
+            states = new String[5];
+            states[0] = HomeTaskFragment.STATE_all;
+            states[1] = HomeTaskFragment.STATE_no_start;
+            states[2] = HomeTaskFragment.STATE_progress;
+            states[3] = HomeTaskFragment.STATE_operation;
+            states[4] = HomeTaskFragment.STATE_pause;
+
+            rbts[0].setText(states[0]);
+            rbts[1].setText(states[1]);
+            rbts[2].setText(states[2]);
+            rbts[3].setText(states[3]);
+            rbts[4].setText(states[4]);
+            rbts[5].setVisibility(View.GONE);
+
+            tv_title_left.setText("未完成");
+        }
 
         fgs = new ArrayList<>();
         for (int i = 0; i < states.length; i++) {
@@ -68,57 +133,24 @@ public class TaskListAc extends BaseActivity {
             Bundle bundle = new Bundle();
             bundle.putString("state", states[i]);
             bundle.putString("type", type);
+            bundle.putString("STATE_BIG", state);   //大类，已完成、未完成、已逾期
             fg.setArguments(bundle);
             fgs.add(fg);
-
-            if (states[i].equals(state)){
-                defaultItem = i;
-            }
         }
 
         tv_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showMenu(tv_title);
+//                showMenu(tv_title);
+                showMenuDialog();
             }
         });
 
         final HorizontalScrollView hsv = (HorizontalScrollView)findViewById(R.id.hsv);
 
-        final RadioButton rbt_all = (RadioButton)findViewById(R.id.rbt_all);
-        final RadioButton rbt_progress = (RadioButton)findViewById(R.id.rbt_progress);
-        final RadioButton rbt_expect = (RadioButton)findViewById(R.id.rbt_expect);
-        final RadioButton rbt_complete = (RadioButton)findViewById(R.id.rbt_complete);
-        final RadioButton rbt_no_start = (RadioButton)findViewById(R.id.rbt_no_start);
-        final RadioButton rbt_cancel = (RadioButton)findViewById(R.id.rbt_cancel);
-        final RadioButton rbt_pause = (RadioButton)findViewById(R.id.rbt_pause);
-        final RadioButton rbt_operation = (RadioButton)findViewById(R.id.rbt_operation);
-
         AppFragmentPagerAdapter adapter = new AppFragmentPagerAdapter(getSupportFragmentManager(), fgs, null);
         noVp.setAdapter(adapter);
-        noVp.setCurrentItem(defaultItem);
-        if (defaultItem == 1) {
-            rbt_progress.setChecked(true);
-        } else if (defaultItem == 2){
-            rbt_expect.setChecked(true);
-        } else if (defaultItem == 3){
-            rbt_complete.setChecked(true);
-        } else if (defaultItem == 4){
-            rbt_no_start.setChecked(true);
-        } else if (defaultItem == 5){
-            rbt_cancel.setChecked(true);
-        } else if (defaultItem == 6){
-            rbt_pause.setChecked(true);
-        } else if (defaultItem == 7){
-            rbt_operation.setChecked(true);
-        } else {
-            rbt_all.setChecked(true);
-        }
-        if (defaultItem == 5){
-            hsv.smoothScrollTo(3000, 0);
-        } else if (defaultItem == 2){
-            hsv.smoothScrollTo(-50, 0);
-        }
+        noVp.setCurrentItem(0);
 
         noVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -128,24 +160,9 @@ public class TaskListAc extends BaseActivity {
 
             @Override
             public void onPageSelected(int i) {
-                if (i == 1) {
-                    rbt_progress.setChecked(true);
-                } else if (i == 2){
-                    rbt_expect.setChecked(true);
-                } else if (i == 3){
-                    rbt_complete.setChecked(true);
-                } else if (i == 4){
-                    rbt_no_start.setChecked(true);
-                } else if (i == 5){
-                    rbt_cancel.setChecked(true);
-                } else if (i == 6){
-                    rbt_pause.setChecked(true);
-                } else if (i == 7){
-                    rbt_operation.setChecked(true);
-                } else {
-                    rbt_all.setChecked(true);
-                }
-                if (i == 5){
+                rbts[i].setChecked(true);
+
+                if (i == 4){
                     hsv.smoothScrollTo(3000, 0);
                 } else if (i == 2){
                     hsv.smoothScrollTo(-50, 0);
@@ -164,19 +181,15 @@ public class TaskListAc extends BaseActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.rbt_progress){
                     noVp.setCurrentItem(1);
-                } else if (i == R.id.rbt_expect){
+                }  else if (i == R.id.rbt_complete){
                     noVp.setCurrentItem(2);
-                } else if (i == R.id.rbt_complete){
-                    noVp.setCurrentItem(3);
                 } else if (i == R.id.rbt_no_start){
-                    noVp.setCurrentItem(4);
+                    noVp.setCurrentItem(3);
                 } else if (i == R.id.rbt_cancel){
-                    noVp.setCurrentItem(5);
+                    noVp.setCurrentItem(4);
                 } else if (i == R.id.rbt_pause){
-                    noVp.setCurrentItem(6);
-                } else if (i == R.id.rbt_operation){
-                    noVp.setCurrentItem(7);
-                } else {
+                    noVp.setCurrentItem(5);
+                }  else {
                     noVp.setCurrentItem(0);
                 }
             }
@@ -236,5 +249,87 @@ public class TaskListAc extends BaseActivity {
 
     private void showToast(CharSequence str){
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
+
+    public void showMenuDialog() {
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        dialog.setContentView(R.layout.dialog_project_task_right_menu);
+        dialog.getWindow().findViewById(R.id.design_bottom_sheet).setBackgroundResource(android.R.color.transparent);
+        dialog.show();
+
+        TextView title = dialog.findViewById(R.id.tv_title);
+        title.setVisibility(View.GONE);
+
+        TextView tv_copy = (TextView) dialog.findViewById(R.id.tv_copy);
+        tv_copy.setText("派给我的");
+        tv_copy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+//                if ("2".equals(type)){
+//                    return;
+//                }
+
+                tv_title.setText("派给我的 ∨");
+                changeFragmentType("2");
+
+//                Bundle b = new Bundle();
+//                b.putString("type", "2");
+//                b.putString("state", state);
+//                gotoActivity(TaskListAc.class, b);
+//                finish();
+            }
+        });
+        TextView tv_edit = dialog.findViewById(R.id.tv_edit);
+        tv_edit.setText("我参与的");
+        tv_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+//                if ("3".equals(type)){
+//                    return;
+//                }
+
+                tv_title.setText("我参与的 ∨");
+                changeFragmentType("3");
+//
+//                dialog.dismiss();
+//
+//                Bundle b = new Bundle();
+//                b.putString("type", "3");
+//                b.putString("state", state);
+//                gotoActivity(TaskListAc.class, b);
+//                finish();
+            }
+        });
+
+        TextView tv_del = dialog.findViewById(R.id.tv_del);
+        tv_del.setText("我发起的");
+        tv_del.setTextColor(0xFF41484D);
+        tv_del.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+//                if ("1".equals(type)){
+//                    return;
+//                }
+
+                tv_title.setText("我发起的 ∨");
+                changeFragmentType("1");
+
+//
+//                Bundle b = new Bundle();
+//                b.putString("type", "1");
+//                b.putString("state", state);
+//                gotoActivity(TaskListAc.class, b);
+//                finish();
+            }
+        });
+        dialog.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 }

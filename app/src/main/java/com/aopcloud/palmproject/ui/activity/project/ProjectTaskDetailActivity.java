@@ -148,7 +148,6 @@ public class ProjectTaskDetailActivity extends BaseActivity {
     @BindView(R.id.rv_list_img)
     RecyclerView mRvImgList;
 
-
     private String task_id;
     private String project_id;
     private ProjectTaskDetailBean mTaskDetailBean;
@@ -180,7 +179,7 @@ public class ProjectTaskDetailActivity extends BaseActivity {
 
 
     private void setViewData() {
-        if (mTaskDetailBean==null){
+        if (mTaskDetailBean == null) {
             return;
         }
 
@@ -221,7 +220,6 @@ public class ProjectTaskDetailActivity extends BaseActivity {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("PreviewBean", (Serializable) urls);
                 gotoActivity(PreviewActivity.class, bundle);
-
             }
         });
 
@@ -290,26 +288,25 @@ public class ProjectTaskDetailActivity extends BaseActivity {
             mTrendsBeans.addAll(mTaskDetailBean.getTrends());
             mTrendsAdapter.notifyDataSetChanged();
         }
-
-
     }
-    private int getStateColor(String status){
+
+    private int getStateColor(String status) {
 
         int color = ResourceUtil.getColor("#FFF4A304");
-        if (status.equals("未开始")){
+        if (status.equals("未开始")) {
             color = ResourceUtil.getColor("#FFF4A304");
-        }else  if (status.equals("进行中")){
+        } else if (status.equals("进行中")) {
             color = ResourceUtil.getColor("#FF3291F8");
-        }else  if (status.equals("作业中")){
+        } else if (status.equals("作业中")) {
             color = ResourceUtil.getColor("#FFB90BB9");
-        }else  if (status.equals("进行中")){
+        } else if (status.equals("进行中")) {
             color = ResourceUtil.getColor("#FFF4A304");
-        }else  if (status.equals("已逾期")||status.equals("已超期")){
+        } else if (status.equals("已逾期") || status.equals("已超期")) {
             color = ResourceUtil.getColor("#FFF90C0C");
-        }else  if (status.equals("已完成")){
+        } else if (status.equals("已完成")) {
             color = ResourceUtil.getColor("#FF6F6D6D");
         }
-        return  color;
+        return color;
     }
 
     @OnClick({R.id.ll_header_back, R.id.ll_header_right, R.id.iv_team_scene, R.id.tv_scene, R.id.tv_discuss,
@@ -336,7 +333,7 @@ public class ProjectTaskDetailActivity extends BaseActivity {
                 } else {
                     bundle.putString("task_name", "");
                 }
-                bundle.putString("team_id",mTaskDetailBean.getTeam_id() + "");
+                bundle.putString("team_id", mTaskDetailBean.getTeam_id() + "");
                 gotoActivity(TaskDetailActivity.class, bundle, 0);
                 break;
             case R.id.tv_discuss:
@@ -348,9 +345,9 @@ public class ProjectTaskDetailActivity extends BaseActivity {
                 showEditTimeDialog();
                 break;
             case R.id.tv_assign:
-                if (mTaskDetailBean.getTeam_id() == 0 &&TextUtils.isEmpty(mTaskDetailBean.getTeam_name())) {
+                if (mTaskDetailBean.getTeam_id() == 0 && TextUtils.isEmpty(mTaskDetailBean.getTeam_name())) {
                     showAssignTaskDialog();
-                }else {
+                } else {
                     bundle = new Bundle();
                     bundle.putString("bean", JSON.toJSONString(mTaskDetailBean));
                     gotoActivity(ProjectTaskUpdateTeamActivity.class, bundle, 0);
@@ -424,7 +421,6 @@ public class ProjectTaskDetailActivity extends BaseActivity {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -509,7 +505,6 @@ public class ProjectTaskDetailActivity extends BaseActivity {
         });
     }
 
-
     private TextView mTvUpdateStartTime;
     private TextView mTvUpdateEndTime;
     private TextView mTvUpdateDays;
@@ -532,7 +527,6 @@ public class ProjectTaskDetailActivity extends BaseActivity {
 
         mTvUpdateStartTime.setText(mTaskDetailBean.getStart_date());
         mTvUpdateEndTime.setText(mTaskDetailBean.getEnd_date());
-
 
         String startTime = mTaskDetailBean.getStart_date();
         String endTime = mTaskDetailBean.getEnd_date();
@@ -585,7 +579,6 @@ public class ProjectTaskDetailActivity extends BaseActivity {
                 dialog.dismiss();
             }
         });
-
     }
 
     public void showMenuDialog() {
@@ -618,7 +611,6 @@ public class ProjectTaskDetailActivity extends BaseActivity {
             }
         });
 
-
         dialog.findViewById(R.id.tv_del).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -632,7 +624,6 @@ public class ProjectTaskDetailActivity extends BaseActivity {
                 dialog.dismiss();
             }
         });
-
     }
 
 
@@ -795,11 +786,10 @@ public class ProjectTaskDetailActivity extends BaseActivity {
         }
         if (requestCode == 2) {
             Bundle bundle = data.getExtras();
-            String  assignLongitude = bundle.getString("longitude");
-            String  assignLatitude = bundle.getString("latitude");
+            String assignLongitude = bundle.getString("longitude");
+            String assignLatitude = bundle.getString("latitude");
             String assignAddress = bundle.getString("address");
             String assignRange = bundle.getString("range");
-
         }
     }
 
@@ -850,5 +840,4 @@ public class ProjectTaskDetailActivity extends BaseActivity {
                 break;
         }
     }
-
 }

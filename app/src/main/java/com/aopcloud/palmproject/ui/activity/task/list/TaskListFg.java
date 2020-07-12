@@ -14,6 +14,8 @@ import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
+import com.cily.utils.base.time.TimeType;
+import com.cily.utils.base.time.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +27,7 @@ public class TaskListFg extends BaseFragment {
     private List<ProjectTaskBean> datas;
     private String type = "1";
     private String state = HomeTaskFragment.STATE_all;
+    private String state_big = HomeTaskFragment.STATE_UNDO; //大类、已完成、未完成、已逾期
 
     @Override
     protected int setLayoutId() {
@@ -39,6 +42,7 @@ public class TaskListFg extends BaseFragment {
         if (bundle != null){
             type = bundle.getString("type", type);
             state = bundle.getString("state", state);
+            state_big = bundle.getString("STATE_BIG", state_big);
         }
 
         RecyclerView rv = (RecyclerView)view.findViewById(R.id.rv);
@@ -83,15 +87,77 @@ public class TaskListFg extends BaseFragment {
         }
         datas.clear();
         if (beanList != null && beanList.size() > 0){
-            if (HomeTaskFragment.STATE_all.equals(state)){
-                datas.addAll(beanList);
-            } else {
-                for (ProjectTaskBean bean : beanList) {
-                    if (state.equals(bean.getStatus_str())){
-                        datas.add(bean);
+            for (ProjectTaskBean bean : beanList) {
+                //大类，已完成
+                if (HomeTaskFragment.STATE_DONE.equals(state_big)){
+                    if (HomeTaskFragment.STATE_complete.equals(bean.getStatus_str())){
+                        // 已完成里的全部
+                        if (HomeTaskFragment.STATE_all.equals(state)){
+                            datas.add(bean);
+                        } else {
+                            if (HomeTaskFragment.STATE_DONE_IN_TIME.equals(state)) {
+                                // 如期完成
+                                String endDate = bean.getEnd_date();
+                                String realEndDate = bean.getEnd_date_real();
+                                long ed = TimeUtils.strToMil(endDate, TimeType.DAY_LINE, 0L);
+                                long rd = TimeUtils.strToMil(realEndDate, TimeType.DAY_LINE, 0L);
+                                if (rd <= ed) {
+                                    datas.add(bean);
+                                }
+                            } else {
+                                // 超期完成
+                                String endDate = bean.getEnd_date();
+                                String realEndDate = bean.getEnd_date_real();
+                                long ed = TimeUtils.strToMil(endDate, TimeType.DAY_LINE, 0L);
+                                long rd = TimeUtils.strToMil(realEndDate, TimeType.DAY_LINE, 0L);
+                                if (rd > ed) {
+                                    datas.add(bean);
+                                }
+                            }
+                        }
+                    }
+                } else if (HomeTaskFragment.STATE_UNDO.equals(state_big)){
+                    //大类，未完成
+                    if (HomeTaskFragment.STATE_no_start.equals(bean.getStatus_str())
+                            || HomeTaskFragment.STATE_progress.equals(bean.getStatus_str())
+                            || HomeTaskFragment.STATE_operation.equals(bean.getStatus_str())
+                            || HomeTaskFragment.STATE_pause.equals(bean.getStatus_str())){
+                            //小类，全部
+                        if (HomeTaskFragment.STATE_all.equals(state)){
+                            datas.add(bean);
+                        }else {
+                            if (state.equals(bean.getStatus_str())){
+                                datas.add(bean);
+                            }
+                        }
+                    }
+                } else if (HomeTaskFragment.STATE_OUT_OF_TIME.equals(state_big)){
+                    //大类，已逾期
+                    if (HomeTaskFragment.STATE_no_start.equals(bean.getStatus_str())
+                            || HomeTaskFragment.STATE_progress.equals(bean.getStatus_str())
+                            || HomeTaskFragment.STATE_operation.equals(bean.getStatus_str())
+                            || HomeTaskFragment.STATE_pause.equals(bean.getStatus_str())
+                            || HomeTaskFragment.STATE_complete.equals(bean.getStatus_str())){
+                        String endDate = bean.getEnd_date();
+                        long ed = TimeUtils.strToMil(endDate, TimeType.DAY_LINE, 0L);
+
+                        if (HomeTaskFragment.STATE_all.equals(state)){
+                            String realEndDate = bean.getEnd_date_real();
+                            long red = TimeUtils.strToMil(realEndDate, TimeType.DAY_LINE, System.currentTimeMillis());
+                            if (red > ed) {
+                                datas.add(bean);
+                            }
+                        }else {
+                            if (System.currentTimeMillis() > ed) {
+                                if (state.equals(bean.getStatus_str())) {
+                                    datas.add(bean);
+                                }
+                            }
+                        }
                     }
                 }
             }
+
         }else {
             ToastUtil.showToast("暂无数据");
         }

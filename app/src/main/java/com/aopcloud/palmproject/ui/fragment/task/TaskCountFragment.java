@@ -27,7 +27,7 @@ public class TaskCountFragment extends BaseFragment {
     private TextView mTvDone;
     private TextView mTvOutTime;
 
-    private String type = "0";
+    private String type = "2";
 
     @Override
     protected int setLayoutId() {
@@ -52,7 +52,7 @@ public class TaskCountFragment extends BaseFragment {
             public void onClick(View view) {
                 Bundle b = new Bundle();
                 b.putString("type", type);
-                b.putString("state", HomeTaskFragment.STATE_all);
+                b.putString("state", HomeTaskFragment.STATE_UNDO);
                 gotoActivity(TaskListAc.class, b);
             }
         });
@@ -61,7 +61,7 @@ public class TaskCountFragment extends BaseFragment {
             public void onClick(View view) {
                 Bundle b = new Bundle();
                 b.putString("type", type);
-                b.putString("state", HomeTaskFragment.STATE_complete);
+                b.putString("state", HomeTaskFragment.STATE_DONE);
                 gotoActivity(TaskListAc.class, b);
             }
         });
@@ -70,7 +70,7 @@ public class TaskCountFragment extends BaseFragment {
             public void onClick(View view) {
                 Bundle b = new Bundle();
                 b.putString("type", type);
-                b.putString("state", HomeTaskFragment.STATE_expect);
+                b.putString("state", HomeTaskFragment.STATE_OUT_OF_TIME);
                 gotoActivity(TaskListAc.class, b);
             }
         });
@@ -119,7 +119,6 @@ public class TaskCountFragment extends BaseFragment {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.w("------------" + eventTag + "/" + msg);
     }
 
     private void parseProjectCount(List<ProjectTaskBean> beanList){
@@ -135,11 +134,27 @@ public class TaskCountFragment extends BaseFragment {
                 String status = b.getStatus_str();
                 if (HomeTaskFragment.STATE_complete.equals(status)){
                     done ++;
-                } else {
-                    if (HomeTaskFragment.STATE_expect.equals(status)){
+
+                    String endDate = b.getEnd_date();
+                    String realEndDate = b.getEnd_date_real();
+
+                    long ed = TimeUtils.strToMil(endDate, TimeType.DAY_LINE, 0L);
+                    long rl = TimeUtils.strToMil(realEndDate, TimeType.DAY_LINE, System.currentTimeMillis());
+                    if (rl > ed){
                         outTime ++;
-                    }else {
+                    }
+                } else {
+                    if (HomeTaskFragment.STATE_no_start.equals(status)
+                            || HomeTaskFragment.STATE_progress.equals(status)
+                            || HomeTaskFragment.STATE_operation.equals(status)
+                            || HomeTaskFragment.STATE_pause.equals(status)){
                         undo ++;
+
+                        String endDate = b.getEnd_date();
+                        long ed = TimeUtils.strToMil(endDate, TimeType.DAY_LINE, 0L);;
+                        if (System.currentTimeMillis() > ed) {
+                            outTime ++;
+                        }
                     }
                 }
             }
