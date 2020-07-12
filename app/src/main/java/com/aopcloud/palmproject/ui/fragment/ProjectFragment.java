@@ -524,7 +524,6 @@ public class ProjectFragment extends BaseFragment {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
 

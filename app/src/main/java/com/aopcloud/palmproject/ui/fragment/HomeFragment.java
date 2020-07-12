@@ -130,7 +130,6 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
 
     private void setLoginUser(UserBean userBean) {
         if (userBean != null) {
-            Logcat.d("------" + JSON.toJSONString(userBean));
             if (LoginUserUtil.isLogin(mActivity) && null != LoginUserUtil.getLoginUserBean(mActivity)) {
                 AppImageLoader.loadCircleImage(mActivity, BuildConfig.BASE_URL + LoginUserUtil.getLoginUserBean(mActivity).getAvatar(), mIvAvatar);
             }
@@ -208,7 +207,6 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
         Map map = new HashMap();
         map.put("token", "" + LoginUserUtil.getToken(mActivity));
         if (eventTag == ApiConstants.EventTags.user_info) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.user_info, map);
         }
     }
@@ -216,7 +214,6 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         mActivity.dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -236,7 +233,6 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override

@@ -27,6 +27,7 @@ import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.ui.activity.enterprise.SwitchEnterpriseActivity;
 import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseListBean;
 import com.aopcloud.palmproject.ui.activity.map.SelectLocationActivity;
+import com.aopcloud.palmproject.ui.activity.project.list.SelectProjectAc;
 import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;
 import com.aopcloud.palmproject.utils.JsonUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
@@ -128,6 +129,8 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
         super.initData();
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
+            company_id = LoginUserUtil.getCurrentEnterpriseNo(this);
+
             project_id = bundle.getString("project_id");
             project_name = bundle.getString("project_name");
 
@@ -246,7 +249,10 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
                 if (StrUtils.isEmpty(company_id)){
                     ToastUtil.showToast("请先选择企业");
                 }else {
-                    //TODO 新页面，跳转到项目选择页
+                    Bundle b = new Bundle();
+                    b.putString("selected_project_id", project_id);
+                    b.putString("company_id", company_id);
+                    gotoActivity(SelectProjectAc.class, b, 101);
                 }
                 break;
         }
@@ -288,7 +294,7 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
         super.toRequest(eventTag);
         Map map = new HashMap();
         map.put("token", "" + LoginUserUtil.getToken(this));
-        map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
+        map.put("code", company_id);
         map.put("project_id", "" + project_id);
         if (eventTag == ApiConstants.EventTags.task_add) {
             if (!StrUtils.isEmpty(name)) {
@@ -372,6 +378,25 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
             mMediaEntities.add(mAddMediaEntity);
             mFileListAdapter.notifyDataSetChanged();
         }
+        if (requestCode == 101){
+            if (resultCode == RESULT_OK) {
+                if (data == null) {
+                    ToastUtil.showToast("未选择项目");
+                } else {
+                    project_id = data.getStringExtra("selected_project_id");
+                    project_name = data.getStringExtra("selected_project_name");
+                    if (!StrUtils.isEmpty(project_name)){
+                        tv_project_name.setText(project_name);
+                    }else {
+                        tv_project_name.setText("");
+                    }
+                    if (StrUtils.isEmpty(project_id)){
+                        ToastUtil.showToast("未选择项目");
+                    }
+                }
+            }
+        }
+
         if (data == null) {
             return;
         }
@@ -384,6 +409,7 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
 
             mTvAddress.setText("" + assignAddress);
         }
+
 
     }
 
