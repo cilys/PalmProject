@@ -325,6 +325,8 @@ public class ProjectFragment extends BaseFragment {
                 bundle.putString("project_id", projectList.get(position).getProject_id() + "");
                 bundle.putString("project_name", projectList.get(position).getName());
                 bundle.putString("company_id", projectList.get(position).getCompany_code());
+                bundle.putString("project_status", projectList.get(position).getStatus());
+
                 gotoActivity(ProjectDetailActivity.class, 0, bundle);
             }
         });

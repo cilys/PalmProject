@@ -100,6 +100,7 @@ public class ProjectTaskFragment extends BaseFragment implements TextView.OnEdit
     private String project_name;
     private String company_id;
     private String company_name;
+    private String project_status;
 
     @Override
     protected void initData() {
@@ -110,6 +111,7 @@ public class ProjectTaskFragment extends BaseFragment implements TextView.OnEdit
             project_name = bundle.getString("project_name");
             company_id = bundle.getString("company_id");
             company_name = bundle.getString("company_name");
+            project_status = bundle.getString("project_status");
         }
         toRequest(ApiConstants.EventTags.project_tasks);
         toRequest(ApiConstants.EventTags.project_team);
@@ -211,6 +213,7 @@ public class ProjectTaskFragment extends BaseFragment implements TextView.OnEdit
                 bundle.putString("project_name", project_name);
                 bundle.putString("company_id", company_id);
                 bundle.putString("company_name", company_name);
+                bundle.putString("project_status", project_status);
 
                 gotoActivity(ProjectTaskAddActivity.class, 0, bundle);
                 break;

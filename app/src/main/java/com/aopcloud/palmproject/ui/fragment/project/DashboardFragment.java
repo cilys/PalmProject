@@ -245,6 +245,7 @@ private   Calendar calendar;
                 bundle.putString("project_id", mBeanList.get(position).getProject_id() + "");
                 bundle.putString("project_name", mBeanList.get(position).getName());
                 bundle.putString("company_id", mBeanList.get(position).getCompany_code());
+                bundle.putString("project_status", mBeanList.get(position).getStatus());
                 gotoActivity(ProjectDetailActivity.class, bundle, 0);
             }
         });

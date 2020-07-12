@@ -29,6 +29,8 @@ import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseListBean;
 import com.aopcloud.palmproject.ui.activity.map.SelectLocationActivity;
 import com.aopcloud.palmproject.ui.activity.project.list.SelectProjectAc;
 import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;
+import com.aopcloud.palmproject.ui.fragment.home.HomeProjectFragment;
+import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
 import com.aopcloud.palmproject.utils.JsonUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -124,6 +126,8 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
     private String project_name;
     private String company_id;
     private String company_name;
+    private String project_status;  //项目状态，项目已停工、已终止的项目，不能创建工单
+
     @Override
     protected void initData() {
         super.initData();
@@ -281,6 +285,12 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
 //            return;
 //        }
         attach = "";
+        if (HomeProjectFragment.STATE_termination.equals(project_status)
+                || HomeProjectFragment.STATE_stop.equals(project_status)){
+            ToastUtil.showToast("该项目" + project_status + "，不可创建工单");
+            return;
+        }
+
         List<MediaEntity> list = new ArrayList();
         list.addAll(mMediaEntities);
         if (list.contains(mAddMediaEntity)) {

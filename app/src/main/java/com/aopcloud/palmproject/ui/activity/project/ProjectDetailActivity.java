@@ -97,6 +97,7 @@ public class ProjectDetailActivity extends BaseActivity {
     private List<Fragment> mFragments;
     private List<String> mTabs;
     private ProjectDetailBean mProjectDetailBean;
+    private String project_status;
 
     @Override
     protected void initData() {
@@ -107,6 +108,7 @@ public class ProjectDetailActivity extends BaseActivity {
             project_name = bundle.getString("project_name");
             company_id = bundle.getString("company_id");
             company_name = bundle.getString("company_name");
+            project_status = bundle.getString("project_status");
         }
         toRequest(ApiConstants.EventTags.project_get);
     }
@@ -131,6 +133,7 @@ public class ProjectDetailActivity extends BaseActivity {
         taskBundle.putString("project_name", project_name);
         taskBundle.putString("company_id", company_id);
         taskBundle.putString("company_name", company_name);
+        taskBundle.putString("project_status", project_status);
         projectTaskFragment.setArguments(taskBundle);
         mFragments.add(projectTaskFragment);
 //        mFragments.add(ProjectTaskFragment.getInstance(project_id));
