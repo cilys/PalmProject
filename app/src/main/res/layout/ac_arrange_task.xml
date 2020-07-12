@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.task.ArrangeTaskAc" >
+
+    <include layout="@layout/layout_common_title" />
+
+    <LinearLayout
+        android:id="@+id/ll_company"
+        style="@style/style_arrange_task_ll" >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_more"
+            android:rotation="90"
+            android:layout_marginRight="20dp" />
+
+        <TextView
+            android:id="@+id/tv_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:hint="自动获取所属企业" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_project_name"
+        style="@style/style_arrange_task_ll" >
+        <TextView
+            style="@style/style_arrange_task_ll_tv"
+            android:hint="所属项目" />
+
+        <TextView
+            android:id="@+id/tv_project_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/style_arrange_task_ll" >
+        <TextView
+            style="@style/style_arrange_task_ll_tv"
+            android:hint="关联工单" />
+
+        <TextView
+            android:id="@+id/tv_task_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/style_arrange_task_ll" >
+        <TextView
+            style="@style/style_arrange_task_ll_tv"
+            android:hint="工作量" />
+
+        <TextView
+            android:id="@+id/tv_work"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_class_name"
+        style="@style/style_arrange_task_ll">
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/style_arrange_task_ll_tv"
+                android:layout_width="wrap_content"
+                android:text="班组名称" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="*"
+                android:textColor="#FFCF3131"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_class_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="true"
+            android:ellipsize="end"
+            style="@style/style_arrange_task_ll_tv"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_start_date"
+        style="@style/style_arrange_task_ll" >
+
+        <TextView
+            style="@style/style_arrange_task_ll_tv"
+            android:text="计划" />
+
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/style_arrange_task_ll_tv"
+                android:layout_width="wrap_content"
+                android:text="开始时间" />
+            <TextView
+                style="@style/style_arrange_task_ll_tv"
+                android:layout_width="wrap_content"
+                android:text="*"
+                android:textColor="#FFCF3131" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_start_date"
+            style="@style/style_arrange_task_ll_tv"
+            android:gravity="right|center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:hint="请选择"
+            android:textColorHint="#FF6F6D6D" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_end_date"
+        style="@style/style_arrange_task_ll" >
+
+        <TextView
+            style="@style/style_arrange_task_ll_tv"
+            android:visibility="invisible"
+            android:text="计划" />
+
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                style="@style/style_arrange_task_ll_tv"
+                android:layout_width="wrap_content"
+                android:text="结束时间" />
+            <TextView
+                style="@style/style_arrange_task_ll_tv"
+                android:layout_width="wrap_content"
+                android:text="*"
+                android:textColor="#FFCF3131" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_end_date"
+            style="@style/style_arrange_task_ll_tv"
+            android:gravity="right|center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:hint="请选择"
+            android:textColorHint="#FF6F6D6D" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/theme_white"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shape_submit"
+            android:gravity="center"
+            android:text="立即提交"
+            android:textColor="@color/theme_white"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -101,8 +101,6 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
             android:src="@mipmap/icon_more" />
-
-
     </LinearLayout>
 
     <LinearLayout

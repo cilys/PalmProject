@@ -251,15 +251,12 @@ public class ProjectTaskDetailActivity extends BaseActivity {
                 }
             }
 
-
             mTvPlanStart.setText("计划开始:" + mTaskDetailBean.getStart_date());
             mTvPlanEnd.setText("计划结束:" + mTaskDetailBean.getEnd_date());
             mTvPlanDay.setText("计划工日:" + "" + betweenDays);
 
-
             String esTime = mTaskDetailBean.getStart_date_real().equals("1970-01-01") ? "暂无" : mTaskDetailBean.getStart_date_real();
             String eeTime = mTaskDetailBean.getEnd_date_real().equals("1970-01-01") ? "暂无" : mTaskDetailBean.getEnd_date_real();
-
 
             long edays = 0;
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -271,14 +268,11 @@ public class ProjectTaskDetailActivity extends BaseActivity {
                 e.printStackTrace();
             }
 
-
             mTvExecuteStart.setText("执行开始::" + esTime);
             mTvExecuteEnd.setText("执行结束:" + eeTime);
             mTvExecuteDay.setText("执行工日:" + edays);
 
-
             mTvLevel.setText("" + mTaskDetailBean.getLevel());
-
 
             mTvTeamName.setText("" + mTaskDetailBean.getTeam_name());
             mTvTeamCount.setText("(" + mTaskDetailBean.getTeam_num() + ")");
