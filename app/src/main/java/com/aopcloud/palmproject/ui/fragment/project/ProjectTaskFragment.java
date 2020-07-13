@@ -63,8 +63,6 @@ import butterknife.OnClick;
  * @Describe ：
  */
 public class ProjectTaskFragment extends BaseFragment implements TextView.OnEditorActionListener {
-
-
     @BindView(R.id.et_search)
     EditText mEtSearch;
     @BindView(R.id.iv_chart)
@@ -135,17 +133,13 @@ public class ProjectTaskFragment extends BaseFragment implements TextView.OnEdit
         mAdapter.isUseEmpty(true);
 
         mEtSearch.setOnEditorActionListener(this::onEditorAction);
-
     }
 
-
     private void setViewData(List<ProjectTaskBean> beanList) {
-
         mAllList.clear();
         mAllList.addAll(beanList);
         setFilter("全部");
     }
-
 
     private void setFilter(String type) {
         mBeanList.clear();
@@ -161,7 +155,6 @@ public class ProjectTaskFragment extends BaseFragment implements TextView.OnEdit
         mTvType.setText("" + type);
         mAdapter.notifyDataSetChanged();
     }
-
 
     private void searchList(String k) {
         mBeanList.clear();

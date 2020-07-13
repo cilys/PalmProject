@@ -41,7 +41,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".ui.activity.task.dashboard.DashboardTaskListAc"></activity>
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait"

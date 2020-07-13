@@ -26,8 +26,11 @@ import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.aopcloud.palmproject.ui.adapter.project.DashboardCurrentLogAdapter;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectChildDashboardAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
+import com.aopcloud.palmproject.utils.task.TaskUtils;
 import com.aopcloud.palmproject.view.CircularProgressView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.cily.utils.base.time.TimeType;
+import com.cily.utils.base.time.TimeUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -48,7 +51,7 @@ import butterknife.Unbinder;
  * @Author : K
  * @E-mail : vip@devkit.vip
  * @Version : V 1.0
- * @Describe ：
+ * @Describe ：项目详情、看板
  */
 public class DashboardFragment extends BaseFragment {
 
@@ -121,6 +124,12 @@ public class DashboardFragment extends BaseFragment {
     private long end_time;
     private long start_time;
 
+    public final static String STATUS_UN_PLAN = "STATUS_UN_PLAN";       //未安排，定义：没有开始时间、或者开始时间为1970-01-01
+    public final static String STATUS_UN_START = "STATUS_UN_START";     //未开始，定义：任务开始时间在当前时间之后。不管任务是否已经真实完成了
+    public final static String STATUS_IN_PROCESS = "STATUS_IN_PROCESS"; //进行中，定义：进行中。如果当前时间已超过任务结束时间，则为超期状态
+    public final static String STATUS_OUT_TIME = "STATUS_OUT_TIME";     //已超期，定义：当前时间已超过任务结束时间。如果项目结束时间，而项目已结束，则为结束状态
+    public final static String STATUS_COMPLETE = "STATUS_COMPLETE";     //已完成，定义：任务已完成。
+
     private DashboardCurrentLogAdapter mLogAdapter;
     private ProjectChildDashboardAdapter mDashboardTaskAdapter;
 
@@ -136,7 +145,7 @@ public class DashboardFragment extends BaseFragment {
     }
 
     private String project_id;
-private   Calendar calendar;
+    private   Calendar calendar;
     @Override
     protected void initData() {
         super.initData();
@@ -154,15 +163,12 @@ private   Calendar calendar;
         toRequest(ApiConstants.EventTags.project_projects);
         toRequest(ApiConstants.EventTags.attendance_project);
         toRequest(ApiConstants.EventTags.project_tasks);
-
-
     }
 
     @Override
     protected int setLayoutId() {
         return R.layout.fragment_project_dashboard;
     }
-
 
     @Override
     protected void initView(View view) {
@@ -174,35 +180,18 @@ private   Calendar calendar;
         mRvLog.setLayoutManager(new LinearLayoutManager(mActivity));
         mRvLog.setAdapter(mLogAdapter);
 
-
         mDashboardTaskAdapter = new ProjectChildDashboardAdapter(R.layout.item_dashboard_task, mBeanList);
         mRvList.setLayoutManager(new LinearLayoutManager(mActivity));
         mRvList.setAdapter(mDashboardTaskAdapter);
         mRlDrawerMenu.setVisibility(mBeanList.size() > 0 ? View.VISIBLE : View.GONE);
-
     }
 
     private void setViewTaskData(List<ProjectTaskBean> beanList) {
-        List list2 = new ArrayList();
-        List list3 = new ArrayList();
-        List list4 = new ArrayList();
-        List list5 = new ArrayList();
-        List list6 = new ArrayList();
-        for (int i = 0; i < beanList.size(); i++) {
-            if (beanList.get(i).getStatus_str().contains("未安排")) {
-                list2.add(beanList.get(i));
-            } else if (beanList.get(i).getStatus_str().contains("未开始")) {
-                list3.add(beanList.get(i));
-            } else if (beanList.get(i).getStatus_str().contains("进行中")) {
-                list4.add(beanList.get(i));
-            } else if (beanList.get(i).getStatus_str().contains("已超期") || beanList.get(i).getStatus_str().contains("已逾期")) {
-                list5.add(beanList.get(i));
-            } else if (beanList.get(i).getStatus_str().contains("已完成")) {
-                list6.add(beanList.get(i));
-            }
-
-        }
-
+        List list2 = TaskUtils.getTypeList(beanList, STATUS_UN_PLAN);
+        List list3 = TaskUtils.getTypeList(beanList, STATUS_UN_START);
+        List list4 = TaskUtils.getTypeList(beanList, STATUS_IN_PROCESS);
+        List list5 = TaskUtils.getTypeList(beanList, STATUS_OUT_TIME);
+        List list6 = TaskUtils.getTypeList(beanList, STATUS_COMPLETE);
 
         mTvCount.setText("" + beanList.size());
         mTvNoPlan.setText("" + list2.size());
@@ -216,19 +205,16 @@ private   Calendar calendar;
         mTvProgress.setText(detailBean.getProgress() + "%");
         mProgressBar.setProgress(detailBean.getProgress());
 
-
-        mTvCount.setText("0");
-        mTvNoPlan.setText("0");
-        mTvNoStart.setText("0");
-        mTvInProgress.setText("0");
-        mTvTimeOut.setText("0");
-        mTvComplete.setText("0");
+//        mTvCount.setText("0");
+//        mTvNoPlan.setText("0");
+//        mTvNoStart.setText("0");
+//        mTvInProgress.setText("0");
+//        mTvTimeOut.setText("0");
+//        mTvComplete.setText("0");
 
         mProgressCurrent.setProgress(detailBean.getProgress());
-        mTvCurrentLeave.setText("0");
-        mTvCurrentInto.setText("0");
-
-
+//        mTvCurrentLeave.setText("0");
+//        mTvCurrentInto.setText("0");
     }
 
     @Override
@@ -250,7 +236,8 @@ private   Calendar calendar;
     }
 
     @OnClick({R.id.tv_before, R.id.tv_current_more, R.id.rl_drawer_menu, R.id.iv_clean, R.id.iv_close,
-            R.id.tv_sure, R.id.tv_days, R.id.tv_after})
+            R.id.tv_sure, R.id.tv_days, R.id.tv_after, R.id.ll_no_plan, R.id.ll_no_start,
+            R.id.ll_in_progress, R.id.ll_time_out, R.id.ll_complete})
     public void onViewClicked(View view) {
         Bundle bundle;
         switch (view.getId()) {
@@ -287,6 +274,22 @@ private   Calendar calendar;
                 mTvDays.setText(dateFormats.format(calendar.getTime())+today2);
                 toRequest(ApiConstants.EventTags.attendance_project);
                 break;
+
+            case R.id.ll_no_plan:
+
+                break;
+            case R.id.ll_no_start:
+
+                break;
+            case R.id.ll_in_progress:
+
+                break;
+            case R.id.ll_time_out:
+
+                break;
+            case R.id.ll_complete:
+
+                break;
         }
     }
 
@@ -320,8 +323,8 @@ private   Calendar calendar;
         } else if (eventTag == ApiConstants.EventTags.attendance_project) {
             map.put("start_time", "" + getStartTime(calendar));
             map.put("end_time", "" + getEndTime(calendar));
-            map.put("page", "" + 1);
-            map.put("page_size", "" + 1000);
+            map.put("page", "1");
+            map.put("page_size", "1000");
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.attendance_project, map);
         } else if (eventTag == ApiConstants.EventTags.project_tasks) {
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.project_tasks, map);
@@ -352,15 +355,12 @@ private   Calendar calendar;
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     private void setAttendanceView(List<DashboardAttendanceBean> beanList) {
-
         List leaveList = new ArrayList();
         List intoList = new ArrayList();
         for (int i = 0; i < beanList.size(); i++) {
-
             if (beanList.get(i).getType() == 0) {
                 intoList.add(beanList.get(i));
             } else {
@@ -396,5 +396,4 @@ private   Calendar calendar;
         calendar.set(Calendar.MILLISECOND, 999);
         return calendar.getTimeInMillis() / 1000;
     }
-
 }

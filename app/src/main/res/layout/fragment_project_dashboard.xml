@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="17dp"
-                    android:text="200"
+                    android:text="0"
                     android:textColor="@color/theme_color"
                     android:textSize="16sp" />
 
@@ -74,7 +74,7 @@
                         app:backWidth="3dp"
                         app:progColor="#E51C23"
                         app:progWidth="3dp"
-                        app:progress="65" />
+                        app:progress="0" />
 
                     <TextView
                         android:id="@+id/tv_progress"
@@ -82,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:gravity="center"
-                        android:text="60%"
+                        android:text="0%"
                         android:textColor="#FFE52122"
                         android:textSize="16sp" />
                 </RelativeLayout>
@@ -118,6 +118,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/ll_no_plan"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -131,7 +132,7 @@
                             android:layout_toEndOf="@+id/iv_qr_code"
                             android:background="@drawable/shape_project_no_plan"
                             android:gravity="center"
-                            android:text="10"
+                            android:text="0"
                             android:textColor="#FF999898"
                             android:textSize="16sp" />
 
@@ -146,6 +147,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_no_start"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -159,7 +161,7 @@
                             android:layout_toEndOf="@+id/iv_qr_code"
                             android:background="@drawable/shape_project_no_started"
                             android:gravity="center"
-                            android:text="10"
+                            android:text="0"
 
                             android:textColor="#FF37A5FE"
                             android:textSize="16sp" />
@@ -175,6 +177,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_in_progress"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -188,7 +191,7 @@
                             android:layout_toEndOf="@+id/iv_qr_code"
                             android:background="@drawable/shape_project_in_progress"
                             android:gravity="center"
-                            android:text="10"
+                            android:text="0"
 
                             android:textColor="#FF3ABCC3"
                             android:textSize="16sp" />
@@ -204,6 +207,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_time_out"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -217,7 +221,7 @@
                             android:layout_toEndOf="@+id/iv_qr_code"
                             android:background="@drawable/shape_project_time_out"
                             android:gravity="center"
-                            android:text="10"
+                            android:text="0"
 
                             android:textColor="#FFF3AE2A"
                             android:textSize="16sp" />
@@ -233,6 +237,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_complete"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -246,7 +251,7 @@
                             android:layout_toEndOf="@+id/iv_qr_code"
                             android:background="@drawable/shape_project_complete"
                             android:gravity="center"
-                            android:text="10"
+                            android:text="0"
 
                             android:textColor="#FFE51C23"
                             android:textSize="16sp" />
@@ -260,8 +265,6 @@
                             android:textColor="#888888"
                             android:textSize="14sp" />
                     </LinearLayout>
-
-
                 </LinearLayout>
             </RelativeLayout>
 
@@ -326,7 +329,6 @@
                         app:drawablePosition="left"
                         app:drawableSrc="@mipmap/icon_more"
                         app:drawableWidth="24dp" />
-
                 </RelativeLayout>
 
 
@@ -344,7 +346,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:text="22"
+                        android:text="0"
                         android:textColor="@color/theme_color"
                         android:textSize="23sp"
                         android:textStyle="bold" />
@@ -380,7 +382,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:text="2"
+                        android:text="0"
                         android:textColor="@color/theme_color"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -419,7 +421,7 @@
                         app:backWidth="10dp"
                         app:progColor="#E51C23"
                         app:progWidth="10dp"
-                        app:progress="65" />
+                        app:progress="0" />
 
                     <TextView
                         android:id="@+id/tv_progress_current"

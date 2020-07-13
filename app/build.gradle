@@ -45,8 +45,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            buildConfigField('String', 'BASE_URL', '\"http://zhj.gzfy.tech:31004\"')
-//            buildConfigField('String', 'BASE_URL', '\"http://61.146.161.159:31004\"')
+//            buildConfigField('String', 'BASE_URL', '\"http://zhj.gzfy.tech:31004\"')
+            buildConfigField('String', 'BASE_URL', '\"http://61.146.161.21:31004\"')
             signingConfig signingConfigs.config
 
         }
