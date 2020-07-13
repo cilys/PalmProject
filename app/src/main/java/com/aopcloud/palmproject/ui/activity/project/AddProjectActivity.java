@@ -384,8 +384,6 @@ public class AddProjectActivity extends BaseActivity {
                 .isDialog(true)
                 .setLineSpacingMultiplier(2).build();
         pickerView.show();
-
-
     }
 
     public void showSuccess() {

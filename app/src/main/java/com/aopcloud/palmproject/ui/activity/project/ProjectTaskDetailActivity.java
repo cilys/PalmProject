@@ -279,7 +279,6 @@ public class ProjectTaskDetailActivity extends BaseActivity {
     }
 
     private int getStateColor(String status) {
-
         int color = ResourceUtil.getColor("#FFF4A304");
         if (status.equals("未开始")) {
             color = ResourceUtil.getColor("#FFF4A304");

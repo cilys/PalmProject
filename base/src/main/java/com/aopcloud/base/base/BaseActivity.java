@@ -25,6 +25,7 @@ import com.aopcloud.base.presenter.ICommonRequestPresenter;
 import com.aopcloud.base.presenter.impl.CommonRequestPresenterImpl;
 import com.aopcloud.base.util.KeyboardUtil;
 import com.aopcloud.base.util.ResourceUtil;
+import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.widget.LoadingDialog;
 import com.aopcloud.base.widget.TipsDialog;
 import com.gyf.immersionbar.ImmersionBar;
@@ -460,5 +461,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseQuic
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
 
+    }
+
+    protected void showToast(String str) {
+        if (str != null){
+            ToastUtil.showToast(str);
+        }
     }
 }

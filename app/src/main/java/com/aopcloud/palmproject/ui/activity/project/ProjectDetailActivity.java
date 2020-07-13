@@ -93,6 +93,8 @@ public class ProjectDetailActivity extends BaseActivity {
     private ProjectDetailBean mProjectDetailBean;
     private String project_status;
 
+    private String start_date, end_date;
+
     @Override
     protected void initData() {
         super.initData();
@@ -103,6 +105,9 @@ public class ProjectDetailActivity extends BaseActivity {
             company_id = bundle.getString("company_id");
             company_name = bundle.getString("company_name");
             project_status = bundle.getString("project_status");
+
+            start_date = bundle.getString("start_date");
+            end_date = bundle.getString("end_date");
         }
         toRequest(ApiConstants.EventTags.project_get);
     }
@@ -128,6 +133,9 @@ public class ProjectDetailActivity extends BaseActivity {
         taskBundle.putString("company_id", company_id);
         taskBundle.putString("company_name", company_name);
         taskBundle.putString("project_status", project_status);
+        taskBundle.putString("start_date", start_date);
+        taskBundle.putString("end_date", end_date);
+
         projectTaskFragment.setArguments(taskBundle);
         mFragments.add(projectTaskFragment);
 //        mFragments.add(ProjectTaskFragment.getInstance(project_id));

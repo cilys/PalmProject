@@ -113,6 +113,8 @@ public class ProjectListFragment extends BaseFragment implements ProjectListAdap
         bundle.putString("project_name", mBeanList.get(position).getName());
         bundle.putString("company_id", mBeanList.get(position).getCompany_code());
         bundle.putString("project_status", mBeanList.get(position).getStatus());
+        bundle.putString("start_date", mBeanList.get(position).getStart_date());
+        bundle.putString("end_date", mBeanList.get(position).getEnd_date());
         gotoActivity(ProjectDetailActivity.class, 0, bundle);
     }
 

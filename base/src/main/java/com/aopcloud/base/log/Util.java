@@ -16,8 +16,6 @@ import android.util.Log;
  */
 public class Util {
 
-
-
     public static String getObjectsString(Object... objects) {
 
         if (objects.length > 1) {
@@ -40,9 +38,7 @@ public class Util {
 
     public static void printLine(String tag, boolean isTop) {
         if (isTop) {
-            Log.d(tag, "╔═══════════════════════════════════════════════════════════════════════════════════════");
         } else {
-            Log.d(tag, "╚═══════════════════════════════════════════════════════════════════════════════════════");
         }
     }
 
@@ -99,5 +95,4 @@ public class Util {
         }
         return false;
     }
-
 }

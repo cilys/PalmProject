@@ -28,11 +28,13 @@ import com.aopcloud.palmproject.ui.activity.enterprise.SwitchEnterpriseActivity;
 import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseListBean;
 import com.aopcloud.palmproject.ui.activity.map.SelectLocationActivity;
 import com.aopcloud.palmproject.ui.activity.project.list.SelectProjectAc;
+import com.aopcloud.palmproject.ui.activity.task.ArrangeTaskAc;
 import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;
 import com.aopcloud.palmproject.ui.fragment.home.HomeProjectFragment;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
 import com.aopcloud.palmproject.utils.JsonUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
+import com.aopcloud.palmproject.view.TipsDialog;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cily.utils.base.StrUtils;
 import com.guoxiaoxing.phoenix.core.PhoenixOption;
@@ -128,6 +130,8 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
     private String company_name;
     private String project_status;  //项目状态，项目已停工、已终止的项目，不能创建工单
 
+    private String start_date, end_date;
+
     @Override
     protected void initData() {
         super.initData();
@@ -140,6 +144,9 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
 
             company_id = bundle.getString("company_id");
             company_name = bundle.getString("company_name");
+
+            start_date = bundle.getString("start_date");
+            end_date = bundle.getString("end_date");
         }
     }
 
@@ -352,7 +359,6 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
             if (eventTag == ApiConstants.EventTags.task_add) {
                 String task_id = JsonUtil.parserField(bean.getData(), "task_id");
                 showSuccess(task_id);
-
             } else if (eventTag == ApiConstants.EventTags.company_my) {
                 List<EnterpriseListBean> beanList = JSON.parseArray(bean.getData(), EnterpriseListBean.class);
                 if (beanList != null && beanList.size() > 0){
@@ -360,6 +366,7 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
                         String n = b.getCode();
                         if (!StrUtils.isEmpty(n)){
                             if (n.equals(company_id)) {
+                                company_name = b.getName();
                                 tv_company.setText(b.getName());
                             }
                         }
@@ -477,27 +484,62 @@ public class ProjectTaskAddActivity extends BaseActivity implements FileListAdap
     }
 
     public void showSuccess(String task_id) {
-        Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dialog_project_success);
-        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
-        dialog.getWindow().setBackgroundDrawableResource(R.drawable.shape_dialog_success);
-        lp.width = ViewUtil.dp2px(this, 250);
-        lp.height = LinearLayout.LayoutParams.WRAP_CONTENT;
-        dialog.getWindow().setAttributes(lp);
-        dialog.show();
-
-        dialog.findViewById(R.id.tv_sure).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                Bundle bundle = new Bundle();
-                bundle.putString("project_id", "" + project_id);
-                bundle.putString("task_id", "" + task_id);
-                gotoActivity(ProjectTaskDetailActivity.class, bundle);
-                setResult(0);
-                finish();
-            }
-        });
+//        Dialog dialog = new Dialog(this);
+//        dialog.setContentView(R.layout.dialog_project_success);
+//        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+//        dialog.getWindow().setBackgroundDrawableResource(R.drawable.shape_dialog_success);
+//        lp.width = ViewUtil.dp2px(this, 250);
+//        lp.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+//        dialog.getWindow().setAttributes(lp);
+//        dialog.show();
+//
+//        dialog.findViewById(R.id.tv_sure).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dialog.dismiss();
+////                Bundle bundle = new Bundle();
+////                bundle.putString("project_id", "" + project_id);
+////                bundle.putString("task_id", "" + task_id);
+////                gotoActivity(ProjectTaskDetailActivity.class, bundle);
+////                setResult(0);
+////                finish();
+//                Bundle bundle = new Bundle();
+//                bundle.putString("project_id", "" + project_id);
+//                bundle.putString("task_id", "" + task_id);
+//                bundle.putString("task_name", name);
+//                bundle.putString("company_id", company_id);
+//                bundle.putString("company_name", company_name);
+//                bundle.putString("project_id", project_id);
+//                bundle.putString("project_name", project_name);
+//                bundle.putString("work_count", work_value);
+//                bundle.putString("work_unit", work_unit);
+//                gotoActivity(ArrangeTaskAc.class, bundle);
+//                finish();
+//            }
+//        });
+        new TipsDialog(this)
+                .setTitle("创建工单成功")
+                .setMsg("是否现在去派工")
+                .setOnActionClickListener(new TipsDialog.onActionClickListener() {
+                    @Override
+                    public void onSure(Dialog dialog) {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("project_id", "" + project_id);
+                        bundle.putString("task_id", "" + task_id);
+                        bundle.putString("task_name", name);
+                        bundle.putString("company_id", company_id);
+                        bundle.putString("company_name", company_name);
+                        bundle.putString("project_id", project_id);
+                        bundle.putString("project_name", project_name);
+                        bundle.putString("work_count", work_value);
+                        bundle.putString("work_unit", work_unit);
+                        bundle.putString("start_date", start_date);
+                        bundle.putString("end_date", end_date);
+                        gotoActivity(ArrangeTaskAc.class, bundle);
+                        finish();
+                    }
+                }).setShowCancel(true)
+                .show();
     }
 
     @Override

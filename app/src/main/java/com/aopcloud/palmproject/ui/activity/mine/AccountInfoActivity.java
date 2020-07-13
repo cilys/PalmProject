@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -635,7 +636,6 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
         Map map = new HashMap();
         map.put("token", "" + LoginUserUtil.getToken(this));
         if (eventTag == ApiConstants.EventTags.user_info) {
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.user_info, map);
         } else if (eventTag == ApiConstants.EventTags.user_info_update) {
             map.put("avatar", "" + avatar);
@@ -652,7 +652,6 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
             map.put("school", "" + school);
             map.put("skills", "" + skills);
 //            map.put("id_no", "" );
-            Logcat.i("------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.user_info_update, map);
         }
     }
@@ -660,7 +659,6 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Logcat.i("------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -680,7 +678,6 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Logcat.i("------------" + eventTag + "/" + msg);
     }
 
     @Override
@@ -688,7 +685,6 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
             List<MediaEntity> result = Phoenix.result(data);
-            Logcat.i("------------" + JSON.toJSONString(result));
             uploadImg(result.get(0));
         }
     }
@@ -702,13 +698,13 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         dismissPopupLoading();
-                        Logcat.w("add live video exception :" + e + "/");
+                        Log.w(TAG, "add live video exception :" + e + "/");
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         dismissPopupLoading();
-                        Logcat.i("add Serices Course  response :" + response);
+                        Log.i(TAG, "add Serices Course  response :" + response);
                         ResultBean bean = JSON.parseObject(response, ResultBean.class);
                         if (bean != null && bean.getCode() == 0) {
                             avatar = JsonUtil.parserField(bean.getData(), "path");
@@ -737,7 +733,7 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
                 district = options1Items.get(options1).getRegion_name() + "\t\t"
                         + options2Items.get(options1).get(options2).getRegion_name() + "\t\t"
                         + options3Items.get(options1).get(options2).get(options3).getRegion_name();
-                Logcat.i("选择的地址：" + district);
+                Log.i(TAG, "选择的地址：" + district);
                 mTvCity.setText(district);
             }
         })
@@ -762,11 +758,8 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
         }
 
         if (ListUtil.isEmpty(beanList)) {
-            Logcat.i("empty");
             return;
         }
-        Logcat.i("------开始---------" + System.currentTimeMillis() / 1000 + "/"
-                + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:").format(new Date()));
         int p = beanList.size();
         options1Items.addAll(beanList);
         for (int i = 0; i < p; i++) {
@@ -780,9 +773,6 @@ public class AccountInfoActivity extends BaseActivity implements FileListAdapter
             }
             options3Items.add(Province_AreaList);
         }
-        Logcat.i("------结束---------" + System.currentTimeMillis() / 1000 + "/"
-                + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
-
     }
 
 

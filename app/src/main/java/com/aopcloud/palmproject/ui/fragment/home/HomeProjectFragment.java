@@ -684,6 +684,9 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
                 bundle.putString("company_id", mProjectListBeans.get(position).getCompany_code());
                 bundle.putString("project_status", mProjectListBeans.get(position).getStatus());
 
+                bundle.putString("start_date", mProjectListBeans.get(position).getStart_date());
+                bundle.putString("end_date", mProjectListBeans.get(position).getEnd_date());
+
                 gotoActivity(ProjectDetailActivity.class, bundle, 0);
             }
         });

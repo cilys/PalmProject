@@ -1,5 +1,6 @@
 package com.aopcloud.palmproject.ui.activity.project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -76,6 +77,9 @@ public class ProjectTaskUpdateTeamActivity extends BaseActivity implements TextV
     private ProjectTeamListBean mTeamListBean;
     private ProjectTaskDetailBean mTaskDetailBean;
 
+    private String get_team_id;
+    private String project_id;
+
     @Override
     protected void initData() {
         super.initData();
@@ -83,6 +87,14 @@ public class ProjectTaskUpdateTeamActivity extends BaseActivity implements TextV
         if (bundle != null) {
             String json = bundle.getString("bean");
             mTaskDetailBean = JSON.parseObject(json, ProjectTaskDetailBean.class);
+            if (mTaskDetailBean != null) {
+                project_id = "" + mTaskDetailBean.getProject_id();
+            }
+
+            get_team_id = bundle.getString("get_team_id", null);
+            if ("0".equals(get_team_id)){
+                project_id = bundle.getString("project_id");
+            }
         }
         toRequest(ApiConstants.EventTags.project_team);
     }
@@ -119,6 +131,16 @@ public class ProjectTaskUpdateTeamActivity extends BaseActivity implements TextV
                     ToastUtil.showToast("请选择班组");
                     return;
                 }
+
+                if ("0".equals(get_team_id)){
+                    Intent i = new Intent();
+                    i.putExtra("team_id", String.valueOf(mTeamListBean.getTeam_id()));
+                    i.putExtra("team_name", mTeamListBean.getTeam_name());
+                    setResult(RESULT_OK, i);
+                    finish();
+                    return;
+                }
+
                 toRequest(ApiConstants.EventTags.task_assign);
                 break;
         }
@@ -169,7 +191,7 @@ public class ProjectTaskUpdateTeamActivity extends BaseActivity implements TextV
         map.put("token", "" + LoginUserUtil.getToken(this));
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         if (eventTag == ApiConstants.EventTags.project_team) {
-            map.put("project_id", "" + mTaskDetailBean.getProject_id());//项目名称
+            map.put("project_id", project_id);//项目名称
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.project_team, map);
         } else if (eventTag == ApiConstants.EventTags.task_assign) {
             map.put("task_id", "" + mTaskDetailBean.getTask_id());
@@ -196,7 +218,6 @@ public class ProjectTaskUpdateTeamActivity extends BaseActivity implements TextV
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
