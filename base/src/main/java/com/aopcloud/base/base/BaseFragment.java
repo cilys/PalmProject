@@ -1,6 +1,5 @@
 package com.aopcloud.base.base;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,14 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-import com.aopcloud.base.R;
 import com.aopcloud.base.common.BaseEvent;
 import com.aopcloud.base.common.ICommonViewUi;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.presenter.ICommonRequestPresenter;
 import com.aopcloud.base.presenter.impl.CommonRequestPresenterImpl;
-import com.aopcloud.base.util.GpsUtls;
 import com.gyf.immersionbar.ImmersionBar;
 
 import java.util.List;

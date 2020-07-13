@@ -1,6 +1,5 @@
 package com.aopcloud.palmproject.ui.activity.staff;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -11,16 +10,11 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
-import com.aopcloud.palmproject.ui.activity.staff.bean.StaffListBean;
 import com.aopcloud.palmproject.ui.adapter.feagment.AppFragmentPagerAdapter;
-import com.aopcloud.palmproject.ui.fragment.log.MyWorkLogFragment;
-import com.aopcloud.palmproject.ui.fragment.log.WorkLogPreviewFragment;
-import com.aopcloud.palmproject.ui.fragment.log.WorkLogStatisticsFragment;
 import com.aopcloud.palmproject.ui.fragment.staff.StaffApprovalFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.flyco.tablayout.SlidingTabLayout;
@@ -31,7 +25,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

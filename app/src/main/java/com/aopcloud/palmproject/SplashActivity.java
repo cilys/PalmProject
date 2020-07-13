@@ -3,18 +3,11 @@ package com.aopcloud.palmproject;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 
-import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.palmproject.ui.activity.mine.LoginActivity;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.utils.SharedPreferencesUtils;
-import com.zhy.http.okhttp.OkHttpUtils;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @PackageName : com.aopcloud.palmproject

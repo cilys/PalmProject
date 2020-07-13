@@ -4,17 +4,11 @@ import android.support.annotation.Nullable;
 
 import com.amap.api.maps.AMapUtils;
 import com.amap.api.maps.model.LatLng;
-import com.aopcloud.base.log.Logcat;
-import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectListBean;
-import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**

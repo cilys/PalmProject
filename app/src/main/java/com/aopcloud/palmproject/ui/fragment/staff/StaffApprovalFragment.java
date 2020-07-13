@@ -9,14 +9,13 @@ import android.view.View;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.base.BaseFragment;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
-import com.aopcloud.palmproject.ui.activity.staff.StaffRefuseApplyDetailActivity;
 import com.aopcloud.palmproject.ui.activity.staff.StaffApprovalDetailActivity;
+import com.aopcloud.palmproject.ui.activity.staff.StaffRefuseApplyDetailActivity;
 import com.aopcloud.palmproject.ui.activity.staff.bean.StaffListBean;
 import com.aopcloud.palmproject.ui.adapter.staff.StaffApprovalAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;

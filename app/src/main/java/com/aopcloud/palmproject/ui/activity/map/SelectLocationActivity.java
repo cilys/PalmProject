@@ -15,7 +15,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
@@ -37,19 +36,16 @@ import com.amap.api.maps.model.Poi;
 import com.amap.api.services.core.AMapException;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
-import com.amap.api.services.core.SuggestionCity;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.KeyboardUtil;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.ui.activity.map.adapter.SelectLocationRangeAdapter;
 import com.aopcloud.palmproject.ui.activity.map.adapter.SelectLocationSearchAdapter;
-import com.aopcloud.palmproject.ui.activity.map.bean.LocationAddressBean;
 import com.aopcloud.palmproject.ui.activity.map.bean.LocationRangeBean;
 import com.aopcloud.palmproject.view.CircleImageView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -58,7 +54,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

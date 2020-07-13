@@ -11,24 +11,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
-import com.aopcloud.palmproject.ui.activity.department.bean.DepartmentListBean;
 import com.aopcloud.palmproject.ui.activity.department.bean.DepartmentMemberBean;
 import com.aopcloud.palmproject.ui.activity.staff.StaffDetailActivity;
 import com.aopcloud.palmproject.ui.activity.staff.StaffInviteActivity;
-import com.aopcloud.palmproject.ui.activity.tag.DepartmentTagManagerActivity;
 import com.aopcloud.palmproject.ui.adapter.department.DepartmentAbsentMemberAdapter;
-import com.aopcloud.palmproject.ui.adapter.department.DepartmentChildAdapter;
-import com.aopcloud.palmproject.ui.adapter.department.DepartmentMemberAdapter;
 import com.aopcloud.palmproject.utils.JumpActionUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.view.decoration.HorizontalDividerItemDecoration;
@@ -40,7 +34,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
