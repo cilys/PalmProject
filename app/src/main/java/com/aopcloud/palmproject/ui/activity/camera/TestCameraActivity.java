@@ -6,9 +6,7 @@ import android.os.Environment;
 
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.palmproject.R;
-import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.ui.activity.project.ProjectScenesAddActivity;
 import com.cjt2325.cameralibrary.JCameraView;
 import com.cjt2325.cameralibrary.listener.JCameraListener;
@@ -16,7 +14,6 @@ import com.cjt2325.cameralibrary.listener.JCameraListener;
 import java.io.File;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * @PackageName : com.aopcloud.palmproject.ui.activity.camera

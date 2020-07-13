@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;

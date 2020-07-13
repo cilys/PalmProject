@@ -1,7 +1,6 @@
 package com.aopcloud.palmproject.ui.activity.project;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,13 +14,10 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
-import com.aopcloud.palmproject.loader.AppImageLoader;
-import com.aopcloud.palmproject.ui.activity.log.AddWorkLogActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectDetailBean;
 import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;
 import com.aopcloud.palmproject.utils.JsonUtil;
@@ -34,7 +30,6 @@ import com.guoxiaoxing.phoenix.core.PhoenixOption;
 import com.guoxiaoxing.phoenix.core.model.MediaEntity;
 import com.guoxiaoxing.phoenix.core.model.MimeType;
 import com.guoxiaoxing.phoenix.picker.Phoenix;
-import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.xw.repo.BubbleSeekBar;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -48,7 +43,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
 

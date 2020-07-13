@@ -1,6 +1,5 @@
 package com.aopcloud.palmproject.ui.activity.log;
 
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -10,14 +9,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.KeyboardUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
@@ -33,7 +30,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

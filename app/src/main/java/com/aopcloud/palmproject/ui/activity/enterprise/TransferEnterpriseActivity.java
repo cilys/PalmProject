@@ -1,10 +1,8 @@
 package com.aopcloud.palmproject.ui.activity.enterprise;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,12 +10,10 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
-import com.aopcloud.palmproject.ui.activity.department.bean.SelectDepartmentLeaderBean;
 import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseManagerBean;
 import com.aopcloud.palmproject.ui.adapter.department.DepartmentLeaderSelectAdapter;
 import com.aopcloud.palmproject.ui.adapter.enterprise.TransferEnterpriseAdapter;

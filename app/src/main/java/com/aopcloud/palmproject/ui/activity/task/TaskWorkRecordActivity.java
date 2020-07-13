@@ -10,20 +10,15 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.log.Logcat;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
-import com.aopcloud.palmproject.ui.activity.task.bean.ReplaceMemberSignBean;
 import com.aopcloud.palmproject.ui.activity.task.bean.SalaryBean;
-import com.aopcloud.palmproject.ui.activity.task.bean.TaskWorkRecordBean;
-import com.aopcloud.palmproject.ui.adapter.task.ReplaceMemberSignAdapter;
 import com.aopcloud.palmproject.ui.adapter.task.TaskWorkRecordAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.view.decoration.DividerItemDecoration;
-import com.aopcloud.palmproject.view.segmented.SegmentItem;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.text.SimpleDateFormat;
@@ -35,7 +30,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**

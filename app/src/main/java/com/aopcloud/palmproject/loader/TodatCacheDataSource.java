@@ -3,8 +3,6 @@ package com.aopcloud.palmproject.loader;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -12,8 +10,6 @@ import android.support.v4.content.Loader;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
-import com.aopcloud.base.log.Logcat;
-import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.bean.ImageFolder;
 import com.aopcloud.palmproject.bean.ImageItem;
 
