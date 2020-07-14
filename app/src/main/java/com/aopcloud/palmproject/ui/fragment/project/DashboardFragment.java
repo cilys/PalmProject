@@ -23,6 +23,7 @@ import com.aopcloud.palmproject.ui.activity.project.bean.DashboardAttendanceBean
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectChildDashboardBean;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectDetailBean;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
+import com.aopcloud.palmproject.ui.activity.task.dashboard.DashboardTaskListAc;
 import com.aopcloud.palmproject.ui.adapter.project.DashboardCurrentLogAdapter;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectChildDashboardAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
@@ -276,19 +277,34 @@ public class DashboardFragment extends BaseFragment {
                 break;
 
             case R.id.ll_no_plan:
-
+                Bundle b = new Bundle();
+                b.putString("project_id", project_id);
+                b.putString("status", STATUS_UN_PLAN);
+                gotoActivity(DashboardTaskListAc.class, b);
                 break;
             case R.id.ll_no_start:
-
+                Bundle b1 = new Bundle();
+                b1.putString("project_id", project_id);
+                b1.putString("status", STATUS_UN_START);
+                gotoActivity(DashboardTaskListAc.class, b1);
                 break;
             case R.id.ll_in_progress:
-
+                Bundle b2 = new Bundle();
+                b2.putString("project_id", project_id);
+                b2.putString("status", STATUS_IN_PROCESS);
+                gotoActivity(DashboardTaskListAc.class, b2);
                 break;
             case R.id.ll_time_out:
-
+                Bundle b3 = new Bundle();
+                b3.putString("project_id", project_id);
+                b3.putString("status", STATUS_OUT_TIME);
+                gotoActivity(DashboardTaskListAc.class, b3);
                 break;
             case R.id.ll_complete:
-
+                Bundle b4 = new Bundle();
+                b4.putString("project_id", project_id);
+                b4.putString("status", STATUS_COMPLETE);
+                gotoActivity(DashboardTaskListAc.class, b4);
                 break;
         }
     }
