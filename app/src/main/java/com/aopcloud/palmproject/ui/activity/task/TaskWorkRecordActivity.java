@@ -90,13 +90,11 @@ public class TaskWorkRecordActivity extends BaseAc implements TaskWorkRecordAdap
             task_id = bundle.getString("task_id");
         }
         toRequest(ApiConstants.EventTags.salary_all);
-
     }
 
     @Override
     protected void initView() {
         mTvHeaderTitle.setText("人工记录");
-
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
@@ -185,7 +183,6 @@ public class TaskWorkRecordActivity extends BaseAc implements TaskWorkRecordAdap
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

@@ -55,7 +55,6 @@ public class StaffQuitActivity extends BaseAc {
     @BindView(R.id.rv_list)
     RecyclerView mRvList;
 
-
     private StaffListAdapter mAdapter;
     private List<StaffListBean> mBeanList = new ArrayList<>();
 
@@ -79,7 +78,6 @@ public class StaffQuitActivity extends BaseAc {
 
         mBeanList.addAll(beanList);
         mAdapter.notifyDataSetChanged();
-
     }
 
     @Override
@@ -144,7 +142,6 @@ public class StaffQuitActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

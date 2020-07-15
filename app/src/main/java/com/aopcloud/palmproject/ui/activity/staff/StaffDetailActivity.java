@@ -178,12 +178,8 @@ public class StaffDetailActivity extends BaseAc {
         for (int i = 0; i <list.size() ; i++) {
             stringBuffer.append(list.get(i).getName()).append(" ");
         }
-        return ""+stringBuffer.toString();
+        return "" + stringBuffer.toString();
     }
-
-
-
-
 
     @OnClick({R.id.ll_header_back, R.id.ll_header_right, R.id.iv_add_friend, R.id.iv_star, R.id.iv_sms,
             R.id.iv_call, R.id.tv_email, R.id.iv_del, R.id.tv_del})
@@ -262,7 +258,6 @@ public class StaffDetailActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

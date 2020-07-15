@@ -48,9 +48,7 @@ import vip.devkit.view.common.dtextview.DrawableTextView;
  * @Describe ：
  */
 @Layout(R.layout.activity_project_member_list)
-public class ProjectMemberListActivity extends BaseAc implements ProjectMemberAdapter.OnItemChildClickListener,ProjectMemberAdapter.OnItemClickListener{
-
-
+public class ProjectMemberListActivity extends BaseAc implements ProjectMemberAdapter.OnItemChildClickListener, ProjectMemberAdapter.OnItemClickListener {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)
@@ -105,9 +103,9 @@ public class ProjectMemberListActivity extends BaseAc implements ProjectMemberAd
 
 
         List list = new ArrayList();
-        for (int i = 0; i <detailBean.getUsers().size() ; i++) {
+        for (int i = 0; i < detailBean.getUsers().size(); i++) {
             //0,管理员，1：施工员
-            if (detailBean.getUsers().get(i).getType()==1){
+            if (detailBean.getUsers().get(i).getType() == 1) {
                 list.add(detailBean.getUsers().get(i));
             }
         }
@@ -126,6 +124,7 @@ public class ProjectMemberListActivity extends BaseAc implements ProjectMemberAd
         gotoActivity(ProjectMemberDetailActivity.class, bundle, 0);
 
     }
+
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
         if (view.getId() == R.id.tv_del) {
@@ -176,7 +175,6 @@ public class ProjectMemberListActivity extends BaseAc implements ProjectMemberAd
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

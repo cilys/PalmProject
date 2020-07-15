@@ -48,8 +48,6 @@ import butterknife.OnClick;
  */
 @Layout(R.layout.activity_project_team_list)
 public class ProjectTeamListActivity extends BaseAc {
-
-
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)
@@ -89,7 +87,6 @@ public class ProjectTeamListActivity extends BaseAc {
         mRvList.addItemDecoration(decoration);
         mRvList.setLayoutManager(new LinearLayoutManager(this));
         mRvList.setAdapter(mAdapter);
-
     }
 
     @Override
@@ -138,14 +135,12 @@ public class ProjectTeamListActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
     }
-
 
     @OnClick({R.id.ll_header_back, R.id.iv_header_more})
     public void onViewClicked(View view) {

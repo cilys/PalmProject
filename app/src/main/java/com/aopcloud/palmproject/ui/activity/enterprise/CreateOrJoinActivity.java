@@ -43,7 +43,6 @@ public class CreateOrJoinActivity extends BaseAc {
     @Override
     protected void initView() {
         mTvHeaderTitle.setText("创建或加入");
-
     }
 
 

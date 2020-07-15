@@ -60,7 +60,7 @@ public class JoinEnterpriseActivity extends BaseAc {
     protected void initView() {
         mTvTitle.setText("加入团队");
         String activityTo = getIntent().getStringExtra("activityTo");
-        if ("QrCodeScanActivity".equals(activityTo)){
+        if ("QrCodeScanActivity".equals(activityTo)) {
             toQrCodeActivity();
         } else {
 
@@ -130,16 +130,16 @@ public class JoinEnterpriseActivity extends BaseAc {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data==null){
+        if (data == null) {
             return;
         }
-        if (requestCode==2){
+        if (requestCode == 2) {
             enterpriseNo = data.getStringExtra("code");
-            mEtNumber.setText(""+enterpriseNo);
+            mEtNumber.setText("" + enterpriseNo);
         }
     }
 
-    private void toQrCodeActivity(){
+    private void toQrCodeActivity() {
         List<String> list = new ArrayList<>();
         list.add(Manifest.permission.READ_EXTERNAL_STORAGE);
         list.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);

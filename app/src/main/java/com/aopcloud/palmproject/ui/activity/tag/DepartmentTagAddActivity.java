@@ -37,8 +37,6 @@ import butterknife.OnClick;
 @Layout(R.layout.activity_department_tag_add)
 public class DepartmentTagAddActivity extends BaseAc {
 
-
-
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)
@@ -60,8 +58,6 @@ public class DepartmentTagAddActivity extends BaseAc {
     @BindView(R.id.switch_department)
     Switch mSwitchDepartment;
 
-
-
     private String department_id = "";
     private String name;
     private String rights = "";
@@ -75,12 +71,10 @@ public class DepartmentTagAddActivity extends BaseAc {
         }
     }
 
-
     @Override
     protected void initView() {
         mTvHeaderTitle.setText("添加职务");
         mIvHeaderMore.setImageResource(R.mipmap.icon_header_sure_w);
-
     }
 
     @OnClick({R.id.ll_header_back, R.id.ll_header_right})

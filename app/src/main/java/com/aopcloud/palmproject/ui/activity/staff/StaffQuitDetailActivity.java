@@ -44,8 +44,6 @@ import butterknife.OnClick;
  */
 @Layout(R.layout.activity_staff_quit_detail)
 public class StaffQuitDetailActivity extends BaseAc {
-
-
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

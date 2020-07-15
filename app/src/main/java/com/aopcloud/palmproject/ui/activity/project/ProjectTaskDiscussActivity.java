@@ -102,8 +102,6 @@ public class ProjectTaskDiscussActivity extends BaseAc implements FileListAdapte
         mFileListAdapter.setOnItemChildClickListener(this);
         mRvListImg.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mRvListImg.setAdapter(mFileListAdapter);
-
-
     }
 
     @Override
@@ -135,7 +133,6 @@ public class ProjectTaskDiscussActivity extends BaseAc implements FileListAdapte
         } else {
 
         }
-
     }
 
     @Override
@@ -150,8 +147,6 @@ public class ProjectTaskDiscussActivity extends BaseAc implements FileListAdapte
             mTvCount.setText("(" + (mMediaEntities.size() - 1) + "/9)");
 
         }
-
-
     }
 
     @OnClick({R.id.ll_header_back, R.id.ll_header_right})
@@ -208,7 +203,6 @@ public class ProjectTaskDiscussActivity extends BaseAc implements FileListAdapte
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -227,9 +221,7 @@ public class ProjectTaskDiscussActivity extends BaseAc implements FileListAdapte
             mMediaEntities.add(mAddMediaEntity);
             mFileListAdapter.notifyDataSetChanged();
             mTvCount.setText("(" + (mMediaEntities.size() - 1) + "/9)");
-
         }
-
     }
 
     private void uploadFile(List<MediaEntity> result) {
@@ -287,7 +279,4 @@ public class ProjectTaskDiscussActivity extends BaseAc implements FileListAdapte
         }
         return "live_" + System.currentTimeMillis() + ".jpg";
     }
-
-
-
 }

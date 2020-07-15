@@ -241,8 +241,6 @@ public class TaskWorkStatisticsActivity extends BaseAc implements TaskWorkStatis
                 .setType(new boolean[]{true, true, false, false, false, false})
                 .build();
         pickerView.show();
-
-
     }
 
 
@@ -272,7 +270,6 @@ public class TaskWorkStatisticsActivity extends BaseAc implements TaskWorkStatis
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

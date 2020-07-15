@@ -33,7 +33,5 @@ public class NewsNotifyAdapter extends BaseQuickAdapter<WorkNotifyBean, BaseView
         date.setTime(item.getMake_time()*1000);
         helper.setText(R.id.tv_notify,"["+item.getTitle()+"]"+item.getContent())
         .setText(R.id.tv_time,""+dateFormat.format(date));
-
-
     }
 }

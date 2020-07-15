@@ -81,7 +81,6 @@ public class QrCodeActivity extends BaseAc {
         mIvSex.setImageResource(userBean.getSex().equals("男")?R.mipmap.icon_sex_boy:R.mipmap.icon_sex_girl);
         Bitmap bitmap = CodeUtils.createImage(userBean.getTel()+"", 500, 500, null);
         AppImageLoader.load(this,bitmap,mIvQrCode,8);
-
     }
 
 

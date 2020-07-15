@@ -131,7 +131,6 @@ public class TaskScenesActivity extends BaseAc implements TextView.OnEditorActio
 
 
     private void setFilter(String type) {
-        Log.i(TAG, "---------" + type + "/" + 1);
         List<TaskScenesBean> beans = new ArrayList<>();
         if (!TextUtils.isEmpty(type) && type.contains("全部")) {
             beans.addAll(mAllBeanList);
@@ -147,7 +146,6 @@ public class TaskScenesActivity extends BaseAc implements TextView.OnEditorActio
         mAdapter.notifyDataSetChanged();
     }
     private void setUserFilter(String name) {
-        Log.d(TAG, "---------" + name + "/" + 1);
         List<TaskScenesBean> beans = new ArrayList<>();
         if (!TextUtils.isEmpty(name) && name.contains("全部")) {
             beans.addAll(mAllBeanList);
@@ -223,7 +221,6 @@ public class TaskScenesActivity extends BaseAc implements TextView.OnEditorActio
         map.put("page", "" + pageIndex);
         map.put("page_size", "20");
         if (eventTag == ApiConstants.EventTags.scenes_all) {
-            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.scenes_all, map);
         }
     }
@@ -231,7 +228,6 @@ public class TaskScenesActivity extends BaseAc implements TextView.OnEditorActio
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Log.i(TAG, "------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.scenes_all) {
@@ -247,7 +243,6 @@ public class TaskScenesActivity extends BaseAc implements TextView.OnEditorActio
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Log.i(TAG, "------------" + eventTag + "/" + msg);
     }
 
     @Override

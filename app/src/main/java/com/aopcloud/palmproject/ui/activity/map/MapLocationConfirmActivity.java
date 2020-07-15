@@ -43,9 +43,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_rv)
-public class MapLocationConfirmActivity extends BaseAc
-        implements AMapLocationListener
-        , PoiSearch.OnPoiSearchListener {
+public class MapLocationConfirmActivity extends BaseAc implements AMapLocationListener, PoiSearch.OnPoiSearchListener {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

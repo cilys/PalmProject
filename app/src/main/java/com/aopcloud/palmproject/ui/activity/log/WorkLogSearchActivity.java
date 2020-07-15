@@ -87,7 +87,7 @@ public class WorkLogSearchActivity extends BaseAc implements TextView.OnEditorAc
         mLogAdapter = new WorkLogAdapter(R.layout.item_work_log, mListBean);
         mRvList.setLayoutManager(new LinearLayoutManager(this));
         mRvList.setAdapter(mLogAdapter);
-        mLogAdapter.setEmptyView(R.layout.base_layout_empty,mRvList);
+        mLogAdapter.setEmptyView(R.layout.base_layout_empty, mRvList);
         mLogAdapter.isUseEmpty(true);
     }
 

@@ -45,7 +45,6 @@ public class PushSettingActivity extends BaseAc {
 
     @Override
     protected void initView() {
-
         mTvHeaderTitle.setText("消息推送设置");
     }
 

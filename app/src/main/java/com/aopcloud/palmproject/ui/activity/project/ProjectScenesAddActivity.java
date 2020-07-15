@@ -236,7 +236,6 @@ public class ProjectScenesAddActivity extends BaseAc implements FileListAdapter.
                 map.put("tags", "" + tags);
             }
             map.put("attach", "" + attach);
-            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.scenes_add, map);
         }
     }
@@ -244,7 +243,6 @@ public class ProjectScenesAddActivity extends BaseAc implements FileListAdapter.
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Log.i(TAG, "------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.scenes_add) {
@@ -260,7 +258,6 @@ public class ProjectScenesAddActivity extends BaseAc implements FileListAdapter.
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Log.i(TAG, "------------" + eventTag + "/" + msg);
         ToastUtil.showToast("网络错误，请重试");
     }
 
@@ -269,7 +266,6 @@ public class ProjectScenesAddActivity extends BaseAc implements FileListAdapter.
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 2 && resultCode == RESULT_OK) {
             List<MediaEntity> result = Phoenix.result(data);
-            Log.i(TAG, "------------" + JSON.toJSONString(result));
             mMediaEntities.clear();
             mMediaEntities.addAll(result);
             mMediaEntities.add(mAddMediaEntity);
@@ -292,7 +288,6 @@ public class ProjectScenesAddActivity extends BaseAc implements FileListAdapter.
             mMediaEntities.add(mAddMediaEntity);
             mFileListAdapter.notifyDataSetChanged();
         }
-
     }
 
     private void uploadFile(List<MediaEntity> result) {
@@ -307,7 +302,6 @@ public class ProjectScenesAddActivity extends BaseAc implements FileListAdapter.
                 result.remove(entity);
                 uploadFile(result);
             } else {
-                Log.i(TAG, "------------" + getPictureSuffix(entity.getLocalPath()));
                 OkHttpUtils.post().url(ApiConstants.file_upload)
                         .addParams("token", "" + LoginUserUtil.getToken(this))
                         .addFile("file", getPictureSuffix(entity.getLocalPath()), new File(entity.getLocalPath()))
@@ -340,7 +334,6 @@ public class ProjectScenesAddActivity extends BaseAc implements FileListAdapter.
                         });
             }
         } else {
-            Log.i(TAG, "-------" + attach);
             toRequest(ApiConstants.EventTags.scenes_add);
         }
     }

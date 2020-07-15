@@ -39,8 +39,6 @@ import butterknife.OnClick;
  */
 @Layout(R.layout.activity_staff_refuse_detail)
 public class StaffRefuseApplyDetailActivity extends BaseAc {
-
-
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)
@@ -104,11 +102,9 @@ public class StaffRefuseApplyDetailActivity extends BaseAc {
         toRequest(ApiConstants.EventTags.user_info);
     }
 
-
     @Override
     protected void initView() {
         mTvHeaderTitle.setText("详细信息");
-
     }
 
     private void setViewData() {
@@ -182,7 +178,6 @@ public class StaffRefuseApplyDetailActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

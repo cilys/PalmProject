@@ -140,7 +140,6 @@ public class ProjectProgressActivity extends BaseAc implements ProjectProgressAd
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

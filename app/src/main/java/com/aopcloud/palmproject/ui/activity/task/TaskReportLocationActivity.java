@@ -145,7 +145,6 @@ public class TaskReportLocationActivity extends BaseAc implements
     private double task_latitude;
     private double task_longitude;
 
-
     private List<DashboardAttendanceBean> mSignInBeanList = new ArrayList<>();
 
     @Override
@@ -196,7 +195,6 @@ public class TaskReportLocationActivity extends BaseAc implements
         mPileLayout.setSpWidth(25);
         mPileLayout.setData(pileList);
         user_ids = stringBuffer.toString();
-        Log.d(TAG, "--------------" + user_ids);
         if (!TextUtils.isEmpty(user_ids)) {
             mTvSubmit.setText("确认代签");
             mLlReplace.setVisibility(View.VISIBLE);
@@ -219,13 +217,10 @@ public class TaskReportLocationActivity extends BaseAc implements
         mRvList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mRvList.setAdapter(mFileListAdapter);
 
-
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 
         mTvTime.setText("" + dateFormat.format(new Date()));
-
     }
-
 
     private void initMap() {
         mAMap = mMapView.getMap();
@@ -233,7 +228,6 @@ public class TaskReportLocationActivity extends BaseAc implements
         mUiSettings.setZoomControlsEnabled(false);
         mAMap.setOnPOIClickListener(this);
         mAMap.setOnMarkerClickListener(this);
-
     }
 
     private void initLocation() {
@@ -292,8 +286,6 @@ public class TaskReportLocationActivity extends BaseAc implements
             Log.d(TAG, "--2-" + JSON.toJSONString(mMediaEntities));
             mFileListAdapter.notifyDataSetChanged();
         }
-
-
     }
 
     @Override
@@ -369,13 +361,11 @@ public class TaskReportLocationActivity extends BaseAc implements
             if (!TextUtils.isEmpty(attach)) {
                 map.put("attach", "" + attach);
             }
-            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.attendance_signup, map);
         } else if (eventTag == ApiConstants.EventTags.trajectory_add) {
             map.put("longitue", "" + longitude);
             map.put("longitude", "" + longitude);
             map.put("latitude", "" + latitude);
-            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.trajectory_add, map);
         }
     }
@@ -383,7 +373,6 @@ public class TaskReportLocationActivity extends BaseAc implements
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Log.i(TAG, "------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.attendance_signup) {
@@ -401,7 +390,6 @@ public class TaskReportLocationActivity extends BaseAc implements
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Log.i(TAG, "------------" + eventTag + "/" + msg);
         ToastUtil.showToast("网络错误");
     }
 
@@ -411,7 +399,6 @@ public class TaskReportLocationActivity extends BaseAc implements
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 2 && resultCode == RESULT_OK) {
             List<MediaEntity> result = Phoenix.result(data);
-            Log.i(TAG, "------------" + JSON.toJSONString(result));
             mMediaEntities.clear();
             mMediaEntities.addAll(result);
             mMediaEntities.add(mAddMediaEntity);
@@ -432,7 +419,6 @@ public class TaskReportLocationActivity extends BaseAc implements
                 result.remove(entity);
                 uploadFile(result);
             } else {
-                Log.i(TAG, "------------" + getPictureSuffix(entity.getLocalPath()));
                 OkHttpUtils.post().url(ApiConstants.file_upload)
                         .addParams("token", "" + LoginUserUtil.getToken(this))
                         .addFile("file", getPictureSuffix(entity.getLocalPath()), new File(entity.getLocalPath()))
@@ -465,7 +451,6 @@ public class TaskReportLocationActivity extends BaseAc implements
                         });
             }
         } else {
-            Log.i(TAG, "-------" + attach);
             toRequest(ApiConstants.EventTags.attendance_signup);
         }
     }
@@ -589,5 +574,4 @@ public class TaskReportLocationActivity extends BaseAc implements
         }
         mlocationClient = null;
     }
-
 }

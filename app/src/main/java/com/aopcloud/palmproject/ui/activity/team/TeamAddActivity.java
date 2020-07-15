@@ -175,6 +175,4 @@ public class TeamAddActivity extends BaseAc {
         pvOptions.setNPicker(list, null, null);
         pvOptions.show();
     }
-
-
 }

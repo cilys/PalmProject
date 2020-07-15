@@ -125,9 +125,8 @@ public class UpdateProjectProgressActivity extends BaseAc implements FileListAda
         }else {
             mTvLastTime.setText("");
         }
-
-
     }
+
     private void setViewData(ProjectDetailBean detailBean) {
         mProgressBar.setProgress(detailBean.getProgress());
         mTvType.setText(detailBean.getStatus());
@@ -164,7 +163,6 @@ public class UpdateProjectProgressActivity extends BaseAc implements FileListAda
         } else {
 
         }
-
     }
 
     @Override
@@ -175,12 +173,8 @@ public class UpdateProjectProgressActivity extends BaseAc implements FileListAda
             entities.remove(position);
             mMediaEntities.clear();
             mMediaEntities.addAll(entities);
-            Log.w(TAG, "-1--" + JSON.toJSONString(entities));
-            Log.d(TAG, "--2-" + JSON.toJSONString(mMediaEntities));
             mFileListAdapter.notifyDataSetChanged();
         }
-
-
     }
 
     @OnClick({R.id.ll_header_back, R.id.ll_header_right, R.id.tv_type, R.id.tv_submit})
@@ -203,7 +197,6 @@ public class UpdateProjectProgressActivity extends BaseAc implements FileListAda
     }
 
     private void checkParams() {
-
         List<MediaEntity> list = new ArrayList();
         list.addAll(mMediaEntities);
         if (list.contains(mAddMediaEntity)) {

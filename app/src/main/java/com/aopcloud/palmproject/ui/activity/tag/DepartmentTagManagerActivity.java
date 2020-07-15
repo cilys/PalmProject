@@ -152,7 +152,6 @@ public class DepartmentTagManagerActivity extends BaseAc implements DepartmentTa
         } else if (view.getId() == R.id.iv_sort) {
 
         }
-
     }
 
     @Override

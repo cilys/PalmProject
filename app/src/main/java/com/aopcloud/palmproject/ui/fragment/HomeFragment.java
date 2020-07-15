@@ -67,7 +67,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     TextView mTvProject;
     @BindView(R.id.page_view)
 //    ViewPager mPageView;
-    NoScrollViewPager mPageView;
+            NoScrollViewPager mPageView;
 
 
     private DrawerLayout mDrawerLayout;
@@ -109,7 +109,7 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
     @Override
     protected void initView(View view) {
         super.initView(view);
-        if (mPageView != null){
+        if (mPageView != null) {
             mPageView.setScrollable(false);
         }
 

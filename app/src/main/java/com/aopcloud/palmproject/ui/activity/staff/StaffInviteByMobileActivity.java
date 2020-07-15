@@ -46,8 +46,6 @@ import butterknife.OnClick;
  */
 @Layout(R.layout.activity_staff_invite_mobile)
 public class StaffInviteByMobileActivity extends BaseAc implements SelectMobileListAdapter.OnItemClickListener {
-
-
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)
@@ -68,8 +66,6 @@ public class StaffInviteByMobileActivity extends BaseAc implements SelectMobileL
     TextView mTvSubmit;
     private String mobile;
 
-
-
     private SelectMobileListAdapter mAdapter;
     private List<ContactBean> mBeanList = new ArrayList();
 
@@ -81,8 +77,6 @@ public class StaffInviteByMobileActivity extends BaseAc implements SelectMobileL
     @Override
     protected void initView() {
         mTvHeaderTitle.setText("邀请新成员");
-
-
 
         mAdapter = new SelectMobileListAdapter(R.layout.item_phone_select, mBeanList);
         mAdapter.setOnItemClickListener(this);
@@ -227,12 +221,10 @@ public class StaffInviteByMobileActivity extends BaseAc implements SelectMobileL
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
     }
-
 }

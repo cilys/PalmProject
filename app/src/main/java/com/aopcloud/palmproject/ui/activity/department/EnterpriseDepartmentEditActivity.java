@@ -207,7 +207,6 @@ public class EnterpriseDepartmentEditActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -233,7 +232,6 @@ public class EnterpriseDepartmentEditActivity extends BaseAc {
             leader_id = bundle.getString("user_id", "");
             String leader_name = bundle.getString("user_name");
             mTvDepartmentManger.setText("" + leader_name);
-
         }
     }
 

@@ -37,10 +37,7 @@ public class RvTaskListAdapter extends BaseQuickAdapter<ProjectTaskBean, BaseVie
             eDate = new Date();
         }
 
-
-
         SimpleDateFormat dateFormat1 = new SimpleDateFormat("MM-dd");
-
 
         long  betweenDays = ((eDate.getTime() - sDate.getTime()) / (1000 * 60 * 60 * 24));
 

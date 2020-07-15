@@ -137,7 +137,6 @@ public class StaffApprovalActivity extends BaseAc implements ViewPager.OnPageCha
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

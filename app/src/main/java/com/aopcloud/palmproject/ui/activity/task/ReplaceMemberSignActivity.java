@@ -134,7 +134,6 @@ public class ReplaceMemberSignActivity extends BaseAc implements ReplaceMemberSi
             }
         }
         mCheckboxAll.setChecked(all);
-
     }
 
 
@@ -156,7 +155,6 @@ public class ReplaceMemberSignActivity extends BaseAc implements ReplaceMemberSi
         mSbView.addSegmentedBars(m);
         mBeanList.addAll(mSignInBeanList);
         mAdapter.notifyDataSetChanged();
-
     }
 
     @OnClick({R.id.ll_header_back, R.id.ll_header_right, R.id.checkbox_all, R.id.tv_submit})
@@ -236,7 +234,6 @@ public class ReplaceMemberSignActivity extends BaseAc implements ReplaceMemberSi
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

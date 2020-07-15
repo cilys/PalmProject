@@ -57,8 +57,6 @@ import vip.devkit.view.common.dtextview.DrawableTextView;
  */
 @Layout(R.layout.activity_project_edit)
 public class EditProjectActivity extends BaseAc {
-
-
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)
@@ -195,9 +193,7 @@ public class EditProjectActivity extends BaseAc {
                 mTvEnterpriseName.setText("");
                 mTvEnterpriseName.setHint("请选择上级项目");
             }
-
         }
-
     }
 
     @OnClick({R.id.ll_header_back, R.id.ll_header_right, R.id.tv_enterprise_name,R.id.tv_project_type, R.id.tv_start_time, R.id.tv_end_time, R.id.tv_name, R.id.tv_address, R.id.tv_range_type, R.id.tv_range_more, R.id.iv_project_type, R.id.tv_submit})
@@ -238,8 +234,6 @@ public class EditProjectActivity extends BaseAc {
     }
 
     private void checkParams() {
-
-
         name = mEtProjectName.getText().toString();
         short_name = mEtProjectTitle.getText().toString();
         price = mEtPrice.getText().toString();
@@ -275,7 +269,6 @@ public class EditProjectActivity extends BaseAc {
         }
 
         toRequest(ApiConstants.EventTags.project_update);
-
     }
 
     public void showAddRange() {
@@ -373,8 +366,6 @@ public class EditProjectActivity extends BaseAc {
                 .isDialog(true)
                 .setLineSpacingMultiplier(2).build();
         pickerView.show();
-
-
     }
 
     public void showSuccess() {
@@ -441,7 +432,6 @@ public class EditProjectActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -455,7 +445,6 @@ public class EditProjectActivity extends BaseAc {
         super.onActivityResult(requestCode, resultCode, data);
         if (data == null) {
             return;
-
         }
         if (requestCode == 0) {
 

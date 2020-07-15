@@ -54,7 +54,7 @@ import okhttp3.Call;
  */
 @Layout(R.layout.activity_work_log_add)
 public class AddWorkLogActivity extends BaseAc implements FileListAdapter.OnItemChildClickListener,
-        FileListAdapter.OnItemClickListener{
+        FileListAdapter.OnItemClickListener {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)
@@ -127,7 +127,8 @@ public class AddWorkLogActivity extends BaseAc implements FileListAdapter.OnItem
 
     private List<MediaEntity> mMediaEntities = new ArrayList<>();
 
-    private  MediaEntity mAddMediaEntity;
+    private MediaEntity mAddMediaEntity;
+
     @Override
     protected void initView() {
         mTvHeaderTitle.setText("新建汇报");
@@ -144,20 +145,19 @@ public class AddWorkLogActivity extends BaseAc implements FileListAdapter.OnItem
         Calendar calendar = Calendar.getInstance();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日");
-        mTvDay.setText(""+dateFormat.format(calendar.getTime()));
+        mTvDay.setText("" + dateFormat.format(calendar.getTime()));
         SimpleDateFormat month = new SimpleDateFormat("yyyy年MM月");
-        mTvMonth.setText(""+month.format(calendar.getTime()));
+        mTvMonth.setText("" + month.format(calendar.getTime()));
 
 
-
-        mTvWeekStart.setText(""+dateFormat.format(getCurrentWeekDateBegin(calendar .getTime())));
-        mTvWeekEnd.setText(""+dateFormat.format(getCurrentWeekDateEnd(calendar .getTime())));
+        mTvWeekStart.setText("" + dateFormat.format(getCurrentWeekDateBegin(calendar.getTime())));
+        mTvWeekEnd.setText("" + dateFormat.format(getCurrentWeekDateEnd(calendar.getTime())));
     }
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
 
-        if (position==mMediaEntities.size()-1) {
+        if (position == mMediaEntities.size() - 1) {
             List list = new ArrayList();
             list.addAll(mMediaEntities);
             list.remove(mMediaEntities.size() - 1);
@@ -196,6 +196,7 @@ public class AddWorkLogActivity extends BaseAc implements FileListAdapter.OnItem
 
 
     }
+
     @Override
     protected void setListener() {
         super.setListener();
@@ -214,7 +215,7 @@ public class AddWorkLogActivity extends BaseAc implements FileListAdapter.OnItem
             public void afterTextChanged(Editable s) {
                 if (null != s && s.length() > 0) {
                     mTvSummaryCount.setText(s.length() + "/3000");
-                }else {
+                } else {
                     mTvSummaryCount.setText("0/3000");
                 }
             }
@@ -234,8 +235,8 @@ public class AddWorkLogActivity extends BaseAc implements FileListAdapter.OnItem
             public void afterTextChanged(Editable s) {
                 if (null != s && s.length() > 0) {
                     mTvPlanCount.setText(s.length() + "/3000");
-                }else {
-                    mTvPlanCount.setText( "0/3000");
+                } else {
+                    mTvPlanCount.setText("0/3000");
                 }
             }
         });
@@ -361,7 +362,7 @@ public class AddWorkLogActivity extends BaseAc implements FileListAdapter.OnItem
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-       if (requestCode == 2 && resultCode == RESULT_OK) {
+        if (requestCode == 2 && resultCode == RESULT_OK) {
             List<MediaEntity> result = Phoenix.result(data);
             mMediaEntities.clear();
             mMediaEntities.addAll(result);
@@ -416,6 +417,7 @@ public class AddWorkLogActivity extends BaseAc implements FileListAdapter.OnItem
             toRequest(ApiConstants.EventTags.reportjob_add);
         }
     }
+
     private String getPictureSuffix(String path) {
         if (path.contains(".")) {
             return "live_" + System.currentTimeMillis() + path.substring(path.lastIndexOf("."), path.length());
@@ -426,26 +428,28 @@ public class AddWorkLogActivity extends BaseAc implements FileListAdapter.OnItem
     /**
      * pass
      * 返回当前周的开始时间
+     *
      * @return Date
      */
-    public static Date getCurrentWeekDateBegin(Date date){
+    public static Date getCurrentWeekDateBegin(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         int dateBegin = calendar.getActualMinimum(Calendar.DAY_OF_WEEK);
-        calendar.set(Calendar.DAY_OF_WEEK,dateBegin);
+        calendar.set(Calendar.DAY_OF_WEEK, dateBegin);
         return calendar.getTime();
     }
 
     /**
      * pass
      * 返回当前周的结束时间
+     *
      * @return Date
      */
-    public static Date getCurrentWeekDateEnd(Date date){
+    public static Date getCurrentWeekDateEnd(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         int dateEnd = calendar.getActualMaximum(Calendar.DAY_OF_WEEK);
-        calendar.set(Calendar.DAY_OF_WEEK,dateEnd);
+        calendar.set(Calendar.DAY_OF_WEEK, dateEnd);
         return calendar.getTime();
     }
 

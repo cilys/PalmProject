@@ -211,8 +211,6 @@ public class ProjectTaskAddActivity extends BaseAc implements FileListAdapter.On
             entities.remove(position);
             mMediaEntities.clear();
             mMediaEntities.addAll(entities);
-            Log.i(TAG, "-1--" + JSON.toJSONString(entities));
-            Log.d(TAG, "-2-" + JSON.toJSONString(mMediaEntities));
             mFileListAdapter.notifyDataSetChanged();
         }
     }

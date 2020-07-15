@@ -160,7 +160,6 @@ public class DepartmentAbsentActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -173,5 +172,4 @@ public class DepartmentAbsentActivity extends BaseAc {
         super.onActivityResult(requestCode, resultCode, data);
         toRequest(ApiConstants.EventTags.department_nduser);
     }
-
 }

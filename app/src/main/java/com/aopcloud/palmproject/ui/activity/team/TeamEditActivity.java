@@ -160,7 +160,6 @@ public class TeamEditActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -195,6 +194,4 @@ public class TeamEditActivity extends BaseAc {
         pvOptions.setNPicker(list, null, null);
         pvOptions.show();
     }
-
-
 }

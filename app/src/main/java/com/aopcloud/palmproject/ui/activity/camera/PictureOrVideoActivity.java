@@ -134,7 +134,6 @@ public class PictureOrVideoActivity extends BaseAc {
             @Override
             public void onPictureTaken(byte[] jpeg) {
                 super.onPictureTaken(jpeg);
-                Log.d(TAG, "-------onPictureTaken----");
                 Bitmap bitmap = BitmapUtil.Bytes2Bimap(jpeg);
                 Bitmap watermark = WatermarkUtil.createWatermark(PictureOrVideoActivity.this,
                         "测试项目"
@@ -186,7 +185,6 @@ public class PictureOrVideoActivity extends BaseAc {
                     mTvCount.setText("");
                 }
 //                sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + video.getPath())));
-                Log.i(TAG, "-------onVideoTaken----" + video.getPath());
             }
 
             @Override
@@ -296,11 +294,9 @@ public class PictureOrVideoActivity extends BaseAc {
                                 }
                                 String fileName = System.currentTimeMillis() + ".mp4";
                                 File file = new File(appDir, fileName);
-                                Log.i(TAG, "------isCapturingVideo------------------" +file.exists());
                                 if (!file.exists()) {
                                     try {
                                         file.createNewFile();
-                                        Log.i(TAG, "------isCapturingVideo------------------" +file.exists());
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }

@@ -43,7 +43,6 @@ import butterknife.OnClick;
 @Layout(R.layout.activity_staff_approval_detail)
 public class StaffApprovalDetailActivity extends BaseAc {
 
-
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)
@@ -113,7 +112,6 @@ public class StaffApprovalDetailActivity extends BaseAc {
     @Override
     protected void initView() {
         mTvHeaderTitle.setText("详细信息");
-
     }
 
     private void setViewData() {
@@ -137,8 +135,6 @@ public class StaffApprovalDetailActivity extends BaseAc {
             date.setTime(mDetailBean.getMake_time() * 1000);
             mTvApplyTime.setText("" + dateFormat.format(date));
         }
-
-
     }
 
     @OnClick({R.id.ll_header_back, R.id.ll_header_right, R.id.iv_add_friend, R.id.iv_star,
@@ -214,7 +210,6 @@ public class StaffApprovalDetailActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

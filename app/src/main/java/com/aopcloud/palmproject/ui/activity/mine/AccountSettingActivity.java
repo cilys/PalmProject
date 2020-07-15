@@ -47,12 +47,9 @@ public class AccountSettingActivity extends BaseAc {
     @BindView(R.id.rl_update_password)
     RelativeLayout mRlUpdatePassword;
 
-
     @Override
     protected void initView() {
         mTvHeaderTitle.setText("账户设置");
-
-
     }
 
     @OnClick({R.id.ll_header_back, R.id.tv_mobile, R.id.iv_mobile, R.id.rl_update_mobile, R.id.iv_update_password, R.id.rl_update_password})

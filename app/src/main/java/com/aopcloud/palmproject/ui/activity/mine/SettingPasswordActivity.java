@@ -76,7 +76,6 @@ public class SettingPasswordActivity extends BaseAc {
     @Override
     protected void initView() {
         mTvHeaderTitle.setText("注册");
-
     }
 
     @OnClick({R.id.ll_header_back, R.id.iv_password, R.id.iv_confirm_password, R.id.tv_submit})
@@ -149,7 +148,6 @@ public class SettingPasswordActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

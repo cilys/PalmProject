@@ -83,8 +83,6 @@ public class EnterpriseHomeActivity extends BaseAc {
 
         mTvName.setText(enterpriseInfoBean.getName());
         mTvNoCode.setText("团队编码：" + enterpriseInfoBean.getCode() + " 企业负责人:" + enterpriseInfoBean.getLeader_name());
-
-
     }
 
     @OnClick({R.id.iv_back, R.id.iv_setting, R.id.iv_qr_code, R.id.rl_info, R.id.rl_qr})
@@ -154,7 +152,6 @@ public class EnterpriseHomeActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

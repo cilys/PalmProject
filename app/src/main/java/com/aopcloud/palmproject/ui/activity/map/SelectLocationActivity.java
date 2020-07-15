@@ -67,11 +67,8 @@ import butterknife.OnClick;
  */
 @Layout(R.layout.activity_map_select_location)
 public class SelectLocationActivity extends BaseAc implements LocationSource
-        , AMapLocationListener
-        , TextView.OnEditorActionListener
-        , PoiSearch.OnPoiSearchListener
-        , AMap.OnPOIClickListener
-        , AMap.OnMarkerClickListener {
+        , AMapLocationListener, TextView.OnEditorActionListener
+        , PoiSearch.OnPoiSearchListener, AMap.OnPOIClickListener, AMap.OnMarkerClickListener {
     @BindView(R.id.tv_cancel)
     TextView mTvCancel;
     @BindView(R.id.tv_sure)

@@ -201,5 +201,4 @@ public class SettingActivity extends BaseAc {
             ex.printStackTrace();
         }
     }
-
 }

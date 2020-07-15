@@ -43,8 +43,6 @@ import butterknife.OnClick;
  */
 @Layout(R.layout.activity_staff_invite_add)
 public class StaffInviteByAddActivity extends BaseAc {
-
-
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)
@@ -86,9 +84,7 @@ public class StaffInviteByAddActivity extends BaseAc {
     @Override
     protected void initView() {
         mTvHeaderTitle.setText("邀请新成员");
-
     }
-
 
     @OnClick({R.id.ll_header_back, R.id.ll_header_right, R.id.ll_mobile, R.id.rb_boy, R.id.rb_girl, R.id.ll_department, R.id.ll_post, R.id.tv_submit})
     public void onViewClicked(View view) {
@@ -173,7 +169,6 @@ public class StaffInviteByAddActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -208,5 +203,4 @@ public class StaffInviteByAddActivity extends BaseAc {
             mTvDepartmentTag.setText("" + tagName);
         }
     }
-
 }

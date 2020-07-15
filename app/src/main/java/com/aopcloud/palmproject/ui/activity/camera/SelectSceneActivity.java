@@ -85,7 +85,6 @@ public class SelectSceneActivity extends BaseAc implements TodayCacheAdapter.OnI
      * @author 刘鹏博
      */
     public static boolean isToday(long s) {
-        Log.i(SelectSceneActivity.class.getSimpleName(), "------------" + s);
 
         Date addTime = new Date();
         addTime.setTime(s);
@@ -171,7 +170,6 @@ public class SelectSceneActivity extends BaseAc implements TodayCacheAdapter.OnI
         String FileColumns = MediaStore.Files.FileColumns.DATA + " like ?";
         Cursor cursor = this.getContentResolver().query(MediaStore.Files.getContentUri("external"),
                 null, FileColumns, selectionArgs, null);
-        Log.i(TAG, "------------" + JSON.toJSONString(cursor));
         while (cursor.moveToNext()) {
 
             String filePath = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.DATA));
@@ -181,7 +179,6 @@ public class SelectSceneActivity extends BaseAc implements TodayCacheAdapter.OnI
             String DISPLAY_NAME = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.DISPLAY_NAME));
             String fileName = cursor.getString(cursor.getColumnIndex(MediaStore.Files.FileColumns.TITLE));
 
-            Log.i(TAG, "------------" + fileName + "/" + DISPLAY_NAME);
             File file = new File(filePath);
             if (!file.exists() || file.length() <= 0) {
                 continue;
@@ -202,7 +199,6 @@ public class SelectSceneActivity extends BaseAc implements TodayCacheAdapter.OnI
             }
         }
         cursor.close();
-        Log.d(TAG, "------------" + JSON.toJSONString(mImageItems));
         ThreadUtil.runOnUiThread(new Runnable() {
             @Override
             public void run() {

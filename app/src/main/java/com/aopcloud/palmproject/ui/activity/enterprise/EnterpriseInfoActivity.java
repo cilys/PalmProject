@@ -68,8 +68,6 @@ import okhttp3.Call;
  */
 @Layout(R.layout.activity_enterprise_info)
 public class EnterpriseInfoActivity extends BaseAc implements FileListAdapter.OnItemClickListener, FileListAdapter.OnItemChildClickListener {
-
-
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)
@@ -237,16 +235,12 @@ public class EnterpriseInfoActivity extends BaseAc implements FileListAdapter.On
         }
     }
 
-
-
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
         if (view.getId() == R.id.iv_del) {
             mMediaEntities.remove(position);
             mFileListAdapter.notifyDataSetChanged();
         }
-
-
     }
 
     public void setEdit(boolean edit) {
@@ -321,8 +315,6 @@ public class EnterpriseInfoActivity extends BaseAc implements FileListAdapter.On
             mEtBlankNo.setHint("请输入账号");
             mEtBlankName.setHint("请输入名称");
         }
-
-
     }
 
     @OnClick({R.id.ll_header_back, R.id.ll_header_right, R.id.iv_logo, R.id.tv_district, R.id.tv_industry, R.id.iv_area})
@@ -391,7 +383,6 @@ public class EnterpriseInfoActivity extends BaseAc implements FileListAdapter.On
         }
         showPopXupLoading("更新中");
 
-        Log.i(TAG, "-------mAddMediaEntity-----" + JSON.toJSONString(mMediaEntities));
         uploadFile(list);
     }
 
@@ -412,10 +403,8 @@ public class EnterpriseInfoActivity extends BaseAc implements FileListAdapter.On
             params.put("account_type", "" + account_type);
             params.put("account_cardno", "" + account_cardno);
             params.put("id_photo", "" + id_photo);
-            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(params));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.company_update, params);
         } else if (eventTag == ApiConstants.EventTags.manage_all) {
-            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(params));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.manage_all, params);
         }
     }
@@ -423,7 +412,6 @@ public class EnterpriseInfoActivity extends BaseAc implements FileListAdapter.On
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Log.i(TAG, "------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -448,7 +436,6 @@ public class EnterpriseInfoActivity extends BaseAc implements FileListAdapter.On
                 }else {
                     ToastUtil.showToast("无权访问");
                 }
-
             }
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
@@ -459,7 +446,6 @@ public class EnterpriseInfoActivity extends BaseAc implements FileListAdapter.On
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Log.i(TAG, "------------" + eventTag + "/" + msg);
     }
 
     @Override
@@ -467,11 +453,9 @@ public class EnterpriseInfoActivity extends BaseAc implements FileListAdapter.On
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK) {
             List<MediaEntity> result = Phoenix.result(data);
-            Log.i(TAG, "------------" + JSON.toJSONString(result));
             uploadImg(result.get(0));
         } else if (requestCode == 2 && resultCode == RESULT_OK) {
             List<MediaEntity> result = Phoenix.result(data);
-            Log.i(TAG, "------------" + JSON.toJSONString(result));
             mMediaEntities.clear();
             mMediaEntities.addAll(result);
             mMediaEntities.add(mAddMediaEntity);
@@ -492,7 +476,6 @@ public class EnterpriseInfoActivity extends BaseAc implements FileListAdapter.On
                 result.remove(entity);
                 uploadFile(result);
             } else {
-                Log.d(TAG, "-----file-----" + JSON.toJSONString(entity));
                 OkHttpUtils.post().url(ApiConstants.file_upload)
                         .addParams("token", "" + LoginUserUtil.getToken(this))
                         .addFile("file", getPictureSuffix(entity.getLocalPath()), new File(entity.getLocalPath()))
@@ -562,7 +545,6 @@ public class EnterpriseInfoActivity extends BaseAc implements FileListAdapter.On
     }
 
     private String getPictureSuffix(String path) {
-        Log.i(TAG, "----------" + path);
         if (path.contains(".")) {
             return "live_" + System.currentTimeMillis() + path.substring(path.lastIndexOf("."), path.length());
         }
@@ -620,8 +602,7 @@ public class EnterpriseInfoActivity extends BaseAc implements FileListAdapter.On
             Log.i(TAG, "empty");
             return;
         }
-        Log.i(TAG, "------开始---------" + System.currentTimeMillis() / 1000 + "/"
-                + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss:").format(new Date()));
+
         int p = beanList.size();
         options1Items.addAll(beanList);
         for (int i = 0; i < p; i++) {
@@ -635,9 +616,6 @@ public class EnterpriseInfoActivity extends BaseAc implements FileListAdapter.On
             }
             options3Items.add(Province_AreaList);
         }
-        Log.i(TAG, "------结束---------" + System.currentTimeMillis() / 1000 + "/"
-                + new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
-
     }
 
 }

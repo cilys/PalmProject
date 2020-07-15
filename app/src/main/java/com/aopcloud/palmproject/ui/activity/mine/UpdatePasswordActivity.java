@@ -100,8 +100,6 @@ public class UpdatePasswordActivity extends BaseAc {
         toRequest(ApiConstants.EventTags.reset_password);
     }
 
-
-
     @Override
     public void toRequest(int eventTag) {
         super.toRequest(eventTag);

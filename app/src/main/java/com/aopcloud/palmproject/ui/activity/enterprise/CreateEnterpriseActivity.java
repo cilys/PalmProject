@@ -177,7 +177,6 @@ public class CreateEnterpriseActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -234,8 +233,5 @@ public class CreateEnterpriseActivity extends BaseAc {
             }
             options3Items.add(Province_AreaList);
         }
-
     }
-
 }
-

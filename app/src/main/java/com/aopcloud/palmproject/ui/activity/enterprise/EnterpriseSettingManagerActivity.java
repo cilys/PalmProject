@@ -254,7 +254,6 @@ public class EnterpriseSettingManagerActivity extends BaseAc {
                 } else {
                     ToastUtil.showToast("请选择权限");
                 }
-
             }
         });
 
@@ -265,8 +264,6 @@ public class EnterpriseSettingManagerActivity extends BaseAc {
                 sheetDialog.dismiss();
             }
         });
-
-
     }
 
     @Override

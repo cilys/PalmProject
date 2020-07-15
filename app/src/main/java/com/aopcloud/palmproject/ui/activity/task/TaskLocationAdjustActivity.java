@@ -129,15 +129,12 @@ public class TaskLocationAdjustActivity extends BaseAc implements
     private double longitude;
     private String address;
 
-
     private MediaEntity mAddMediaEntity;
     private FileListAdapter mFileListAdapter;
     private List<MediaEntity> mMediaEntities = new ArrayList<>();
 
-
     private String attach;
     private String message;
-
 
     private String task_id;
     private ProjectTaskDetailBean mTaskDetailBean;
@@ -393,7 +390,6 @@ public class TaskLocationAdjustActivity extends BaseAc implements
             map.put("longitude", "" + longitude);
             map.put("latitude", "" + latitude);
 //            map.put("longitude", "" + longitude);
-            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.trajectory_add, map);
         }
     }
@@ -401,7 +397,6 @@ public class TaskLocationAdjustActivity extends BaseAc implements
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Log.i(TAG, "------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.trajectory_add) {
@@ -416,7 +411,6 @@ public class TaskLocationAdjustActivity extends BaseAc implements
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Log.i(TAG, "------------" + eventTag + "/" + msg);
         ToastUtil.showToast("网络错误");
     }
 
@@ -425,7 +419,6 @@ public class TaskLocationAdjustActivity extends BaseAc implements
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 2) {
             List<MediaEntity> result = Phoenix.result(data);
-            Log.i(TAG, "------------" + JSON.toJSONString(result));
             mMediaEntities.clear();
             if (result != null) {
                 mMediaEntities.addAll(result);
@@ -440,7 +433,6 @@ public class TaskLocationAdjustActivity extends BaseAc implements
             if (bundle != null) {
                 longitude = bundle.getDouble("longitude");
                 latitude = bundle.getDouble("latitude");
-                Log.i(TAG, "------------" + latitude + "/" + longitude);
                 LatLng latLng = new LatLng(latitude, longitude);//构造一个位置
                 mAMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, Conf.MAP_ZOOM_LEVEL));
                 if (mLocationClient != null) {
@@ -462,7 +454,6 @@ public class TaskLocationAdjustActivity extends BaseAc implements
                 result.remove(entity);
                 uploadFile(result);
             } else {
-                Log.i(TAG, "------------" + getPictureSuffix(entity.getLocalPath()));
                 OkHttpUtils.post().url(ApiConstants.file_upload)
                         .addParams("token", "" + LoginUserUtil.getToken(this))
                         .addFile("file", getPictureSuffix(entity.getLocalPath()), new File(entity.getLocalPath()))
@@ -495,7 +486,6 @@ public class TaskLocationAdjustActivity extends BaseAc implements
                         });
             }
         } else {
-            Log.i(TAG, "-------" + attach);
             toRequest(ApiConstants.EventTags.trajectory_add);
         }
     }

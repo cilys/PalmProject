@@ -170,5 +170,4 @@ public class DepartmentAddMemberActivity extends BaseAc {
             mTvPost.setText("" + tagName);
         }
     }
-
 }

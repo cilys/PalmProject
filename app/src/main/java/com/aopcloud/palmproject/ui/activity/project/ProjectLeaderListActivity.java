@@ -111,16 +111,11 @@ public class ProjectLeaderListActivity extends BaseAc implements
                 bundle.putString("project_id", "" + project_id);
                 bundle.putString("user_id", ""+usersBean.getUser_id());
                 gotoActivity(ProjectMemberDetailActivity.class, bundle, 0);
-
             }
         });
-
-
     }
 
     private void setViewData(ProjectMemberBean detailBean) {
-
-
         List list = new ArrayList();
         for (int i = 0; i <detailBean.getUsers().size() ; i++) {
             //0,管理员，1：施工员
@@ -193,14 +188,12 @@ public class ProjectLeaderListActivity extends BaseAc implements
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
     }
-
 
     @OnClick({R.id.ll_header_back, R.id.tv_header_title, R.id.ll_header_right, R.id.ll_add})
     public void onViewClicked(View view) {

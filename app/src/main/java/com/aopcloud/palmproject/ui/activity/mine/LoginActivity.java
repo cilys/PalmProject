@@ -90,7 +90,6 @@ public class LoginActivity extends BaseAc {
         mTvSendVerifyCode.setVisibility(isVerifyCodeLogin ? View.GONE : View.VISIBLE);
         mEtPassword.setVisibility(isVerifyCodeLogin ? View.VISIBLE : View.GONE);
         isVerifyCodeLogin = !isVerifyCodeLogin;
-
     }
 
     @Override
@@ -220,7 +219,6 @@ public class LoginActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

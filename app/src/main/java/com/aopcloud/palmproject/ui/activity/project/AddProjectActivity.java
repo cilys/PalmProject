@@ -360,7 +360,6 @@ public class AddProjectActivity extends BaseAc {
                         mTvRangeType.setText("" + list.get(i).getName());
                     }
                 }
-
             }
         });
     }
@@ -452,7 +451,6 @@ public class AddProjectActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

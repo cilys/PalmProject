@@ -98,7 +98,6 @@ public class EnterpriseDepartmentAddActivity extends BaseAc {
     private String leader_id = "";
     private String status = "";
 
-
     @Override
     protected void initView() {
         mTvHeaderTitle.setText("添加部门");
@@ -137,7 +136,6 @@ public class EnterpriseDepartmentAddActivity extends BaseAc {
             ToastUtil.showToast("请选择负责人");
             return;
         }
-
         toRequest(ApiConstants.EventTags.department_add);
     }
 
@@ -168,7 +166,6 @@ public class EnterpriseDepartmentAddActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -198,5 +195,4 @@ public class EnterpriseDepartmentAddActivity extends BaseAc {
 
         }
     }
-
 }

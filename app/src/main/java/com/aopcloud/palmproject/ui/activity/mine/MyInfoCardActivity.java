@@ -114,7 +114,6 @@ LinearLayout mLLEmil;
     private void setLoginUser(UserBean userBean) {
         mUserBean = userBean;
         LoginUserUtil.setLoginUserBean(this, userBean);
-        Log.d(TAG, "------" + JSON.toJSONString(userBean));
         AppImageLoader.loadCircleImage(this, BuildConfig.BASE_URL + userBean.getAvatar(), mIvImg);
 
 
@@ -138,8 +137,6 @@ LinearLayout mLLEmil;
         if (TextUtils.isEmpty(userBean.getEmail())){
             mLLEmil.setVisibility(View.GONE);
         }
-
-
     }
 
     @OnClick({R.id.ll_header_back, R.id.ll_header_right, R.id.iv_add_friend, R.id.iv_star, R.id.iv_sms, R.id.iv_call, R.id.iv_send_email})

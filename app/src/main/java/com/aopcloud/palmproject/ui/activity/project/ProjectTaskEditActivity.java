@@ -114,7 +114,6 @@ public class ProjectTaskEditActivity extends BaseAc implements FileListAdapter.O
             String json = bundle.getString("mTaskDetailBean");
             edit = bundle.getBoolean("edit", false);
             mTaskDetailBean = JSON.parseObject(json, ProjectTaskDetailBean.class);
-
         }
     }
 
@@ -192,7 +191,6 @@ public class ProjectTaskEditActivity extends BaseAc implements FileListAdapter.O
         } else {
 
         }
-
     }
 
     @Override
@@ -203,12 +201,8 @@ public class ProjectTaskEditActivity extends BaseAc implements FileListAdapter.O
             entities.remove(position);
             mMediaEntities.clear();
             mMediaEntities.addAll(entities);
-            Log.w(TAG, "-1--" + JSON.toJSONString(entities));
-            Log.d(TAG, "--2-" + JSON.toJSONString(mMediaEntities));
             mFileListAdapter.notifyDataSetChanged();
         }
-
-
     }
 
     @OnClick({R.id.ll_header_back, R.id.ll_header_right, R.id.iv_name_more, R.id.iv_unit_more, R.id.tv_address,R.id.tv_submit})
@@ -287,7 +281,6 @@ public class ProjectTaskEditActivity extends BaseAc implements FileListAdapter.O
             map.put("longitude", "" + assignLongitude);
             map.put("latitude", "" + assignLatitude);
             map.put("scope", "" + assignRange);
-            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.task_add, map);
         } else if (eventTag == ApiConstants.EventTags.task_update) {
             map.put("task_id", "" + task_id);
@@ -302,7 +295,6 @@ public class ProjectTaskEditActivity extends BaseAc implements FileListAdapter.O
             map.put("longitude", "" + assignLongitude);
             map.put("latitude", "" + assignLatitude);
             map.put("scope", "" + assignRange);
-            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.task_update, map);
         }
     }
@@ -310,7 +302,6 @@ public class ProjectTaskEditActivity extends BaseAc implements FileListAdapter.O
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Log.i(TAG, "------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.task_add) {
@@ -328,7 +319,6 @@ public class ProjectTaskEditActivity extends BaseAc implements FileListAdapter.O
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Log.i(TAG, "------------" + eventTag + "/" + msg);
         ToastUtil.showToast("网络错误");
     }
 
@@ -337,7 +327,6 @@ public class ProjectTaskEditActivity extends BaseAc implements FileListAdapter.O
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 2 && resultCode == RESULT_OK) {
             List<MediaEntity> result = Phoenix.result(data);
-            Log.i(TAG, "------------" + JSON.toJSONString(result));
             mMediaEntities.clear();
             mMediaEntities.addAll(result);
             mMediaEntities.add(mAddMediaEntity);
@@ -369,7 +358,6 @@ public class ProjectTaskEditActivity extends BaseAc implements FileListAdapter.O
                 result.remove(entity);
                 uploadFile(result);
             } else {
-                Log.i(TAG, "------------" + getPictureSuffix(entity.getLocalPath()));
                 OkHttpUtils.post().url(ApiConstants.file_upload)
                         .addParams("token", "" + LoginUserUtil.getToken(this))
                         .addFile("file", getPictureSuffix(entity.getLocalPath()), new File(entity.getLocalPath()))
@@ -402,7 +390,6 @@ public class ProjectTaskEditActivity extends BaseAc implements FileListAdapter.O
                         });
             }
         } else {
-            Log.i(TAG, "-------" + attach);
             if (edit) {
                 toRequest(ApiConstants.EventTags.task_update);
             } else {

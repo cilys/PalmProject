@@ -91,7 +91,6 @@ public class TaskDetailActivity extends BaseAc {
         mPageView.setOffscreenPageLimit(mFragments.size());
     }
 
-
     @OnClick({R.id.ll_header_back, R.id.ll_header_right})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -112,6 +111,4 @@ public class TaskDetailActivity extends BaseAc {
                 break;
         }
     }
-
-
 }

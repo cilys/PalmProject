@@ -105,7 +105,7 @@ public class NewsFragment extends BaseFragment implements WeatherSearch.OnWeathe
         todoFragment.setOnLoadCountListener(new NewsTodoFragment.OnLoadCountListener() {
             @Override
             public void onLoadCount(int size) {
-                mTabView.getTitleView(0).setText("待办("+size+")");
+                mTabView.getTitleView(0).setText("待办(" + size + ")");
                 mTabView.postInvalidate();
             }
         });
@@ -171,6 +171,4 @@ public class NewsFragment extends BaseFragment implements WeatherSearch.OnWeathe
     public void onWeatherForecastSearched(LocalWeatherForecastResult localWeatherForecastResult, int i) {
 
     }
-
-
 }

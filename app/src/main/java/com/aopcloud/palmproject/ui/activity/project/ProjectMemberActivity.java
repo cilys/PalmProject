@@ -46,8 +46,6 @@ import butterknife.OnClick;
  */
 @Layout(R.layout.activity_project_member)
 public class ProjectMemberActivity extends BaseAc implements ProjectMemberAdapter.OnItemClickListener, ProjectMemberAdapter.OnItemChildClickListener {
-
-
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)
@@ -160,7 +158,6 @@ public class ProjectMemberActivity extends BaseAc implements ProjectMemberAdapte
         bundle.putString("project_id", "" + project_id);
         bundle.putString("user_id", "" + usersBean.getUser_id());
         gotoActivity(ProjectMemberDetailActivity.class, bundle, 0);
-
     }
 
     @Override
@@ -236,7 +233,6 @@ public class ProjectMemberActivity extends BaseAc implements ProjectMemberAdapte
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

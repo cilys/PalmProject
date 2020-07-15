@@ -44,8 +44,6 @@ import butterknife.OnClick;
  */
 @Layout(R.layout.activity_project_member_detail)
 public class ProjectMemberDetailActivity extends BaseAc {
-
-
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)
@@ -171,19 +169,18 @@ public class ProjectMemberDetailActivity extends BaseAc {
         mTvMobile.setText("" + mDetailBean.getTel());
 
 
-        mTvProjectName.setText(null!=mDetailBean.getProjects()&&mDetailBean.getProjects().size()>0?""+mDetailBean.getProjects().get(0).getProject_name():"");
-        if (mDetailBean.getTeam()!=null){
-            mTvTeam.setText(""+mDetailBean.getTeam().getTeam_name());
-            mTvRole.setText(""+mDetailBean.getTeam().getMajors());
-            mTvDayWages.setText(""+mDetailBean.getTeam().getSalary());
+        mTvProjectName.setText(null != mDetailBean.getProjects() && mDetailBean.getProjects().size() > 0 ? "" + mDetailBean.getProjects().get(0).getProject_name() : "");
+        if (mDetailBean.getTeam() != null) {
+            mTvTeam.setText("" + mDetailBean.getTeam().getTeam_name());
+            mTvRole.setText("" + mDetailBean.getTeam().getMajors());
+            mTvDayWages.setText("" + mDetailBean.getTeam().getSalary());
         }
 
-        mTvProjectCount.setText(""+mDetailBean.getProjects().size()+ "个");
+        mTvProjectCount.setText("" + mDetailBean.getProjects().size() + "个");
 
         mProjectAdapter = new ProjectMemberProjectAdapter(R.layout.item_project_member_detail, mDetailBean.getProjects());
         mRvProject.setLayoutManager(new LinearLayoutManager(this));
         mRvProject.setAdapter(mProjectAdapter);
-
     }
 
     @OnClick({R.id.ll_header_back, R.id.ll_header_right, R.id.tv_project_count, R.id.iv_project_count, R.id.iv_sms, R.id.iv_call, R.id.iv_send_email})
@@ -209,6 +206,7 @@ public class ProjectMemberDetailActivity extends BaseAc {
                 break;
         }
     }
+
     private void callPhone() {
         TipsDialog.wrap(this).setMsg("呼叫 :" + mDetailBean.getTel()).setOnActionClickListener(new TipsDialog.onActionClickListener() {
 
@@ -219,6 +217,7 @@ public class ProjectMemberDetailActivity extends BaseAc {
             }
         }).show();
     }
+
     @Override
     public void toRequest(int eventTag) {
         super.toRequest(eventTag);
@@ -227,7 +226,7 @@ public class ProjectMemberDetailActivity extends BaseAc {
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
         if (eventTag == ApiConstants.EventTags.user_info) {
             map.put("user_id", "" + user_id);
-            if (!TextUtils.isEmpty(team_id)){
+            if (!TextUtils.isEmpty(team_id)) {
                 map.put("team_id", "" + team_id);
             }
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.user_info, map);
@@ -247,7 +246,6 @@ public class ProjectMemberDetailActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

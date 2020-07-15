@@ -160,7 +160,6 @@ public class TeamEditMemberActivity extends BaseAc {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -168,5 +167,4 @@ public class TeamEditMemberActivity extends BaseAc {
         super.onRequestFailureException(eventTag, msg);
         ToastUtil.showToast("网络错误，请重试");
     }
-
 }

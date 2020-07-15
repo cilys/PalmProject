@@ -67,8 +67,6 @@ import okhttp3.Call;
  */
 @Layout(R.layout.activity_mine_info)
 public class AccountInfoActivity extends BaseAc implements FileListAdapter.OnItemClickListener, FileListAdapter.OnItemChildClickListener {
-
-
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)
@@ -155,7 +153,6 @@ public class AccountInfoActivity extends BaseAc implements FileListAdapter.OnIte
     ImageView mIvSkill;
     @BindView(R.id.rv_list_img)
     RecyclerView mRvListImg;
-
 
     private FileListAdapter mFileListAdapter;
     private List<MediaEntity> mMediaEntities = new ArrayList<>();
@@ -668,7 +665,6 @@ public class AccountInfoActivity extends BaseAc implements FileListAdapter.OnIte
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -790,6 +786,4 @@ public class AccountInfoActivity extends BaseAc implements FileListAdapter.OnIte
         options.setPicker(mSexBeans);
         options.show();
     }
-
-
 }

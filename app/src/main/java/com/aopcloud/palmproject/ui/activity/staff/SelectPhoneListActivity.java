@@ -37,8 +37,6 @@ import butterknife.OnClick;
  */
 @Layout(R.layout.activity_rv)
 public class SelectPhoneListActivity extends BaseAc implements SelectMobileListAdapter.OnItemClickListener {
-
-
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

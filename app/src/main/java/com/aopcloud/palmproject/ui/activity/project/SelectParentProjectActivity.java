@@ -38,8 +38,6 @@ import butterknife.OnClick;
  */
 @Layout(R.layout.activity_project_select_parent)
 public class SelectParentProjectActivity extends BaseAc implements ExpandableListView.OnChildClickListener, SelectParentProjectAdapter.OnPickerListener {
-
-
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)
@@ -72,13 +70,9 @@ public class SelectParentProjectActivity extends BaseAc implements ExpandableLis
         mAdapter.setOnPickerListener(this);
         mElvList.setOnChildClickListener(this);
         mElvList.setAdapter(mAdapter);
-
-
     }
 
     private void setViewData(List<ProjectListBean> beanList) {
-
-
         List<String> company_code = new ArrayList();
         for (int i = 0; i < beanList.size(); i++) {
             if (!company_code.contains(beanList.get(i).getCompany_code())) {
@@ -117,7 +111,6 @@ public class SelectParentProjectActivity extends BaseAc implements ExpandableLis
     }
 
     ProjectListBean mProjectListBean;
-
     @Override
     public void onPickerItem(ProjectListBean projectListBean) {
         mProjectListBean = projectListBean;
@@ -145,7 +138,6 @@ public class SelectParentProjectActivity extends BaseAc implements ExpandableLis
         }
     }
 
-
     @Override
     public void toRequest(int eventTag) {
         super.toRequest(eventTag);
@@ -170,7 +162,6 @@ public class SelectParentProjectActivity extends BaseAc implements ExpandableLis
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -178,4 +169,3 @@ public class SelectParentProjectActivity extends BaseAc implements ExpandableLis
         super.onRequestFailureException(eventTag, msg);
     }
 }
-

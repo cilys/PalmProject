@@ -4,4 +4,6 @@ import com.aopcloud.base.base.BaseActivity;
 
 public abstract class BaseAc extends BaseActivity {
 
+
+
 }

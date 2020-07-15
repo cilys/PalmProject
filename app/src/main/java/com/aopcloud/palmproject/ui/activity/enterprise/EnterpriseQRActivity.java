@@ -203,5 +203,4 @@ public class EnterpriseQRActivity extends BaseAc {
         }
         return null;
     }
-
 }

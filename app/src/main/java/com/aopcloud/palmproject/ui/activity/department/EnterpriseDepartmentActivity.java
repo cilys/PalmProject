@@ -42,8 +42,6 @@ import butterknife.OnClick;
  */
 @Layout(R.layout.activity_enterprise_department)
 public class EnterpriseDepartmentActivity extends BaseAc {
-
-
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)
@@ -77,7 +75,6 @@ public class EnterpriseDepartmentActivity extends BaseAc {
 
     }
 
-
     private void setViewData(List<DepartmentNodeBean> beanList) {
         root = TreeNode.root();
         List<TreeNode> node = new ArrayList();
@@ -108,7 +105,6 @@ public class EnterpriseDepartmentActivity extends BaseAc {
             treeNodes.add(treeNode);
         }
         node.addChildren(treeNodes);
-
     }
 
 
