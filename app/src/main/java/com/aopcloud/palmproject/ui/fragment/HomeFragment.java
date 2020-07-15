@@ -225,7 +225,6 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
                 EventBus.getDefault().post(new BaseEvent(BaseEvent.EVENT_LOGOUT));
             }
         }
-
     }
 
     @Override
@@ -246,7 +245,6 @@ public class HomeFragment extends BaseFragment implements ViewPager.OnPageChange
 
     @Override
     public void onPageScrolled(int i, float v, int i1) {
-
 
     }
 

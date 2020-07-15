@@ -165,7 +165,6 @@ public class MainActivity extends BaseActivity {
 
     private void setLoginUser(UserBean userBean) {
         if (userBean != null) {
-            Log.d(TAG, "------" + JSON.toJSONString(userBean));
             AppImageLoader.loadCircleImage(this, BuildConfig.BASE_URL + userBean.getAvatar(), mIvImg);
             mTvName.setText("" + userBean.getNickname());
             mTvRealName.setText(userBean.getStatus() == 1 ? "已实名" : "未实名");
@@ -481,7 +480,6 @@ public class MainActivity extends BaseActivity {
         Map map = new HashMap();
         map.put("token", "" + LoginUserUtil.getToken(this));
         if (eventTag == ApiConstants.EventTags.user_info) {
-            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.user_info, map);
         }
     }
@@ -489,7 +487,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Log.i(TAG, "------------" + eventTag + "/" + result);
         dismissPopupLoading();
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
@@ -509,7 +506,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Log.i(TAG, "------------" + eventTag + "/" + msg);
     }
 
     @Override
@@ -537,7 +533,6 @@ public class MainActivity extends BaseActivity {
                     dialog.dismiss();
                 }
             }).show();
-
         }
     }
 }
