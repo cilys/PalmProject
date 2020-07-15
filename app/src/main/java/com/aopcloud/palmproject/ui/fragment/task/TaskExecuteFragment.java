@@ -729,7 +729,7 @@ public class TaskExecuteFragment extends BaseFragment implements
 //                Logcat.i("onLocationChanged:" + JSON.toJSONString(amapLocation));
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
-                Log.e(TAG, errText);
+                Log.d(TAG, errText);
             }
         }
     }

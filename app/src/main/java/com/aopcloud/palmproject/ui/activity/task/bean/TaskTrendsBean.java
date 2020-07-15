@@ -1,5 +1,7 @@
 package com.aopcloud.palmproject.ui.activity.task.bean;
 
+import java.io.Serializable;
+
 /**
  * @PackageName : com.aopcloud.palmproject.ui.activity.task.bean
  * @File : TaskTrendsBean.java
@@ -114,5 +116,44 @@ public class TaskTrendsBean {
 
     public void setExtra(String extra) {
         this.extra = extra;
+    }
+
+    public static class ExtraBean implements Serializable {
+        private int work_value_done_before;
+        private int work_value_done_after;
+        private int progress_before;
+        private int progress_after;
+
+        public int getWork_value_done_before() {
+            return work_value_done_before;
+        }
+
+        public void setWork_value_done_before(int work_value_done_before) {
+            this.work_value_done_before = work_value_done_before;
+        }
+
+        public int getWork_value_done_after() {
+            return work_value_done_after;
+        }
+
+        public void setWork_value_done_after(int work_value_done_after) {
+            this.work_value_done_after = work_value_done_after;
+        }
+
+        public int getProgress_before() {
+            return progress_before;
+        }
+
+        public void setProgress_before(int progress_before) {
+            this.progress_before = progress_before;
+        }
+
+        public int getProgress_after() {
+            return progress_after;
+        }
+
+        public void setProgress_after(int progress_after) {
+            this.progress_after = progress_after;
+        }
     }
 }

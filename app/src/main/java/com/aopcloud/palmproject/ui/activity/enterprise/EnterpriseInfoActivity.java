@@ -193,7 +193,6 @@ public class EnterpriseInfoActivity extends BaseActivity implements FileListAdap
             }
         }
         setEdit(false);
-
     }
 
     @Override

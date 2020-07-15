@@ -19,10 +19,13 @@ import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskDetailBean;
+import com.aopcloud.palmproject.ui.activity.task.bean.TaskTrendsBean;
 import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;
 import com.aopcloud.palmproject.utils.JsonUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.cily.utils.base.time.TimeUtils;
 import com.guoxiaoxing.phoenix.core.PhoenixOption;
 import com.guoxiaoxing.phoenix.core.model.MediaEntity;
 import com.guoxiaoxing.phoenix.core.model.MimeType;
@@ -54,7 +57,6 @@ import okhttp3.Call;
 @Layout(R.layout.activity_task_update_progress)
 public class TaskUpdateProgressActivity extends BaseActivity implements FileListAdapter.OnItemChildClickListener,
         FileListAdapter.OnItemClickListener {
-
 
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
@@ -95,7 +97,6 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
     private String task_work_value;
     private boolean child;
 
-
     private int progress;
     private String message;
     private String work_value;
@@ -115,6 +116,9 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
             task_work_unit = bundle.getString("work_unit");
             task_work_value = bundle.getString("work_value");
             child = bundle.getBoolean("child",false);
+
+            //强制改为true
+            child = true;
         }
     }
     @Override
@@ -124,12 +128,32 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
 
         if (child){
             mProgressBar.setVisibility(View.VISIBLE);
-            mRlNumberProgress.setVisibility(View.GONE);
+//            mRlNumberProgress.setVisibility(View.GONE);
+            mRlNumberProgress.setVisibility(View.VISIBLE);
         }else {
             mProgressBar.setVisibility(View.GONE);
             mRlNumberProgress.setVisibility(View.VISIBLE);
             mTvCountUnit.setText(""+task_work_unit);
         }
+
+        mProgressBar.setOnProgressChangedListener(new BubbleSeekBar.OnProgressChangedListener() {
+            @Override
+            public void onProgressChanged(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat, boolean fromUser) {
+
+            }
+
+            @Override
+            public void getProgressOnActionUp(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat) {
+                if (progress < initProgress){
+                    bubbleSeekBar.setProgress(initProgress);
+                }
+            }
+
+            @Override
+            public void getProgressOnFinally(BubbleSeekBar bubbleSeekBar, int progress, float progressFloat, boolean fromUser) {
+
+            }
+        });
 
         mAddMediaEntity = new MediaEntity();
         mMediaEntities.add(mAddMediaEntity);
@@ -140,11 +164,14 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
         mRvList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         mRvList.setAdapter(mFileListAdapter);
 
+        toRequest(ApiConstants.EventTags.trends_all);
+//        toRequest(ApiConstants.EventTags.task_get);
     }
+
+    private int initProgress;
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
         if (position == mMediaEntities.size() - 1) {
             List list = new ArrayList();
             list.addAll(mMediaEntities);
@@ -172,7 +199,6 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
         } else {
 
         }
-
     }
 
     @Override
@@ -187,8 +213,6 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
             Log.d(TAG, "--2-" + JSON.toJSONString(mMediaEntities));
             mFileListAdapter.notifyDataSetChanged();
         }
-
-
     }
 
     @OnClick({R.id.ll_header_back, R.id.ll_header_right,R.id.tv_complete_all,R.id.tv_submit})
@@ -201,6 +225,7 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
                 break;
             case R.id.tv_complete_all:
                 mEtNumber.setText(""+task_work_value);
+                mEtNumber.setSelection(mEtNumber.getText().toString().length());
                 break;
             case R.id.tv_submit:
                 message = mEtMsg.getText().toString();
@@ -236,30 +261,76 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
             }else {
                 map.put("work_value", "" + work_value);
             }
-            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.task_feedback, map);
+        } else if (eventTag == ApiConstants.EventTags.task_get) {
+            //进度反馈详细列表
+//            map.put("type", "0");
+            iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.task_get, map);
+        } else if (eventTag == ApiConstants.EventTags.trends_all){
+            map.put("type", "0");
+            iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.trends_all, map);
         }
     }
 
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Log.i(TAG, "------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.task_feedback) {
                 setResult(0);
                 finish();
+            } else if (eventTag == ApiConstants.EventTags.trends_all) {
+                List<TaskTrendsBean> beanList = JSON.parseArray(bean.getData(), TaskTrendsBean.class);
+                setViewData(beanList);
+            } else if (eventTag == ApiConstants.EventTags.task_get) {
+                ProjectTaskDetailBean b = JSON.parseObject(bean.getData(), ProjectTaskDetailBean.class);
+                setData(b == null ? null : b.getTrends());
             }
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
     }
 
+    private void setData(List<ProjectTaskDetailBean.TrendsBean> datas){
+        if (datas != null && datas.size() > 0) {
+            ProjectTaskDetailBean.TrendsBean bean = null;
+            for (ProjectTaskDetailBean.TrendsBean b : datas) {
+                if (b.getType() == 0){
+                    if (bean == null) {
+                        bean = b;
+                    }else {
+                        if (bean.getMake_time() < b.getMake_time()) {
+                            bean = b;
+                        }
+                    }
+                }
+            }
+            if (bean != null) {
+                mTvLastTime.setText("上次反馈：" + TimeUtils.milToStr(bean.getMake_time(), null));
+
+            }
+        }
+    }
+
+    private void setViewData(List<TaskTrendsBean> beanList){
+        if (beanList != null && beanList.size() > 0) {
+            String extra = beanList.get(0).getExtra();
+            TaskTrendsBean.ExtraBean bean = JSON.parseObject(extra, TaskTrendsBean.ExtraBean.class);
+            if (bean != null){
+                mTvLastTime.setText("上次反馈：" + TimeUtils.milToStr(beanList.get(0).getMake_time(), null));
+                mProgressBar.setProgress(bean.getProgress_after());
+                initProgress = bean.getProgress_after();
+//                mProgressBar.getMin()
+                mEtNumber.setText(bean.getWork_value_done_after() + "");
+                mEtNumber.setSelection(mEtNumber.getText().toString().length());
+            }
+        }
+    }
+
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Log.i(TAG, "------------" + eventTag + "/" + msg);
         ToastUtil.showToast("网络错误");
     }
 
@@ -269,13 +340,11 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 2 && resultCode == RESULT_OK) {
             List<MediaEntity> result = Phoenix.result(data);
-            Log.i(TAG, "------------" + JSON.toJSONString(result));
             mMediaEntities.clear();
             mMediaEntities.addAll(result);
             mMediaEntities.add(mAddMediaEntity);
             mFileListAdapter.notifyDataSetChanged();
         }
-
     }
 
     private void uploadFile(List<MediaEntity> result) {
@@ -290,7 +359,6 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
                 result.remove(entity);
                 uploadFile(result);
             } else {
-                Log.i(TAG, "------------" + getPictureSuffix(entity.getLocalPath()));
                 OkHttpUtils.post().url(ApiConstants.file_upload)
                         .addParams("token", "" + LoginUserUtil.getToken(this))
                         .addFile("file", getPictureSuffix(entity.getLocalPath()), new File(entity.getLocalPath()))
@@ -323,7 +391,6 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
                         });
             }
         } else {
-            Log.i(TAG, "-------" + attach);
             toRequest(ApiConstants.EventTags.task_feedback);
         }
     }

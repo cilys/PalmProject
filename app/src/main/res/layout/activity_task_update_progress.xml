@@ -44,38 +44,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
-
-
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:background="@drawable/shape_line" />
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="21dp"
-            android:layout_marginTop="11dp"
-            android:text="进度"
-            android:textColor="#FF080808"
-            android:textSize="13dp" />
-
-        <com.xw.repo.BubbleSeekBar
-            android:id="@+id/progress_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            app:bsb_always_show_bubble="false"
-            app:bsb_second_track_color="@color/theme_color"
-            app:bsb_second_track_size="6dp"
-            app:bsb_show_thumb_text="true"
-            app:bsb_thumb_color="@color/theme_color"
-            app:bsb_thumb_radius_on_dragging="1dp"
-            app:bsb_track_color="#bbbbbb"
-            app:bsb_track_size="6dp" />
 
         <RelativeLayout
             android:id="@+id/rl_number_progress"
@@ -91,7 +65,7 @@
                 android:background="@color/theme_white"
                 android:layout_toStartOf="@+id/tv_count_unit"
                 android:gravity="center_vertical"
-                android:hint="请输入"
+                android:hint="当前剩余工作量"
                 android:textSize="14sp" />
 
             <TextView
@@ -115,10 +89,30 @@
                 android:text="全部完成"
                 android:textColor="#FF108CF7"
                 android:textSize="14sp" />
-
-
         </RelativeLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="21dp"
+            android:layout_marginTop="11dp"
+            android:text="上报进度"
+            android:textColor="#FF080808"
+            android:textSize="13dp" />
+
+        <com.xw.repo.BubbleSeekBar
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:bsb_always_show_bubble="false"
+            app:bsb_second_track_color="@color/theme_color"
+            app:bsb_second_track_size="6dp"
+            app:bsb_show_thumb_text="true"
+            app:bsb_thumb_color="@color/theme_color"
+            app:bsb_thumb_radius_on_dragging="1dp"
+            app:bsb_track_color="#bbbbbb"
+            app:bsb_track_size="6dp" />
 
         <View
             android:layout_width="match_parent"
@@ -147,7 +141,6 @@
             android:padding="6dp"
             android:textSize="14sp" />
 
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_list"
             android:layout_width="match_parent"
@@ -155,7 +148,6 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="13dp"
             android:layout_marginBottom="15dp" />
-
 
         <View
             android:layout_width="match_parent"
@@ -182,9 +174,7 @@
                 android:text="（上次反馈时间至今的照片)"
                 android:textColor="#FF999696"
                 android:textSize="13dp" />
-
         </LinearLayout>
-
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_list_img"
