@@ -34,7 +34,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_qr_scan)
-public class QrCodeScanActivity extends BaseActivity {
+public class QrCodeScanActivity extends BaseAc {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

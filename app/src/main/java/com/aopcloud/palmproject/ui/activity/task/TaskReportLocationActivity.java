@@ -34,13 +34,13 @@ import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.project.bean.DashboardAttendanceBean;
 import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;
 import com.aopcloud.palmproject.utils.JsonUtil;
@@ -76,7 +76,7 @@ import okhttp3.Call;
  * @Describe ：
  */
 @Layout(R.layout.activity_task_report_location)
-public class TaskReportLocationActivity extends BaseActivity implements
+public class TaskReportLocationActivity extends BaseAc implements
         FileListAdapter.OnItemChildClickListener
         , FileListAdapter.OnItemClickListener
         , LocationSource

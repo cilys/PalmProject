@@ -41,7 +41,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.task.dashboard.DashboardTaskListAc"></activity>
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait"
@@ -172,6 +171,7 @@
         <activity android:name=".ui.activity.project.list.SelectProjectAc" />
         <activity android:name=".ui.activity.task.list.TaskListAc" />
         <activity android:name=".ui.activity.task.ArrangeTaskAc" />
+        <activity android:name=".ui.activity.task.dashboard.DashboardTaskListAc" />
         <activity android:name=".ui.activity.task.AddTaskActivity" /> <!-- end -->
         <meta-data
             android:name="com.amap.api.v2.apikey"

@@ -18,12 +18,12 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.map.SelectLocationActivity;
 import com.aopcloud.palmproject.ui.activity.project.ProjectTaskDetailActivity;
 import com.aopcloud.palmproject.ui.activity.team.bean.TeamMemberBean;
@@ -63,7 +63,7 @@ import okhttp3.Call;
  * @Describe ：
  */
 @Layout(R.layout.activity_task_add_child)
-public class AddChildTaskActivity extends BaseActivity implements FileListAdapter.OnItemChildClickListener,
+public class AddChildTaskActivity extends BaseAc implements FileListAdapter.OnItemChildClickListener,
         FileListAdapter.OnItemClickListener {
 
     @BindView(R.id.ll_header_back)

@@ -3,7 +3,6 @@ package com.aopcloud.palmproject.ui.activity.project;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,11 +11,11 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTrendsBean;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectProgressAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
@@ -40,7 +39,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_project_progress)
-public class ProjectProgressActivity extends BaseActivity implements ProjectProgressAdapter.OnItemChildClickListener {
+public class ProjectProgressActivity extends BaseAc implements ProjectProgressAdapter.OnItemChildClickListener {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

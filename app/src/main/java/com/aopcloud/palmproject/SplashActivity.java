@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 
-import com.aopcloud.base.base.BaseActivity;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.mine.LoginActivity;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.utils.SharedPreferencesUtils;
@@ -18,7 +18,7 @@ import com.aopcloud.palmproject.utils.SharedPreferencesUtils;
  * @Version : V 1.0
  * @Describe ：
  */
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends BaseAc {
 
 
     private Handler mTimeHandler = new Handler();

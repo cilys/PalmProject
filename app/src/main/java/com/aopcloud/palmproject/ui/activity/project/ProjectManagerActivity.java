@@ -8,9 +8,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.adapter.feagment.AppFragmentPagerAdapter;
 import com.aopcloud.palmproject.ui.fragment.project.ProjectListFragment;
 import com.flyco.tablayout.SlidingTabLayout;
@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -32,7 +31,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_project_manage)
-public class ProjectManagerActivity extends BaseActivity {
+public class ProjectManagerActivity extends BaseAc {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

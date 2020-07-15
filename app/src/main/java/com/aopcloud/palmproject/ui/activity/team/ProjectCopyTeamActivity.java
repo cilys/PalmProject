@@ -10,11 +10,11 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTeamListBean;
 import com.aopcloud.palmproject.ui.adapter.team.ProjectCopyTeamAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
@@ -39,7 +39,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_rv_bottom)
-public class ProjectCopyTeamActivity extends BaseActivity {
+public class ProjectCopyTeamActivity extends BaseAc {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

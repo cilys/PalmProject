@@ -24,6 +24,7 @@ import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.project.ProjectScenesAddActivity;
 import com.aopcloud.palmproject.utils.BitmapUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
@@ -61,7 +62,7 @@ import butterknife.OnClick;
  */
 @SuppressLint("MissingPermission")
 @Layout(R.layout.activity_picture_or_video)
-public class PictureOrVideoActivity extends BaseActivity {
+public class PictureOrVideoActivity extends BaseAc {
     @BindView(R.id.frame_layout)
     FrameLayout mFrameLayout;
     @BindView(R.id.iv_close)

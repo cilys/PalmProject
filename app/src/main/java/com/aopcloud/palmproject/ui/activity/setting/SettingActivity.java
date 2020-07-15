@@ -11,11 +11,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.common.BaseEvent;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.common.Constants;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.mine.AccountSettingActivity;
 import com.aopcloud.palmproject.ui.activity.mine.LoginActivity;
 import com.aopcloud.palmproject.ui.activity.web.WebActivity;
@@ -39,7 +39,7 @@ import de.greenrobot.event.EventBus;
  * @Describe ：
  */
 @Layout(R.layout.activity_setting)
-public class SettingActivity extends BaseActivity {
+public class SettingActivity extends BaseAc {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

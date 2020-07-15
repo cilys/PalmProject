@@ -6,9 +6,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -23,7 +23,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_about)
-public class AboutActivity extends BaseActivity {
+public class AboutActivity extends BaseAc {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

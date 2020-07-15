@@ -8,13 +8,12 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.project.ProjectTaskUpdateTeamActivity;
-import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTeamListBean;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
@@ -23,17 +22,15 @@ import com.cily.utils.base.StrUtils;
 import com.cily.utils.base.time.TimeType;
 import com.cily.utils.base.time.TimeUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * 派单给班组
  */
 @Layout(R.layout.ac_arrange_task)
-public class ArrangeTaskAc extends BaseActivity {
+public class ArrangeTaskAc extends BaseAc {
     private String team_id, task_id;
     private TextView tv_class_name, tv_start_date, tv_end_date;
 

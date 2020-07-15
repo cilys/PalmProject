@@ -1,6 +1,5 @@
 package com.aopcloud.palmproject.ui.activity.web;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,8 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.utils.UrlUtil;
 
 import butterknife.BindView;
@@ -32,7 +31,7 @@ import butterknife.OnClick;
  */
 
 @Layout(R.layout.activity_webview)
-public class WebActivity extends BaseActivity {
+public class WebActivity extends BaseAc {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

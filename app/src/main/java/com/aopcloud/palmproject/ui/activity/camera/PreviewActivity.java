@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.adapter.file.PreviewAdapter;
 import com.aopcloud.palmproject.utils.DownLoadUtil;
 
@@ -32,7 +33,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_perview_file)
-public class PreviewActivity extends BaseActivity {
+public class PreviewActivity extends BaseAc {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

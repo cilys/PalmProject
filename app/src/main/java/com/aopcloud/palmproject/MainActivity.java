@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,7 +25,6 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.common.BaseEvent;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
@@ -35,8 +33,10 @@ import com.aopcloud.palmproject.bean.UserBean;
 import com.aopcloud.palmproject.common.Constants;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.loader.AppImageLoader;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.camera.PreviewActivity;
 import com.aopcloud.palmproject.ui.activity.enterprise.SwitchEnterpriseActivity;
+import com.aopcloud.palmproject.ui.activity.log.AddWorkLogActivity;
 import com.aopcloud.palmproject.ui.activity.mine.AccountInfoActivity;
 import com.aopcloud.palmproject.ui.activity.mine.LoginActivity;
 import com.aopcloud.palmproject.ui.activity.mine.MyInfoCardActivity;
@@ -51,7 +51,6 @@ import com.aopcloud.palmproject.ui.fragment.FindFragment;
 import com.aopcloud.palmproject.ui.fragment.HomeFragment;
 import com.aopcloud.palmproject.ui.fragment.NewsFragment;
 import com.aopcloud.palmproject.ui.fragment.ProjectFragment;
-import com.aopcloud.palmproject.ui.activity.log.AddWorkLogActivity;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.view.CircleImageView;
 import com.aopcloud.palmproject.view.TipsDialog;
@@ -73,7 +72,7 @@ import de.greenrobot.event.EventBus;
  *
  */
 @Layout(R.layout.activity_main)
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseAc {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;

@@ -13,13 +13,13 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.MainActivity;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.bean.AddressDataBean;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.utils.AssetsUtil;
 import com.aopcloud.palmproject.utils.JsonUtil;
 import com.aopcloud.palmproject.utils.ListUtil;
@@ -48,7 +48,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_enterprise_create)
-public class CreateEnterpriseActivity extends BaseActivity {
+public class CreateEnterpriseActivity extends BaseAc {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

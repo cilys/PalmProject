@@ -2,15 +2,10 @@ package com.aopcloud.palmproject.ui.activity.enterprise;
 
 import android.Manifest;
 import android.app.Dialog;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -20,12 +15,12 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.common.Constants;
 import com.aopcloud.palmproject.loader.AppImageLoader;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseInfoBean;
 import com.aopcloud.palmproject.view.CircleImageView;
 import com.hjq.permissions.OnPermission;
@@ -52,7 +47,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_enterprise_qr_code)
-public class EnterpriseQRActivity extends BaseActivity {
+public class EnterpriseQRActivity extends BaseAc {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

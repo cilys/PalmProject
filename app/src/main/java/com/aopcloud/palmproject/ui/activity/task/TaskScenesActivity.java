@@ -24,6 +24,7 @@ import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectSceneBean;
 import com.aopcloud.palmproject.ui.activity.task.bean.TaskScenesBean;
 import com.aopcloud.palmproject.ui.activity.task.bean.TaskTrendsBean;
@@ -55,7 +56,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_task_scenes)
-public class TaskScenesActivity extends BaseActivity implements TextView.OnEditorActionListener {
+public class TaskScenesActivity extends BaseAc implements TextView.OnEditorActionListener {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

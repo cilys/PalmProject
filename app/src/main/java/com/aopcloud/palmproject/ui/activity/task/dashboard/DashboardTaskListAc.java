@@ -8,11 +8,11 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectTaskAdapter;
 import com.aopcloud.palmproject.ui.fragment.project.DashboardFragment;
@@ -28,7 +28,7 @@ import java.util.Map;
  * 项目详情、看板、任务分类列表
  */
 @Layout(R.layout.ac_dashboard_task_list)
-public class DashboardTaskListAc extends BaseActivity {
+public class DashboardTaskListAc extends BaseAc {
     private SwipeRefreshLayout srl;
     private ProjectTaskAdapter adapter;
     private List<ProjectTaskBean> datas;

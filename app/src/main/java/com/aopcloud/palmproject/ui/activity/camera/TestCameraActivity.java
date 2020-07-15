@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.os.Environment;
 
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.project.ProjectScenesAddActivity;
 import com.cjt2325.cameralibrary.JCameraView;
 import com.cjt2325.cameralibrary.listener.JCameraListener;
@@ -25,7 +25,7 @@ import butterknife.BindView;
  * @Describe ：
  */
 @Layout(R.layout.a_test_camera)
-public class TestCameraActivity extends BaseActivity implements JCameraListener{
+public class TestCameraActivity extends BaseAc implements JCameraListener{
     @BindView(R.id.camera_view)
     JCameraView mCameraView;
 

@@ -16,13 +16,13 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.department.DepartmentLeaderSelectActivity;
 import com.aopcloud.palmproject.ui.activity.map.SelectLocationActivity;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectRangeAdapter;
@@ -43,7 +43,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -56,7 +55,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_project_add)
-public class AddProjectActivity extends BaseActivity {
+public class AddProjectActivity extends BaseAc {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

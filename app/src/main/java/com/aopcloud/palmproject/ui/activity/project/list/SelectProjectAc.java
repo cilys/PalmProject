@@ -6,16 +6,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectListBean;
 import com.aopcloud.palmproject.ui.fragment.home.HomeProjectFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
@@ -30,7 +29,7 @@ import java.util.Map;
  * 选择项目
  */
 @Layout(R.layout.ac_select_project)
-public class SelectProjectAc extends BaseActivity {
+public class SelectProjectAc extends BaseAc {
     private SwipeRefreshLayout srl;
     private List<ProjectListBean> datas;
     private RvSelectProjectAdapter adapter;

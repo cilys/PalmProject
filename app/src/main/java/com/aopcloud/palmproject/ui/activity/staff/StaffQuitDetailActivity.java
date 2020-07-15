@@ -11,13 +11,13 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.loader.AppImageLoader;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.staff.bean.StaffQuitDetailBean;
 import com.aopcloud.palmproject.ui.adapter.staff.StaffTrendAdapter;
 import com.aopcloud.palmproject.utils.JumpActionUtil;
@@ -43,7 +43,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_staff_quit_detail)
-public class StaffQuitDetailActivity extends BaseActivity {
+public class StaffQuitDetailActivity extends BaseAc {
 
 
     @BindView(R.id.ll_header_back)

@@ -14,13 +14,13 @@ import android.widget.RelativeLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.department.DepartmentLeaderSelectActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectMemberBean;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectMemberAdapter;
@@ -35,7 +35,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import vip.devkit.view.common.dtextview.DrawableTextView;
 
@@ -49,7 +48,7 @@ import vip.devkit.view.common.dtextview.DrawableTextView;
  * @Describe ：
  */
 @Layout(R.layout.activity_project_leader_list)
-public class ProjectLeaderListActivity extends BaseActivity implements
+public class ProjectLeaderListActivity extends BaseAc implements
         ProjectMemberAdapter.OnItemChildClickListener,ProjectMemberAdapter.OnItemClickListener{
 
 

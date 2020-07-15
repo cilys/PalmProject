@@ -1,8 +1,8 @@
 package com.aopcloud.palmproject.ui.activity.enterprise;
 
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 
 /**
  * @PackageName : com.aopcloud.palmproject.ui.activity.enterprise
@@ -14,7 +14,7 @@ import com.aopcloud.palmproject.R;
  * @Describe ：
  */
 @Layout(R.layout.activity_enterprise_staff_home)
-public class EnterprisePersonnelSelectActivity extends BaseActivity {
+public class EnterprisePersonnelSelectActivity extends BaseAc {
     @Override
     protected void initView() {
 

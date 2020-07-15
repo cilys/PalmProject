@@ -2,7 +2,6 @@ package com.aopcloud.palmproject.ui.activity.staff;
 
 import android.Manifest;
 import android.database.Cursor;
-import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,11 +14,11 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.staff.bean.ContactBean;
 import com.aopcloud.palmproject.ui.adapter.staff.SelectMobileListAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
@@ -34,7 +33,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -47,7 +45,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_staff_invite_mobile)
-public class StaffInviteByMobileActivity extends BaseActivity  implements SelectMobileListAdapter.OnItemClickListener {
+public class StaffInviteByMobileActivity extends BaseAc implements SelectMobileListAdapter.OnItemClickListener {
 
 
     @BindView(R.id.ll_header_back)

@@ -28,13 +28,13 @@ import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.Conf;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.map.MapLocationConfirmActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskDetailBean;
 import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;
@@ -68,7 +68,7 @@ import okhttp3.Call;
  * @Describe ：
  */
 @Layout(R.layout.activity_task_location_adjust)
-public class TaskLocationAdjustActivity extends BaseActivity implements
+public class TaskLocationAdjustActivity extends BaseAc implements
         LocationSource
         , AMapLocationListener
         , FileListAdapter.OnItemChildClickListener

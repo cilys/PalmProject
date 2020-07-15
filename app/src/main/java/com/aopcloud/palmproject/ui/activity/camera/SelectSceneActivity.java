@@ -15,11 +15,11 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.bean.ImageItem;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.adapter.file.TodayCacheAdapter;
 import com.aopcloud.palmproject.utils.RegUtil;
 import com.aopcloud.palmproject.utils.ThreadUtil;
@@ -50,7 +50,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_rv_bottom)
-public class SelectSceneActivity extends BaseActivity implements TodayCacheAdapter.OnItemClickListener {
+public class SelectSceneActivity extends BaseAc implements TodayCacheAdapter.OnItemClickListener {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

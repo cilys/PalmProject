@@ -10,24 +10,22 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.camera.PreviewActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskDetailBean;
 import com.aopcloud.palmproject.ui.activity.task.bean.TaskTrendsBean;
 import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;
 import com.aopcloud.palmproject.ui.adapter.file.PreviewAdapter;
-import com.aopcloud.palmproject.ui.adapter.project.ProjectScenesAdapter;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectScenesChildAdapter;
 import com.aopcloud.palmproject.utils.JsonUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
@@ -52,7 +50,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
 
@@ -66,7 +63,7 @@ import okhttp3.Call;
  * @Describe ：
  */
 @Layout(R.layout.activity_task_update_progress)
-public class TaskUpdateProgressActivity extends BaseActivity implements FileListAdapter.OnItemChildClickListener,
+public class TaskUpdateProgressActivity extends BaseAc implements FileListAdapter.OnItemChildClickListener,
         FileListAdapter.OnItemClickListener {
 
     @BindView(R.id.ll_header_back)

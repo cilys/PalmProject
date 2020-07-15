@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,14 +15,13 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.common.BaseEvent;
 import com.aopcloud.base.util.ToastUtil;
-import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.MassageEvent;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.enterprise.SwitchEnterpriseActivity;
 import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseListBean;
 import com.aopcloud.palmproject.ui.activity.map.SelectLocationActivity;
@@ -31,7 +29,6 @@ import com.aopcloud.palmproject.ui.activity.project.list.SelectProjectAc;
 import com.aopcloud.palmproject.ui.activity.task.ArrangeTaskAc;
 import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;
 import com.aopcloud.palmproject.ui.fragment.home.HomeProjectFragment;
-import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
 import com.aopcloud.palmproject.utils.JsonUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.view.TipsDialog;
@@ -47,12 +44,10 @@ import com.zhy.http.okhttp.callback.StringCallback;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.Call;
 
@@ -66,7 +61,7 @@ import okhttp3.Call;
  * @Describe ：创建工单
  */
 @Layout(R.layout.activity_project_task_add)
-public class ProjectTaskAddActivity extends BaseActivity implements FileListAdapter.OnItemChildClickListener,
+public class ProjectTaskAddActivity extends BaseAc implements FileListAdapter.OnItemChildClickListener,
         FileListAdapter.OnItemClickListener {
 
     @BindView(R.id.ll_header_back)

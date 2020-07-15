@@ -12,11 +12,11 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.department.DepartmentLeaderSelectActivity;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 
@@ -37,7 +37,7 @@ import butterknife.OnClick;
  */
 
 @Layout(R.layout.activity_team_member_add)
-public class TeamAddMemberActivity extends BaseActivity {
+public class TeamAddMemberActivity extends BaseAc {
 
 
     @BindView(R.id.ll_header_back)

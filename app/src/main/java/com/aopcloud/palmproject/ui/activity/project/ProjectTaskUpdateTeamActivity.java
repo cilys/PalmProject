@@ -15,11 +15,11 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskDetailBean;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTeamListBean;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectTaskUpdateTeamAdapter;
@@ -44,7 +44,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_project_task_team_update)
-public class ProjectTaskUpdateTeamActivity extends BaseActivity implements TextView.OnEditorActionListener {
+public class ProjectTaskUpdateTeamActivity extends BaseAc implements TextView.OnEditorActionListener {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

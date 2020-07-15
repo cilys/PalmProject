@@ -12,13 +12,13 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.loader.AppImageLoader;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseInfoBean;
 import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseManagerBean;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
@@ -41,7 +41,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_enterprise_home)
-public class EnterpriseHomeActivity extends BaseActivity {
+public class EnterpriseHomeActivity extends BaseAc {
     @BindView(R.id.iv_back)
     ImageView mIvBack;
     @BindView(R.id.iv_setting)

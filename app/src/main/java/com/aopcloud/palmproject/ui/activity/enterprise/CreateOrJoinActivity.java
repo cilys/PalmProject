@@ -1,17 +1,15 @@
 package com.aopcloud.palmproject.ui.activity.enterprise;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.palmproject.MainActivity;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -24,7 +22,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_enterprise_create_or_join)
-public class CreateOrJoinActivity extends BaseActivity {
+public class CreateOrJoinActivity extends BaseAc {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

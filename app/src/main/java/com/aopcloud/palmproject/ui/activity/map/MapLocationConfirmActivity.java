@@ -20,9 +20,9 @@ import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.map.adapter.SelectLocationConfirmAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -43,7 +43,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_rv)
-public class MapLocationConfirmActivity extends BaseActivity
+public class MapLocationConfirmActivity extends BaseAc
         implements AMapLocationListener
         , PoiSearch.OnPoiSearchListener {
     @BindView(R.id.ll_header_back)

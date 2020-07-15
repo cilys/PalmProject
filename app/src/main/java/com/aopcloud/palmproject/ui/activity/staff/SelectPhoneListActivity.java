@@ -12,9 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.staff.bean.ContactBean;
 import com.aopcloud.palmproject.ui.adapter.staff.SelectMobileListAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -36,7 +36,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_rv)
-public class SelectPhoneListActivity extends BaseActivity implements SelectMobileListAdapter.OnItemClickListener {
+public class SelectPhoneListActivity extends BaseAc implements SelectMobileListAdapter.OnItemClickListener {
 
 
     @BindView(R.id.ll_header_back)

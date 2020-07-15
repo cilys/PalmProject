@@ -11,8 +11,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.adapter.feagment.AppFragmentPagerAdapter;
 import com.aopcloud.palmproject.ui.fragment.task.TaskChildFragment;
 import com.aopcloud.palmproject.ui.fragment.task.TaskExecuteFragment;
@@ -36,7 +36,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_task_detail)
-public class TaskDetailActivity extends BaseActivity {
+public class TaskDetailActivity extends BaseAc {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

@@ -9,11 +9,11 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.adapter.feagment.AppFragmentPagerAdapter;
 import com.aopcloud.palmproject.ui.fragment.staff.StaffApprovalFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
@@ -37,7 +37,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_staff_approval)
-public class StaffApprovalActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
+public class StaffApprovalActivity extends BaseAc implements ViewPager.OnPageChangeListener {
 
 
     @BindView(R.id.ll_header_back)

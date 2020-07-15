@@ -39,11 +39,11 @@ import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.KeyboardUtil;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.map.adapter.SelectLocationRangeAdapter;
 import com.aopcloud.palmproject.ui.activity.map.adapter.SelectLocationSearchAdapter;
 import com.aopcloud.palmproject.ui.activity.map.bean.LocationRangeBean;
@@ -66,7 +66,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_map_select_location)
-public class SelectLocationActivity extends BaseActivity implements LocationSource
+public class SelectLocationActivity extends BaseAc implements LocationSource
         , AMapLocationListener
         , TextView.OnEditorActionListener
         , PoiSearch.OnPoiSearchListener

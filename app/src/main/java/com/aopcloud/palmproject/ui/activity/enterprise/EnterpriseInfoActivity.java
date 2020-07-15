@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
@@ -22,6 +21,7 @@ import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.bean.AddressDataBean;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.loader.AppImageLoader;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.camera.PreviewActivity;
 import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseInfoBean;
 import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseManagerBean;
@@ -67,7 +67,7 @@ import okhttp3.Call;
  * @Describe ：
  */
 @Layout(R.layout.activity_enterprise_info)
-public class EnterpriseInfoActivity extends BaseActivity implements FileListAdapter.OnItemClickListener, FileListAdapter.OnItemChildClickListener {
+public class EnterpriseInfoActivity extends BaseAc implements FileListAdapter.OnItemClickListener, FileListAdapter.OnItemChildClickListener {
 
 
     @BindView(R.id.ll_header_back)

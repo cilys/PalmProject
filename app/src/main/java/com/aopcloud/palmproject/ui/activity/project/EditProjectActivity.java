@@ -16,12 +16,12 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.department.DepartmentLeaderSelectActivity;
 import com.aopcloud.palmproject.ui.activity.map.SelectLocationActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectDetailBean;
@@ -56,7 +56,7 @@ import vip.devkit.view.common.dtextview.DrawableTextView;
  * @Describe ：
  */
 @Layout(R.layout.activity_project_edit)
-public class EditProjectActivity extends BaseActivity {
+public class EditProjectActivity extends BaseAc {
 
 
     @BindView(R.id.ll_header_back)

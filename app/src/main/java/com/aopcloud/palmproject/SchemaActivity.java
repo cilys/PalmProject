@@ -2,7 +2,7 @@ package com.aopcloud.palmproject;
 
 import android.webkit.WebView;
 
-import com.aopcloud.base.base.BaseActivity;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 
 /**
  * @PackageName : com.aopcloud.basic
@@ -13,7 +13,7 @@ import com.aopcloud.base.base.BaseActivity;
  * @VersionCode : V 1.0
  * @Describe ：
  */
-public class SchemaActivity extends BaseActivity {
+public class SchemaActivity extends BaseAc {
     private WebView mWebView;
 
     @Override

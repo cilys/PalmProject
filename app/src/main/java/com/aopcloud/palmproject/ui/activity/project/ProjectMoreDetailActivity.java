@@ -16,6 +16,7 @@ import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.loader.AppImageLoader;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectDetailBean;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
@@ -37,7 +38,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_project_detail_more)
-public class ProjectMoreDetailActivity extends BaseActivity {
+public class ProjectMoreDetailActivity extends BaseAc {
 
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;

@@ -1,6 +1,5 @@
 package com.aopcloud.palmproject.ui.activity.mine;
 
-import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -8,15 +7,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
-import com.aopcloud.base.common.BaseEvent;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import de.greenrobot.event.EventBus;
 
 /**
  * @PackageName : com.aopcloud.basic.ui.activity.mine
@@ -28,7 +25,7 @@ import de.greenrobot.event.EventBus;
  * @Describe ：
  */
 @Layout(R.layout.activity_mine_setting)
-public class AccountSettingActivity extends BaseActivity {
+public class AccountSettingActivity extends BaseAc {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

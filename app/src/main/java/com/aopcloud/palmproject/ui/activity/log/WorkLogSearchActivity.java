@@ -14,12 +14,12 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.KeyboardUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.log.bean.WorkLogListBean;
 import com.aopcloud.palmproject.ui.adapter.log.WorkLogAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
@@ -42,7 +42,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_work_log_search)
-public class WorkLogSearchActivity extends BaseActivity implements TextView.OnEditorActionListener {
+public class WorkLogSearchActivity extends BaseAc implements TextView.OnEditorActionListener {
     @BindView(R.id.et_search)
     EditText mEtSearch;
     @BindView(R.id.tv_cancel)

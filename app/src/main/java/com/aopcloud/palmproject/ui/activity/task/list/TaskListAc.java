@@ -6,22 +6,17 @@ import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.HorizontalScrollView;
-import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.palmproject.R;
-import com.aopcloud.palmproject.api.ApiConstants;
-import com.aopcloud.palmproject.ui.activity.project.ProjectTaskEditActivity;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.adapter.feagment.AppFragmentPagerAdapter;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
 import com.cily.utils.base.StrUtils;
@@ -31,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Layout(R.layout.ac_task_list)
-public class TaskListAc extends BaseActivity {
+public class TaskListAc extends BaseAc {
     private List<Fragment> fgs;
     private TextView tv_title;
     private RadioButton[] rbts;

@@ -3,7 +3,6 @@ package com.aopcloud.palmproject.ui.activity.mine;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -19,7 +18,6 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
@@ -29,7 +27,7 @@ import com.aopcloud.palmproject.bean.UserBean;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.dialog.InputDialog;
 import com.aopcloud.palmproject.loader.AppImageLoader;
-import com.aopcloud.palmproject.ui.activity.enterprise.EnterpriseInfoActivity;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;
 import com.aopcloud.palmproject.utils.AssetsUtil;
 import com.aopcloud.palmproject.utils.JsonUtil;
@@ -49,9 +47,7 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,7 +66,7 @@ import okhttp3.Call;
  * @Describe ：
  */
 @Layout(R.layout.activity_mine_info)
-public class AccountInfoActivity extends BaseActivity implements FileListAdapter.OnItemClickListener, FileListAdapter.OnItemChildClickListener {
+public class AccountInfoActivity extends BaseAc implements FileListAdapter.OnItemClickListener, FileListAdapter.OnItemChildClickListener {
 
 
     @BindView(R.id.ll_header_back)

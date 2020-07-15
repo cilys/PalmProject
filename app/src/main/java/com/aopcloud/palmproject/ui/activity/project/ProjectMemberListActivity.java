@@ -2,28 +2,25 @@ package com.aopcloud.palmproject.ui.activity.project;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.department.DepartmentLeaderSelectActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectMemberBean;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectMemberAdapter;
@@ -51,7 +48,7 @@ import vip.devkit.view.common.dtextview.DrawableTextView;
  * @Describe ：
  */
 @Layout(R.layout.activity_project_member_list)
-public class ProjectMemberListActivity extends BaseActivity implements ProjectMemberAdapter.OnItemChildClickListener,ProjectMemberAdapter.OnItemClickListener{
+public class ProjectMemberListActivity extends BaseAc implements ProjectMemberAdapter.OnItemChildClickListener,ProjectMemberAdapter.OnItemClickListener{
 
 
     @BindView(R.id.ll_header_back)

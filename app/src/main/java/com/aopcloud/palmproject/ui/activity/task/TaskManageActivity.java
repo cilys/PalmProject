@@ -1,7 +1,6 @@
 package com.aopcloud.palmproject.ui.activity.task;
 
 import android.app.Dialog;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -14,15 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.R;
-import com.aopcloud.palmproject.api.ApiConstants;
-import com.aopcloud.palmproject.ui.activity.log.AddWorkLogActivity;
-import com.aopcloud.palmproject.ui.activity.project.AddProjectActivity;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.adapter.feagment.AppFragmentPagerAdapter;
-import com.aopcloud.palmproject.ui.fragment.project.ProjectListFragment;
 import com.aopcloud.palmproject.ui.fragment.task.TaskFragment;
 import com.flyco.tablayout.SlidingTabLayout;
 
@@ -31,7 +26,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -44,7 +38,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_task_manage)
-public class TaskManageActivity extends BaseActivity {
+public class TaskManageActivity extends BaseAc {
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
     @BindView(R.id.tv_header_title)

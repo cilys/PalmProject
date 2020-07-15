@@ -6,9 +6,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.department.EnterpriseDepartmentActivity;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 
@@ -25,7 +25,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 @Layout(R.layout.activity_enterprise_setting)
-public class EnterpriseSettingActivity extends BaseActivity {
+public class EnterpriseSettingActivity extends BaseAc {
 
     @BindView(R.id.ll_header_back)
     LinearLayout mLlHeaderBack;
