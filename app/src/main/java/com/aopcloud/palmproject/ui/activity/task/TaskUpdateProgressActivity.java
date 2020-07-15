@@ -2,6 +2,7 @@ package com.aopcloud.palmproject.ui.activity.task;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -15,16 +16,24 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.base.BaseActivity;
+import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
+import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.camera.PreviewActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskDetailBean;
 import com.aopcloud.palmproject.ui.activity.task.bean.TaskTrendsBean;
 import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;
+import com.aopcloud.palmproject.ui.adapter.file.PreviewAdapter;
+import com.aopcloud.palmproject.ui.adapter.project.ProjectScenesAdapter;
+import com.aopcloud.palmproject.ui.adapter.project.ProjectScenesChildAdapter;
 import com.aopcloud.palmproject.utils.JsonUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
+import com.aopcloud.palmproject.view.decoration.DividerItemDecoration;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.cily.utils.base.StrUtils;
 import com.cily.utils.base.time.TimeUtils;
 import com.guoxiaoxing.phoenix.core.PhoenixOption;
 import com.guoxiaoxing.phoenix.core.model.MediaEntity;
@@ -35,8 +44,10 @@ import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -80,8 +91,8 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
     TextView mTvCountUnit;
     @BindView(R.id.tv_complete_all)
     TextView mTvCompleteAll;
-    @BindView(R.id.rl_number_progress)
-    RelativeLayout mRlNumberProgress;
+    @BindView(R.id.ll_number_progress)
+    LinearLayout mRlNumberProgress;
     @BindView(R.id.et_msg)
     EditText mEtMsg;
     @BindView(R.id.rv_list)
@@ -105,6 +116,9 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
 
     private List<MediaEntity> mMediaEntities = new ArrayList<>();
     private MediaEntity mAddMediaEntity;
+
+    private ProjectScenesChildAdapter imgAdapter;
+    private List<String> imgDatas;
 
     @Override
     protected void initData() {
@@ -166,6 +180,31 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
 
         toRequest(ApiConstants.EventTags.trends_all);
 //        toRequest(ApiConstants.EventTags.task_get);
+
+        imgDatas = new ArrayList<>();
+        imgAdapter = new ProjectScenesChildAdapter(R.layout.item_project_scenes_img, imgDatas);
+        mRvListImg.setLayoutManager(new GridLayoutManager(this, 3));
+        DividerItemDecoration itemDecoration = new DividerItemDecoration.Builder()
+                .color(ResourceUtil.getColor(R.color.theme_background_f5))
+                .height(4)
+                .build();
+        mRvListImg.addItemDecoration(itemDecoration);
+        mRvListImg.setAdapter(imgAdapter);
+        imgAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                ArrayList<PreviewAdapter.PreviewBean> list = new ArrayList();
+
+                for (String url : imgDatas) {
+                    list.add(new PreviewAdapter.PreviewBean(url));
+                }
+
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("PreviewBean", (Serializable) list);
+                gotoActivity(PreviewActivity.class, bundle);
+            }
+        });
     }
 
     private int initProgress;
@@ -242,7 +281,58 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
         if (list.contains(mAddMediaEntity)) {
             list.remove(mAddMediaEntity);
         }
-        uploadFile(list);
+//        uploadFile(list);
+        it_for_upload = list.iterator();
+        uploadFile();
+    }
+
+    private Iterator<MediaEntity> it_for_upload;
+    private void uploadFile() {
+        if (it_for_upload != null && it_for_upload.hasNext()){
+            MediaEntity entity = it_for_upload.next();
+            if (!TextUtils.isEmpty(entity.getMediaName()) && entity.getMediaName().equals("img_add_network")) {
+                if (TextUtils.isEmpty(attach)) {
+                    attach = entity.getLocalPath();
+                } else {
+                    attach = attach + "," + entity.getLocalPath();
+                }
+                it_for_upload.remove();
+                uploadFile();
+            } else {
+                OkHttpUtils.post().url(ApiConstants.file_upload)
+                        .addParams("token", "" + LoginUserUtil.getToken(this))
+                        .addFile("file", getPictureSuffix(entity.getLocalPath()), new File(entity.getLocalPath()))
+                        .build()
+                        .execute(new StringCallback() {
+                            @Override
+                            public void onError(Call call, Exception e, int id) {
+                                dismissPopupLoading();
+                                Log.w(TAG, "add live video exception :" + e + "/");
+                                ToastUtil.showToast("文件上传失败，请重试");
+                            }
+
+                            @Override
+                            public void onResponse(String response, int id) {
+                                dismissPopupLoading();
+                                Log.i(TAG, "add Serices Course  response :" + response);
+                                ResultBean bean = JSON.parseObject(response, ResultBean.class);
+                                if (bean != null && bean.getCode() == 0) {
+                                    if (TextUtils.isEmpty(attach)) {
+                                        attach = JsonUtil.parserField(bean.getData(), "path");
+                                    } else {
+                                        attach = attach + "," + JsonUtil.parserField(bean.getData(), "path");
+                                    }
+                                    it_for_upload.remove();
+                                    uploadFile();
+                                } else {
+                                    ToastUtil.showToast(bean != null ? bean.getMsg() : "上传失败，请重试");
+                                }
+                            }
+                        });
+            }
+        } else {
+            toRequest(ApiConstants.EventTags.task_feedback);
+        }
     }
 
     @Override
@@ -268,6 +358,7 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.task_get, map);
         } else if (eventTag == ApiConstants.EventTags.trends_all){
             map.put("type", "0");
+
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.trends_all, map);
         }
     }
@@ -318,12 +409,24 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
             String extra = beanList.get(0).getExtra();
             TaskTrendsBean.ExtraBean bean = JSON.parseObject(extra, TaskTrendsBean.ExtraBean.class);
             if (bean != null){
-                mTvLastTime.setText("上次反馈：" + TimeUtils.milToStr(beanList.get(0).getMake_time(), null));
+                mTvLastTime.setText("上次反馈：" + TimeUtils.milToStr(beanList.get(0).getMake_time() * 1000, null));
                 mProgressBar.setProgress(bean.getProgress_after());
                 initProgress = bean.getProgress_after();
 //                mProgressBar.getMin()
                 mEtNumber.setText(bean.getWork_value_done_after() + "");
                 mEtNumber.setSelection(mEtNumber.getText().toString().length());
+
+                if (!TextUtils.isEmpty( beanList.get(0).getAttach())) {
+                    String[] url =  beanList.get(0).getAttach().split(",");
+                    for (int i = 0; i < url.length; i++) {
+                        if (!StrUtils.isEmpty(url[i]) && url[i].equals("null")) {
+                            imgDatas.add(BuildConfig.BASE_URL + url[i]);
+                        }
+                    }
+                }
+                if (imgAdapter != null) {
+                    imgAdapter.notifyDataSetChanged();
+                }
             }
         }
     }

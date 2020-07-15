@@ -23,27 +23,24 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:background="@drawable/shape_card_bg_10_8"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/tv_task_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="21dp"
+                android:layout_marginLeft="15dp"
                 android:text=""
                 android:textColor="#FF080808"
                 android:textSize="13dp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
         </LinearLayout>
 
         <View
@@ -51,19 +48,31 @@
             android:layout_height="3dp"
             android:background="@drawable/shape_line" />
 
-        <RelativeLayout
-            android:id="@+id/rl_number_progress"
+        <LinearLayout
+            android:id="@+id/ll_number_progress"
             android:layout_width="match_parent"
-            android:visibility="gone"
-            android:layout_height="50dp">
+            android:visibility="visible"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_left_count_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="剩余工作量：" />
 
             <EditText
                 android:id="@+id/et_number"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="21dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:background="@color/theme_white"
-                android:layout_toStartOf="@+id/tv_count_unit"
                 android:gravity="center_vertical"
                 android:hint="当前剩余工作量"
                 android:textSize="14sp" />
@@ -72,9 +81,10 @@
                 android:id="@+id/tv_count_unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
                 android:gravity="center_vertical"
                 android:text="台"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="15dp"
                 android:textColor="#FF101010"
                 android:textSize="14sp" />
 
@@ -82,20 +92,17 @@
             <TextView
                 android:id="@+id/tv_complete_all"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_marginRight="15dp"
                 android:text="全部完成"
                 android:textColor="#FF108CF7"
                 android:textSize="14sp" />
-        </RelativeLayout>
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="21dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginLeft="15dp"
             android:text="上报进度"
             android:textColor="#FF080808"
             android:textSize="13dp" />
@@ -122,8 +129,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="21dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginLeft="15dp"
             android:text="备注："
             android:textColor="#FF080808"
             android:textSize="13dp" />
@@ -131,9 +137,9 @@
         <EditText
             android:id="@+id/et_msg"
             android:layout_width="match_parent"
-            android:layout_height="89dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="2dp"
             android:layout_marginRight="12dp"
             android:background="@drawable/shape_et_bg"
             android:gravity="top|left"
@@ -144,10 +150,10 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_list"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="13dp"
-            android:layout_marginBottom="15dp" />
+            android:layout_height="70dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp" />
 
         <View
             android:layout_width="match_parent"
@@ -156,13 +162,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="15dp"
                 android:text="选取现场记录的影像"
                 android:textColor="#FF080808"
                 android:textSize="13dp" />
@@ -180,13 +188,13 @@
             android:id="@+id/rv_list_img"
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="15dp"
             android:layout_marginBottom="40dp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1" />
 
     <LinearLayout
