@@ -419,7 +419,7 @@ public class TaskUpdateProgressActivity extends BaseActivity implements FileList
                 if (!TextUtils.isEmpty( beanList.get(0).getAttach())) {
                     String[] url =  beanList.get(0).getAttach().split(",");
                     for (int i = 0; i < url.length; i++) {
-                        if (!StrUtils.isEmpty(url[i]) && url[i].equals("null")) {
+                        if (!StrUtils.isEmpty(url[i]) && !url[i].equals("null")) {
                             imgDatas.add(BuildConfig.BASE_URL + url[i]);
                         }
                     }

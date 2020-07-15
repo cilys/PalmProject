@@ -187,7 +187,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_list_img"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="70dp"
             android:layout_marginLeft="15dp"
             android:layout_marginBottom="40dp" />
     </LinearLayout>
@@ -199,7 +199,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="45dp"
         android:layout_alignParentBottom="true"
         android:background="@color/theme_white"
         android:gravity="center">
