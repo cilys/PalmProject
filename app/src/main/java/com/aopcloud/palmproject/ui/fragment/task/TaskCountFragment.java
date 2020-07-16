@@ -73,6 +73,7 @@ public class TaskCountFragment extends BaseFragment {
                 gotoActivity(TaskListAc.class, b);
             }
         });
+        toRequest(ApiConstants.EventTags.task_all);
     }
 
     @Override
