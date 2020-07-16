@@ -60,7 +60,7 @@ import okhttp3.Call;
  * @Author : K
  * @E-mail : vip@devkit.vip
  * @Version : V 1.0
- * @Describe ：
+ * @Describe ：更新任务进度
  */
 @Layout(R.layout.activity_task_update_progress)
 public class TaskUpdateProgressActivity extends BaseAc implements FileListAdapter.OnItemChildClickListener,

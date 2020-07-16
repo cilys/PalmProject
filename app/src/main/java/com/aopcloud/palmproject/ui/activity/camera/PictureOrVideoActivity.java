@@ -29,6 +29,7 @@ import com.aopcloud.palmproject.ui.activity.project.ProjectScenesAddActivity;
 import com.aopcloud.palmproject.utils.BitmapUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.utils.WatermarkUtil;
+import com.guoxiaoxing.phoenix.core.model.MediaEntity;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.XXPermissions;
 import com.otaliastudios.cameraview.CameraException;
@@ -170,8 +171,6 @@ public class PictureOrVideoActivity extends BaseAc {
 
                     }
                 });
-
-
             }
 
             @Override
@@ -204,7 +203,7 @@ public class PictureOrVideoActivity extends BaseAc {
         });
     }
 
-
+    private ArrayList<MediaEntity> mediaDatas;
     public File saveImage(Bitmap bmp) {
         File appDir = new File(Environment.getExternalStorageDirectory(), "PalmProject");
         if (!appDir.exists()) {
@@ -217,6 +216,15 @@ public class PictureOrVideoActivity extends BaseAc {
             bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + file.getPath())));
             fos.flush();
+
+            if (mediaDatas == null) {
+                mediaDatas = new ArrayList<>();
+            }
+            MediaEntity mn = new MediaEntity();
+            mn.setLocalPath(appDir + File.separator + fileName);
+            mn.setMediaName(fileName);
+            mediaDatas.add(mn);
+
             fos.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -255,7 +263,6 @@ public class PictureOrVideoActivity extends BaseAc {
                 }
             }
         });
-
     }
 
     @OnClick({R.id.iv_close, R.id.iv_refresh, R.id.iv_picture, R.id.iv_video, R.id.tv_complete})
@@ -296,7 +303,16 @@ public class PictureOrVideoActivity extends BaseAc {
                                 File file = new File(appDir, fileName);
                                 if (!file.exists()) {
                                     try {
-                                        file.createNewFile();
+                                        boolean f = file.createNewFile();
+                                        if (f) {
+                                            if (mediaDatas == null) {
+                                                mediaDatas = new ArrayList<>();
+                                            }
+                                            MediaEntity mn = new MediaEntity();
+                                            mn.setLocalPath(appDir + File.separator + fileName);
+                                            mn.setMediaName(fileName);
+                                            mediaDatas.add(mn);
+                                        }
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }
@@ -309,8 +325,6 @@ public class PictureOrVideoActivity extends BaseAc {
                                 mHandler.removeCallbacks(timeRunnable);
                                 mTvTime.setText("00:00");
                             }
-
-
                         } else {
                             ToastUtil.showToast("请先开启权限");
                         }
@@ -327,6 +341,7 @@ public class PictureOrVideoActivity extends BaseAc {
                 Bundle bundle = new Bundle();
                 bundle.putString("task_id", "" + task_id);
                 bundle.putString("project_id", "" + project_id);
+                bundle.putParcelableArrayList("mediaDatas", mediaDatas);
                 gotoActivity(ProjectScenesAddActivity.class, bundle, 0);
                 finish();
                 break;
@@ -339,12 +354,10 @@ public class PictureOrVideoActivity extends BaseAc {
         mCameraView.start();
     }
 
-
     @Override
     public void onPause() {
         super.onPause();
         mCameraView.stop();
-
     }
 
     @Override
@@ -369,8 +382,6 @@ public class PictureOrVideoActivity extends BaseAc {
     };
 
     public void secondToTime(long second) {
-//        long days = second / 86400;            //转换天数
-//        second = second % 86400;            //剩余秒数
         long hours = second / 3600;            //转换小时
         second = second % 3600;                //剩余秒数
         long minutes = second / 60;            //转换分钟
@@ -384,5 +395,4 @@ public class PictureOrVideoActivity extends BaseAc {
             mTvTime.setText(h + ":" + m + ":" + s);
         }
     }
-
 }

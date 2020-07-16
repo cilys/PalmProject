@@ -216,8 +216,6 @@
                     android:textSize="10sp"
                     android:textStyle="normal" />
             </LinearLayout>
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -283,8 +281,6 @@
             android:padding="3dp"
             android:src="@mipmap/dingweiziji" />
 
-
-
         <LinearLayout
             android:id="@+id/ll_replace"
             android:layout_width="36dp"
@@ -309,8 +305,6 @@
                 android:textSize="10sp"
                 android:textStyle="normal" />
         </LinearLayout>
-
-
     </RelativeLayout>
 
     <LinearLayout
@@ -343,8 +337,6 @@
                 android:gravity="center"
                 android:text="开始出勤"
                 android:textColor="@color/theme_white" />
-
-
         </LinearLayout>
 
 

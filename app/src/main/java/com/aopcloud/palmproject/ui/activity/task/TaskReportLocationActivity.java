@@ -316,6 +316,15 @@ public class TaskReportLocationActivity extends BaseAc implements
                 break;
             case R.id.tv_submit:
                 message = mEtMsg.getText().toString();
+
+                if (BuildConfig.DEBUG) {
+                    longitude = 116.39585;
+                    latitude = 39.909068;
+                    address = "北京天安门";
+                    scope = 100;
+                    isScope = true;
+                }
+
                 if (TextUtils.isEmpty(address)) {
                     ToastUtil.showToast("定位失败");
                     return;

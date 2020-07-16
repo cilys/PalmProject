@@ -89,6 +89,7 @@ public class ProjectScenesAddActivity extends BaseAc implements FileListAdapter.
     private FileListAdapter mFileListAdapter;
     private List<MediaEntity> mMediaEntities = new ArrayList<>();
     private MediaEntity mAddMediaEntity;
+    private ArrayList<MediaEntity> mediaDatasFrom;
 
     @Override
     protected void initData() {
@@ -97,6 +98,7 @@ public class ProjectScenesAddActivity extends BaseAc implements FileListAdapter.
         if (bundle != null) {
             task_id = bundle.getString("task_id", "");
             project_id = bundle.getString("project_id", "");
+            mediaDatasFrom = bundle.getParcelableArrayList("mediaDatas");
         }
     }
 
@@ -104,6 +106,9 @@ public class ProjectScenesAddActivity extends BaseAc implements FileListAdapter.
     protected void initView() {
         mTvHeaderTitle.setText("提交影像");
         mAddMediaEntity = new MediaEntity();
+        if (mediaDatasFrom != null && mediaDatasFrom.size() > 0){
+            mMediaEntities.addAll(mediaDatasFrom);
+        }
         mMediaEntities.add(mAddMediaEntity);
         mFileListAdapter = new FileListAdapter(R.layout.item_project_scenes_file, mMediaEntities);
         mFileListAdapter.setEdit(true);

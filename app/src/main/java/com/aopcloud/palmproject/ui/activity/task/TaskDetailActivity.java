@@ -33,7 +33,7 @@ import butterknife.OnClick;
  * @Author : K
  * @E-mail : vip@devkit.vip
  * @Version : V 1.0
- * @Describe ：
+ * @Describe ：任务详情页
  */
 @Layout(R.layout.activity_task_detail)
 public class TaskDetailActivity extends BaseAc {

@@ -85,10 +85,7 @@ import butterknife.OnClick;
  * @Version : V 1.0
  * @Describe ：
  */
-public class TaskExecuteFragment extends BaseFragment implements
-        LocationSource, AMapLocationListener, AMap.OnMarkerClickListener {
-
-
+public class TaskExecuteFragment extends BaseFragment implements LocationSource, AMapLocationListener, AMap.OnMarkerClickListener {
     @BindView(R.id.tv_count_unit)
     TextView mTvCountUnit;
     @BindView(R.id.tv_state)
@@ -194,7 +191,6 @@ public class TaskExecuteFragment extends BaseFragment implements
     @Override
     protected int setLayoutId() {
         return R.layout.fragment_task_execute;
-
     }
 
     @Override
@@ -321,7 +317,6 @@ public class TaskExecuteFragment extends BaseFragment implements
             mLlExecute.setVisibility(View.GONE);
         }
     }
-
 
     private void setAttendanceView(List<DashboardAttendanceBean> beanList) {
         if (ListUtil.isEmpty(beanList)) {
@@ -618,7 +613,6 @@ public class TaskExecuteFragment extends BaseFragment implements
         super.onRequestFailureException(eventTag, msg);
     }
 
-
     public void showAskDialog() {
         Dialog dialog = new Dialog(mActivity);
         dialog.setContentView(R.layout.dialog_project_task_ask);
@@ -651,7 +645,6 @@ public class TaskExecuteFragment extends BaseFragment implements
         mTvTaskName.setText("" + mTaskDetailBean.getName());
         mTvLeaderTime.setText("负责" + mTaskDetailBean.getLeader_name() + "| 截止" + dateFormat.format(date));
         mEditText.setText("" + mTaskDetailBean.getWork_des());
-
 
         dialog.findViewById(R.id.tv_submit).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -703,9 +696,7 @@ public class TaskExecuteFragment extends BaseFragment implements
                 latitude = amapLocation.getLatitude();
                 address = mAMapLocation.getAddress();
 
-
 //                mAMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,20));
-
 
                 LatLng latLng1 = new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude());//构造一个位置
                 LatLng latLng2 = new LatLng(task_latitude, task_longitude);//构造一个位置
@@ -717,7 +708,6 @@ public class TaskExecuteFragment extends BaseFragment implements
                     mTvSign.setText("距离" + distance + "米可以签到");
                     mTvSign.setBackgroundColor(ResourceUtil.getColor("#7F108CF7"));
                 }
-//                Logcat.i("onLocationChanged:" + JSON.toJSONString(amapLocation));
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
                 Log.d(TAG, errText);
