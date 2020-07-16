@@ -130,6 +130,7 @@ public class DashboardFragment extends BaseFragment {
     public final static String STATUS_IN_PROCESS = "STATUS_IN_PROCESS"; //进行中，定义：进行中。如果当前时间已超过任务结束时间，则为超期状态
     public final static String STATUS_OUT_TIME = "STATUS_OUT_TIME";     //已超期，定义：当前时间已超过任务结束时间。如果项目结束时间，而项目已结束，则为结束状态
     public final static String STATUS_COMPLETE = "STATUS_COMPLETE";     //已完成，定义：任务已完成。
+    public final static String STATUS_PAUSE = "STATUS_PAUSE";           //暂停中，定义：任务暂停中。
 
     private DashboardCurrentLogAdapter mLogAdapter;
     private ProjectChildDashboardAdapter mDashboardTaskAdapter;
@@ -194,18 +195,21 @@ public class DashboardFragment extends BaseFragment {
         List list4 = TaskUtils.getTypeList(beanList, STATUS_IN_PROCESS);
         List list5 = TaskUtils.getTypeList(beanList, STATUS_OUT_TIME);
         List list6 = TaskUtils.getTypeList(beanList, STATUS_COMPLETE);
+        List list_pause = TaskUtils.getTypeList(beanList, STATUS_PAUSE);
 
         mTvCount.setText("" + beanList.size());
         mTvNoPlan.setText("" + list2.size());
         mTvNoStart.setText("" + list3.size());
         mTvInProgress.setText("" + list4.size());
         mTvTimeOut.setText("" + list5.size());
-        mTvComplete.setText("" + list6.size());
+//        mTvComplete.setText("" + list6.size());
+        mTvProgress.setText("" + list6.size());
+        mTvComplete.setText("" + list_pause.size());
     }
 
     private void setViewData(ProjectDetailBean detailBean) {
-        mTvProgress.setText(detailBean.getProgress() + "%");
-        mProgressBar.setProgress(detailBean.getProgress());
+//        mTvProgress.setText(detailBean.getProgress() + "%");
+//        mProgressBar.setProgress(detailBean.getProgress());
 
 //        mTvCount.setText("0");
 //        mTvNoPlan.setText("0");

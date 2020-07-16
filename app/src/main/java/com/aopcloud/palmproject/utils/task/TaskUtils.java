@@ -1,6 +1,7 @@
 package com.aopcloud.palmproject.utils.task;
 
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
+import com.aopcloud.palmproject.ui.fragment.home.HomeProjectFragment;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
 import com.aopcloud.palmproject.ui.fragment.project.DashboardFragment;
 import com.cily.utils.base.StrUtils;
@@ -45,7 +46,7 @@ public class TaskUtils {
                 }
             } else if (DashboardFragment.STATUS_IN_PROCESS.equals(status)) {
                 //进行中，定义：进行中。如果当前时间已超过任务结束时间，则为超期状态
-                if (HomeTaskFragment.STATE_progress.equals(bean.getStatus_str())) {
+                if (HomeTaskFragment.STATE_progress.equals(bean.getStatus_str()) || HomeTaskFragment.STATE_operation.equals(bean.getStatus_str())) {
                     String endDate = bean.getEnd_date();
                     long ed = TimeUtils.strToMil(endDate, TimeType.DAY_LINE, System.currentTimeMillis());
                     if (ed < System.currentTimeMillis()){
@@ -77,6 +78,10 @@ public class TaskUtils {
                             result.add(bean);
                         }
                     }
+                }
+            } else if (DashboardFragment.STATUS_PAUSE.equals(status)) {
+                if (HomeProjectFragment.STATE_stop.equals(bean.getStatus_str())) {
+                    result.add(bean);
                 }
             }
         }

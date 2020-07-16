@@ -82,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:gravity="center"
-                        android:text="0%"
+                        android:text="0"
                         android:textColor="#FFE52122"
                         android:textSize="16sp" />
                 </RelativeLayout>
@@ -93,7 +93,7 @@
                     android:layout_below="@+id/rl_progress_bar"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:text="总进度"
+                    android:text="已完成"
                     android:textColor="@color/theme_font_black"
                     android:textSize="14sp" />
 
@@ -252,7 +252,6 @@
                             android:background="@drawable/shape_project_complete"
                             android:gravity="center"
                             android:text="0"
-
                             android:textColor="#FFE51C23"
                             android:textSize="16sp" />
 
@@ -261,7 +260,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_toEndOf="@+id/iv_qr_code"
-                            android:text="已完成"
+                            android:text="已取消"
                             android:textColor="#888888"
                             android:textSize="14sp" />
                     </LinearLayout>
