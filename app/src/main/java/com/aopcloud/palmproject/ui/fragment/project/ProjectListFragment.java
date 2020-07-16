@@ -1,8 +1,10 @@
 package com.aopcloud.palmproject.ui.fragment.project;
 
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.CheckBox;
@@ -21,9 +23,11 @@ import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.ui.activity.project.ProjectDetailActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectListBean;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectListAdapter;
+import com.aopcloud.palmproject.ui.fragment.home.HomeProjectFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.view.decoration.HorizontalDividerItemDecoration;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.cily.utils.base.StrUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,15 +45,12 @@ import butterknife.BindView;
  * @Version : V 1.0
  * @Describe ：
  */
-public class ProjectListFragment extends BaseFragment implements ProjectListAdapter.OnItemClickListener, TextView.OnEditorActionListener,
-        CheckBox.OnCheckedChangeListener {
+public class ProjectListFragment extends BaseFragment implements ProjectListAdapter.OnItemClickListener, TextView.OnEditorActionListener {
 
     @BindView(R.id.rv_list)
     RecyclerView mRvList;
     @BindView(R.id.et_search)
     EditText mEtSearch;
-    @BindView(R.id.checkbox)
-    CheckBox mCheckbox;
 
     private ProjectListAdapter mAdapter;
 
@@ -64,6 +65,9 @@ public class ProjectListFragment extends BaseFragment implements ProjectListAdap
         fragment.setArguments(bundle);
         return fragment;
     }
+
+    private DrawerLayout drawer_layout;
+    private String state = HomeProjectFragment.STATE_all;
 
     @Override
     protected void initData() {
@@ -94,15 +98,216 @@ public class ProjectListFragment extends BaseFragment implements ProjectListAdap
         mRvList.addItemDecoration(decoration);
         mRvList.setLayoutManager(new LinearLayoutManager(mActivity));
         mRvList.setAdapter(mAdapter);
-        mCheckbox.setOnCheckedChangeListener(this);
         mEtSearch.setOnEditorActionListener(this);
 
-    }
+        view.findViewById(R.id.tv_filter).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (drawer_layout != null) {
+                    drawer_layout.openDrawer(Gravity.RIGHT);
+                }
+            }
+        });
 
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        ToastUtil.showToast("敬请期待");
-        buttonView.setChecked(false);
+        view.findViewById(R.id.tv_sure).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (drawer_layout != null){
+                    drawer_layout.closeDrawers();
+                }
+
+
+                toRequest(ApiConstants.EventTags.project_all);
+            }
+        });
+
+        drawer_layout = (DrawerLayout)view.findViewById(R.id.drawer_layout);
+
+        CheckBox checkbox_state_all = (CheckBox)view.findViewById(R.id.checkbox_state_all);
+        CheckBox checkbox_state_design = (CheckBox)view.findViewById(R.id.checkbox_state_design);
+        CheckBox checkbox_state_ready = (CheckBox)view.findViewById(R.id.checkbox_state_ready);
+        CheckBox checkbox_state_build = (CheckBox)view.findViewById(R.id.checkbox_state_build);
+        CheckBox checkbox_state_completed = (CheckBox)view.findViewById(R.id.checkbox_state_completed);
+        CheckBox checkbox_state_finish = (CheckBox)view.findViewById(R.id.checkbox_state_finish);
+        CheckBox checkbox_state_termination = (CheckBox)view.findViewById(R.id.checkbox_state_termination);
+        CheckBox checkbox_state_stop = (CheckBox)view.findViewById(R.id.checkbox_state_stop);
+        checkbox_state_all.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    state = HomeProjectFragment.STATE_all;
+                    checkbox_state_design.setChecked(false);
+                    checkbox_state_ready.setChecked(false);
+                    checkbox_state_build.setChecked(false);
+                    checkbox_state_completed.setChecked(false);
+                    checkbox_state_finish.setChecked(false);
+                    checkbox_state_termination.setChecked(false);
+                    checkbox_state_stop.setChecked(false);
+                }
+            }
+        });
+        checkbox_state_design.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    state = HomeProjectFragment.STATE_design;
+                    checkbox_state_all.setChecked(false);
+                    checkbox_state_ready.setChecked(false);
+                    checkbox_state_build.setChecked(false);
+                    checkbox_state_completed.setChecked(false);
+                    checkbox_state_finish.setChecked(false);
+                    checkbox_state_termination.setChecked(false);
+                    checkbox_state_stop.setChecked(false);
+                }
+            }
+        });
+        checkbox_state_ready.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    state = HomeProjectFragment.STATE_ready;
+                    checkbox_state_all.setChecked(false);
+                    checkbox_state_design.setChecked(false);
+                    checkbox_state_build.setChecked(false);
+                    checkbox_state_completed.setChecked(false);
+                    checkbox_state_finish.setChecked(false);
+                    checkbox_state_termination.setChecked(false);
+                    checkbox_state_stop.setChecked(false);
+                }
+            }
+        });
+        checkbox_state_build.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    state = HomeProjectFragment.STATE_build;
+                    checkbox_state_all.setChecked(false);
+                    checkbox_state_design.setChecked(false);
+                    checkbox_state_ready.setChecked(false);
+                    checkbox_state_completed.setChecked(false);
+                    checkbox_state_finish.setChecked(false);
+                    checkbox_state_termination.setChecked(false);
+                    checkbox_state_stop.setChecked(false);
+                }
+            }
+        });
+        checkbox_state_completed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    state = HomeProjectFragment.STATE_completed;
+                    checkbox_state_all.setChecked(false);
+                    checkbox_state_design.setChecked(false);
+                    checkbox_state_ready.setChecked(false);
+                    checkbox_state_build.setChecked(false);
+                    checkbox_state_finish.setChecked(false);
+                    checkbox_state_termination.setChecked(false);
+                    checkbox_state_stop.setChecked(false);
+                }
+            }
+        });
+        checkbox_state_finish.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    state = HomeProjectFragment.STATE_finish;
+                    checkbox_state_all.setChecked(false);
+                    checkbox_state_design.setChecked(false);
+                    checkbox_state_ready.setChecked(false);
+                    checkbox_state_build.setChecked(false);
+                    checkbox_state_completed.setChecked(false);
+                    checkbox_state_termination.setChecked(false);
+                    checkbox_state_stop.setChecked(false);
+                }
+            }
+        });
+        checkbox_state_termination.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    state = HomeProjectFragment.STATE_termination;
+                    checkbox_state_all.setChecked(false);
+                    checkbox_state_design.setChecked(false);
+                    checkbox_state_ready.setChecked(false);
+                    checkbox_state_build.setChecked(false);
+                    checkbox_state_completed.setChecked(false);
+                    checkbox_state_finish.setChecked(false);
+                    checkbox_state_stop.setChecked(false);
+                }
+            }
+        });
+        checkbox_state_stop.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    state = HomeProjectFragment.STATE_stop;
+                    checkbox_state_design.setChecked(false);
+                    checkbox_state_ready.setChecked(false);
+                    checkbox_state_build.setChecked(false);
+                    checkbox_state_completed.setChecked(false);
+                    checkbox_state_finish.setChecked(false);
+                    checkbox_state_termination.setChecked(false);
+                }
+            }
+        });
+
+
+        CheckBox checkbox_all = (CheckBox)view.findViewById(R.id.checkbox_all);
+        CheckBox checkbox_me = (CheckBox)view.findViewById(R.id.checkbox_me);
+        CheckBox checkbox_other = (CheckBox)view.findViewById(R.id.checkbox_other);
+        checkbox_all.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    checkbox_me.setChecked(false);
+                    checkbox_other.setChecked(false);
+                }
+            }
+        });
+        checkbox_me.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    checkbox_all.setChecked(false);
+                    checkbox_other.setChecked(false);
+                }
+            }
+        });
+        checkbox_other.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    checkbox_all.setChecked(false);
+                    checkbox_me.setChecked(false);
+                }
+            }
+        });
+
+        view.findViewById(R.id.tv_reset).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (drawer_layout != null){
+                    drawer_layout.closeDrawers();
+                }
+
+                checkbox_state_all.setChecked(true);
+                checkbox_state_design.setChecked(false);
+                checkbox_state_ready.setChecked(false);
+                checkbox_state_build.setChecked(false);
+                checkbox_state_completed.setChecked(false);
+                checkbox_state_finish.setChecked(false);
+                checkbox_state_termination.setChecked(false);
+                checkbox_state_stop.setChecked(false);
+
+                state = HomeProjectFragment.STATE_all;
+
+                checkbox_all.setChecked(true);
+                checkbox_me.setChecked(false);
+                checkbox_other.setChecked(false);
+
+                toRequest(ApiConstants.EventTags.project_all);
+            }
+        });
     }
 
     @Override
@@ -125,7 +330,15 @@ public class ProjectListFragment extends BaseFragment implements ProjectListAdap
 
     private void setViewData(List<ProjectListBean> beanList) {
         mBeanList.clear();
-        mBeanList.addAll(beanList);
+        if (StrUtils.isEmpty(state) || HomeProjectFragment.STATE_all.equals(state)) {
+            mBeanList.addAll(beanList);
+        } else {
+            for (ProjectListBean b : beanList) {
+                if (state.equals(b.getStatus())) {
+                    mBeanList.add(b);
+                }
+            }
+        }
         mAdapter.notifyDataSetChanged();
     }
 

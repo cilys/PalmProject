@@ -5,61 +5,314 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <LinearLayout
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center_vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/shape_map_location_et">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dp"
-                android:src="@mipmap/icon_et_search" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical">
 
-            <EditText
-                android:id="@+id/et_search"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_map_location_et">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="8dp"
+                        android:src="@mipmap/icon_et_search" />
+
+                    <EditText
+                        android:id="@+id/et_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="8dp"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="搜索"
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:textColor="@color/theme_font_6f"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:drawableLeft="@mipmap/shaixuan"
+                    android:gravity="center"
+                    android:text="筛选"
+                    android:textColor="@color/theme_font_black"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="8dp"
-                android:background="@null"
-                android:gravity="center_vertical"
-                android:hint="搜索"
-                android:imeOptions="actionSearch"
-                android:inputType="text"
-                android:singleLine="true"
-                android:textColor="@color/theme_font_6f"
-                android:textSize="14sp" />
-
+                android:layout_weight="1" />
         </LinearLayout>
 
-        <CheckBox
-            android:id="@+id/checkbox"
-            android:layout_width="wrap_content"
+        <!-- 右侧筛选菜单 -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="仅进行中的"
-            android:button="@null"
-            android:drawablePadding="5dp"
-            android:layout_marginRight="15dp"
-            android:drawableLeft="@drawable/shape_theme_checkbox_bg" />
+            android:background="#ffffff"
+            android:layout_gravity="right"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/theme_background_f5" />
 
+            <LinearLayout
+                style="@style/style_status_checkbox_ll">
+                <TextView
+                    android:id="@+id/tv_company_name"
+                    style="@style/style_status_checkbox_title"
+                    android:layout_width="match_parent"
+                    android:drawableLeft="@mipmap/icon_down"
+                    android:text="自动获取企业名称"
+                    android:drawablePadding="5dp" />
+            </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/theme_background_f5" />
 
+            <LinearLayout
+                style="@style/style_status_checkbox_ll">
+                <TextView
+                    style="@style/style_status_checkbox_title"
+                    android:layout_width="match_parent"
+                    android:text="状态" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/style_status_checkbox_ll">
+                <LinearLayout
+                    style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1">
+                    <CheckBox
+                        android:id="@+id/checkbox_state_all"
+                        style="@style/style_status_checkbox"
+                        android:text="不限" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1">
+                    <CheckBox
+                        android:id="@+id/checkbox_state_design"
+                        style="@style/style_status_checkbox"
+                        android:text="勘查设计" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1">
+
+                    <CheckBox
+                        android:id="@+id/checkbox_state_ready"
+                        style="@style/style_status_checkbox"
+                        android:text="开工预备" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/style_status_checkbox_ll">
+                <LinearLayout
+                    style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1">
+
+                    <CheckBox
+                        android:id="@+id/checkbox_state_build"
+                        style="@style/style_status_checkbox"
+                        android:text="在建" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1">
+
+                    <CheckBox
+                        android:id="@+id/checkbox_state_completed"
+                        style="@style/style_status_checkbox"
+                        android:text="竣工验收" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1">
+
+                    <CheckBox
+                        android:id="@+id/checkbox_state_finish"
+                        style="@style/style_status_checkbox"
+                        android:text="完结维保" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/style_status_checkbox_ll">
+                <LinearLayout
+                    style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1">
+
+                    <CheckBox
+                        android:id="@+id/checkbox_state_termination"
+                        style="@style/style_status_checkbox"
+                        android:text="已终止" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1">
+
+                    <CheckBox
+                        android:id="@+id/checkbox_state_stop"
+                        style="@style/style_status_checkbox"
+                        android:text="已停工" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1"
+                    android:visibility="invisible"></LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/style_status_checkbox_ll">
+                <TextView
+                    style="@style/style_status_checkbox_title"
+                    android:layout_width="match_parent"
+                    android:text="关注" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/style_status_checkbox_ll">
+                <LinearLayout
+                    style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1" >
+                    <CheckBox
+                        android:id="@+id/checkbox_follow_all"
+                        style="@style/style_status_checkbox"
+                        android:text="全部" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1" >
+                    <CheckBox
+                        android:id="@+id/checkbox_follow_s"
+                        style="@style/style_status_checkbox"
+                        android:text="已关注" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1" >
+                    <CheckBox
+                        android:id="@+id/checkbox_follow_n"
+                        style="@style/style_status_checkbox"
+                        android:text="未关注" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/style_status_checkbox_ll">
+                <TextView
+                    style="@style/style_status_checkbox_title"
+                    android:layout_width="match_parent"
+                    android:text="对象" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/style_status_checkbox_ll">
+                <LinearLayout
+                    style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1" >
+                    <CheckBox
+                        android:id="@+id/checkbox_all"
+                        style="@style/style_status_checkbox"
+                        android:text="不限" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1" >
+                    <CheckBox
+                        android:id="@+id/checkbox_me"
+                        style="@style/style_status_checkbox"
+                        android:text="我自己" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1" >
+                    <CheckBox
+                        android:id="@+id/checkbox_other"
+                        style="@style/style_status_checkbox"
+                        android:text="下属" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1"
+                    android:visibility="invisible">
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/theme_background_f5"
+                android:gravity="center_horizontal"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tv_reset"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="1"
+                    android:background="#ffff"
+                    android:gravity="center"
+                    android:text="重置"
+                    android:textColor="#FF888888"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_sure"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="1"
+                    android:background="#FF108CF7"
+                    android:gravity="center"
+                    android:text="确定"
+                    android:textColor="@color/theme_white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v4.widget.DrawerLayout>
 </LinearLayout>
