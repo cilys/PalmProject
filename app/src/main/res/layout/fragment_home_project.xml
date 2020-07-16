@@ -85,8 +85,6 @@
                 android:background="@drawable/shape_task_location"
                 android:padding="3dp"
                 android:src="@mipmap/dingwei" />
-
-
         </RelativeLayout>
 
         <!-- 左边菜单 -->
@@ -112,7 +110,6 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="12dp"
                     android:entries="@array/spinner_home_project_type" />
-
             </LinearLayout>
 
             <View
@@ -120,323 +117,169 @@
                 android:layout_height="1dp"
                 android:background="@color/theme_background_f5" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center_vertical">
-
+            <LinearLayout style="@style/style_status_checkbox_ll">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="12dp"
-                    android:gravity="center_vertical"
-                    android:text="状态"
-                    android:textColor="#FF101010"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    style="@style/style_status_checkbox_title"
+                    android:text="状态" />
 
                 <CheckBox
                     android:id="@+id/checkbox_state_all"
-                    android:layout_width="60dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="19dp"
-                    android:background="@drawable/selector_home_checkbox_filter"
+                    style="@style/style_status_checkbox"
+                    android:layout_marginRight="20dp"
+                    android:text="全部" />
+            </LinearLayout>
 
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="全部"
-                    android:textColor="@color/color_home_checkbox_filter"
-                    android:textSize="14sp" />
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center_horizontal"
-                android:visibility="visible">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal">
-
+            <LinearLayout style="@style/style_status_checkbox_ll">
+                <LinearLayout style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1" >
                     <CheckBox
                         android:id="@+id/checkbox_state_design"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/selector_home_checkbox_filter"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:text="勘查设计"
-                        android:textColor="@color/color_home_checkbox_filter"
-                        android:textSize="12sp" />
+                        style="@style/style_status_checkbox"
+                        android:text="勘查设计" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal">
-
+                <LinearLayout style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1" >
                     <CheckBox
                         android:id="@+id/checkbox_state_ready"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/selector_home_checkbox_filter"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:text="开工预备"
-                        android:textColor="@color/color_home_checkbox_filter"
-                        android:textSize="12sp" />
+                        style="@style/style_status_checkbox"
+                        android:text="开工预备" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal">
-
+                <LinearLayout style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1" >
                     <CheckBox
                         android:id="@+id/checkbox_state_build"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/selector_home_checkbox_filter"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:text="在建"
-                        android:textColor="@color/color_home_checkbox_filter"
-                        android:textSize="12sp" />
+                        style="@style/style_status_checkbox"
+                        android:text="在建" />
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center_horizontal"
-                android:visibility="visible">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal">
-
+            <LinearLayout style="@style/style_status_checkbox_ll">
+                <LinearLayout style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1">
                     <CheckBox
                         android:id="@+id/checkbox_state_completed"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/selector_home_checkbox_filter"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:text="竣工验收"
-                        android:textColor="@color/color_home_checkbox_filter"
-                        android:textSize="12sp" />
+                        style="@style/style_status_checkbox"
+                        android:text="竣工验收" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal">
-
+                <LinearLayout style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1">
                     <CheckBox
                         android:id="@+id/checkbox_state_finish"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/selector_home_checkbox_filter"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:text="完结维保"
-                        android:textColor="@color/color_home_checkbox_filter"
-                        android:textSize="12sp" />
+                        style="@style/style_status_checkbox"
+                        android:text="完结维保" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal">
-
+                <LinearLayout style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1">
                     <CheckBox
                         android:id="@+id/checkbox_state_termination"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/selector_home_checkbox_filter"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:text="已终止"
-                        android:textColor="@color/color_home_checkbox_filter"
-                        android:textSize="12sp" />
+                        style="@style/style_status_checkbox"
+                        android:text="已终止" />
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center_vertical"
-                android:visibility="visible"
-                android:weightSum="3">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal">
-
+            <LinearLayout style="@style/style_status_checkbox_ll">
+                <LinearLayout style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1" >
                     <CheckBox
                         android:id="@+id/checkbox_state_stop"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/selector_home_checkbox_filter"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:text="已停工"
-                        android:textColor="@color/color_home_checkbox_filter"
-                        android:textSize="12sp" />
+                        style="@style/style_status_checkbox"
+                        android:text="已停工" />
                 </LinearLayout>
-
-
+                <LinearLayout style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1"
+                    android:visibility="invisible">
+                </LinearLayout>
+                <LinearLayout style="@style/style_status_checkbox_ll"
+                    android:layout_weight="1"
+                    android:visibility="invisible">
+                </LinearLayout>
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center_vertical">
-
-                <CheckBox
+            <LinearLayout style="@style/style_status_checkbox_ll">
+                <TextView
+                    style="@style/style_status_checkbox_title"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="12dp"
-                    android:button="@null"
-                    android:gravity="center_vertical"
-                    android:text="关注"
-                    android:textColor="#FF101010"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:text="关注" />
 
                 <CheckBox
                     android:id="@+id/checkbox_follow_all"
-                    android:layout_width="60dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="19dp"
-                    android:background="@drawable/selector_home_checkbox_filter"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="全部"
-                    android:textColor="@color/color_home_checkbox_filter"
-                    android:textSize="14sp" />
-            </RelativeLayout>
+                    style="@style/style_status_checkbox"
+                    android:layout_marginRight="20dp"
+                    android:text="全部" />
+            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center_vertical"
-                android:visibility="visible"
-                android:weightSum="3">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal">
-
+            <LinearLayout style="@style/style_status_checkbox_ll">
+                <LinearLayout style="@style/style_status_checkbox_ll">
                     <CheckBox
                         android:id="@+id/checkbox_follow_s"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/selector_home_checkbox_filter"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:text="已关注"
-                        android:textColor="@color/color_home_checkbox_filter"
-                        android:textSize="12sp" />
+                        style="@style/style_status_checkbox"
+                        android:text="已关注" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal">
-
+                <LinearLayout style="@style/style_status_checkbox_ll">
                     <CheckBox
                         android:id="@+id/checkbox_follow_n"
-                        android:layout_width="60dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/selector_home_checkbox_filter"
-                        android:button="@null"
-                        android:gravity="center"
-                        android:text="未关注"
-                        android:textColor="@color/color_home_checkbox_filter"
-                        android:textSize="12dp" />
+                        style="@style/style_status_checkbox"
+                        android:text="未关注" />
+                </LinearLayout>
+                <LinearLayout style="@style/style_status_checkbox_ll"
+                    android:visibility="invisible">
                 </LinearLayout>
             </LinearLayout>
 
-            <RelativeLayout
+            <LinearLayout style="@style/style_status_checkbox_ll">
+                <TextView
+                    style="@style/style_status_checkbox_title"
+                    android:layout_width="wrap_content"
+                    android:text="所属公司" />
+
+                <Spinner
+                    android:id="@+id/spinner_company"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="50dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center_vertical">
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/theme_background_f5"
+                android:gravity="center_horizontal"
+                android:visibility="visible">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_reset"
+                    style="@style/style_status_checkbox_title"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="12dp"
-                    android:gravity="center_vertical"
-                    android:text="所属公司"
-                    android:textColor="#FF101010"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-            </RelativeLayout>
-
-            <Spinner
-                android:id="@+id/spinner_company"
-                android:layout_width="match_parent"
-                android:layout_height="50dp" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/theme_background_f5"
-                    android:gravity="center_horizontal"
-                    android:visibility="visible">
-
-                    <TextView
-                        android:id="@+id/tv_reset"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="1dp"
-                        android:layout_weight="1"
-                        android:background="#ffff"
-                        android:gravity="center"
-                        android:text="重置"
-                        android:textColor="#FF888888"
-                        android:textSize="14sp" />
+                    android:background="#ffff"
+                    android:text="重置"
+                    android:gravity="center"
+                    android:layout_marginTop="1dp"
+                    android:textColor="#FF888888"
+                    android:textSize="14sp" />
 
 
-                    <TextView
-                        android:id="@+id/tv_sure"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="1dp"
-                        android:layout_weight="1"
-                        android:background="#FF108CF7"
-
-                        android:gravity="center"
-                        android:text="确定"
-                        android:textColor="@color/theme_white"
-                        android:textSize="14sp" />
-                </LinearLayout>
-            </RelativeLayout>
-
+                <TextView
+                    android:id="@+id/tv_sure"
+                    style="@style/style_status_checkbox_title"
+                    android:background="#FF108CF7"
+                    android:layout_marginTop="1dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="确定"
+                    android:textColor="@color/theme_white"
+                    android:textSize="14sp" />
+            </LinearLayout>
         </LinearLayout>
     </android.support.v4.widget.DrawerLayout>
 </LinearLayout>

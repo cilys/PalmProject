@@ -58,7 +58,6 @@
 
 
             <TextView
-
                 android:id="@+id/tv_leader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -70,7 +69,6 @@
                 android:textSize="12sp" />
 
             <TextView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -92,7 +90,6 @@
                 android:textSize="12sp" />
 
             <TextView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -112,8 +109,6 @@
                 android:text="25%"
                 android:textColor="@color/theme_color"
                 android:textSize="12sp" />
-
-
         </LinearLayout>
 
         <TextView
@@ -127,9 +122,10 @@
             android:layout_marginRight="5dp"
             android:paddingLeft="6dp"
             android:paddingRight="6dp"
+            android:visibility="gone"
             android:background="@drawable/shape_submit_stroke"
             android:gravity="center"
-            android:text="展开↓"></TextView>
+            android:text="展开↓" />
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
