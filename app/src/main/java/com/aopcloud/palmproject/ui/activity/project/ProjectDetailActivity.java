@@ -25,12 +25,14 @@ import com.aopcloud.palmproject.loader.AppImageLoader;
 import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectDetailBean;
 import com.aopcloud.palmproject.ui.adapter.feagment.AppFragmentPagerAdapter;
+import com.aopcloud.palmproject.ui.fragment.home.HomeProjectFragment;
 import com.aopcloud.palmproject.ui.fragment.project.DashboardFragment;
 import com.aopcloud.palmproject.ui.fragment.project.ImagesFragment;
 import com.aopcloud.palmproject.ui.fragment.project.ProjectLogFragment;
 import com.aopcloud.palmproject.ui.fragment.project.ProjectTaskFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.view.PopContextMenu;
+import com.cily.utils.base.StrUtils;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
@@ -203,7 +205,7 @@ public class ProjectDetailActivity extends BaseAc {
 //                menuItems.add(new PopMenuBean("完成"));
 //                menuItems.add(new PopMenuBean("移交/退出"));
                 menuItems.add(new PopMenuBean("编辑"));
-//                menuItems.add(new PopMenuBean("状态"));
+                menuItems.add(new PopMenuBean("状态"));
                 menuItems.add(new PopMenuBean("分部"));
                 menuItems.add(new PopMenuBean("删除"));
                 PopContextMenu contextMenu = new PopContextMenu(this)
@@ -212,38 +214,45 @@ public class ProjectDetailActivity extends BaseAc {
                         .setOnItemSelectListener(new PopContextMenu.OnItemSelectListener() {
                             @Override
                             public void onItemSelect(int position) {
-                                if (position == 1) {
+                                if (position == 0) {
                                     Bundle bundle = new Bundle();
                                     bundle.putString("bean", "" + JSON.toJSONString(mProjectDetailBean));
                                     gotoActivity(EditProjectActivity.class, bundle, 0);
-                                } else if (position == 2) {
-
+                                } else if (position == 1) {
+                                    showProjectStatusDialog();
                                 }
                             }
                         });
                 contextMenu.showMenu(mLlHeaderRight);
                 break;
             case R.id.ll_progress:
-                showProjectStatusDialog();
+//                showProjectStatusDialog();
                 break;
         }
     }
 
     private void toProjectProgress(){
-        Bundle bundle = new Bundle();
-        bundle.putString("project_id", "" + project_id);
-        gotoActivity(ProjectProgressActivity.class, bundle, 0);
+//        Bundle bundle = new Bundle();
+//        bundle.putString("project_id", "" + project_id);
+//        gotoActivity(ProjectProgressActivity.class, bundle, 0);
+
+        toRequest(ApiConstants.EventTags.project_feedback);
     }
 
+    private String projectStatus;
     @Override
     public void toRequest(int eventTag) {
         super.toRequest(eventTag);
         Map map = new HashMap();
         map.put("token", "" + LoginUserUtil.getToken(this));
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(this));
+        map.put("project_id", "" + project_id);//项目名称
         if (eventTag == ApiConstants.EventTags.project_get) {
-            map.put("project_id", "" + project_id);//项目名称
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.project_get, map);
+        } else if (eventTag == ApiConstants.EventTags.project_feedback) {
+            map.put("status", projectStatus);
+            map.put("progress", "" + mProgressView.getProgress());
+            iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.project_feedback, map);
         }
     }
 
@@ -255,6 +264,10 @@ public class ProjectDetailActivity extends BaseAc {
             if (eventTag == ApiConstants.EventTags.project_get) {
                 ProjectDetailBean detailBean = JSON.parseObject(bean.getData(), ProjectDetailBean.class);
                 setViewData(detailBean);
+            } else if (eventTag == ApiConstants.EventTags.project_feedback) {
+                if (!StrUtils.isEmpty(projectStatus)) {
+                    mTvState.setText(projectStatus);
+                }
             }
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
@@ -280,6 +293,7 @@ public class ProjectDetailActivity extends BaseAc {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                projectStatus = HomeProjectFragment.STATE_design;
                 toProjectProgress();
             }
         });
@@ -287,6 +301,7 @@ public class ProjectDetailActivity extends BaseAc {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                projectStatus = HomeProjectFragment.STATE_ready;
                 toProjectProgress();
             }
         });
@@ -294,6 +309,7 @@ public class ProjectDetailActivity extends BaseAc {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                projectStatus = HomeProjectFragment.STATE_build;
                 toProjectProgress();
             }
         });
@@ -301,6 +317,7 @@ public class ProjectDetailActivity extends BaseAc {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+//                projectStatus = HomeProjectFragment.STATE_c;
                 toProjectProgress();
             }
         });
@@ -308,6 +325,7 @@ public class ProjectDetailActivity extends BaseAc {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                projectStatus = HomeProjectFragment.STATE_completed;
                 toProjectProgress();
             }
         });
@@ -315,6 +333,7 @@ public class ProjectDetailActivity extends BaseAc {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                projectStatus = HomeProjectFragment.STATE_finish;
                 toProjectProgress();
             }
         });
@@ -322,6 +341,7 @@ public class ProjectDetailActivity extends BaseAc {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                projectStatus = HomeProjectFragment.STATE_termination;
                 toProjectProgress();
             }
         });
@@ -329,6 +349,7 @@ public class ProjectDetailActivity extends BaseAc {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                projectStatus = HomeProjectFragment.STATE_stop;
                 toProjectProgress();
             }
         });

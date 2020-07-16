@@ -218,7 +218,7 @@ public class UpdateProjectProgressActivity extends BaseAc implements FileListAda
             map.put("attach", "" + attach);
             map.put("status", "" + status);
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.project_feedback, map);
-        }else if (eventTag==ApiConstants.EventTags.project_get){
+        } else if (eventTag==ApiConstants.EventTags.project_get){
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.project_get, map);
         }
     }
