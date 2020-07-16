@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.MotionEvent;
@@ -176,7 +177,6 @@ public class ProjectDetailActivity extends BaseAc {
         AppImageLoader.load(this, mLogo, mIvQrCode);
     }
 
-
     @OnClick({R.id.ll_header_back, R.id.iv_qr_code, R.id.tv_team, R.id.ll_header_right, R.id.ll_progress})
     public void onViewClicked(View view) {
         Bundle bundle;
@@ -203,7 +203,7 @@ public class ProjectDetailActivity extends BaseAc {
 //                menuItems.add(new PopMenuBean("完成"));
 //                menuItems.add(new PopMenuBean("移交/退出"));
                 menuItems.add(new PopMenuBean("编辑"));
-                menuItems.add(new PopMenuBean("状态"));
+//                menuItems.add(new PopMenuBean("状态"));
                 menuItems.add(new PopMenuBean("分部"));
                 menuItems.add(new PopMenuBean("删除"));
                 PopContextMenu contextMenu = new PopContextMenu(this)
@@ -224,11 +224,15 @@ public class ProjectDetailActivity extends BaseAc {
                 contextMenu.showMenu(mLlHeaderRight);
                 break;
             case R.id.ll_progress:
-                bundle = new Bundle();
-                bundle.putString("project_id", "" + project_id);
-                gotoActivity(ProjectProgressActivity.class, bundle, 0);
+                showProjectStatusDialog();
                 break;
         }
+    }
+
+    private void toProjectProgress(){
+        Bundle bundle = new Bundle();
+        bundle.putString("project_id", "" + project_id);
+        gotoActivity(ProjectProgressActivity.class, bundle, 0);
     }
 
     @Override
@@ -266,5 +270,73 @@ public class ProjectDetailActivity extends BaseAc {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         toRequest(ApiConstants.EventTags.project_get);
+    }
+
+    private void showProjectStatusDialog(){
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        dialog.setContentView(R.layout.dialog_project_status);
+        dialog.show();
+        dialog.findViewById(R.id.tv_state_design).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                toProjectProgress();
+            }
+        });
+        dialog.findViewById(R.id.tv_state_ready).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                toProjectProgress();
+            }
+        });
+        dialog.findViewById(R.id.tv_state_build).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                toProjectProgress();
+            }
+        });
+        dialog.findViewById(R.id.tv_state_check).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                toProjectProgress();
+            }
+        });
+        dialog.findViewById(R.id.tv_state_completed).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                toProjectProgress();
+            }
+        });
+        dialog.findViewById(R.id.tv_state_finish).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                toProjectProgress();
+            }
+        });
+        dialog.findViewById(R.id.tv_state_termination).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                toProjectProgress();
+            }
+        });
+        dialog.findViewById(R.id.tv_state_stop).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                toProjectProgress();
+            }
+        });
+        dialog.findViewById(R.id.tv_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 }

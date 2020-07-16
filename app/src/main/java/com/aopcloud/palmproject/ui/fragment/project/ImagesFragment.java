@@ -153,7 +153,8 @@ public class ImagesFragment extends BaseFragment implements TextView.OnEditorAct
                         beans.add(mAllBeanList.get(i));
                     }
                 } else {
-                    if (mAllBeanList.get(i).getTags().contains(type)) {
+//                    if (mAllBeanList.get(i).getTags().contains(type)) {
+                    if (mAllBeanList.get(i).getType().contains(type)) {
                         beans.add(mAllBeanList.get(i));
                     }
                 }
@@ -163,7 +164,6 @@ public class ImagesFragment extends BaseFragment implements TextView.OnEditorAct
         mBeanList.addAll(beans);
         mAdapter.notifyDataSetChanged();
     }
-
 
     private void searchList(String k) {
         mBeanList.clear();
@@ -194,7 +194,6 @@ public class ImagesFragment extends BaseFragment implements TextView.OnEditorAct
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("PreviewBean", (Serializable) list);
                 gotoActivity(PreviewActivity.class, bundle);
-
             }
         });
         mAdapter.setOnItemFileClickListener(new ProjectScenesAdapter.OnItemFileClickListener() {

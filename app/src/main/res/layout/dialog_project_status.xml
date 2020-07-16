@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_work_task_bg_2"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="项目状态"
+        android:textColor="#FF999898"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/theme_background_f5"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_state_design"
+            style="@style/style_dialog_item_tv"
+            android:text="勘查设计"
+             />
+
+        <TextView
+            android:id="@+id/tv_state_ready"
+            style="@style/style_dialog_item_tv"
+            android:text="开工预备"  />
+
+        <TextView
+            android:id="@+id/tv_state_build"
+            style="@style/style_dialog_item_tv"
+            android:text="在建"  />
+
+        <TextView
+            android:id="@+id/tv_state_check"
+            style="@style/style_dialog_item_tv"
+            android:visibility="gone"
+            android:text="收尾自检" />
+
+        <TextView
+            android:id="@+id/tv_state_completed"
+            style="@style/style_dialog_item_tv"
+            android:text="竣工验收"  />
+
+        <TextView
+            android:id="@+id/tv_state_finish"
+            style="@style/style_dialog_item_tv"
+            android:text="完结维保"  />
+        <TextView
+            android:id="@+id/tv_state_termination"
+            style="@style/style_dialog_item_tv"
+            android:text="已终止"  />
+        <TextView
+            android:id="@+id/tv_state_stop"
+            style="@style/style_dialog_item_tv"
+            android:text="已停工"  />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            style="@style/style_dialog_item_tv"
+            android:layout_marginTop="5dp"
+            android:text="取消"  />
+    </LinearLayout>
+</LinearLayout>
