@@ -86,9 +86,7 @@ import butterknife.OnClick;
  * @Describe ：
  */
 public class TaskExecuteFragment extends BaseFragment implements
-        LocationSource
-        , AMapLocationListener
-        , AMap.OnMarkerClickListener {
+        LocationSource, AMapLocationListener, AMap.OnMarkerClickListener {
 
 
     @BindView(R.id.tv_count_unit)
@@ -207,13 +205,11 @@ public class TaskExecuteFragment extends BaseFragment implements
         initLocation();
     }
 
-
     private void initMap() {
         mAMap = mMapView.getMap();
         mUiSettings = mAMap.getUiSettings();
         mUiSettings.setZoomControlsEnabled(true);
         mAMap.setOnMarkerClickListener(this);
-
     }
 
     private void initLocation() {
@@ -284,8 +280,6 @@ public class TaskExecuteFragment extends BaseFragment implements
         } else if (mTaskDetailBean.getStatus_str().equals("已完成")) {
             addMarker(mTaskDetailBean, R.mipmap.icon_task_complete);
         }
-
-
     }
 
 
@@ -356,8 +350,6 @@ public class TaskExecuteFragment extends BaseFragment implements
                             addMarker(beanList.get(finalI), icon);
                         }
                     });
-
-
         }
     }
 
@@ -669,7 +661,6 @@ public class TaskExecuteFragment extends BaseFragment implements
         });
     }
 
-
     @Override
     public void onResume() {
         mMapView.onResume();
@@ -795,7 +786,6 @@ public class TaskExecuteFragment extends BaseFragment implements
         }
         if (requestCode == 3) {
             Bundle bundle = data.getExtras();
-            Log.i(TAG, "--------" + JSON.toJSONString(bundle.toString()));
         }
     }
 }

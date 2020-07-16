@@ -24,7 +24,7 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     protected Context mContext;
     protected int layoutId;//item布局文件
 
-    public CommonAdapter(Context context, int layoutId,List<T> mBeanList) {
+    public CommonAdapter(Context context, int layoutId, List<T> mBeanList) {
         this.mContext = context;
         this.mBeanList = mBeanList;
         mInflater = LayoutInflater.from(context);
@@ -71,6 +71,4 @@ public abstract class CommonAdapter<T> extends BaseAdapter {
     }
 
     public abstract void convert(ViewHolder holder, T t, int position);
-
-
 }

@@ -197,13 +197,11 @@ public class TaskFragment extends BaseFragment implements OnTaskFilterListener {
         }
     }
 
-
     @Override
     public void onReset() {
         mBeanList.clear();
         mBeanList.addAll(mAllBeanList);
         mAdapter.notifyDataSetChanged();
-
     }
 
     @Override
@@ -242,9 +240,7 @@ public class TaskFragment extends BaseFragment implements OnTaskFilterListener {
         super.onRequestFailureException(eventTag, msg);
     }
 
-
     private BgDarkPopupWindow mPopupWindow;
-
 
     private void showFilter() {
         View mPopView = View.inflate(mActivity, R.layout.dialog_pop_task_filter, null);
@@ -375,7 +371,6 @@ public class TaskFragment extends BaseFragment implements OnTaskFilterListener {
                             state.add("未安排");
                         }
 
-
                         if (mCheckboxLevel1.isChecked()) {
                             level.add("普通");
                         }
@@ -396,6 +391,3 @@ public class TaskFragment extends BaseFragment implements OnTaskFilterListener {
         }
     }
 }
-
-
-

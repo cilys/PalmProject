@@ -83,7 +83,6 @@ public class NewsTodoFragment extends BaseFragment {
         if (!TextUtils.isEmpty(LoginUserUtil.getCurrentEnterpriseNo(mActivity))) {
             toRequest(ApiConstants.EventTags.msg_todo);
         }
-
     }
 
     @Override
@@ -154,10 +153,8 @@ public class NewsTodoFragment extends BaseFragment {
                 workNotifyBean.setTypeName("任务");
                 mBeanList.add(workNotifyBean);
             }
-
-
         }
-        if (mOnLoadCountListener!=null){
+        if (mOnLoadCountListener != null) {
             mOnLoadCountListener.onLoadCount(mBeanList.size());
         }
         mAdapter.notifyDataSetChanged();
@@ -182,12 +179,12 @@ public class NewsTodoFragment extends BaseFragment {
                     bundle.putString("user_id", "" + mBeanList.get(position).getUser_id());
                     bundle.getString("status", "" + mBeanList.get(position).getUser_status());
                     bundle.putString("company_user_id", "" + mBeanList.get(position).getCompany_user_id());
-                    gotoActivity(StaffApprovalDetailActivity.class, bundle,0);
+                    gotoActivity(StaffApprovalDetailActivity.class, bundle, 0);
                 } else if (mBeanList.get(position).getType() == 2) {
                     Bundle bundle = new Bundle();
                     bundle.putString("project_id", "" + mBeanList.get(position).getProject_id());
                     bundle.putString("task_id", "" + mBeanList.get(position).getTask_id());
-                    gotoActivity(ProjectTaskDetailActivity.class, bundle,0);
+                    gotoActivity(ProjectTaskDetailActivity.class, bundle, 0);
                 } else if (mBeanList.get(position).getType() == 3) {
                     Bundle bundle = new Bundle();
                     bundle.putString("task_id", "" + mBeanList.get(position).getTask_id());
@@ -195,7 +192,7 @@ public class NewsTodoFragment extends BaseFragment {
                     bundle.putString("work_value", mBeanList.get(position).getWork_value() + "");
                     bundle.putString("task_name", "" + mBeanList.get(position).getName());
                     bundle.putBoolean("child", mBeanList.get(position).getPid() != 0);
-                    gotoActivity(TaskUpdateProgressActivity.class, bundle,0);
+                    gotoActivity(TaskUpdateProgressActivity.class, bundle, 0);
                 }
             }
         });
@@ -242,13 +239,14 @@ public class NewsTodoFragment extends BaseFragment {
             toRequest(ApiConstants.EventTags.msg_todo);
         }
     }
+
     OnLoadCountListener mOnLoadCountListener;
 
     public void setOnLoadCountListener(OnLoadCountListener onLoadCountListener) {
         mOnLoadCountListener = onLoadCountListener;
     }
 
-    public   interface OnLoadCountListener{
+    public interface OnLoadCountListener {
         void onLoadCount(int size);
     }
 }

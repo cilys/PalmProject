@@ -39,17 +39,14 @@ import butterknife.BindView;
  * @Describe ：
  */
 public class StaffApprovalFragment extends BaseFragment {
-
     @BindView(R.id.rv_list)
     RecyclerView mRvList;
     @BindView(R.id.refresh_layout)
     SmartRefreshLayout mRefreshLayout;
 
-
     private StaffApprovalAdapter mAdapter;
     private List<StaffListBean> mBeanList = new ArrayList();
     private String status;
-
 
     public static StaffApprovalFragment getInstance(String status) {
 
@@ -141,7 +138,6 @@ public class StaffApprovalFragment extends BaseFragment {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -155,4 +151,3 @@ public class StaffApprovalFragment extends BaseFragment {
         toRequest( ApiConstants.EventTags.company_usermange);
     }
 }
-

@@ -49,8 +49,6 @@ import butterknife.OnClick;
  * @Describe ：
  */
 public class ProjectLogFragment extends BaseFragment implements OnRefreshListener {
-
-
     @BindView(R.id.rv_list)
     RecyclerView mRvList;
     @BindView(R.id.tv_time)
@@ -91,7 +89,6 @@ public class ProjectLogFragment extends BaseFragment implements OnRefreshListene
         }
         toRequest(ApiConstants.EventTags.trends_project);
     }
-
 
     @Override
     protected int setLayoutId() {
@@ -157,7 +154,6 @@ public class ProjectLogFragment extends BaseFragment implements OnRefreshListene
         toRequest(ApiConstants.EventTags.trends_project);
     }
 
-
     private List<SpinnerItemAdapter.SpinnerItemBean> mTaskList = new ArrayList();
     private List<SpinnerItemAdapter.SpinnerItemBean> mUserList = new ArrayList();
     private Map mUserMap = new HashMap();
@@ -193,7 +189,6 @@ public class ProjectLogFragment extends BaseFragment implements OnRefreshListene
 
 
     private void setFilter(int type, int currentTypeId, int id) {
-        Log.d(TAG, "---------" + type + "/" + currentTypeId + "/" + id);
         mBeanList.clear();
         if (id == -1) {
             mBeanList.addAll(mAllBeanList);
@@ -227,10 +222,8 @@ public class ProjectLogFragment extends BaseFragment implements OnRefreshListene
         if (eventTag == ApiConstants.EventTags.trends_project) {
             map.put("project_id", "" + project_id);//项目名称
             map.put("type", "-1");
-            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.trends_project, map);
         } else if (eventTag == ApiConstants.EventTags.project_tasks) {
-            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.project_tasks, map);
         }
     }
@@ -238,7 +231,6 @@ public class ProjectLogFragment extends BaseFragment implements OnRefreshListene
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Log.i(TAG, "------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.trends_project) {
@@ -251,13 +243,11 @@ public class ProjectLogFragment extends BaseFragment implements OnRefreshListene
             mRefreshLayout.finishRefresh();
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Log.i(TAG, "------------" + eventTag + "/" + msg);
         mRefreshLayout.finishLoadMore();
         mRefreshLayout.finishRefresh();
     }

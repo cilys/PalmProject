@@ -27,6 +27,4 @@ public class SchemaActivity extends BaseAc {
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.loadUrl("https://test.aopcloud.com/scheme/");
     }
-
-
 }

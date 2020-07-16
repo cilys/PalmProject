@@ -78,7 +78,6 @@ public class TaskChildFragment extends BaseFragment {
             task_name= bundle.getString("task_name");
             team_id= bundle.getString("team_id");
         }
-
     }
 
     @Override

@@ -82,7 +82,6 @@ public class TaskMemberFragment extends BaseFragment {
         if (bundle != null) {
             task_id = bundle.getString("task_id");
         }
-
     }
 
     @Override
@@ -125,7 +124,6 @@ public class TaskMemberFragment extends BaseFragment {
 
             team_id = mTaskDetailBean.getTeam_id() + "";
             toRequest(ApiConstants.EventTags.teammember_all);
-
         }
     }
 

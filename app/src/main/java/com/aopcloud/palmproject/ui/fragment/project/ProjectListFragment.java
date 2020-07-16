@@ -44,7 +44,6 @@ import butterknife.BindView;
 public class ProjectListFragment extends BaseFragment implements ProjectListAdapter.OnItemClickListener, TextView.OnEditorActionListener,
         CheckBox.OnCheckedChangeListener {
 
-
     @BindView(R.id.rv_list)
     RecyclerView mRvList;
     @BindView(R.id.et_search)
@@ -154,7 +153,6 @@ public class ProjectListFragment extends BaseFragment implements ProjectListAdap
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

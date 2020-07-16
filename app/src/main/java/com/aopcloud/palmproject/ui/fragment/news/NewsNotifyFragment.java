@@ -151,6 +151,4 @@ public class NewsNotifyFragment extends BaseFragment implements BaseQuickAdapter
     public interface OnLoadCountListener {
         void onLoadCount(int size);
     }
-
-
 }

@@ -59,9 +59,7 @@ public class TaskRecordFragment extends BaseFragment implements TaskWorkRecordAd
     @BindView(R.id.rv_list)
     RecyclerView mRvList;
 
-
     private String task_id;
-
 
     private int year;
     private int month;
@@ -132,8 +130,6 @@ public class TaskRecordFragment extends BaseFragment implements TaskWorkRecordAd
         int days = calendar.getActualMaximum(Calendar.DATE);
         int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
         SimpleDateFormat format = new SimpleDateFormat("E");
-//        Log.i("--------" + format.format(calendar.getTime()));
-//        Log.i("--------" + calendar.get(Calendar.YEAR) + "/" + (calendar.get(Calendar.MONTH) + 1) + "/" + days + "/" + dayOfWeek);
 
         int placeholder = dayOfWeek - 1;
         for (int i = 0; i < placeholder; i++) {
@@ -148,7 +144,6 @@ public class TaskRecordFragment extends BaseFragment implements TaskWorkRecordAd
             mMonthBeans.add(bean);
             calendar.add(Calendar.DATE, +1);
         }
-        Log.i(TAG, "---------------" + JSON.toJSONString(map));
         for (String s : map.keySet()) {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date date=null;
@@ -157,22 +152,17 @@ public class TaskRecordFragment extends BaseFragment implements TaskWorkRecordAd
             } catch (ParseException e) {
                 e.printStackTrace();
                 date = new Date();
-                Log.d(TAG, "----ParseException-----------" +date.getTime()+"/"+1);
-
             }
             Calendar calendar1 = Calendar.getInstance();
             calendar1.setTime(date);
-            Log.i(TAG, "---------------"+s+"/"+date.getTime()+"/"+calendar1.get(Calendar.DATE));
             if (!map.get(s)) {
                 mMonthBeans.get(calendar1.get(Calendar.DAY_OF_MONTH)).setType(1);
             } else {
                 mMonthBeans.get(calendar1.get(Calendar.DAY_OF_MONTH)).setType(2);
             }
-
         }
         mMonthAdapter.notifyDataSetChanged();
     }
-
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
@@ -219,13 +209,11 @@ public class TaskRecordFragment extends BaseFragment implements TaskWorkRecordAd
         map.put("code", "" + LoginUserUtil.getCurrentEnterpriseNo(mActivity));
         map.put("task_id", "" + task_id);
         if (eventTag == ApiConstants.EventTags.task_tasks) {
-            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.task_tasks, map);
         } else if (eventTag == ApiConstants.EventTags.salary_all) {
             map.put("start_date", "" + getStartTime(year, month));
             map.put("end_date", "" + getEndTime(year, month));
 
-            Log.i(TAG, "------------" + eventTag + "/" + JSON.toJSONString(map));
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.salary_all, map);
         }
     }
@@ -233,7 +221,6 @@ public class TaskRecordFragment extends BaseFragment implements TaskWorkRecordAd
     @Override
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
-        Log.i(TAG, "------------" + eventTag + "/" + result);
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.task_tasks) {
@@ -251,7 +238,6 @@ public class TaskRecordFragment extends BaseFragment implements TaskWorkRecordAd
     @Override
     public void onRequestFailureException(int eventTag, String msg) {
         super.onRequestFailureException(eventTag, msg);
-        Log.i(TAG, "------------" + eventTag + "/" + msg);
     }
 
     public static class MonthBean {
@@ -321,5 +307,3 @@ public class TaskRecordFragment extends BaseFragment implements TaskWorkRecordAd
         return "" + dateFormat.format(calendar.getTime());
     }
 }
-
-

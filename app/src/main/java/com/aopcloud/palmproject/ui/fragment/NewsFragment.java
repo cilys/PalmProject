@@ -120,10 +120,8 @@ public class NewsFragment extends BaseFragment implements WeatherSearch.OnWeathe
         initBannerView();
         Calendar calendar = Calendar.getInstance();
 
-
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月dd日");
         mTvDate.setText(weeks[calendar.get(Calendar.DAY_OF_WEEK) - 1] + " " + dateFormat.format(calendar.getTime()));
-
 
         NewsPageAdapter pageAdapter = new NewsPageAdapter(getChildFragmentManager(), mFragments, mList);
         mPageView.setAdapter(pageAdapter);

@@ -177,7 +177,7 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
         initMap();
         initLocation();
 
-        if (GpsUtls.isOPen(getActivity())){
+        if (GpsUtls.isOPen(getActivity())) {
 
         } else {
             showOpenGpsDialog();
@@ -223,13 +223,13 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
             return;
         }
         List<ProjectListBean> ls = new ArrayList<>();
-        for (ProjectListBean b : beanList){
+        for (ProjectListBean b : beanList) {
             String status = b.getStatus();
-            if (state == null || STATE_all.equals(state) || "".equals(state)){
+            if (state == null || STATE_all.equals(state) || "".equals(state)) {
                 //不筛选状态
                 ls.add(b);
             } else {
-                if (state.equals(status)){
+                if (state.equals(status)) {
                     ls.add(b);
                 }
             }
@@ -526,7 +526,7 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
 
                 //绘制定位点
 //                addLocationMarker(latLng);
-                if (mlocationClient != null){
+                if (mlocationClient != null) {
                     mlocationClient.stopLocation();
                 }
             } else {
@@ -703,8 +703,8 @@ public class HomeProjectFragment extends BaseFragment implements LocationSource
         }
     }
 
-    private void addLocationMarker(LatLng latLng){
-        if (mAMap == null || latLng == null){
+    private void addLocationMarker(LatLng latLng) {
+        if (mAMap == null || latLng == null) {
             return;
         }
         MarkerOptions markerOptions = new MarkerOptions();

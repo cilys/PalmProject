@@ -51,8 +51,6 @@ import de.greenrobot.event.EventBus;
  * @Describe ：
  */
 public class HomeFragment extends BaseFragment implements ViewPager.OnPageChangeListener {
-
-
     @BindView(R.id.iv_avatar)
     CircleImageView mIvAvatar;
     @BindView(R.id.tv_city)

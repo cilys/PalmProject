@@ -115,7 +115,6 @@ public class ImagesFragment extends BaseFragment implements TextView.OnEditorAct
 
         mTaskAdapter = new SpinnerItemAdapter(mActivity, R.layout.item_spinner_team, mTaskList);
         mSpinnerChild.setAdapter(mTaskAdapter);
-
     }
 
     private List<SpinnerItemAdapter.SpinnerItemBean> mTaskList = new ArrayList();
@@ -126,8 +125,8 @@ public class ImagesFragment extends BaseFragment implements TextView.OnEditorAct
         mTaskList.add(new SpinnerItemAdapter.SpinnerItemBean(-1, "全部工单"));
 
         List<ProjectSceneBean.ScenesBean> beans = new ArrayList<>();
-        for (int i = 0; i <beanList.size() ; i++) {
-            if (!ListUtil.isEmpty(beanList.get(i).getScenes())){
+        for (int i = 0; i < beanList.size(); i++) {
+            if (!ListUtil.isEmpty(beanList.get(i).getScenes())) {
                 mTaskList.add(new SpinnerItemAdapter.SpinnerItemBean(Integer.valueOf(beanList.get(i).getTask_id()), beanList.get(i).getScenes().get(0).getTask_name()));
                 beans.addAll(beanList.get(i).getScenes());
             }
@@ -142,21 +141,19 @@ public class ImagesFragment extends BaseFragment implements TextView.OnEditorAct
         mTaskAdapter.notifyDataSetChanged();
     }
 
-    private void setFilter( String type, int id) {
-        Log.d(TAG, "---------" + type +  "/" + id);
-
+    private void setFilter(String type, int id) {
         List<ProjectSceneBean.ScenesBean> beans = new ArrayList<>();
 
-        if (!TextUtils.isEmpty(type)&&type.contains("全部")||TextUtils.isEmpty(type)&&id==-1){
+        if (!TextUtils.isEmpty(type) && type.contains("全部") || TextUtils.isEmpty(type) && id == -1) {
             beans.addAll(mAllBeanList);
-        }else {
-            for (int i = 0; i <mAllBeanList.size() ; i++) {
-                if (TextUtils.isEmpty(type)){
-                    if (mAllBeanList.get(i).getTask_id()==id){
+        } else {
+            for (int i = 0; i < mAllBeanList.size(); i++) {
+                if (TextUtils.isEmpty(type)) {
+                    if (mAllBeanList.get(i).getTask_id() == id) {
                         beans.add(mAllBeanList.get(i));
                     }
-                }else {
-                    if (mAllBeanList.get(i).getTags().contains(type)){
+                } else {
+                    if (mAllBeanList.get(i).getTags().contains(type)) {
                         beans.add(mAllBeanList.get(i));
                     }
                 }
@@ -220,8 +217,9 @@ public class ImagesFragment extends BaseFragment implements TextView.OnEditorAct
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 SpinnerItemAdapter.SpinnerItemBean itemBean = (SpinnerItemAdapter.SpinnerItemBean) mSpinnerChild.getSelectedItem();
-                setFilter(null,itemBean.getId());
+                setFilter(null, itemBean.getId());
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -231,7 +229,7 @@ public class ImagesFragment extends BaseFragment implements TextView.OnEditorAct
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String type = (String) mSpinnerType.getSelectedItem();
-                setFilter(type,-1);
+                setFilter(type, -1);
             }
 
             @Override
@@ -268,7 +266,6 @@ public class ImagesFragment extends BaseFragment implements TextView.OnEditorAct
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

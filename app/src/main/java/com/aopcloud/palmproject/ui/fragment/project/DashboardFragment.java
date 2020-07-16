@@ -146,7 +146,8 @@ public class DashboardFragment extends BaseFragment {
     }
 
     private String project_id;
-    private   Calendar calendar;
+    private Calendar calendar;
+
     @Override
     protected void initData() {
         super.initData();
@@ -157,8 +158,8 @@ public class DashboardFragment extends BaseFragment {
 
         calendar = Calendar.getInstance();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd");
-        String today = isToday(calendar.getTime())?"(今天)":"";
-        mTvDays.setText(dateFormat.format(calendar.getTime())+today);
+        String today = isToday(calendar.getTime()) ? "(今天)" : "";
+        mTvDays.setText(dateFormat.format(calendar.getTime()) + today);
 
         toRequest(ApiConstants.EventTags.project_get);
         toRequest(ApiConstants.EventTags.project_projects);
@@ -258,21 +259,21 @@ public class DashboardFragment extends BaseFragment {
                 mDrawerLayout.openDrawer(Gravity.START);
                 break;
             case R.id.tv_before:
-                calendar.add(Calendar.DATE,-1);
+                calendar.add(Calendar.DATE, -1);
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd");
-                String today = isToday(calendar.getTime())?"(今天)":"";
-                mTvDays.setText(dateFormat.format(calendar.getTime())+today);
+                String today = isToday(calendar.getTime()) ? "(今天)" : "";
+                mTvDays.setText(dateFormat.format(calendar.getTime()) + today);
                 toRequest(ApiConstants.EventTags.attendance_project);
                 break;
             case R.id.tv_after:
-                if (isToday(calendar.getTime())){
+                if (isToday(calendar.getTime())) {
                     ToastUtil.showToast("时间未到");
                     return;
                 }
-                calendar.add(Calendar.DATE,+1);
+                calendar.add(Calendar.DATE, +1);
                 SimpleDateFormat dateFormats = new SimpleDateFormat("MM/dd");
-                String today2 = isToday(calendar.getTime())?"(今天)":"";
-                mTvDays.setText(dateFormats.format(calendar.getTime())+today2);
+                String today2 = isToday(calendar.getTime()) ? "(今天)" : "";
+                mTvDays.setText(dateFormats.format(calendar.getTime()) + today2);
                 toRequest(ApiConstants.EventTags.attendance_project);
                 break;
 
@@ -313,18 +314,19 @@ public class DashboardFragment extends BaseFragment {
         Calendar c1 = Calendar.getInstance();
         c1.setTime(date);
         int year1 = c1.get(Calendar.YEAR);
-        int month1 = c1.get(Calendar.MONTH)+1;
+        int month1 = c1.get(Calendar.MONTH) + 1;
         int day1 = c1.get(Calendar.DAY_OF_MONTH);
         Calendar c2 = Calendar.getInstance();
         c2.setTime(new Date());
         int year2 = c2.get(Calendar.YEAR);
-        int month2 = c2.get(Calendar.MONTH)+1;
+        int month2 = c2.get(Calendar.MONTH) + 1;
         int day2 = c2.get(Calendar.DAY_OF_MONTH);
-        if(year1 == year2 && month1 == month2 && day1 == day2){
+        if (year1 == year2 && month1 == month2 && day1 == day2) {
             return true;
         }
         return false;
     }
+
     @Override
     public void toRequest(int eventTag) {
         super.toRequest(eventTag);
@@ -384,7 +386,7 @@ public class DashboardFragment extends BaseFragment {
             }
         }
 
-        mTvProgressCurrent.setText(""+intoList.size());
+        mTvProgressCurrent.setText("" + intoList.size());
         mTvCurrentInto.setText("" + intoList.size());
         mTvCurrentLeave.setText("" + leaveList.size());
         mLogList.clear();

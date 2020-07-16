@@ -257,13 +257,13 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
 //            }
 //        }
         mTaskBeans.clear();
-        if (mAllList == null || mAllList.size() < 1){
+        if (mAllList == null || mAllList.size() < 1) {
             mTvCount.setText("0");
             return;
         }
 
         List<ProjectTaskBean> ls = new ArrayList<>();
-        for (ProjectTaskBean b : mAllList){
+        for (ProjectTaskBean b : mAllList) {
             String state_str = b.getStatus_str();
             String level_str = b.getLevel();
 
@@ -281,7 +281,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
                 level_str = level;
             }
 
-            if (state_str.equals(state) && level_str.equals(level)){
+            if (state_str.equals(state) && level_str.equals(level)) {
                 ls.add(b);
             }
         }
@@ -341,7 +341,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
         mCheckboxStateProgress.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     state = STATE_progress;
 
                     mCheckboxStateAll.setChecked(!isChecked);
@@ -357,7 +357,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
         mCheckboxStateExpect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     state = STATE_expect;
 
                     mCheckboxStateAll.setChecked(!isChecked);
@@ -373,7 +373,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
         mCheckboxStateComplete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     state = STATE_complete;
 
                     mCheckboxStateAll.setChecked(!isChecked);
@@ -389,7 +389,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
         mCheckboxStateNoStart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     state = STATE_no_start;
 
                     mCheckboxStateAll.setChecked(!isChecked);
@@ -405,7 +405,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
         mCheckboxStateCancel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     state = STATE_cancel;
 
                     mCheckboxStateAll.setChecked(!isChecked);
@@ -421,7 +421,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
         mCheckboxStatePause.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     state = STATE_pause;
 
                     mCheckboxStateAll.setChecked(!isChecked);
@@ -437,7 +437,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
         mCheckboxStateOperation.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                if (isChecked) {
                     state = STATE_operation;
 
                     mCheckboxStateAll.setChecked(!isChecked);
@@ -590,9 +590,6 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        Log.i(TAG, "---------" + marker.getSnippet());
-        Log.i(TAG, "---------" + marker.getId());
-
         for (int i = 0; i < mTaskBeans.size(); i++) {
             if (mTaskBeans.get(i).getTask_id() == marker.getPeriod()) {
                 showTaskInfo(mTaskBeans.get(i));
@@ -618,7 +615,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
                 LatLng latLng = new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude());//构造一个位置
                 mAMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, Conf.MAP_ZOOM_LEVEL));
 
-                if (mlocationClient != null){
+                if (mlocationClient != null) {
                     mlocationClient.stopLocation();
                 }
 //

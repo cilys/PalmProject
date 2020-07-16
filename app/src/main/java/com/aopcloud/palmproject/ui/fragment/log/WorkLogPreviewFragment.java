@@ -135,7 +135,6 @@ public class WorkLogPreviewFragment extends BaseFragment {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

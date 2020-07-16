@@ -327,7 +327,6 @@ public class ProjectFragment extends BaseFragment {
                 gotoActivity(ProjectDetailActivity.class, 0, bundle);
             }
         });
-
     }
 
     private void setViewData(EnterpriseInfoBean enterpriseInfoBean) {
@@ -517,7 +516,6 @@ public class ProjectFragment extends BaseFragment {
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override

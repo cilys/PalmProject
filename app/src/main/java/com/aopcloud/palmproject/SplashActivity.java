@@ -1,7 +1,6 @@
 package com.aopcloud.palmproject;
 
 import android.content.Intent;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 
 import com.aopcloud.palmproject.ui.activity.BaseAc;
@@ -19,10 +18,6 @@ import com.aopcloud.palmproject.utils.SharedPreferencesUtils;
  * @Describe ：
  */
 public class SplashActivity extends BaseAc {
-
-
-    private Handler mTimeHandler = new Handler();
-    private Runnable mTimeRunnable;
     @Override
     protected void initData() {
     }
@@ -41,20 +36,16 @@ public class SplashActivity extends BaseAc {
     @Override
     protected void initView() {
         boolean isFirstStart = (boolean) SharedPreferencesUtils.getSP(this, "isFirstStart", true);
-        mTimeHandler.postDelayed(mTimeRunnable=new Runnable() {
-            @Override
-            public void run() {
-                if (isFirstStart) {
-                    SharedPreferencesUtils.setSP(SplashActivity.this, "isFirstStart", false);
-                }
-                if (LoginUserUtil.isLogin(SplashActivity.this)){
-                    gotoActivity(MainActivity.class);
-                }else {
-                    gotoActivity(LoginActivity.class);
-                }
-                finish();
-            }
-        },0);
+
+        if (isFirstStart) {
+            SharedPreferencesUtils.setSP(SplashActivity.this, "isFirstStart", false);
+        }
+        if (LoginUserUtil.isLogin(SplashActivity.this)){
+            gotoActivity(MainActivity.class);
+        }else {
+            gotoActivity(LoginActivity.class);
+        }
+        finish();
     }
 
     @Override
@@ -65,7 +56,6 @@ public class SplashActivity extends BaseAc {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mTimeHandler.removeCallbacks(mTimeRunnable);
     }
 
     @Override

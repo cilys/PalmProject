@@ -125,7 +125,6 @@ public class MyWorkLogFragment extends BaseFragment {
             map.put("page_size", "20");
             map.put("type", "");//(可选)类型；1：日报，2：周报，3：月报，不填则代表获取全部
 
-
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.reportjob_all, map);
         }
     }

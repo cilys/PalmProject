@@ -77,7 +77,6 @@ public class WorkLogStatisticsFragment extends BaseFragment {
         mProgressMonth.setPadding(0, 0, 0, 0);
     }
 
-
     private void setViewData(WorkLogStatisticsBean statisticsBean) {
         mTvDaily.setText(statisticsBean.getReport_day() + "/" + statisticsBean.getTotal());
         mTvWeek.setText(statisticsBean.getReport_week() + "/" + statisticsBean.getTotal());

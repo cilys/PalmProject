@@ -70,7 +70,7 @@ public class BgDarkPopupWindow extends PopupWindow {
 
 
     public int setPwHeight(Context context, View view) {
-        if (ViewUtil.px2dp(context, ViewUtil.getScreenHeight(context))/2 < ViewUtil.getViewHeight(view)) {
+        if (ViewUtil.px2dp(context, ViewUtil.getScreenHeight(context)) / 2 < ViewUtil.getViewHeight(view)) {
             return ViewUtil.getScreenHeight(context) / 2;
         } else {
             return (int) ViewUtil.dp2px(context, ViewUtil.getViewHeight(view));
