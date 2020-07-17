@@ -260,7 +260,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_toEndOf="@+id/iv_qr_code"
-                            android:text="已取消"
+                            android:text="已暂停"
                             android:textColor="#888888"
                             android:textSize="14sp" />
                     </LinearLayout>
