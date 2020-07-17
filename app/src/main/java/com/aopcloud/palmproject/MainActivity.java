@@ -5,6 +5,7 @@ import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.common.BaseEvent;
+import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.api.ApiConstants;
@@ -56,6 +58,9 @@ import com.aopcloud.palmproject.view.CircleImageView;
 import com.aopcloud.palmproject.view.TipsDialog;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.XXPermissions;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -140,10 +145,8 @@ public class MainActivity extends BaseAc {
         });
     }
 
-
     @Override
     protected void initView() {
-
         mRbHome.performClick();
         selectedFragment(0);
         for (int i = 0; i < mTabView.getChildCount(); i++) {
@@ -160,6 +163,8 @@ public class MainActivity extends BaseAc {
         } else {
             setLoginUser(null);
         }
+
+        toRequest(ApiConstants.EventTags.check_app_version);
     }
 
     private void setLoginUser(UserBean userBean) {
@@ -480,6 +485,8 @@ public class MainActivity extends BaseAc {
         map.put("token", "" + LoginUserUtil.getToken(this));
         if (eventTag == ApiConstants.EventTags.user_info) {
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.user_info, map);
+        } else if (eventTag == ApiConstants.EventTags.check_app_version) {
+            iCommonRequestPresenter.request(eventTag, this, ApiConstants.check_app_version, map);
         }
     }
 
@@ -487,6 +494,35 @@ public class MainActivity extends BaseAc {
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
         dismissPopupLoading();
+        if (eventTag == ApiConstants.EventTags.check_app_version) {
+            try {
+                JSONObject json = new JSONObject(result);
+                String version = json.getString("version");
+                if (BuildConfig.VERSION_NAME.equals(version)){
+
+                } else {
+                    TipsDialog.wrap(this)
+                            .setTitle("版本更新")
+                            .setShowCancel(true)
+                            .setMsg("发现新版本：" + version)
+                            .setMsgColor(ResourceUtil.getColor("#FFE51C23"))
+                            .setOnActionClickListener(new TipsDialog.onActionClickListener() {
+                                @Override
+                                public void onSure(Dialog dialog) {
+                                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(Conf.URL_APP_VERSION));
+                                    startActivity(i);
+                                    System.exit(0);
+                                }
+                            }).show();
+                }
+                String url = json.getString("url");
+                return;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.user_info) {

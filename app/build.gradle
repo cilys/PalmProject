@@ -16,7 +16,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
         signingConfig signingConfigs.config
         multiDexEnabled true
 
@@ -33,7 +33,7 @@ android {
     //命令打包apk重命名
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "palmproject_${variant.name}_${variant.versionName}_${new Date().format("yyyyMMddHHmm")}.apk"
+            outputFileName = "palmproject_${variant.name}_${variant.versionName}.apk"
         }
     }
     buildTypes {

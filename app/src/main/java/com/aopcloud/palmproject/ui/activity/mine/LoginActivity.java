@@ -1,8 +1,10 @@
 package com.aopcloud.palmproject.ui.activity.mine;
 
 import android.app.ActivityManager;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,7 +15,10 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.common.BaseEvent;
+import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
+import com.aopcloud.palmproject.BuildConfig;
+import com.aopcloud.palmproject.Conf;
 import com.aopcloud.palmproject.MainActivity;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
@@ -25,6 +30,10 @@ import com.aopcloud.palmproject.utils.CountDownUtil;
 import com.aopcloud.palmproject.utils.JsonUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.utils.RegUtil;
+import com.aopcloud.palmproject.view.TipsDialog;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
@@ -90,6 +99,8 @@ public class LoginActivity extends BaseAc {
         mTvSendVerifyCode.setVisibility(isVerifyCodeLogin ? View.GONE : View.VISIBLE);
         mEtPassword.setVisibility(isVerifyCodeLogin ? View.VISIBLE : View.GONE);
         isVerifyCodeLogin = !isVerifyCodeLogin;
+
+        toRequest(ApiConstants.EventTags.check_app_version);
     }
 
     @Override
@@ -185,6 +196,8 @@ public class LoginActivity extends BaseAc {
         } else if (eventTag == ApiConstants.EventTags.company_my) {
             map.put("token", "" + LoginUserUtil.getToken(this));
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.company_my, map);
+        } else if (eventTag == ApiConstants.EventTags.check_app_version) {
+            iCommonRequestPresenter.request(eventTag, this, ApiConstants.check_app_version, map);
         }
     }
 
@@ -192,6 +205,35 @@ public class LoginActivity extends BaseAc {
     public void getRequestData(int eventTag, String result) {
         super.getRequestData(eventTag, result);
         dismissPopupLoading();
+        if (eventTag == ApiConstants.EventTags.check_app_version) {
+            try {
+                JSONObject json = new JSONObject(result);
+                String version = json.getString("version");
+                if (BuildConfig.VERSION_NAME.equals(version)){
+
+                } else {
+                    TipsDialog.wrap(this)
+                            .setTitle("版本更新")
+                            .setShowCancel(true)
+                            .setMsg("发现新版本：" + version)
+                            .setMsgColor(ResourceUtil.getColor("#FFE51C23"))
+                            .setOnActionClickListener(new TipsDialog.onActionClickListener() {
+                                @Override
+                                public void onSure(Dialog dialog) {
+                                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(Conf.URL_APP_VERSION));
+                                    startActivity(i);
+                                    System.exit(0);
+                                }
+                            }).show();
+                }
+                String url = json.getString("url");
+                return;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.login_pwd || eventTag == ApiConstants.EventTags.login_sms_code) {
@@ -215,6 +257,8 @@ public class LoginActivity extends BaseAc {
                 EventBus.getDefault().post(new BaseEvent(BaseEvent.EVENT_LOGIN));
                 gotoActivity(MainActivity.class);
                 finish();
+            } else if (eventTag == ApiConstants.EventTags.check_app_version) {
+
             }
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");

@@ -615,6 +615,8 @@ public interface ApiConstants {
      */
     String task_addsub = BASE_URL_PRODUCTION + "/task/addsub";
 
+    String check_app_version = BASE_URL_PRODUCTION + "/version?device=android";
+
 
     final class EventTags {
         public final static int BEGIN_EVENT = 0;
@@ -1211,6 +1213,7 @@ public interface ApiConstants {
         public final static int task_addsub = BEGIN_EVENT + 88;
 
 
+        public final static int check_app_version = BEGIN_EVENT + 90;
 
     }
 
