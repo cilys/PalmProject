@@ -155,6 +155,11 @@ public class PictureOrVideoActivity extends BaseAc {
                     @Override
                     public void hasPermission(List<String> granted, boolean isAll) {
                         if (isAll) {
+                            if (picCount + videoCount >= 9){
+                                showToast("图片和视频已达到最大值");
+                                return;
+                            }
+
                             saveImage(bitmap1);
                             picCount++;
                             if (picCount > 0) {
@@ -176,6 +181,11 @@ public class PictureOrVideoActivity extends BaseAc {
             @Override
             public void onVideoTaken(File video) {
                 super.onVideoTaken(video);
+                if (videoCount + picCount >= 9){
+                    showToast("图片和视频已达到最大值");
+                    return;
+                }
+
                 videoCount++;
 
                 if (videoCount > 0) {

@@ -51,7 +51,7 @@ import butterknife.OnClick;
  * @Author : K
  * @E-mail : vip@devkit.vip
  * @Version : V 1.0
- * @Describe ：
+ * @Describe ：项目详情
  */
 @Layout(R.layout.activity_project_detail)
 public class ProjectDetailActivity extends BaseAc {
