@@ -310,6 +310,7 @@ public class ProjectFragment extends BaseFragment {
                 bundle.putString("task_name", mTaskBeans.get(position).getName() + "");
                 bundle.getString("project_id",mTaskBeans.get(position).getProject_id()+"");
                 bundle.putString("team_id",mTaskBeans.get(position).getTeam_id() + "");
+                bundle.putString("project_name", mTaskBeans.get(position).getProject_name() + "");
                 gotoActivity(TaskDetailActivity.class, 0, bundle);
             }
         });
@@ -323,7 +324,8 @@ public class ProjectFragment extends BaseFragment {
                 bundle.putString("project_status", projectList.get(position).getStatus());
                 bundle.putString("start_date", projectList.get(position).getStart_date());
                 bundle.putString("end_date", projectList.get(position).getEnd_date());
-
+                bundle.putString("project_name", projectList.get(position).getName());
+                bundle.putString("project_type", projectList.get(position).getType());
                 gotoActivity(ProjectDetailActivity.class, 0, bundle);
             }
         });

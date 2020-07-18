@@ -617,6 +617,7 @@ public interface ApiConstants {
 
     String check_app_version = BASE_URL_PRODUCTION + "/version?device=android";
 
+    String weather = "http://www.weather.com.cn/data/cityinfo/{}.html";
 
     final class EventTags {
         public final static int BEGIN_EVENT = 0;
@@ -1213,7 +1214,11 @@ public interface ApiConstants {
         public final static int task_addsub = BEGIN_EVENT + 88;
 
 
+        //检查版本
         public final static int check_app_version = BEGIN_EVENT + 90;
+
+        //获取天气
+        public final static int weather = BEGIN_EVENT + 100;
 
     }
 

@@ -113,7 +113,6 @@ public class NewsFragment extends BaseFragment implements WeatherSearch.OnWeathe
         mFragments.add(new NewsNotifyFragment());
     }
 
-
     @Override
     protected void initView(View view) {
         super.initView(view);

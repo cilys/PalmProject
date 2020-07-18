@@ -318,6 +318,7 @@ public class ProjectTaskDetailActivity extends BaseAc {
                     bundle.putString("task_name", "");
                 }
                 bundle.putString("team_id", mTaskDetailBean.getTeam_id() + "");
+                bundle.putString("project_name", mTaskDetailBean.getProject_name());
                 gotoActivity(TaskDetailActivity.class, bundle, 0);
                 break;
             case R.id.tv_discuss:

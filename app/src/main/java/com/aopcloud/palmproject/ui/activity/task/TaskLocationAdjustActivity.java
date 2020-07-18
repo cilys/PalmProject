@@ -33,6 +33,7 @@ import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.Conf;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
+import com.aopcloud.palmproject.bean.WeatherBean;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.map.MapLocationConfirmActivity;
@@ -41,6 +42,7 @@ import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;
 import com.aopcloud.palmproject.utils.JsonUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.cily.utils.base.StrUtils;
 import com.guoxiaoxing.phoenix.core.PhoenixOption;
 import com.guoxiaoxing.phoenix.core.model.MediaEntity;
 import com.guoxiaoxing.phoenix.core.model.MimeType;
@@ -324,6 +326,14 @@ public class TaskLocationAdjustActivity extends BaseAc implements
                 mAMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 20));
                 Log.i(TAG, "onLocationChanged:" + JSON.toJSONString(amapLocation));
                 mLocationClient.startLocation();
+
+                if (!StrUtils.isEmpty(amapLocation.getCity())) {
+                    if (!amapLocation.getCity().equals(WeatherBean.getCityName())){
+                        WeatherBean.setCityName(amapLocation.getCity());
+                    }
+                }
+                WeatherBean.setAddress(amapLocation.getAddress());
+
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
                 Log.w(TAG, "AmapErr：" + errText);

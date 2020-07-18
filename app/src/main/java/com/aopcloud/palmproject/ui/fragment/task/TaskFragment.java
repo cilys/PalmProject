@@ -22,7 +22,6 @@ import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.listener.OnTaskFilterListener;
 import com.aopcloud.palmproject.ui.activity.project.ProjectTaskDetailActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
-import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTeamListBean;
 import com.aopcloud.palmproject.ui.activity.task.TaskDetailActivity;
 import com.aopcloud.palmproject.ui.adapter.task.TaskManagerAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
@@ -37,9 +36,6 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static com.aopcloud.palmproject.ui.fragment.task.TaskFragment.*;
-import static com.aopcloud.palmproject.ui.fragment.task.TaskFragment.ViewHolder.*;
 
 /**
  * @PackageName : com.aopcloud.palmproject.ui.fragment.task
@@ -153,7 +149,6 @@ public class TaskFragment extends BaseFragment implements OnTaskFilterListener {
         mAdapter.notifyDataSetChanged();
     }
 
-
     @Override
     protected void setListener() {
         super.setListener();
@@ -172,6 +167,7 @@ public class TaskFragment extends BaseFragment implements OnTaskFilterListener {
                     bundle.putString("project_id", mBeanList.get(position).getProject_id() + "");
                     bundle.putString("task_name", "" + mBeanList.get(position).getName());
                     bundle.putString("team_id",mBeanList.get(position).getTeam_id() + "");
+                    bundle.putString("project_name", mBeanList.get(position).getProject_name());
                     gotoActivity(TaskDetailActivity.class, 0, bundle);
                 }
             }

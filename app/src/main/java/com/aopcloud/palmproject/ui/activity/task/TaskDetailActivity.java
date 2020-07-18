@@ -59,6 +59,8 @@ public class TaskDetailActivity extends BaseAc {
     private String project_id;
     private String team_id;
 
+    private String project_name, project_tag, project_type;
+
     @Override
     protected void initData() {
         super.initData();
@@ -68,6 +70,10 @@ public class TaskDetailActivity extends BaseAc {
             project_id = bundle.getString("project_id");
             task_name =bundle.getString("task_name");
             team_id = bundle.getString("team_id");
+
+            project_name = bundle.getString("project_name");
+            project_tag = bundle.getString("project_tag");
+            project_type = bundle.getString("project_type");
         }
     }
 
@@ -81,7 +87,17 @@ public class TaskDetailActivity extends BaseAc {
         mTabs.add("人工");
         mTabs.add("人员");
         mTabs.add("子任务");
-        mFragments.add(TaskExecuteFragment.getInstance(task_id, project_id));
+//        mFragments.add(TaskExecuteFragment.getInstance(task_id, project_id));
+        TaskExecuteFragment taskExecuteFragment = new TaskExecuteFragment();
+        Bundle taskExecuteFragmentBundle = new Bundle();
+        taskExecuteFragmentBundle.putString("task_id", task_id);
+        taskExecuteFragmentBundle.putString("project_id", project_id);
+        taskExecuteFragmentBundle.putString("project_name", project_name);
+        taskExecuteFragmentBundle.putString("project_tag", project_tag);
+        taskExecuteFragmentBundle.putString("project_type", project_type);
+        taskExecuteFragment.setArguments(taskExecuteFragmentBundle);
+        mFragments.add(taskExecuteFragment);
+
         mFragments.add(TaskRecordFragment.getInstance(task_id));
         mFragments.add(TaskMemberFragment.getInstance(task_id));
         mFragments.add(TaskChildFragment.getInstance(task_id,task_name,team_id));

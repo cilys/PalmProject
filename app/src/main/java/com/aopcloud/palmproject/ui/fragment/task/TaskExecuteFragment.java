@@ -39,6 +39,7 @@ import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
+import com.aopcloud.palmproject.bean.WeatherBean;
 import com.aopcloud.palmproject.common.GlideRoundTransform;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.loader.AppImageLoader;
@@ -63,6 +64,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.cily.utils.base.StrUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -165,6 +167,8 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
 
     private List<TrailBean> mTrailBeans = new ArrayList<>();
 
+    private String project_name, project_tag, project_type;
+
 
     public static TaskExecuteFragment getInstance(String task_id, String project_id) {
         Bundle bundle = new Bundle();
@@ -182,6 +186,10 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
         if (bundle != null) {
             task_id = bundle.getString("task_id");
             project_id = bundle.getString("project_id");
+
+            project_name = bundle.getString("project_name");
+            project_tag = bundle.getString("project_tag");
+            project_type = bundle.getString("project_type");
         }
         toRequest(ApiConstants.EventTags.task_get);
         toRequest(ApiConstants.EventTags.trajectory_all);
@@ -505,6 +513,9 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
                 bundle = new Bundle();
                 bundle.putString("task_id", task_id);
                 bundle.putString("project_id", project_id);
+                bundle.putString("project_name", project_name);
+                bundle.putString("project_tag", project_tag);
+                bundle.putString("project_type", project_type);
                 gotoActivity(PictureOrVideoActivity.class, bundle, 0);
                 break;
             case R.id.tv_continue:
@@ -708,6 +719,14 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
                     mTvSign.setText("距离" + distance + "米可以签到");
                     mTvSign.setBackgroundColor(ResourceUtil.getColor("#7F108CF7"));
                 }
+
+                if (!StrUtils.isEmpty(amapLocation.getCity())) {
+                    if (!amapLocation.getCity().equals(WeatherBean.getCityName())){
+                        WeatherBean.setCityName(amapLocation.getCity());
+                    }
+                }
+                WeatherBean.setAddress(amapLocation.getAddress());
+
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
                 Log.d(TAG, errText);

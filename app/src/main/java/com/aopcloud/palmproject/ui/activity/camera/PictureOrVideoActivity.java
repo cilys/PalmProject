@@ -10,7 +10,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresPermission;
-import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
@@ -21,7 +20,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.aopcloud.base.annotation.Layout;
-import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.ui.activity.BaseAc;
@@ -35,7 +33,6 @@ import com.hjq.permissions.XXPermissions;
 import com.otaliastudios.cameraview.CameraException;
 import com.otaliastudios.cameraview.CameraListener;
 import com.otaliastudios.cameraview.CameraOptions;
-import com.otaliastudios.cameraview.CameraUtils;
 import com.otaliastudios.cameraview.CameraView;
 import com.otaliastudios.cameraview.Facing;
 import com.otaliastudios.cameraview.Gesture;
@@ -95,7 +92,6 @@ public class PictureOrVideoActivity extends BaseAc {
     @BindView(R.id.tv_count)
     TextView mTvCount;
 
-
     int picCount = 0;
     int videoCount = 0;
 
@@ -107,6 +103,7 @@ public class PictureOrVideoActivity extends BaseAc {
 
     private String project_id;
     private String task_id;
+    private String project_name, project_tag, project_type;
 
     @Override
     protected void initData() {
@@ -115,14 +112,16 @@ public class PictureOrVideoActivity extends BaseAc {
         if (bundle != null) {
             task_id = bundle.getString("task_id");
             project_id = bundle.getString("project_id");
-        }
 
+            project_name = bundle.getString("project_name", "");
+            project_tag = bundle.getString("project_tag", "");
+            project_type = bundle.getString("project_type", "");
+        }
     }
 
     @RequiresPermission(Manifest.permission.CAMERA)
     @Override
     protected void initView() {
-
         mCameraView.start();
         mIvPicture.setVisibility(View.VISIBLE);
         mIvVideo.setVisibility(View.GONE);
@@ -130,19 +129,18 @@ public class PictureOrVideoActivity extends BaseAc {
         mCameraView.mapGesture(Gesture.PINCH, GestureAction.ZOOM); // 双指缩放!
         mCameraView.mapGesture(Gesture.TAP, GestureAction.FOCUS_WITH_MARKER); // 点击对焦!
 
-
         mCameraView.addCameraListener(new CameraListener() {
             @Override
             public void onPictureTaken(byte[] jpeg) {
                 super.onPictureTaken(jpeg);
                 Bitmap bitmap = BitmapUtil.Bytes2Bimap(jpeg);
                 Bitmap watermark = WatermarkUtil.createWatermark(PictureOrVideoActivity.this,
-                        "测试项目"
-                        , ""
-                        , ""
-                        , LoginUserUtil.getLoginUserBean(PictureOrVideoActivity.this).getNickname()
-                        , "天气：晴 温度 19度 温度49% 风向 西北风力小于3级"
-                        , "梅州市梅江区江南低坝路怡乐新村16号");
+                        project_name
+                        , project_type
+                        , project_tag
+                        , getUserNickName()
+                        , getWeatherInfo()
+                        , getAddress());
                 Bitmap bitmap1 = WatermarkUtil.createWaterMaskLeftBottom(PictureOrVideoActivity.this
                         , bitmap
                         , watermark
@@ -167,7 +165,7 @@ public class PictureOrVideoActivity extends BaseAc {
                                 mIvPicture.setImageResource(0);
                             }
                         } else {
-                            ToastUtil.showToast("请先开启权限");
+                            showToast("请先开启权限");
                         }
                     }
 
@@ -215,33 +213,20 @@ public class PictureOrVideoActivity extends BaseAc {
 
     private ArrayList<MediaEntity> mediaDatas;
     public File saveImage(Bitmap bmp) {
-        File appDir = new File(Environment.getExternalStorageDirectory(), "PalmProject");
-        if (!appDir.exists()) {
-            appDir.mkdir();
-        }
+        String fileDir = Environment.getExternalStorageDirectory() + File.separator + "PalmProject";
         String fileName = System.currentTimeMillis() + ".jpg";
-        File file = new File(appDir, fileName);
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+        File file = BitmapUtil.saveBitmap(bmp, fileDir, fileName);
+        if (file != null) {
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + file.getPath())));
-            fos.flush();
-
             if (mediaDatas == null) {
                 mediaDatas = new ArrayList<>();
             }
             MediaEntity mn = new MediaEntity();
-            mn.setLocalPath(appDir + File.separator + fileName);
+            mn.setLocalPath(fileDir + File.separator + fileName);
             mn.setMediaName(fileName);
             mediaDatas.add(mn);
-
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        return null;
+        return file;
     }
     @Override
     protected void setListener() {
@@ -336,7 +321,7 @@ public class PictureOrVideoActivity extends BaseAc {
                                 mTvTime.setText("00:00");
                             }
                         } else {
-                            ToastUtil.showToast("请先开启权限");
+                            showToast("请先开启权限");
                         }
                     }
 
@@ -345,7 +330,6 @@ public class PictureOrVideoActivity extends BaseAc {
 
                     }
                 });
-
                 break;
             case R.id.tv_complete:
                 Bundle bundle = new Bundle();
@@ -396,7 +380,6 @@ public class PictureOrVideoActivity extends BaseAc {
         second = second % 3600;                //剩余秒数
         long minutes = second / 60;            //转换分钟
         second = second % 60;                //剩余秒数
-
 
         String h = (hours < 10) ? "0" + hours : "" + hours;
         String m = (minutes < 10) ? "0" + minutes : "" + minutes;

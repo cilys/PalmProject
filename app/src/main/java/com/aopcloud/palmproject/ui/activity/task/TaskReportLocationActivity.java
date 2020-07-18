@@ -39,6 +39,7 @@ import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
+import com.aopcloud.palmproject.bean.WeatherBean;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.project.bean.DashboardAttendanceBean;
@@ -47,6 +48,7 @@ import com.aopcloud.palmproject.utils.JsonUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.view.PileLayout;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.cily.utils.base.StrUtils;
 import com.guoxiaoxing.phoenix.core.PhoenixOption;
 import com.guoxiaoxing.phoenix.core.model.MediaEntity;
 import com.guoxiaoxing.phoenix.core.model.MimeType;
@@ -542,6 +544,14 @@ public class TaskReportLocationActivity extends BaseAc implements
                     mTvRange.setText("打卡有效范围" + scope + "m,当前距离项目" + distance + "m");
                 }
                 Log.i(TAG, "onLocationChanged:" + distance);
+
+                if (!StrUtils.isEmpty(amapLocation.getCity())) {
+                    if (!amapLocation.getCity().equals(WeatherBean.getCityName())){
+                        WeatherBean.setCityName(amapLocation.getCity());
+                    }
+                }
+                WeatherBean.setAddress(amapLocation.getAddress());
+
 //                Log.i("onLocationChanged:" + JSON.toJSONString(amapLocation));
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();

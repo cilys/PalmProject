@@ -520,7 +520,6 @@ public class MainActivity extends BaseAc {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         }
 
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
@@ -530,12 +529,11 @@ public class MainActivity extends BaseAc {
                 setLoginUser(userBean);
             }
         } else {
-            ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
+            showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
             if (bean.getCode() == 1 || bean.getCode() == 22) {
                 EventBus.getDefault().post(new BaseEvent(BaseEvent.EVENT_LOGOUT));
             }
         }
-
     }
 
     @Override

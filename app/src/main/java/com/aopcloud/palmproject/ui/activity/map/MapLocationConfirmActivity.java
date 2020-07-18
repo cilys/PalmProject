@@ -22,9 +22,11 @@ import com.amap.api.services.poisearch.PoiSearch;
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.bean.WeatherBean;
 import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.map.adapter.SelectLocationConfirmAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.cily.utils.base.StrUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -157,6 +159,13 @@ public class MapLocationConfirmActivity extends BaseAc implements AMapLocationLi
                 latitude = amapLocation.getLatitude();
                 address = amapLocation.getAddress();
                 doSearchPOI();
+                if (!StrUtils.isEmpty(amapLocation.getCity())) {
+                    if (!amapLocation.getCity().equals(WeatherBean.getCityName())){
+                        WeatherBean.setCityName(amapLocation.getCity());
+                    }
+                }
+                WeatherBean.setAddress(amapLocation.getAddress());
+
                 Log.i(TAG, "onLocationChanged:" + JSON.toJSONString(amapLocation));
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();

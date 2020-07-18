@@ -43,12 +43,14 @@ import com.aopcloud.base.util.KeyboardUtil;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.bean.WeatherBean;
 import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.map.adapter.SelectLocationRangeAdapter;
 import com.aopcloud.palmproject.ui.activity.map.adapter.SelectLocationSearchAdapter;
 import com.aopcloud.palmproject.ui.activity.map.bean.LocationRangeBean;
 import com.aopcloud.palmproject.view.CircleImageView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.cily.utils.base.StrUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -291,6 +293,13 @@ public class SelectLocationActivity extends BaseAc implements LocationSource
                 latitude = amapLocation.getLatitude();
                 address = mAMapLocation.getAddress();
                 doSearchPOI();
+                if (!StrUtils.isEmpty(amapLocation.getCity())) {
+                    if (!amapLocation.getCity().equals(WeatherBean.getCityName())){
+                        WeatherBean.setCityName(amapLocation.getCity());
+                    }
+                }
+                WeatherBean.setAddress(amapLocation.getAddress());
+
                 Log.i(TAG, "onLocationChanged:" + JSON.toJSONString(amapLocation));
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();

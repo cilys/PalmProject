@@ -42,6 +42,7 @@ import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.Conf;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
+import com.aopcloud.palmproject.bean.WeatherBean;
 import com.aopcloud.palmproject.common.MassageEvent;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
@@ -51,6 +52,7 @@ import com.aopcloud.palmproject.ui.adapter.home.HomeTaskAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.view.decoration.DividerItemDecoration;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.cily.utils.base.StrUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -618,6 +620,12 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
                 if (mlocationClient != null) {
                     mlocationClient.stopLocation();
                 }
+                if (!StrUtils.isEmpty(amapLocation.getCity())) {
+                    if (!amapLocation.getCity().equals(WeatherBean.getCityName())){
+                        WeatherBean.setCityName(amapLocation.getCity());
+                    }
+                }
+                WeatherBean.setAddress(amapLocation.getAddress());
 //
 //                Logcat.i("onLocationChanged:" + JSON.toJSONString(amapLocation));
             } else {
@@ -665,7 +673,6 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
         mlocationClient = null;
     }
 
-
     @Override
     public void toRequest(int eventTag) {
         super.toRequest(eventTag);
@@ -690,7 +697,6 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
         } else {
             ToastUtil.showToast(bean != null ? bean.getMsg() : "加载错误，请重试");
         }
-
     }
 
     @Override
@@ -732,7 +738,6 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
             days = "逾期" + (-betweenDays) + "天";
         }
 
-
         LatLng latLng1 = new LatLng(Double.valueOf(taskBean.getLatitude()), Double.valueOf(taskBean.getLongitue()));
         LatLng latLng2 = new LatLng(latitude, longitude);
         int distance = (int) AMapUtils.calculateLineDistance(latLng1, latLng2);
@@ -773,6 +778,9 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
                 bundle.putString("project_id", taskBean.getProject_id() + "");
                 bundle.putString("task_name", taskBean.getName() + "");
                 bundle.putString("team_id", taskBean.getTeam_id() + "");
+                bundle.putString("project_name", taskBean.getProject_name());
+//                bundle.putString("project_tag", taskBean.get);
+//                bundle.putString("project_type", taskBean.getProj);
                 gotoActivity(TaskDetailActivity.class, bundle, 0);
             }
         });
@@ -833,6 +841,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
                 bundle.putString("project_id", mTaskBeans.get(position).getProject_id() + "");
                 bundle.putString("task_name", mTaskBeans.get(position).getName() + "");
                 bundle.putString("team_id", mTaskBeans.get(position).getTeam_id() + "");
+                bundle.putString("project_name", mTaskBeans.get(position).getProject_name());
                 gotoActivity(TaskDetailActivity.class, bundle, 0);
             }
         });
