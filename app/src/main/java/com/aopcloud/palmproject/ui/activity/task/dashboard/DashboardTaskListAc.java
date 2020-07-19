@@ -15,6 +15,7 @@ import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.project.ProjectDetailActivity;
+import com.aopcloud.palmproject.ui.activity.project.ProjectTaskDetailActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.aopcloud.palmproject.ui.activity.task.TaskDetailActivity;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectTaskAdapter;
@@ -83,12 +84,9 @@ public class DashboardTaskListAc extends BaseAc {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Bundle bundle = new Bundle();
-                bundle.putString("task_id", datas.get(position).getTask_id() + "");
-                bundle.putString("task_name", datas.get(position).getName());
-                bundle.putString("project_id", datas.get(position).getProject_id() + "");
-                bundle.putString("team_id", datas.get(position).getTeam_id() + "");
-                bundle.putString("project_name", datas.get(position).getProject_name() + "");
-                gotoActivity(TaskDetailActivity.class, bundle, 0);
+                bundle.putString("project_id", "" + project_id);
+                bundle.putString("task_id", "" + datas.get(position).getTask_id());
+                gotoActivity(ProjectTaskDetailActivity.class, bundle, 0);
             }
         });
 

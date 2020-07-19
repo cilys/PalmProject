@@ -243,7 +243,7 @@ public class DashboardFragment extends BaseFragment {
 
     @OnClick({R.id.tv_before, R.id.tv_current_more, R.id.rl_drawer_menu, R.id.iv_clean, R.id.iv_close,
             R.id.tv_sure, R.id.tv_days, R.id.tv_after, R.id.ll_no_plan, R.id.ll_no_start,
-            R.id.ll_in_progress, R.id.ll_time_out, R.id.ll_complete})
+            R.id.ll_in_progress, R.id.ll_time_out, R.id.ll_complete, R.id.rl_progress_bar})
     public void onViewClicked(View view) {
         Bundle bundle;
         switch (view.getId()) {

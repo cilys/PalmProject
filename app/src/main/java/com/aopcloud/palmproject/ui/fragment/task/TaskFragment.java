@@ -155,13 +155,13 @@ public class TaskFragment extends BaseFragment implements OnTaskFilterListener {
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                if (type.equals("1")) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("task_id", mBeanList.get(position).getTask_id() + "");
-                    bundle.putString("project_id", mBeanList.get(position).getProject_id() + "");
-                    bundle.putString("task_name", "" + mBeanList.get(position).getName());
-                    gotoActivity(ProjectTaskDetailActivity.class, 0, bundle);
-                } else if (type.equals("2") || type.equals("3")) {
+//                if (type.equals("1")) {
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("task_id", mBeanList.get(position).getTask_id() + "");
+//                    bundle.putString("project_id", mBeanList.get(position).getProject_id() + "");
+//                    bundle.putString("task_name", "" + mBeanList.get(position).getName());
+//                    gotoActivity(ProjectTaskDetailActivity.class, 0, bundle);
+//                } else if (type.equals("2") || type.equals("3")) {
                     Bundle bundle = new Bundle();
                     bundle.putString("task_id", mBeanList.get(position).getTask_id() + "");
                     bundle.putString("project_id", mBeanList.get(position).getProject_id() + "");
@@ -169,7 +169,7 @@ public class TaskFragment extends BaseFragment implements OnTaskFilterListener {
                     bundle.putString("team_id",mBeanList.get(position).getTeam_id() + "");
                     bundle.putString("project_name", mBeanList.get(position).getProject_name());
                     gotoActivity(TaskDetailActivity.class, 0, bundle);
-                }
+//                }
             }
         });
     }
