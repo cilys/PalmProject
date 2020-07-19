@@ -48,10 +48,10 @@ public abstract class BaseAc extends BaseActivity {
     }
 
     protected String getWeatherInfo(){
-        return "当日天气：" + WeatherBean.getCurrentWeatherInfo();
+        return WeatherBean.getCurrentWeatherInfo();
     }
     protected String getAddress(){
-        return "拍照地址：" + WeatherBean.getAddress();
+        return WeatherBean.getAddress();
     }
 
     protected void requestSuccess(String tag, String response){

@@ -522,6 +522,16 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
                 toRequest(ApiConstants.EventTags.attendance_status);
                 break;
             case R.id.ll_replace:
+                if (BuildConfig.DEBUG){
+                    bundle = new Bundle();
+                    bundle.putString("task_id", task_id);
+                    bundle.putString("project_id", project_id);
+                    bundle.putString("project_name", project_name);
+                    bundle.putString("project_tag", project_tag);
+                    bundle.putString("project_type", project_type);
+                    gotoActivity(PictureOrVideoActivity.class, bundle, 0);
+                }
+
                 bundle = new Bundle();
                 bundle.putString("task_id", task_id);
                 bundle.putString("project_id", project_id);

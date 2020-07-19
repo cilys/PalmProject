@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.base.util.ToastUtil;
+import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.project.ProjectScenesAddActivity;

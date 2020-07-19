@@ -493,7 +493,7 @@ public class BitmapUtil {
         try {
             File file = new File(appDir, fileName);
             FileOutputStream fos = new FileOutputStream(file);
-            bmp.compress(Bitmap.CompressFormat.JPEG, 80, fos);
+            bmp.compress(Bitmap.CompressFormat.JPEG, 75, fos);
 
             fos.flush();
 

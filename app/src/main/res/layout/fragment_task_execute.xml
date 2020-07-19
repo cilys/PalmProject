@@ -339,7 +339,6 @@
                 android:textColor="@color/theme_white" />
         </LinearLayout>
 
-
         <TextView
             android:id="@+id/tv_sign"
             android:layout_width="match_parent"
