@@ -308,7 +308,7 @@ public class ProjectFragment extends BaseFragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("task_id", mTaskBeans.get(position).getTask_id() + "");
                 bundle.putString("task_name", mTaskBeans.get(position).getName() + "");
-                bundle.getString("project_id",mTaskBeans.get(position).getProject_id()+"");
+                bundle.putString("project_id",mTaskBeans.get(position).getProject_id()+"");
                 bundle.putString("team_id",mTaskBeans.get(position).getTeam_id() + "");
                 bundle.putString("project_name", mTaskBeans.get(position).getProject_name() + "");
                 gotoActivity(TaskDetailActivity.class, 0, bundle);

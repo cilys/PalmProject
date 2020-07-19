@@ -1,5 +1,6 @@
 package com.aopcloud.palmproject.ui.activity.task.dashboard;
 
+import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,11 +14,14 @@ import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.ui.activity.BaseAc;
+import com.aopcloud.palmproject.ui.activity.project.ProjectDetailActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
+import com.aopcloud.palmproject.ui.activity.task.TaskDetailActivity;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectTaskAdapter;
 import com.aopcloud.palmproject.ui.fragment.project.DashboardFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.utils.task.TaskUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,7 +44,7 @@ public class DashboardTaskListAc extends BaseAc {
         status = getIntent().getStringExtra("status");
         project_id = getIntent().getStringExtra("project_id");
 
-        TextView tv_title = (TextView)findViewById(R.id.tv_header_title);
+        TextView tv_title = (TextView) findViewById(R.id.tv_header_title);
         if (DashboardFragment.STATUS_UN_PLAN.equals(status)) {
             tv_title.setText("未安排");
         } else if (DashboardFragment.STATUS_UN_START.equals(status)) {
@@ -51,6 +55,8 @@ public class DashboardTaskListAc extends BaseAc {
             tv_title.setText("已逾期");
         } else if (DashboardFragment.STATUS_COMPLETE.equals(status)) {
             tv_title.setText("已完成");
+        } else if (DashboardFragment.STATUS_PAUSE.equals(status)) {
+            tv_title.setText("已暂停");
         }
 
         findViewById(R.id.ll_header_back).setOnClickListener(new View.OnClickListener() {
@@ -60,7 +66,7 @@ public class DashboardTaskListAc extends BaseAc {
             }
         });
 
-        srl = (SwipeRefreshLayout)findViewById(R.id.srl);
+        srl = (SwipeRefreshLayout) findViewById(R.id.srl);
         srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -73,11 +79,23 @@ public class DashboardTaskListAc extends BaseAc {
         adapter = new ProjectTaskAdapter(R.layout.item_project_work_sheet, datas);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Bundle bundle = new Bundle();
+                bundle.putString("task_id", datas.get(position).getTask_id() + "");
+                bundle.putString("task_name", datas.get(position).getName());
+                bundle.putString("project_id", datas.get(position).getProject_id() + "");
+                bundle.putString("team_id", datas.get(position).getTeam_id() + "");
+                bundle.putString("project_name", datas.get(position).getProject_name() + "");
+                gotoActivity(TaskDetailActivity.class, bundle, 0);
+            }
+        });
 
         toRequest(ApiConstants.EventTags.project_tasks);
     }
 
-    private void endRefresh(){
+    private void endRefresh() {
         if (srl != null) {
             srl.setRefreshing(false);
         }
@@ -115,13 +133,13 @@ public class DashboardTaskListAc extends BaseAc {
         }
         datas.clear();
         if (beanList == null || beanList.size() < 1) {
-            if (adapter != null){
+            if (adapter != null) {
                 adapter.notifyDataSetChanged();
             }
             return;
         }
         datas.addAll(TaskUtils.getTypeList(beanList, status));
-        if (adapter != null){
+        if (adapter != null) {
             adapter.notifyDataSetChanged();
         }
     }

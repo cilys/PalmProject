@@ -45,7 +45,6 @@
                     android:text=""
                     android:textColor="#FF888888"
                     android:textSize="16sp" />
-
             </RelativeLayout>
 
             <LinearLayout
@@ -55,7 +54,6 @@
                 android:layout_marginTop="14dp"
                 android:background="@color/theme_white"
                 android:orientation="vertical">
-
 
                 <TextView
                     android:id="@+id/tv_enterprise_name"
@@ -81,9 +79,7 @@
                     android:hint="请输入项目名称（必填）"
                     android:paddingLeft="10dp"
                     android:text="" />
-
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -134,7 +130,6 @@
                     android:hint="请输入简称"
                     android:paddingLeft="10dp"
                     android:text="" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -142,6 +137,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/white"
+                android:visibility="gone"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -206,14 +202,12 @@
                     android:text="*"
                     android:textColor="#FFCF3131"
                     android:textSize="16sp" />
-
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="@color/white"
-
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -239,8 +233,6 @@
                         android:hint="请选择"
                         android:textColorHint="#FF6F6D6D"
                         android:textSize="16sp" />
-
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -266,7 +258,6 @@
                         android:hint="请选择"
                         android:textColorHint="#FF6F6D6D"
                         android:textSize="16sp" />
-
                 </LinearLayout>
 
             </LinearLayout>
@@ -320,7 +311,6 @@
                     android:id="@+id/iv_address_more"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-
                     android:layout_marginRight="12dp"
                     android:src="@mipmap/icon_gps"
                     android:visibility="gone" />
@@ -346,7 +336,6 @@
                     android:textColor="#FF101010"
                     android:textSize="16sp" />
 
-
                 <TextView
                     android:id="@+id/tv_range_type"
                     android:layout_width="match_parent"
@@ -371,6 +360,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/white"
+                android:visibility="gone"
                 android:gravity="center_vertical">
 
                 <TextView
@@ -404,7 +394,6 @@
                     android:layout_height="15dp"
                     android:layout_marginRight="12dp"
                     android:src="@mipmap/icon_more" />
-
             </LinearLayout>
 
 
@@ -541,16 +530,14 @@
                     android:padding="6dp"
                     android:textColor="#FF888888"
                     android:textSize="16sp" />
-
-
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@color/white"
+                android:visibility="gone"
                 android:orientation="vertical">
 
                 <TextView
@@ -576,11 +563,7 @@
                     android:padding="6dp"
                     android:textColor="#FF888888"
                     android:textSize="16sp" />
-
-
             </LinearLayout>
-
-
         </LinearLayout>
     </ScrollView>
 

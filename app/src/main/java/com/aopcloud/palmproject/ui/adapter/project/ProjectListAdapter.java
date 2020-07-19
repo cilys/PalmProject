@@ -1,5 +1,6 @@
 package com.aopcloud.palmproject.ui.adapter.project;
 
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,7 +8,7 @@ import android.view.View;
 
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectListBean;
-import com.aopcloud.palmproject.view.CircularProgressView;
+import com.aopcloud.palmproject.utils.DateUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -30,9 +31,11 @@ public class ProjectListAdapter extends BaseQuickAdapter<ProjectListBean, BaseVi
     @Override
     protected void convert(BaseViewHolder helper, ProjectListBean item) {
         RecyclerView recyclerView = helper.getView(R.id.rv_list);
+
         helper.setText(R.id.tv_title, item.getName())
                 .setText(R.id.tv_leader, item.getLeader_name() + "")
-                .setText(R.id.tv_day, item.getStart_date() + "")
+                .setText(R.id.tv_day, DateUtils.calculateBetweenDay(item.getEnd_date()) )
+                .setTextColor(R.id.tv_day, DateUtils.betweenDay(item.getEnd_date()) < 0 ? Color.parseColor("#EB2626") : Color.parseColor("#FF108CF7"))
                 .setText(R.id.tv_progress, item.getProgress() + "%")
                 .setText(R.id.tv_expand, recyclerView.getVisibility() == View.VISIBLE ? "折叠↑" : "展开↓");
 
@@ -44,6 +47,5 @@ public class ProjectListAdapter extends BaseQuickAdapter<ProjectListBean, BaseVi
                 helper.setText(R.id.tv_expand, recyclerView.getVisibility() == View.VISIBLE ? "折叠↑" : "展开↓");
             }
         });
-
     }
 }

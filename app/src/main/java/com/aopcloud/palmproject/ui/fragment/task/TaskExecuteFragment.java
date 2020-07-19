@@ -268,7 +268,7 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
             mLlReplace.setVisibility(View.VISIBLE);
         } else {
             mLlReplace.setVisibility(View.GONE);
-            mIvEdit.setVisibility(View.GONE);
+            mIvEdit.setVisibility(View.INVISIBLE);
         }
 
         if (mTaskDetailBean.getStatus_str().equals("未开始")) {

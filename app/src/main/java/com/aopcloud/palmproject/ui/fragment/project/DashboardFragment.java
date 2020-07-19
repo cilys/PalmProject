@@ -308,8 +308,15 @@ public class DashboardFragment extends BaseFragment {
             case R.id.ll_complete:
                 Bundle b4 = new Bundle();
                 b4.putString("project_id", project_id);
-                b4.putString("status", STATUS_COMPLETE);
+                b4.putString("status", STATUS_PAUSE);
                 gotoActivity(DashboardTaskListAc.class, b4);
+                break;
+
+            case R.id.rl_progress_bar:
+                Bundle b5 = new Bundle();
+                b5.putString("project_id", project_id);
+                b5.putString("status", STATUS_COMPLETE);
+                gotoActivity(DashboardTaskListAc.class, b5);
                 break;
         }
     }
