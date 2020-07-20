@@ -23,8 +23,9 @@ import java.util.Map;
 
 public class TaskCountFragment extends BaseFragment {
     private TextView mTvUndo;
-    private TextView mTvDone;
+    private TextView mTvDoing;
     private TextView mTvOutTime;
+    private TextView mTvDone;
 
     private String type = "2";
 
@@ -43,8 +44,9 @@ public class TaskCountFragment extends BaseFragment {
         }
 
         mTvUndo = (TextView)view.findViewById(R.id.tv_undo);
-        mTvDone = (TextView)view.findViewById(R.id.tv_done);
+        mTvDoing = (TextView)view.findViewById(R.id.tv_doing);
         mTvOutTime = (TextView)view.findViewById(R.id.tv_outTime);
+        mTvDone = (TextView)view.findViewById(R.id.tv_done);
 
         mTvUndo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,12 +57,12 @@ public class TaskCountFragment extends BaseFragment {
                 gotoActivity(TaskListAc.class, b);
             }
         });
-        mTvDone.setOnClickListener(new View.OnClickListener() {
+        mTvDoing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Bundle b = new Bundle();
                 b.putString("type", type);
-                b.putString("state", HomeTaskFragment.STATE_DONE);
+                b.putString("state", HomeTaskFragment.STATE_DOING);
                 gotoActivity(TaskListAc.class, b);
             }
         });
@@ -70,6 +72,15 @@ public class TaskCountFragment extends BaseFragment {
                 Bundle b = new Bundle();
                 b.putString("type", type);
                 b.putString("state", HomeTaskFragment.STATE_OUT_OF_TIME);
+                gotoActivity(TaskListAc.class, b);
+            }
+        });
+        mTvDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle b = new Bundle();
+                b.putString("type", type);
+                b.putString("state", HomeTaskFragment.STATE_DONE);
                 gotoActivity(TaskListAc.class, b);
             }
         });
@@ -126,10 +137,12 @@ public class TaskCountFragment extends BaseFragment {
             mTvUndo.setText("0");
             mTvDone.setText("0");
             mTvOutTime.setText("0");
+            mTvDoing.setText("0");
         } else {
             int undo = 0;
             int done = 0;
             int outTime = 0;
+            int doing = 0;
             for (ProjectTaskBean b : beanList){
                 String status = b.getStatus_str();
                 if (HomeTaskFragment.STATE_complete.equals(status)){
@@ -148,7 +161,12 @@ public class TaskCountFragment extends BaseFragment {
                             || HomeTaskFragment.STATE_progress.equals(status)
                             || HomeTaskFragment.STATE_operation.equals(status)
                             || HomeTaskFragment.STATE_pause.equals(status)){
-                        undo ++;
+                        if (HomeTaskFragment.STATE_progress.equals(status)
+                                || HomeTaskFragment.STATE_operation.equals(status)){
+                            doing ++;
+                        }else {
+                            undo++;
+                        }
 
                         String endDate = b.getEnd_date();
                         long ed = TimeUtils.strToMil(endDate, TimeType.DAY_LINE, 0L);;
@@ -161,6 +179,7 @@ public class TaskCountFragment extends BaseFragment {
             mTvUndo.setText(String.valueOf(undo));
             mTvDone.setText(String.valueOf(done));
             mTvOutTime.setText(String.valueOf(outTime));
+            mTvDoing.setText(String.valueOf(doing));
         }
     }
 }

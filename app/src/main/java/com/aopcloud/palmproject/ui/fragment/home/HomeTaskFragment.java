@@ -168,6 +168,13 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
      * 逾期，统计数量用，包括：未开始、进行中、作业中、已暂停、已完成
      */
     public final static String STATE_OUT_OF_TIME = "STATE_OUT_OF_TIME";
+    public final static String STATE_ALL = "STATE_ALL";
+    /**
+     * 进行中，包括进行中、作业中
+     */
+    public final static String STATE_DOING = "STATE_DOING";
+    public final static String STATE_DOING_IN = "进行中";
+    public final static String STATE_DOING_ZUOYE = "作业中";
 
     public final static String LEVEL_all = "全部";
     public final static String LEVEL_ordinary = "普通";

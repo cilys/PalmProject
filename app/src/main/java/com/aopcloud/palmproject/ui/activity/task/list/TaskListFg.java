@@ -11,9 +11,12 @@ import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.ui.activity.project.ProjectTaskDetailActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
+import com.aopcloud.palmproject.ui.activity.task.TaskDetailActivity;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cily.utils.base.time.TimeType;
 import com.cily.utils.base.time.TimeUtils;
 
@@ -50,6 +53,22 @@ public class TaskListFg extends BaseFragment {
         datas = new ArrayList<>();
         adapter = new RvTaskListAdapter(R.layout.item_rv_task_list, datas);
         rv.setAdapter(adapter);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+//                Bundle bundle = new Bundle();
+//                bundle.putString("project_id", "" + datas.get(position).getProject_id());
+//                bundle.putString("task_id", "" + datas.get(position).getTask_id());
+//                gotoActivity(ProjectTaskDetailActivity.class, bundle, 0);
+                Bundle bundle = new Bundle();
+                bundle.putString("task_id", datas.get(position).getTask_id() + "");
+                bundle.putString("project_id", datas.get(position).getProject_id() + "");
+                bundle.putString("task_name", "" + datas.get(position).getName());
+                bundle.putString("team_id",datas.get(position).getTeam_id() + "");
+                bundle.putString("project_name", datas.get(position).getProject_name());
+                gotoActivity(TaskDetailActivity.class, 0, bundle);
+            }
+        });
 
         isShow = true;
         toRequest(ApiConstants.EventTags.task_all);
@@ -153,6 +172,28 @@ public class TaskListFg extends BaseFragment {
                                     datas.add(bean);
                                 }
                             }
+                        }
+                    }
+                } else if (HomeTaskFragment.STATE_DOING.equals(state_big)) {
+                    //大类、进行中
+
+                    if (HomeTaskFragment.STATE_progress.equals(bean.getStatus_str())
+                            || HomeTaskFragment.STATE_operation.equals(bean.getStatus_str())){
+
+                        if (HomeTaskFragment.STATE_all.equals(state)){
+                            datas.add(bean);
+                        }else {
+                            if (state.equals(bean.getStatus_str())) {
+                                datas.add(bean);
+                            }
+                        }
+                    }
+                } else if (HomeTaskFragment.STATE_ALL.equals(state_big)) {
+                    if (HomeTaskFragment.STATE_all.equals(state)){
+                        datas.add(bean);
+                    }else {
+                        if (state.equals(bean.getStatus_str())){
+                            datas.add(bean);
                         }
                     }
                 }

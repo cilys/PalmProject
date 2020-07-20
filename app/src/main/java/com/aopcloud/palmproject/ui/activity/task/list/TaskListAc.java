@@ -51,11 +51,13 @@ public class TaskListAc extends BaseAc {
         });
 
         if ("3".equals(type)){
-            tv_title.setText("我参与的∨");
+            tv_title.setText("我参与的 ∨");
         } else if ("1".equals(type)){
-            tv_title.setText("我发起的∨");
+            tv_title.setText("我发起的 ∨");
+        } else if("0".equals(type)){
+            tv_title.setText("全部 ∨");
         } else {
-            tv_title.setText("派给我的∨");
+            tv_title.setText("派给我的 ∨");
         }
         if (StrUtils.isEmpty(state)){
             state = HomeTaskFragment.STATE_UNDO;
@@ -87,7 +89,23 @@ public class TaskListAc extends BaseAc {
             rbts[5].setVisibility(View.GONE);
 
             tv_title_left.setText("已完成");
-        } else if (HomeTaskFragment.STATE_OUT_OF_TIME.equals(state)){
+        } else if (HomeTaskFragment.STATE_DOING.equals(state)) {
+            states = new String[3];
+            states[0] = HomeTaskFragment.STATE_all;
+            states[1] = HomeTaskFragment.STATE_DOING_IN;
+            states[2] = HomeTaskFragment.STATE_DOING_ZUOYE;
+
+            rbts[0].setText(states[0]);
+            rbts[1].setText(states[1]);
+            rbts[2].setText(states[2]);
+
+            rbts[3].setVisibility(View.GONE);
+            rbts[4].setVisibility(View.GONE);
+            rbts[5].setVisibility(View.GONE);
+
+            tv_title_left.setText("进行中");
+        } else if (HomeTaskFragment.STATE_OUT_OF_TIME.equals(state)
+                || HomeTaskFragment.STATE_ALL.equals(state)){
             states = new String[6];
             states[0] = HomeTaskFragment.STATE_all;
             states[1] = HomeTaskFragment.STATE_no_start;
@@ -103,7 +121,11 @@ public class TaskListAc extends BaseAc {
             rbts[4].setText(states[4]);
             rbts[5].setText(states[5]);
 
-            tv_title_left.setText("已逾期");
+            if (HomeTaskFragment.STATE_ALL.equals(state)){
+                tv_title_left.setText("全部");
+            }else {
+                tv_title_left.setText("已逾期");
+            }
         } else {
             states = new String[5];
             states[0] = HomeTaskFragment.STATE_all;
@@ -128,7 +150,7 @@ public class TaskListAc extends BaseAc {
             Bundle bundle = new Bundle();
             bundle.putString("state", states[i]);
             bundle.putString("type", type);
-            bundle.putString("STATE_BIG", state);   //大类，已完成、未完成、已逾期
+            bundle.putString("STATE_BIG", state);   //大类，进行中、已完成、未完成、已逾期
             fg.setArguments(bundle);
             fgs.add(fg);
         }
@@ -242,18 +264,25 @@ public class TaskListAc extends BaseAc {
         }
     }
 
-    private void showToast(CharSequence str){
-        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
-    }
-
     public void showMenuDialog() {
         BottomSheetDialog dialog = new BottomSheetDialog(this);
-        dialog.setContentView(R.layout.dialog_project_task_right_menu);
+        dialog.setContentView(R.layout.dialog_project_task_type_title);
         dialog.getWindow().findViewById(R.id.design_bottom_sheet).setBackgroundResource(android.R.color.transparent);
         dialog.show();
 
         TextView title = dialog.findViewById(R.id.tv_title);
         title.setVisibility(View.GONE);
+
+        TextView tv_type_all = (TextView)dialog.findViewById(R.id.tv_type_all);
+        tv_type_all.setText("全部");
+        tv_type_all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                tv_title.setText("全部 ∨");
+                changeFragmentType("0");
+            }
+        });
 
         TextView tv_copy = (TextView) dialog.findViewById(R.id.tv_copy);
         tv_copy.setText("派给我的");

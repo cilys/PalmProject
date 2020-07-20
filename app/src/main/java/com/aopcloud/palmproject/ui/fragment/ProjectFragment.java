@@ -34,9 +34,11 @@ import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.aopcloud.palmproject.ui.activity.staff.bean.StaffListBean;
 import com.aopcloud.palmproject.ui.activity.task.TaskDetailActivity;
 import com.aopcloud.palmproject.ui.activity.task.TaskManageActivity;
+import com.aopcloud.palmproject.ui.activity.task.list.TaskListAc;
 import com.aopcloud.palmproject.ui.adapter.enterprise.EnterpriseProjectAdapter;
 import com.aopcloud.palmproject.ui.adapter.enterprise.EnterpriseTaskAdapter;
 import com.aopcloud.palmproject.ui.adapter.feagment.AppFragmentPagerAdapter;
+import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
 import com.aopcloud.palmproject.ui.fragment.task.TaskCountFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.view.decoration.DividerItemDecoration;
@@ -395,7 +397,11 @@ public class ProjectFragment extends BaseFragment {
                 } else if (LoginUserUtil.isLogin(mActivity) && TextUtils.isEmpty(LoginUserUtil.getCurrentEnterpriseNo(mActivity))) {
                     ToastUtil.showToast("请先选择或加入企业");
                 } else {
-                    gotoActivity(TaskManageActivity.class, 0);
+//                    gotoActivity(TaskManageActivity.class, 0);
+                    Bundle b = new Bundle();
+                    b.putString("type", "0");//0全部、1我发起的，2拍给我的，3我参与的
+                    b.putString("state", HomeTaskFragment.STATE_ALL);
+                    gotoActivity(TaskListAc.class, b);
                 }
                 break;
             case R.id.tv_enterprise_name:
