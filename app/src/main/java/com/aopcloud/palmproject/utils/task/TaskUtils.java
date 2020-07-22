@@ -153,7 +153,7 @@ public class TaskUtils {
                     return "已逾期";
                 }
             } else if (bean.getStatus_str().contains("已超期") || bean.getStatus_str().contains("已逾期")){
-                return "已超期";
+                return "已逾期";
             }
 
             if (HomeTaskFragment.STATE_complete.equals(bean.getStatus_str())) {

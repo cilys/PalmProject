@@ -20,9 +20,7 @@
 
         <TextView
             android:id="@+id/tv_company"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
+            style="@style/style_arrange_task_ll_tv_value"
             android:hint="自动获取所属企业" />
     </LinearLayout>
 
@@ -35,14 +33,11 @@
 
         <TextView
             android:id="@+id/tv_project_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textSize="16sp" />
+            style="@style/style_arrange_task_ll_tv_value_with_right_arrow" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_project_task_name"
         style="@style/style_arrange_task_ll" >
         <TextView
             style="@style/style_arrange_task_ll_tv"
@@ -50,11 +45,7 @@
 
         <TextView
             android:id="@+id/tv_task_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textSize="16sp" />
+            style="@style/style_arrange_task_ll_tv_value_with_right_arrow" />
     </LinearLayout>
 
     <LinearLayout
@@ -65,11 +56,7 @@
 
         <TextView
             android:id="@+id/tv_work"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:textSize="16sp" />
+            style="@style/style_arrange_task_ll_tv_value" />
     </LinearLayout>
 
     <LinearLayout
@@ -94,12 +81,7 @@
 
         <TextView
             android:id="@+id/tv_class_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:singleLine="true"
-            android:ellipsize="end"
-            style="@style/style_arrange_task_ll_tv"/>
+            style="@style/style_arrange_task_ll_tv_value_with_right_arrow"/>
     </LinearLayout>
 
     <LinearLayout

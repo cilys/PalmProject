@@ -125,12 +125,25 @@
         <item name="android:paddingRight">20dp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginTop">1dp</item>
     </style>
     <style name="style_arrange_task_ll_tv">
         <item name="android:layout_width">80dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16sp</item>
         <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="style_arrange_task_ll_tv_value">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <style name="style_arrange_task_ll_tv_value_with_right_arrow" parent="style_arrange_task_ll_tv_value">
+        <item name="android:drawableRight">@mipmap/icon_more</item>
     </style>
 
     <style name="style_status_checkbox">

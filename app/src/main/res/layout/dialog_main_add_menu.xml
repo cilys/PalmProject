@@ -152,7 +152,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="派单"
+                        android:text="派工"
                         android:textColor="@color/theme_font_black"
                         android:textSize="14sp" />
                 </LinearLayout>

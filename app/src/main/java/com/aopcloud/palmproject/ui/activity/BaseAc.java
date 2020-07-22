@@ -10,6 +10,9 @@ import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.utils.WeatherUtils;
 import com.cily.utils.base.StrUtils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class BaseAc extends BaseActivity {
 
     protected String getUserNickName(){
@@ -91,5 +94,22 @@ public abstract class BaseAc extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         HttpUtils.cancel(String.valueOf(ApiConstants.EventTags.weather));
+    }
+
+    protected String getCompanyId(){
+        return LoginUserUtil.getCurrentEnterpriseNo(this);
+    }
+
+    protected Map<String, String> baseParamMap(){
+        Map<String, String> map = new HashMap<>();
+        String token =  LoginUserUtil.getToken(this);
+        if (!StrUtils.isEmpty(token)) {
+            map.put("token", token);
+        }
+        String companyId = getCompanyId();
+        if (!StrUtils.isEmpty(companyId)) {
+            map.put("code", companyId);
+        }
+        return map;
     }
 }

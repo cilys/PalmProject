@@ -32,6 +32,7 @@ import com.aopcloud.palmproject.ui.activity.project.ProjectTaskAddActivity;
 import com.aopcloud.palmproject.ui.activity.project.ProjectTaskDetailActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTeamListBean;
+import com.aopcloud.palmproject.ui.activity.task.ArrangeTaskAc;
 import com.aopcloud.palmproject.ui.adapter.base.CommonAdapter;
 import com.aopcloud.palmproject.ui.adapter.base.ViewHolder;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectTaskAdapter;
@@ -216,7 +217,16 @@ public class ProjectTaskFragment extends BaseFragment implements TextView.OnEdit
                 gotoActivity(ProjectTaskAddActivity.class, 0, bundle);
                 break;
             case R.id.tv_assign:
-                showTaskListDialog();
+//                showTaskListDialog();
+                Bundle b1 = new Bundle();
+                b1.putString("project_id", "" + project_id);
+                b1.putString("company_id", company_id);
+                b1.putString("company_name", company_name);
+                b1.putString("project_id", project_id);
+                b1.putString("project_name", project_name);
+                b1.putString("start_date", start_date);
+                b1.putString("end_date", end_date);
+                gotoActivity(ArrangeTaskAc.class, b1);
                 break;
         }
     }

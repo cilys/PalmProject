@@ -154,6 +154,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
     public final static String STATE_pause = "暂停中";
     public final static String STATE_operation = "作业中";
 
+    public final static String STATE_no_plan = "未安排";
     /**
      * 未完成，统计数量用，包括：未开始、进行中、作业中、已暂停
      */

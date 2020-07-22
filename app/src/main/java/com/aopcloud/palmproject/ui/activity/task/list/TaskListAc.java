@@ -213,6 +213,11 @@ public class TaskListAc extends BaseAc {
         noVp.setAdapter(adapter);
         noVp.setCurrentItem(defSelectItem);
         rbts[defSelectItem].setChecked(true);
+        if (defSelectItem >= 3){
+            hsv.smoothScrollTo(3000, 0);
+        } else if (defSelectItem <= 2){
+            hsv.smoothScrollTo(-50, 0);
+        }
 
         noVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -224,9 +229,9 @@ public class TaskListAc extends BaseAc {
             public void onPageSelected(int i) {
                 rbts[i].setChecked(true);
 
-                if (i == 4){
+                if (i >= 3){
                     hsv.smoothScrollTo(3000, 0);
-                } else if (i == 2){
+                } else if (i <= 2){
                     hsv.smoothScrollTo(-50, 0);
                 }
             }
