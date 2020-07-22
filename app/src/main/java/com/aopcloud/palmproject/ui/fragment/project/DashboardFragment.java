@@ -125,6 +125,7 @@ public class DashboardFragment extends BaseFragment {
     private long end_time;
     private long start_time;
 
+    public final static String STATUS_ALL = "STATUS_ALL";
     public final static String STATUS_UN_PLAN = "STATUS_UN_PLAN";       //未安排，定义：没有开始时间、或者开始时间为1970-01-01
     public final static String STATUS_UN_START = "STATUS_UN_START";     //未开始，定义：任务开始时间在当前时间之后。不管任务是否已经真实完成了
     public final static String STATUS_IN_PROCESS = "STATUS_IN_PROCESS"; //进行中，定义：进行中。如果当前时间已超过任务结束时间，则为超期状态

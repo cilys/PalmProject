@@ -147,15 +147,6 @@ public class TaskCountFragment extends BaseFragment {
                 String status = b.getStatus_str();
                 if (HomeTaskFragment.STATE_complete.equals(status)){
                     done ++;
-
-                    String endDate = b.getEnd_date();
-                    String realEndDate = b.getEnd_date_real();
-
-                    long ed = TimeUtils.strToMil(endDate, TimeType.DAY_LINE, 0L);
-                    long rl = TimeUtils.strToMil(realEndDate, TimeType.DAY_LINE, System.currentTimeMillis());
-                    if (rl > ed){
-                        outTime ++;
-                    }
                 } else {
                     /*if (HomeTaskFragment.STATE_no_start.equals(status)
                             || HomeTaskFragment.STATE_progress.equals(status)
@@ -175,7 +166,19 @@ public class TaskCountFragment extends BaseFragment {
                         }
                     }*/
                     if (HomeTaskFragment.STATE_no_start.equals(status)){
-                        undo ++;
+
+
+                        String endDate = b.getEnd_date();
+                        String realEndDate = b.getEnd_date_real();
+
+                        long ed = TimeUtils.strToMil(endDate, TimeType.DAY_LINE, 0L);
+                        long cl = System.currentTimeMillis();
+                        if (cl > ed){
+                            outTime ++;
+                        }else {
+                            undo ++;
+                        }
+
                     }else if (HomeTaskFragment.STATE_progress.equals(status)
                             || HomeTaskFragment.STATE_operation.equals(status)) {
                         doing ++;

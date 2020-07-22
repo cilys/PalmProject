@@ -26,6 +26,11 @@ public class TaskUtils {
         if (beanList.size() == 0){
             return result;
         }
+        if (DashboardFragment.STATUS_ALL.equals(status)){
+            result.addAll(beanList);
+
+            return result;
+        }
 
         for (ProjectTaskBean bean : beanList) {
             /*if (DashboardFragment.STATUS_UN_PLAN.equals(status)){
@@ -167,4 +172,72 @@ public class TaskUtils {
         return bean.getStatus_str();
     }
 
+    /**
+     * 首页、项目、统计任务数量
+     * @param beanList
+     * @param state
+     * @return
+     */
+    public static List<ProjectTaskBean> getList(List<ProjectTaskBean> beanList, String state){
+        List<ProjectTaskBean> result = new ArrayList<>();
+
+        if (beanList == null){
+            return result;
+        }
+        if (beanList.size() == 0){
+            return result;
+        }
+        if (HomeTaskFragment.STATE_all.equals(state)){
+            result.addAll(beanList);
+
+            return result;
+        }
+
+        for (ProjectTaskBean bean : beanList) {
+            if (!StrUtils.isEmpty(bean.getStatus_str())){
+                if (HomeTaskFragment.STATE_no_start.equals(bean.getStatus_str())){
+                    if (HomeTaskFragment.STATE_no_start.equals(state)
+                            || HomeTaskFragment.STATE_expect.equals(state)) {
+                        String endDate = bean.getEnd_date();
+                        long ed = TimeUtils.strToMil(endDate, TimeType.DAY_LINE, 0L);
+                        long cl = System.currentTimeMillis();
+                        if (cl > ed) {
+                            if (HomeTaskFragment.STATE_expect.equals(state)) {
+                                result.add(bean);
+                            }
+                        } else {
+                            if (HomeTaskFragment.STATE_no_start.equals(state)) {
+                                result.add(bean);
+                            }
+                        }
+                    }
+                } else if (HomeTaskFragment.STATE_progress.equals(bean.getStatus_str())
+                        || HomeTaskFragment.STATE_operation.equals(bean.getStatus_str())){
+                    if (HomeTaskFragment.STATE_progress.equals(state)
+                            || HomeTaskFragment.STATE_operation.equals(state)){
+                        result.add(bean);
+                    }
+                } else if (HomeTaskFragment.STATE_pause.equals(bean.getStatus_str())
+                        || bean.getStatus_str().contains("暂停")) {
+                    if (HomeTaskFragment.STATE_pause.equals(state)){
+                        result.add(bean);
+                    }
+                } else if (HomeTaskFragment.STATE_complete.equals(bean.getStatus_str())){
+                    if (HomeTaskFragment.STATE_complete.equals(state)) {
+                        result.add(bean);
+                    }
+                } else if (bean.getStatus_str().contains("已超期") || bean.getStatus_str().contains("已逾期")){
+                    if (HomeTaskFragment.STATE_expect.equals(state)) {
+                        result.add(bean);
+                    }
+                } else if (HomeTaskFragment.STATE_cancel.equals(bean.getStatus_str())){
+                    if (HomeTaskFragment.STATE_cancel.equals(state)){
+                        result.add(bean);
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
 }

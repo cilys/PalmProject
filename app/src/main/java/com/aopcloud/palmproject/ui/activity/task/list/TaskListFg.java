@@ -16,6 +16,7 @@ import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.aopcloud.palmproject.ui.activity.task.TaskDetailActivity;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
+import com.aopcloud.palmproject.utils.task.TaskUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cily.utils.base.time.TimeType;
 import com.cily.utils.base.time.TimeUtils;
@@ -106,7 +107,7 @@ public class TaskListFg extends BaseFragment {
         }
         datas.clear();
         if (beanList != null && beanList.size() > 0){
-            for (ProjectTaskBean bean : beanList) {
+            /*for (ProjectTaskBean bean : beanList) {
                 //大类，已完成
                 if (HomeTaskFragment.STATE_DONE.equals(state_big)){
                     if (HomeTaskFragment.STATE_complete.equals(bean.getStatus_str())){
@@ -179,7 +180,6 @@ public class TaskListFg extends BaseFragment {
                     }
                 } else if (HomeTaskFragment.STATE_DOING.equals(state_big)) {
                     //大类、进行中
-
                     if (HomeTaskFragment.STATE_progress.equals(bean.getStatus_str())
                             || HomeTaskFragment.STATE_operation.equals(bean.getStatus_str())){
 
@@ -200,7 +200,8 @@ public class TaskListFg extends BaseFragment {
                         }
                     }
                 }
-            }
+            }*/
+            datas.addAll(TaskUtils.getList(beanList, state));
 
         }else {
             ToastUtil.showToast("暂无数据");

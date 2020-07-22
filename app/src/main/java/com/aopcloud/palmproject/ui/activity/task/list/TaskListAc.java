@@ -19,6 +19,7 @@ import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.adapter.feagment.AppFragmentPagerAdapter;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
+import com.aopcloud.palmproject.ui.fragment.project.DashboardFragment;
 import com.cily.utils.base.StrUtils;
 import com.cilys.app.view.NoScrollViewPager;
 
@@ -74,7 +75,7 @@ public class TaskListAc extends BaseAc {
 
         NoScrollViewPager noVp = (NoScrollViewPager)findViewById(R.id.noVp);
         String[] states = null;
-        if (HomeTaskFragment.STATE_DONE.equals(state)){
+        /*if (HomeTaskFragment.STATE_DONE.equals(state)){
             states = new String[3];
             states[0] = HomeTaskFragment.STATE_all;
             states[1] = HomeTaskFragment.STATE_DONE_IN_TIME;
@@ -142,6 +143,34 @@ public class TaskListAc extends BaseAc {
             rbts[5].setVisibility(View.GONE);
 
             tv_title_left.setText("未开始");
+        }*/
+        states = new String[6];
+        states[0] = HomeTaskFragment.STATE_all;
+        states[1] = HomeTaskFragment.STATE_no_start;
+        states[2] = HomeTaskFragment.STATE_progress;
+        states[3] = HomeTaskFragment.STATE_expect;
+//        states[4] = HomeTaskFragment.STATE_complete;
+        states[4] = "待验收";
+        states[5] = HomeTaskFragment.STATE_pause;
+        int defSelectItem = 0;
+        if (HomeTaskFragment.STATE_DONE.equals(state)){
+            tv_title_left.setText("待验收");
+            defSelectItem = 4;
+        } else if (HomeTaskFragment.STATE_DOING.equals(state)){
+            tv_title_left.setText("进行中");
+            defSelectItem = 2;
+        } else if (HomeTaskFragment.STATE_OUT_OF_TIME.equals(state)
+                || HomeTaskFragment.STATE_ALL.equals(state)){
+            if (HomeTaskFragment.STATE_ALL.equals(state)){
+                tv_title_left.setText("全部");
+                defSelectItem = 0;
+            }else {
+                tv_title_left.setText("已逾期");
+                defSelectItem = 3;
+            }
+        } else {
+            tv_title_left.setText("未开始");
+            defSelectItem = 1;
         }
 
         fgs = new ArrayList<>();
@@ -149,10 +178,25 @@ public class TaskListAc extends BaseAc {
             TaskListFg fg = new TaskListFg();
             Bundle bundle = new Bundle();
             bundle.putString("state", states[i]);
+//            if (i == 0) {
+//                bundle.putString("state", DashboardFragment.STATUS_ALL);
+//            } else if (i == 1){
+//                bundle.putString("state", DashboardFragment.STATUS_UN_START);
+//            } else if (i == 2){
+//                bundle.putString("state", DashboardFragment.STATUS_IN_PROCESS);
+//            } else if (i == 3){
+//                bundle.putString("state", DashboardFragment.STATUS_OUT_TIME);
+//            } else if (i == 4){
+//                bundle.putString("state", DashboardFragment.STATUS_COMPLETE);
+//            } else if (i == 5){
+//                bundle.putString("state", DashboardFragment.STATUS_PAUSE);
+//            }
             bundle.putString("type", type);
             bundle.putString("STATE_BIG", state);   //大类，进行中、已完成、未完成、已逾期
             fg.setArguments(bundle);
             fgs.add(fg);
+
+            rbts[i].setText(states[i]);
         }
 
         tv_title.setOnClickListener(new View.OnClickListener() {
@@ -167,7 +211,8 @@ public class TaskListAc extends BaseAc {
 
         AppFragmentPagerAdapter adapter = new AppFragmentPagerAdapter(getSupportFragmentManager(), fgs, null);
         noVp.setAdapter(adapter);
-        noVp.setCurrentItem(0);
+        noVp.setCurrentItem(defSelectItem);
+        rbts[defSelectItem].setChecked(true);
 
         noVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
