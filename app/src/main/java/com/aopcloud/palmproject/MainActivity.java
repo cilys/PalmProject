@@ -56,6 +56,7 @@ import com.aopcloud.palmproject.ui.fragment.ProjectFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.view.CircleImageView;
 import com.aopcloud.palmproject.view.TipsDialog;
+import com.cily.utils.base.StrUtils;
 import com.hjq.permissions.OnPermission;
 import com.hjq.permissions.XXPermissions;
 
@@ -177,6 +178,13 @@ public class MainActivity extends BaseAc {
             LoginUserUtil.setLoginUserBean(this, userBean);
             mTvState.setVisibility(View.VISIBLE);
             mTvRealName.setVisibility(View.VISIBLE);
+
+            if (StrUtils.isEmpty(userBean.getName())){
+                //姓名为空，则提示用户补充信息
+                showToast("请补充用户姓名等信息");
+                gotoActivity(AccountInfoActivity.class);
+            }
+
         } else {
             mTvName.setText("未登录");
             mTvState.setVisibility(View.GONE);
@@ -225,7 +233,6 @@ public class MainActivity extends BaseAc {
                 break;
         }
         transaction.commit();
-
     }
 
     /***

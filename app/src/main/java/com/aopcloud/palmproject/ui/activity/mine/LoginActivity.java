@@ -231,7 +231,7 @@ public class LoginActivity extends BaseAc {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
+            return;
         }
 
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
