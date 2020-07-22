@@ -141,7 +141,7 @@ public class TaskListAc extends BaseAc {
             rbts[4].setText(states[4]);
             rbts[5].setVisibility(View.GONE);
 
-            tv_title_left.setText("未完成");
+            tv_title_left.setText("未开始");
         }
 
         fgs = new ArrayList<>();

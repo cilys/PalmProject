@@ -157,7 +157,7 @@ public class TaskCountFragment extends BaseFragment {
                         outTime ++;
                     }
                 } else {
-                    if (HomeTaskFragment.STATE_no_start.equals(status)
+                    /*if (HomeTaskFragment.STATE_no_start.equals(status)
                             || HomeTaskFragment.STATE_progress.equals(status)
                             || HomeTaskFragment.STATE_operation.equals(status)
                             || HomeTaskFragment.STATE_pause.equals(status)){
@@ -173,6 +173,12 @@ public class TaskCountFragment extends BaseFragment {
                         if (System.currentTimeMillis() > ed) {
                             outTime ++;
                         }
+                    }*/
+                    if (HomeTaskFragment.STATE_no_start.equals(status)){
+                        undo ++;
+                    }else if (HomeTaskFragment.STATE_progress.equals(status)
+                            || HomeTaskFragment.STATE_operation.equals(status)) {
+                        doing ++;
                     }
                 }
             }

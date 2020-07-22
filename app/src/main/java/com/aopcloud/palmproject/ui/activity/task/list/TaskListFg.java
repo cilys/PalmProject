@@ -137,18 +137,21 @@ public class TaskListFg extends BaseFragment {
                     }
                 } else if (HomeTaskFragment.STATE_UNDO.equals(state_big)){
                     //大类，未完成
-                    if (HomeTaskFragment.STATE_no_start.equals(bean.getStatus_str())
-                            || HomeTaskFragment.STATE_progress.equals(bean.getStatus_str())
-                            || HomeTaskFragment.STATE_operation.equals(bean.getStatus_str())
-                            || HomeTaskFragment.STATE_pause.equals(bean.getStatus_str())){
-                            //小类，全部
-                        if (HomeTaskFragment.STATE_all.equals(state)){
-                            datas.add(bean);
-                        }else {
-                            if (state.equals(bean.getStatus_str())){
-                                datas.add(bean);
-                            }
-                        }
+//                    if (HomeTaskFragment.STATE_no_start.equals(bean.getStatus_str())
+//                            || HomeTaskFragment.STATE_progress.equals(bean.getStatus_str())
+//                            || HomeTaskFragment.STATE_operation.equals(bean.getStatus_str())
+//                            || HomeTaskFragment.STATE_pause.equals(bean.getStatus_str())){
+//                            //小类，全部
+//                        if (HomeTaskFragment.STATE_all.equals(state)){
+//                            datas.add(bean);
+//                        }else {
+//                            if (state.equals(bean.getStatus_str())){
+//                                datas.add(bean);
+//                            }
+//                        }
+//                    }
+                    if (HomeTaskFragment.STATE_no_start.equals(bean.getStatus_str())){
+                        datas.add(bean);
                     }
                 } else if (HomeTaskFragment.STATE_OUT_OF_TIME.equals(state_big)){
                     //大类，已逾期
