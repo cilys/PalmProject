@@ -1,5 +1,6 @@
 package com.aopcloud.palmproject.utils.task;
 
+import com.aopcloud.palmproject.conf.TaskStatus;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.aopcloud.palmproject.ui.fragment.home.HomeProjectFragment;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
@@ -96,12 +97,12 @@ public class TaskUtils {
                 }
             } else if (DashboardFragment.STATUS_UN_START.equals(status)){
                 //未开始
-                if (HomeTaskFragment.STATE_no_start.equals(bean.getStatus_str())) {
+                if (TaskStatus.STATE_no_start.equals(bean.getStatus_str())) {
                     result.add(bean);
                 }
             } else if (DashboardFragment.STATUS_IN_PROCESS.equals(status)) {
                 //进行中，定义：进行中。如果当前时间已超过任务结束时间，则为超期状态
-                if (HomeTaskFragment.STATE_progress.equals(bean.getStatus_str()) || HomeTaskFragment.STATE_operation.equals(bean.getStatus_str())) {
+                if (TaskStatus.STATE_progress.equals(bean.getStatus_str()) || TaskStatus.STATE_operation.equals(bean.getStatus_str())) {
                     result.add(bean);
                 }
             } else if (DashboardFragment.STATUS_OUT_TIME.equals(status)) {
@@ -109,7 +110,7 @@ public class TaskUtils {
                     result.add(bean);
                 }
             } else if (DashboardFragment.STATUS_COMPLETE.equals(status)) {
-                if (HomeTaskFragment.STATE_complete.equals(bean.getStatus_str())) {
+                if (TaskStatus.STATE_complete.equals(bean.getStatus_str())) {
                     result.add(bean);
                 }
             } else if (DashboardFragment.STATUS_PAUSE.equals(status)) {
@@ -136,7 +137,7 @@ public class TaskUtils {
                 return "未开始";
             }
 
-            if (HomeTaskFragment.STATE_progress.equals(bean.getStatus_str())) {
+            if (TaskStatus.STATE_progress.equals(bean.getStatus_str())) {
                 String endDate = bean.getEnd_date();
                 long ed = TimeUtils.strToMil(endDate, TimeType.DAY_LINE, System.currentTimeMillis());
                 if (ed < System.currentTimeMillis()){
@@ -146,7 +147,7 @@ public class TaskUtils {
                 }
             }
 
-            if (HomeTaskFragment.STATE_progress.equals(bean.getStatus_str())) {
+            if (TaskStatus.STATE_progress.equals(bean.getStatus_str())) {
                 String endDate = bean.getEnd_date();
                 long ed = TimeUtils.strToMil(endDate, TimeType.DAY_LINE, System.currentTimeMillis());
                 if (ed < System.currentTimeMillis()){
@@ -156,7 +157,7 @@ public class TaskUtils {
                 return "已逾期";
             }
 
-            if (HomeTaskFragment.STATE_complete.equals(bean.getStatus_str())) {
+            if (TaskStatus.STATE_complete.equals(bean.getStatus_str())) {
                 if (StrUtils.isEmpty(startDate) || DATE_INIT.equals(startDate)){
 
                 }else {
@@ -187,7 +188,7 @@ public class TaskUtils {
         if (beanList.size() == 0){
             return result;
         }
-        if (HomeTaskFragment.STATE_all.equals(state)){
+        if (TaskStatus.STATE_all.equals(state)){
             result.addAll(beanList);
 
             return result;
@@ -195,43 +196,43 @@ public class TaskUtils {
 
         for (ProjectTaskBean bean : beanList) {
             if (!StrUtils.isEmpty(bean.getStatus_str())){
-                if (HomeTaskFragment.STATE_no_start.equals(bean.getStatus_str())){
-                    if (HomeTaskFragment.STATE_no_start.equals(state)
-                            || HomeTaskFragment.STATE_expect.equals(state)) {
+                if (TaskStatus.STATE_no_start.equals(bean.getStatus_str())){
+                    if (TaskStatus.STATE_no_start.equals(state)
+                            || TaskStatus.STATE_expect.equals(state)) {
                         String endDate = bean.getEnd_date();
                         long ed = TimeUtils.strToMil(endDate, TimeType.DAY_LINE, 0L);
                         long cl = System.currentTimeMillis();
                         if (cl > ed) {
-                            if (HomeTaskFragment.STATE_expect.equals(state)) {
+                            if (TaskStatus.STATE_expect.equals(state)) {
                                 result.add(bean);
                             }
                         } else {
-                            if (HomeTaskFragment.STATE_no_start.equals(state)) {
+                            if (TaskStatus.STATE_no_start.equals(state)) {
                                 result.add(bean);
                             }
                         }
                     }
-                } else if (HomeTaskFragment.STATE_progress.equals(bean.getStatus_str())
-                        || HomeTaskFragment.STATE_operation.equals(bean.getStatus_str())){
-                    if (HomeTaskFragment.STATE_progress.equals(state)
-                            || HomeTaskFragment.STATE_operation.equals(state)){
+                } else if (TaskStatus.STATE_progress.equals(bean.getStatus_str())
+                        || TaskStatus.STATE_operation.equals(bean.getStatus_str())){
+                    if (TaskStatus.STATE_progress.equals(state)
+                            || TaskStatus.STATE_operation.equals(state)){
                         result.add(bean);
                     }
-                } else if (HomeTaskFragment.STATE_pause.equals(bean.getStatus_str())
+                } else if (TaskStatus.STATE_pause.equals(bean.getStatus_str())
                         || bean.getStatus_str().contains("暂停")) {
-                    if (HomeTaskFragment.STATE_pause.equals(state)){
+                    if (TaskStatus.STATE_pause.equals(state)){
                         result.add(bean);
                     }
-                } else if (HomeTaskFragment.STATE_complete.equals(bean.getStatus_str())){
-                    if (HomeTaskFragment.STATE_complete.equals(state)) {
+                } else if (TaskStatus.STATE_complete.equals(bean.getStatus_str())){
+                    if (TaskStatus.STATE_complete.equals(state)) {
                         result.add(bean);
                     }
                 } else if (bean.getStatus_str().contains("已超期") || bean.getStatus_str().contains("已逾期")){
-                    if (HomeTaskFragment.STATE_expect.equals(state)) {
+                    if (TaskStatus.STATE_expect.equals(state)) {
                         result.add(bean);
                     }
-                } else if (HomeTaskFragment.STATE_cancel.equals(bean.getStatus_str())){
-                    if (HomeTaskFragment.STATE_cancel.equals(state)){
+                } else if (TaskStatus.STATE_cancel.equals(bean.getStatus_str())){
+                    if (TaskStatus.STATE_cancel.equals(state)){
                         result.add(bean);
                     }
                 }

@@ -11,6 +11,7 @@ import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.conf.TaskStatus;
 import com.aopcloud.palmproject.ui.activity.project.ProjectTaskDetailActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.aopcloud.palmproject.ui.activity.task.TaskDetailActivity;
@@ -30,7 +31,7 @@ public class TaskListFg extends BaseFragment {
     private RvTaskListAdapter adapter;
     private List<ProjectTaskBean> datas;
     private String type = "1";
-    private String state = HomeTaskFragment.STATE_all;
+    private String state = TaskStatus.STATE_all;
     private String state_big = HomeTaskFragment.STATE_UNDO; //大类、已完成、未完成、已逾期
 
     @Override

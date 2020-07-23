@@ -45,6 +45,8 @@ import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.bean.WeatherBean;
 import com.aopcloud.palmproject.common.MassageEvent;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.conf.TaskLevel;
+import com.aopcloud.palmproject.conf.TaskStatus;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.aopcloud.palmproject.ui.activity.task.TaskDetailActivity;
 import com.aopcloud.palmproject.ui.activity.task.TaskUpdateProgressActivity;
@@ -145,16 +147,6 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
 
     private String task_type = "0";
 
-    public final static String STATE_all = "全部";
-    public final static String STATE_progress = "进行中";
-    public final static String STATE_expect = "已超期";
-    public final static String STATE_complete = "已完成";
-    public final static String STATE_no_start = "未开始";
-    public final static String STATE_cancel = "已取消";
-    public final static String STATE_pause = "暂停中";
-    public final static String STATE_operation = "作业中";
-
-    public final static String STATE_no_plan = "未安排";
     /**
      * 未完成，统计数量用，包括：未开始、进行中、作业中、已暂停
      */
@@ -177,13 +169,8 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
     public final static String STATE_DOING_IN = "进行中";
     public final static String STATE_DOING_ZUOYE = "作业中";
 
-    public final static String LEVEL_all = "全部";
-    public final static String LEVEL_ordinary = "普通";
-    public final static String LEVEL_important = "重要";
-    public final static String LEVEL_urgent = "紧急";
-
-    private String state = STATE_all;
-    private String level = LEVEL_all;
+    private String state = TaskStatus.STATE_all;
+    private String level = TaskLevel.LEVEL_all;
 
     @Override
     protected boolean isImmersionBarEnabled() {
@@ -219,8 +206,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
         initMap();
         initLocation();
     }
-
-
+    
     private void initMap() {
         mAMap = mMapView.getMap();
 
@@ -278,16 +264,16 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
             String level_str = b.getLevel();
 
             if (state_str == null || state_str.equals("")) {
-                state_str = STATE_all;
+                state_str = TaskStatus.STATE_all;
             }
-            if (STATE_all.equals(state)) {
+            if (TaskStatus.STATE_all.equals(state)) {
                 state_str = state;
             }
 
             if (level_str == null || level_str.equals("")) {
-                level_str = LEVEL_all;
+                level_str = TaskLevel.LEVEL_all;
             }
-            if (LEVEL_all.equals(level)) {
+            if (TaskLevel.LEVEL_all.equals(level)) {
                 level_str = level;
             }
 
@@ -336,7 +322,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    state = STATE_all;
+                    state = TaskStatus.STATE_all;
 
                     mCheckboxStateProgress.setChecked(!isChecked);
                     mCheckboxStateExpect.setChecked(!isChecked);
@@ -352,7 +338,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    state = STATE_progress;
+                    state = TaskStatus.STATE_progress;
 
                     mCheckboxStateAll.setChecked(!isChecked);
                     mCheckboxStateExpect.setChecked(!isChecked);
@@ -368,7 +354,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    state = STATE_expect;
+                    state = TaskStatus.STATE_expect;
 
                     mCheckboxStateAll.setChecked(!isChecked);
                     mCheckboxStateProgress.setChecked(!isChecked);
@@ -384,7 +370,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    state = STATE_complete;
+                    state = TaskStatus.STATE_complete;
 
                     mCheckboxStateAll.setChecked(!isChecked);
                     mCheckboxStateProgress.setChecked(!isChecked);
@@ -400,7 +386,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    state = STATE_no_start;
+                    state = TaskStatus.STATE_no_start;
 
                     mCheckboxStateAll.setChecked(!isChecked);
                     mCheckboxStateProgress.setChecked(!isChecked);
@@ -416,7 +402,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    state = STATE_cancel;
+                    state = TaskStatus.STATE_cancel;
 
                     mCheckboxStateAll.setChecked(!isChecked);
                     mCheckboxStateProgress.setChecked(!isChecked);
@@ -432,7 +418,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    state = STATE_pause;
+                    state = TaskStatus.STATE_pause;
 
                     mCheckboxStateAll.setChecked(!isChecked);
                     mCheckboxStateProgress.setChecked(!isChecked);
@@ -448,7 +434,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    state = STATE_operation;
+                    state = TaskStatus.STATE_operation;
 
                     mCheckboxStateAll.setChecked(!isChecked);
                     mCheckboxStateProgress.setChecked(!isChecked);
@@ -466,7 +452,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    level = LEVEL_all;
+                    level = TaskLevel.LEVEL_all;
 
                     mCheckboxLevelImportant.setChecked(!isChecked);
                     mCheckboxLevelOrdinary.setChecked(!isChecked);
@@ -478,7 +464,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    level = LEVEL_important;
+                    level = TaskLevel.LEVEL_important;
 
                     mCheckboxLevelAll.setChecked(!isChecked);
                     mCheckboxLevelOrdinary.setChecked(!isChecked);
@@ -490,7 +476,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    level = LEVEL_ordinary;
+                    level = TaskLevel.LEVEL_ordinary;
 
                     mCheckboxLevelAll.setChecked(!isChecked);
                     mCheckboxLevelImportant.setChecked(!isChecked);
@@ -502,7 +488,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    level = LEVEL_urgent;
+                    level = TaskLevel.LEVEL_urgent;
 
                     mCheckboxLevelAll.setChecked(!isChecked);
                     mCheckboxLevelImportant.setChecked(!isChecked);
@@ -530,7 +516,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
                 break;
             case R.id.tv_reset:
                 mCheckboxStateAll.setChecked(true);
-                state = STATE_all;
+                state = TaskStatus.STATE_all;
 
 
                 mCheckboxStateProgress.setChecked(false);
@@ -542,7 +528,7 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
                 mCheckboxStateOperation.setChecked(false);
 
                 mCheckboxLevelAll.setChecked(true);
-                level = LEVEL_all;
+                level = TaskLevel.LEVEL_all;
 
                 mCheckboxLevelImportant.setChecked(false);
                 mCheckboxLevelOrdinary.setChecked(false);

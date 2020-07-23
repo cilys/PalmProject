@@ -16,6 +16,7 @@ import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.conf.TaskStatus;
 import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.activity.project.ProjectDetailActivity;
 import com.aopcloud.palmproject.ui.activity.project.ProjectTaskUpdateTeamActivity;
@@ -306,7 +307,7 @@ public class ArrangeTaskAc extends BaseAc {
         datas_task.clear();
         if (beanList != null) {
             for (ProjectTaskBean bean : beanList) {
-                if (HomeTaskFragment.STATE_no_plan.equals(bean.getStatus_str())){
+                if (TaskStatus.STATE_no_plan.equals(bean.getStatus_str())){
                     datas_task.add(bean);
                 }
             }

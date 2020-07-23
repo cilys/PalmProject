@@ -10,6 +10,7 @@ import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.conf.TaskStatus;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.aopcloud.palmproject.ui.activity.task.list.TaskListAc;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
@@ -145,7 +146,7 @@ public class TaskCountFragment extends BaseFragment {
             int doing = 0;
             for (ProjectTaskBean b : beanList){
                 String status = b.getStatus_str();
-                if (HomeTaskFragment.STATE_complete.equals(status)){
+                if (TaskStatus.STATE_complete.equals(status)){
                     done ++;
                 } else {
                     /*if (HomeTaskFragment.STATE_no_start.equals(status)
@@ -165,7 +166,7 @@ public class TaskCountFragment extends BaseFragment {
                             outTime ++;
                         }
                     }*/
-                    if (HomeTaskFragment.STATE_no_start.equals(status)){
+                    if (TaskStatus.STATE_no_start.equals(status)){
 
 
                         String endDate = b.getEnd_date();
@@ -179,8 +180,8 @@ public class TaskCountFragment extends BaseFragment {
                             undo ++;
                         }
 
-                    }else if (HomeTaskFragment.STATE_progress.equals(status)
-                            || HomeTaskFragment.STATE_operation.equals(status)) {
+                    }else if (TaskStatus.STATE_progress.equals(status)
+                            || TaskStatus.STATE_operation.equals(status)) {
                         doing ++;
                     }
                 }

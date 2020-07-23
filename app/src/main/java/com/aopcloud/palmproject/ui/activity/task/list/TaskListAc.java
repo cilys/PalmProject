@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.aopcloud.base.annotation.Layout;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.conf.TaskStatus;
 import com.aopcloud.palmproject.ui.activity.BaseAc;
 import com.aopcloud.palmproject.ui.adapter.feagment.AppFragmentPagerAdapter;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
@@ -145,13 +146,13 @@ public class TaskListAc extends BaseAc {
             tv_title_left.setText("未开始");
         }*/
         states = new String[6];
-        states[0] = HomeTaskFragment.STATE_all;
-        states[1] = HomeTaskFragment.STATE_no_start;
-        states[2] = HomeTaskFragment.STATE_progress;
-        states[3] = HomeTaskFragment.STATE_expect;
+        states[0] = TaskStatus.STATE_all;
+        states[1] = TaskStatus.STATE_no_start;
+        states[2] = TaskStatus.STATE_progress;
+        states[3] = TaskStatus.STATE_expect;
 //        states[4] = HomeTaskFragment.STATE_complete;
         states[4] = "待验收";
-        states[5] = HomeTaskFragment.STATE_pause;
+        states[5] = TaskStatus.STATE_pause;
         int defSelectItem = 0;
         if (HomeTaskFragment.STATE_DONE.equals(state)){
             tv_title_left.setText("待验收");
