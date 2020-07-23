@@ -34,6 +34,7 @@ import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.aopcloud.base.annotation.Layout;
+import com.aopcloud.base.common.BaseEvent;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.palmproject.BuildConfig;
@@ -66,6 +67,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import de.greenrobot.event.EventBus;
 import okhttp3.Call;
 
 /**
@@ -143,9 +145,18 @@ public class TaskReportLocationActivity extends BaseAc implements
     private List<MediaEntity> mMediaEntities = new ArrayList<>();
 
     private String task_id;
+    private String task_name;
     private int scope;
     private double task_latitude;
     private double task_longitude;
+
+
+
+
+
+
+
+    private String project_id, team_id, project_name;
 
     private List<DashboardAttendanceBean> mSignInBeanList = new ArrayList<>();
 
@@ -161,12 +172,19 @@ public class TaskReportLocationActivity extends BaseAc implements
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             task_id = bundle.getString("task_id");
+            task_name = bundle.getString("task_name");
             scope = bundle.getInt("scope");
             task_latitude = bundle.getDouble("latitude");
             task_longitude = bundle.getDouble("longitude");
             type = bundle.getString("type");
             String json = bundle.getString("json", "[]");
             mSignInBeanList = JSON.parseArray(json, DashboardAttendanceBean.class);
+
+
+
+            project_id = bundle.getString("project_id");
+            team_id = bundle.getString("team_id");
+            project_name = bundle.getString("project_name");
         }
     }
 
@@ -372,6 +390,21 @@ public class TaskReportLocationActivity extends BaseAc implements
             if (!TextUtils.isEmpty(attach)) {
                 map.put("attach", "" + attach);
             }
+            if ("0".equals(type) || "2".equals(type)){
+                //出勤
+                if (signMap == null){
+                    signMap = new HashMap<>();
+                }
+                signMap.clear();
+
+                signMap.put("userName", LoginUserUtil.getLoginUserBean(this).getName());
+                signMap.put("taskName", task_name);
+                signMap.put("project_id", project_id);
+                signMap.put("task_name", task_name);
+                signMap.put("team_id", team_id);
+                signMap.put("project_name", project_name);
+                signMap.putAll(map);
+            }
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.attendance_signup, map);
         } else if (eventTag == ApiConstants.EventTags.trajectory_add) {
             map.put("longitue", "" + longitude);
@@ -380,6 +413,7 @@ public class TaskReportLocationActivity extends BaseAc implements
             iCommonRequestPresenter.requestPost(eventTag, this, ApiConstants.trajectory_add, map);
         }
     }
+    private Map<String, String> signMap;
 
     @Override
     public void getRequestData(int eventTag, String result) {
@@ -387,6 +421,15 @@ public class TaskReportLocationActivity extends BaseAc implements
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.attendance_signup) {
+                if ("0".equals(type) || "2".equals(type)){
+                    LoginUserUtil.setSignup(this, getUserId(), signMap);
+                    EventBus.getDefault().post(new BaseEvent(BaseEvent.EVENT_ATTENDANCE_SIGNUP));
+                }
+                if ("1".equals(type) || "3".equals(type)){
+                    //退勤
+                    LoginUserUtil.remove(this, "signup_" + getUserId());
+                    EventBus.getDefault().post(new BaseEvent(BaseEvent.EVENT_ATTENDANCE_SIGNUP));
+                }
                 setResult(0);
                 finish();
             } else if (eventTag == ApiConstants.EventTags.trajectory_add) {

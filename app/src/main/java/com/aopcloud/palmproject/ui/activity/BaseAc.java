@@ -112,4 +112,8 @@ public abstract class BaseAc extends BaseActivity {
         }
         return map;
     }
+
+    protected String getUserId(){
+        return "" + LoginUserUtil.getLoginUserBean(this).getId();
+    }
 }

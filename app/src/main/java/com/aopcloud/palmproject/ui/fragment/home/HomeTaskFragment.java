@@ -35,7 +35,6 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
-import com.aopcloud.base.base.BaseFragment;
 import com.aopcloud.base.common.BaseEvent;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.base.util.ToastUtil;
@@ -51,6 +50,7 @@ import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.aopcloud.palmproject.ui.activity.task.TaskDetailActivity;
 import com.aopcloud.palmproject.ui.activity.task.TaskUpdateProgressActivity;
 import com.aopcloud.palmproject.ui.adapter.home.HomeTaskAdapter;
+import com.aopcloud.palmproject.ui.fragment.BaseFg;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.view.decoration.DividerItemDecoration;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -66,7 +66,6 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * @PackageName : com.aopcloud.palmproject.ui.fragment.home
@@ -75,9 +74,9 @@ import butterknife.Unbinder;
  * @Author : K
  * @E-mail : vip@devkit.vip
  * @Version : V 1.0
- * @Describe ：
+ * @Describe ：首页、任务（带地图）
  */
-public class HomeTaskFragment extends BaseFragment implements LocationSource
+public class HomeTaskFragment extends BaseFg implements LocationSource
         , AMapLocationListener
         , AMap.OnMarkerClickListener {
 
@@ -125,8 +124,13 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
     TextView mTvReset;
     @BindView(R.id.tv_sure)
     TextView mTvSure;
-    Unbinder unbinder;
 
+    @BindView(R.id.ll_float_task)
+    LinearLayout ll_float_task;
+    @BindView(R.id.tv_running_task_name)
+    TextView tv_running_task_name;
+    @BindView(R.id.tv_running_task_user)
+    TextView tv_running_task_user;
 
     private String cityCode;
     private double latitude;
@@ -197,6 +201,19 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
     protected void onVisible() {
         super.onVisible();
         toRequest(ApiConstants.EventTags.task_all);
+
+        showFloatTask();
+    }
+
+    private void showFloatTask(){
+        Map<String, String> signupParam = LoginUserUtil.getSignup(getActivity(), getUserId());
+        if (signupParam == null || signupParam.isEmpty()){
+            ll_float_task.setVisibility(View.GONE);
+        } else {
+            ll_float_task.setVisibility(View.VISIBLE);
+            tv_running_task_user.setText("负责：" + signupParam.get("userName"));
+            tv_running_task_name.setText("任务：" + signupParam.get("taskName"));
+        }
     }
 
     @Override
@@ -205,6 +222,8 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
 
         initMap();
         initLocation();
+
+        showFloatTask();
     }
     
     private void initMap() {
@@ -498,7 +517,9 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
         });
     }
 
-    @OnClick({R.id.tv_filter, R.id.ll_all, R.id.iv_refresh, R.id.checkbox_state_all, R.id.checkbox_level_all, R.id.tv_reset, R.id.tv_sure})
+    @OnClick({R.id.tv_filter, R.id.ll_all, R.id.iv_refresh,
+            R.id.checkbox_state_all, R.id.checkbox_level_all,
+            R.id.tv_reset, R.id.tv_sure, R.id.ll_float_task})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_filter:
@@ -547,6 +568,17 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
                     task_type = "1";
                 }
                 toRequest(ApiConstants.EventTags.task_all);
+                break;
+
+            case R.id.ll_float_task:
+                Map<String, String> signupParam = LoginUserUtil.getSignup(getActivity(), getUserId());
+                if (signupParam == null || signupParam.isEmpty()){
+                    return;
+                }
+                gotoTaskDetailActivity(signupParam.get("task_id"),
+                        signupParam.get("project_id"),
+                        signupParam.get("task_name"), signupParam.get("team_id"),
+                        signupParam.get("project_name"));
                 break;
         }
     }
@@ -780,6 +812,19 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
         });
     }
 
+    private void gotoTaskDetailActivity(String task_id, String project_id,
+                                        String task_name, String team_id, String project_name){
+        Bundle bundle = new Bundle();
+        bundle.putString("task_id", task_id);
+        bundle.putString("project_id", project_id);
+        bundle.putString("task_name", task_name);
+        bundle.putString("team_id", team_id);
+        bundle.putString("project_name", project_name);
+//                bundle.putString("project_tag", taskBean.get);
+//                bundle.putString("project_type", taskBean.getProj);
+        gotoActivity(TaskDetailActivity.class, bundle, 0);
+    }
+
 
     private int getStateColor(String status) {
 
@@ -849,6 +894,8 @@ public class HomeTaskFragment extends BaseFragment implements LocationSource
         } else if (postResult.type.equals(BaseEvent.EVENT_LOGOUT)) {
         } else if (postResult.type.equals(MassageEvent.SWITCH_COMPANY)) {
             toRequest(ApiConstants.EventTags.task_all);
+        } else if (BaseEvent.EVENT_ATTENDANCE_SIGNUP.equals(postResult.type)) {
+            showFloatTask();
         }
     }
 

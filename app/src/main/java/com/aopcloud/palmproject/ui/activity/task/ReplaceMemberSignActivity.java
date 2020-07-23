@@ -74,6 +74,10 @@ public class ReplaceMemberSignActivity extends BaseAc implements ReplaceMemberSi
     private double task_latitude;
     private double task_longitude;
     private int type = 0;
+    private String task_name;
+
+
+    private String team_id, project_name;
 
     @Override
     protected void initData() {
@@ -84,7 +88,12 @@ public class ReplaceMemberSignActivity extends BaseAc implements ReplaceMemberSi
             task_latitude = bundle.getDouble("latitude");
             task_longitude = bundle.getDouble("longitude");
             task_id = bundle.getString("task_id");
+            task_name = bundle.getString("task_name");
             project_id = bundle.getString("project_id");
+
+
+            team_id = bundle.getString("team_id");
+            project_name = bundle.getString("project_name");
         }
         toRequest(ApiConstants.EventTags.attendance_all);
     }
@@ -198,6 +207,11 @@ public class ReplaceMemberSignActivity extends BaseAc implements ReplaceMemberSi
                 bundle.putDouble("longitude", task_latitude);
                 bundle.putDouble("latitude", task_longitude);
                 bundle.putString("task_id", task_id);
+                bundle.putString("task_name", task_name);
+
+                bundle.putString("project_id", project_id);
+                bundle.putString("team_id", team_id);
+                bundle.putString("project_name", project_name);
                 gotoActivity(TaskReportLocationActivity.class, bundle, 0);
                 finish();
                 break;

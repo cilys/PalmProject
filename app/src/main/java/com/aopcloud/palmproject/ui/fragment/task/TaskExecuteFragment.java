@@ -168,6 +168,7 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
     private List<TrailBean> mTrailBeans = new ArrayList<>();
 
     private String project_name, project_tag, project_type;
+    private String task_name, team_id;
 
 
     public static TaskExecuteFragment getInstance(String task_id, String project_id) {
@@ -185,11 +186,14 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
         Bundle bundle = getArguments();
         if (bundle != null) {
             task_id = bundle.getString("task_id");
+            task_name = bundle.getString("task_name");
             project_id = bundle.getString("project_id");
 
             project_name = bundle.getString("project_name");
             project_tag = bundle.getString("project_tag");
             project_type = bundle.getString("project_type");
+
+            team_id = bundle.getString("team_id");
         }
         toRequest(ApiConstants.EventTags.task_get);
         toRequest(ApiConstants.EventTags.trajectory_all);
@@ -452,6 +456,11 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
                                 bundle.putDouble("longitude", Double.valueOf(mTaskDetailBean.getLongitue()));
                                 bundle.putDouble("latitude", Double.valueOf(mTaskDetailBean.getLatitude()));
                                 bundle.putString("task_id", task_id);
+                                bundle.putString("task_name", task_name);
+
+                                bundle.putString("project_id", project_id);
+                                bundle.putString("team_id", team_id);
+                                bundle.putString("project_name", project_name);
                                 gotoActivity(TaskReportLocationActivity.class, bundle, 0);
                                 dialog.dismiss();
                             }
@@ -467,6 +476,11 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
                 bundle.putDouble("longitude", Double.valueOf(mTaskDetailBean.getLongitue()));
                 bundle.putDouble("latitude", Double.valueOf(mTaskDetailBean.getLatitude()));
                 bundle.putString("task_id", task_id);
+                bundle.putString("task_name", task_name);
+
+                bundle.putString("project_id", project_id);
+                bundle.putString("team_id", team_id);
+                bundle.putString("project_name", project_name);
                 gotoActivity(TaskReportLocationActivity.class, bundle, 0);
                 break;
             case R.id.ll_finish:
@@ -489,6 +503,11 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
                                     bundle.putDouble("longitude", Double.valueOf(mTaskDetailBean.getLongitue()));
                                     bundle.putDouble("latitude", Double.valueOf(mTaskDetailBean.getLatitude()));
                                     bundle.putString("task_id", task_id);
+                                    bundle.putString("task_name", task_name);
+
+                                    bundle.putString("project_id", project_id);
+                                    bundle.putString("team_id", team_id);
+                                    bundle.putString("project_name", project_name);
                                     gotoActivity(TaskReportLocationActivity.class, bundle, 0);
                                 }
                                 dialog.dismiss();
@@ -534,10 +553,15 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
 
                 bundle = new Bundle();
                 bundle.putString("task_id", task_id);
+                bundle.putString("task_name", task_name);
                 bundle.putString("project_id", project_id);
                 bundle.putInt("scope", scope);
                 bundle.putDouble("longitude", Double.valueOf(mTaskDetailBean.getLongitue()));
                 bundle.putDouble("latitude", Double.valueOf(mTaskDetailBean.getLatitude()));
+
+
+                bundle.putString("team_id", team_id);
+                bundle.putString("project_name", project_name);
                 gotoActivity(ReplaceMemberSignActivity.class, bundle, 0);
                 break;
         }
@@ -555,6 +579,7 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
                         bundle.putString("type", "2");
                         bundle.putInt("scope", scope);
                         bundle.putString("task_id", task_id);
+                        bundle.putString("task_name", task_name);
                         gotoActivity(ReplaceMemberSignActivity.class, bundle, 0);
                         dialog.dismiss();
                     }
@@ -566,6 +591,11 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
                         bundle.putString("type", "2");
                         bundle.putInt("scope", scope);
                         bundle.putString("task_id", task_id);
+                        bundle.putString("task_name", task_name);
+
+                        bundle.putString("project_id", project_id);
+                        bundle.putString("team_id", team_id);
+                        bundle.putString("project_name", project_name);
                         gotoActivity(TaskReportLocationActivity.class, bundle, 0);
                         dialog.dismiss();
                     }

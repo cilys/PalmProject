@@ -5,8 +5,12 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.aopcloud.palmproject.bean.UserBean;
 import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseListBean;
+import com.cily.utils.base.StrUtils;
+
+import java.util.Map;
 
 /**
  * @PackageName : com.aopcloud.palmproject.utils
@@ -125,4 +129,37 @@ public class LoginUserUtil {
         SharedPreferencesUtils.removeSP(context, "Enterprise");
     }
 
+    public static void setSignup(Context cx, String userId, Map<String, String> param){
+        if (cx == null || param == null || StrUtils.isEmpty(userId)){
+            return;
+        }
+        SharedPreferencesUtils.setSP(cx, "signup_" + userId, JSON.toJSONString(param));
+    }
+    public static Map<String, String> getSignup(Context cx, String userId){
+        if (cx == null || StrUtils.isEmpty(userId)){
+            return null;
+        }
+        String str = (String)SharedPreferencesUtils.getSP(cx, "signup_" + userId, "");
+        if (StrUtils.isEmpty(str)){
+            return null;
+        }
+        return JSON.parseObject(str, new TypeReference<Map<String, String>>(){}.getType());
+    }
+    public static String getSignupParam(Context cx, String userId, String key, String defValue){
+        if (cx == null || StrUtils.isEmpty(userId) || StrUtils.isEmpty(key)){
+            return defValue;
+        }
+        Map<String, String> map = getSignup(cx, userId);
+        if (map == null) {
+            return defValue;
+        }
+        return map.get(key);
+    }
+
+    public static void remove(Context cx, String key){
+        if (cx == null || StrUtils.isEmpty(key)){
+            return;
+        }
+        SharedPreferencesUtils.removeSP(cx, key);
+    }
 }

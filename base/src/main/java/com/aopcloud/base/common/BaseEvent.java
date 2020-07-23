@@ -13,6 +13,7 @@ public class BaseEvent {
 
     public static String EVENT_LOGIN ="1";
     public static String EVENT_LOGOUT ="2";
+    public static String EVENT_ATTENDANCE_SIGNUP = "101";
 
 
     public String type;

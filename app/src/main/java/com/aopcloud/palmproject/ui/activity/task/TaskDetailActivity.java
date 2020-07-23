@@ -91,10 +91,12 @@ public class TaskDetailActivity extends BaseAc {
         TaskExecuteFragment taskExecuteFragment = new TaskExecuteFragment();
         Bundle taskExecuteFragmentBundle = new Bundle();
         taskExecuteFragmentBundle.putString("task_id", task_id);
+        taskExecuteFragmentBundle.putString("task_name", task_name);
         taskExecuteFragmentBundle.putString("project_id", project_id);
         taskExecuteFragmentBundle.putString("project_name", project_name);
         taskExecuteFragmentBundle.putString("project_tag", project_tag);
         taskExecuteFragmentBundle.putString("project_type", project_type);
+        taskExecuteFragmentBundle.putString("team_id", team_id);
         taskExecuteFragment.setArguments(taskExecuteFragmentBundle);
         mFragments.add(taskExecuteFragment);
 
