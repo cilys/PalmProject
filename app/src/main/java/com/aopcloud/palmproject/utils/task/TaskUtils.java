@@ -2,6 +2,7 @@ package com.aopcloud.palmproject.utils.task;
 
 import com.aopcloud.palmproject.conf.TaskStatus;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
+import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskDetailBean;
 import com.aopcloud.palmproject.ui.fragment.home.HomeProjectFragment;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
 import com.aopcloud.palmproject.ui.fragment.project.DashboardFragment;
@@ -75,6 +76,13 @@ public class TaskUtils {
             return "";
         }
 
+        return bean.getCalculateStatus();
+    }
+
+    public static String getTaskDetailState(ProjectTaskDetailBean bean){
+        if (bean == null){
+            return "";
+        }
         return bean.getCalculateStatus();
     }
 

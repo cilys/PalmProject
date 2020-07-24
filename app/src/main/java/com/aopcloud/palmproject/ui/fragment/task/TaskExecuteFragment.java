@@ -55,6 +55,7 @@ import com.aopcloud.palmproject.ui.activity.task.TaskUpdateProgressActivity;
 import com.aopcloud.palmproject.ui.activity.task.bean.TrailBean;
 import com.aopcloud.palmproject.utils.ListUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
+import com.aopcloud.palmproject.utils.task.TaskUtils;
 import com.aopcloud.palmproject.view.CircleImageView;
 import com.aopcloud.palmproject.view.TipsDialog;
 import com.bumptech.glide.Glide;
@@ -239,7 +240,7 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
         task_longitude = Double.valueOf(detailBean.getLongitue());
 
         mTvCountUnit.setText(mTaskDetailBean.getWork_value_finished() + "/" + mTaskDetailBean.getWork_value() + mTaskDetailBean.getWork_unit());
-        mTvState.setText(mTaskDetailBean.getStatus_str());
+        mTvState.setText(TaskUtils.getTaskDetailState(mTaskDetailBean));
         mTvProgress.setText(mTaskDetailBean.getProgress() + "%");
         mTvStartTime.setText(mTaskDetailBean.getStart_date());
         mTvEndTime.setText(mTaskDetailBean.getEnd_date());
@@ -275,17 +276,19 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
             mIvEdit.setVisibility(View.INVISIBLE);
         }
 
-        if (mTaskDetailBean.getStatus_str().equals("未开始")) {
+//        String state = mTaskDetailBean.getStatus_str();
+        String state = TaskUtils.getTaskDetailState(mTaskDetailBean);
+        if (state.equals("未开始")) {
             addMarker(mTaskDetailBean, R.mipmap.icon_task_no_started);
-        } else if (mTaskDetailBean.getStatus_str().equals("进行中")) {
+        } else if (state.equals("进行中")) {
             addMarker(mTaskDetailBean, R.mipmap.icon_task_progress);
-        } else if (mTaskDetailBean.getStatus_str().equals("作业中")) {
+        } else if (state.equals("作业中")) {
             addMarker(mTaskDetailBean, R.mipmap.icon_task_progress);
-        } else if (mTaskDetailBean.getStatus_str().equals("进行中")) {
+        } else if (state.equals("进行中")) {
             addMarker(mTaskDetailBean, R.mipmap.icon_task_progress);
-        } else if (mTaskDetailBean.getStatus_str().equals("已逾期")) {
+        } else if (state.equals("已逾期")) {
             addMarker(mTaskDetailBean, R.mipmap.icon_task_incomplete);
-        } else if (mTaskDetailBean.getStatus_str().equals("已完成")) {
+        } else if (state.equals("已完成")) {
             addMarker(mTaskDetailBean, R.mipmap.icon_task_complete);
         }
     }

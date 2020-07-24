@@ -37,6 +37,7 @@ import com.aopcloud.palmproject.ui.adapter.project.ProjectTaskTrendsAdapter;
 import com.aopcloud.palmproject.ui.adapter.project.SpinnerTeamAdapter;
 import com.aopcloud.palmproject.utils.LbsUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
+import com.aopcloud.palmproject.utils.task.TaskUtils;
 import com.aopcloud.palmproject.view.PopContextMenu;
 import com.aopcloud.palmproject.view.decoration.DividerItemDecoration;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
@@ -177,8 +178,8 @@ public class ProjectTaskDetailActivity extends BaseAc {
         mTvProjectName.setText("" + mTaskDetailBean.getProject_name());
         mTvTaskName.setText("" + mTaskDetailBean.getName());
         mTvCountUnit.setText("" + mTaskDetailBean.getWork_value_finished() + "/" + mTaskDetailBean.getWork_value() + "" + mTaskDetailBean.getWork_unit());
-        mTvState.setText(mTaskDetailBean.getStatus_str());
-        mTvState.setTextColor(getStateColor(mTaskDetailBean.getStatus_str()));
+        mTvState.setText(TaskUtils.getTaskDetailState(mTaskDetailBean));
+        mTvState.setTextColor(getStateColor(TaskUtils.getTaskDetailState(mTaskDetailBean)));
         mTvAddress.setText("" + mTaskDetailBean.getAddress());
         mTvDemand.setText("" + mTaskDetailBean.getWork_des());
 
@@ -214,7 +215,7 @@ public class ProjectTaskDetailActivity extends BaseAc {
             }
         });
 
-        if (mTaskDetailBean.getStatus_str().equals("未安排")) {
+        if (TaskUtils.getTaskDetailState(mTaskDetailBean).equals("未安排")) {
             mTvProgress.setVisibility(View.GONE);
             mLlAssign.setVisibility(View.GONE);
 
@@ -226,7 +227,6 @@ public class ProjectTaskDetailActivity extends BaseAc {
             mTvProgress.setVisibility(View.VISIBLE);
             mTvDiscuss.setVisibility(View.VISIBLE);
             mTvPlanEdit.setVisibility(View.VISIBLE);
-
 
             String startTime = mTaskDetailBean.getStart_date();
             String endTime = mTaskDetailBean.getEnd_date();

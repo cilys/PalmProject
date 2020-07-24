@@ -41,6 +41,7 @@ import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskDetailBean;
 import com.aopcloud.palmproject.ui.adapter.file.FileListAdapter;
 import com.aopcloud.palmproject.utils.JsonUtil;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
+import com.aopcloud.palmproject.utils.task.TaskUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cily.utils.base.StrUtils;
 import com.guoxiaoxing.phoenix.core.PhoenixOption;
@@ -161,7 +162,7 @@ public class TaskLocationAdjustActivity extends BaseAc implements
         if (mTaskDetailBean != null) {
             mRlTaskInfo.setVisibility(View.VISIBLE);
             mTvTaskTime.setText(mTaskDetailBean.getStart_date());
-            mTvTaskState.setText(mTaskDetailBean.getStatus_str());
+            mTvTaskState.setText(TaskUtils.getTaskDetailState(mTaskDetailBean));
             mTvTaskLeader.setText(mTaskDetailBean.getLeader_name());
             mTvTaskAddress.setText(mTaskDetailBean.getAddress());
             mTvProgress.setText("" + mTaskDetailBean.getProgress() + "%");
