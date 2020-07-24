@@ -3,6 +3,7 @@ package com.aopcloud.palmproject.ui.activity;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.base.BaseActivity;
 import com.aopcloud.palmproject.api.ApiConstants;
+import com.aopcloud.palmproject.bean.UserBean;
 import com.aopcloud.palmproject.bean.WeatherBean;
 import com.aopcloud.palmproject.net.BaseRequestListener;
 import com.aopcloud.palmproject.net.HttpUtils;
@@ -114,6 +115,7 @@ public abstract class BaseAc extends BaseActivity {
     }
 
     protected String getUserId(){
-        return "" + LoginUserUtil.getLoginUserBean(this).getId();
+        UserBean ub = LoginUserUtil.getLoginUserBean(this);
+        return ub == null ? "" : "" + ub.getId();
     }
 }

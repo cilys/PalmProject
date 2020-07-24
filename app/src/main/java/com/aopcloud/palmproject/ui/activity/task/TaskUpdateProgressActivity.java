@@ -245,8 +245,6 @@ public class TaskUpdateProgressActivity extends BaseAc implements FileListAdapte
             entities.remove(position);
             mMediaEntities.clear();
             mMediaEntities.addAll(entities);
-            Log.w(TAG, "-1--" + JSON.toJSONString(entities));
-            Log.d(TAG, "--2-" + JSON.toJSONString(mMediaEntities));
             mFileListAdapter.notifyDataSetChanged();
         }
     }

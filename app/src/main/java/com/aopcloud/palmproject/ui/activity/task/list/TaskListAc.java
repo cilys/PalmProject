@@ -2,6 +2,7 @@ package com.aopcloud.palmproject.ui.activity.task.list;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -76,75 +77,7 @@ public class TaskListAc extends BaseAc {
 
         NoScrollViewPager noVp = (NoScrollViewPager)findViewById(R.id.noVp);
         String[] states = null;
-        /*if (HomeTaskFragment.STATE_DONE.equals(state)){
-            states = new String[3];
-            states[0] = HomeTaskFragment.STATE_all;
-            states[1] = HomeTaskFragment.STATE_DONE_IN_TIME;
-            states[2] = HomeTaskFragment.STATE_DONE_OUT_OF_TIME;
 
-            rbts[0].setText(states[0]);
-            rbts[1].setText(states[1]);
-            rbts[2].setText(states[2]);
-
-            rbts[3].setVisibility(View.GONE);
-            rbts[4].setVisibility(View.GONE);
-            rbts[5].setVisibility(View.GONE);
-
-            tv_title_left.setText("已完成");
-        } else if (HomeTaskFragment.STATE_DOING.equals(state)) {
-            states = new String[3];
-            states[0] = HomeTaskFragment.STATE_all;
-            states[1] = HomeTaskFragment.STATE_DOING_IN;
-            states[2] = HomeTaskFragment.STATE_DOING_ZUOYE;
-
-            rbts[0].setText(states[0]);
-            rbts[1].setText(states[1]);
-            rbts[2].setText(states[2]);
-
-            rbts[3].setVisibility(View.GONE);
-            rbts[4].setVisibility(View.GONE);
-            rbts[5].setVisibility(View.GONE);
-
-            tv_title_left.setText("进行中");
-        } else if (HomeTaskFragment.STATE_OUT_OF_TIME.equals(state)
-                || HomeTaskFragment.STATE_ALL.equals(state)){
-            states = new String[6];
-            states[0] = HomeTaskFragment.STATE_all;
-            states[1] = HomeTaskFragment.STATE_no_start;
-            states[2] = HomeTaskFragment.STATE_progress;
-            states[3] = HomeTaskFragment.STATE_operation;
-            states[4] = HomeTaskFragment.STATE_pause;
-            states[5] = HomeTaskFragment.STATE_complete;
-
-            rbts[0].setText(states[0]);
-            rbts[1].setText(states[1]);
-            rbts[2].setText(states[2]);
-            rbts[3].setText(states[3]);
-            rbts[4].setText(states[4]);
-            rbts[5].setText(states[5]);
-
-            if (HomeTaskFragment.STATE_ALL.equals(state)){
-                tv_title_left.setText("全部");
-            }else {
-                tv_title_left.setText("已逾期");
-            }
-        } else {
-            states = new String[5];
-            states[0] = HomeTaskFragment.STATE_all;
-            states[1] = HomeTaskFragment.STATE_no_start;
-            states[2] = HomeTaskFragment.STATE_progress;
-            states[3] = HomeTaskFragment.STATE_operation;
-            states[4] = HomeTaskFragment.STATE_pause;
-
-            rbts[0].setText(states[0]);
-            rbts[1].setText(states[1]);
-            rbts[2].setText(states[2]);
-            rbts[3].setText(states[3]);
-            rbts[4].setText(states[4]);
-            rbts[5].setVisibility(View.GONE);
-
-            tv_title_left.setText("未开始");
-        }*/
         states = new String[6];
         states[0] = TaskStatus.STATE_all;
         states[1] = TaskStatus.STATE_no_start;
@@ -178,7 +111,11 @@ public class TaskListAc extends BaseAc {
         for (int i = 0; i < states.length; i++) {
             TaskListFg fg = new TaskListFg();
             Bundle bundle = new Bundle();
-            bundle.putString("state", states[i]);
+            if ("待验收".equals(states[i])){
+                bundle.putString("state", TaskStatus.STATE_complete);
+            }else {
+                bundle.putString("state", states[i]);
+            }
 //            if (i == 0) {
 //                bundle.putString("state", DashboardFragment.STATUS_ALL);
 //            } else if (i == 1){
@@ -214,11 +151,18 @@ public class TaskListAc extends BaseAc {
         noVp.setAdapter(adapter);
         noVp.setCurrentItem(defSelectItem);
         rbts[defSelectItem].setChecked(true);
-        if (defSelectItem >= 3){
-            hsv.smoothScrollTo(3000, 0);
-        } else if (defSelectItem <= 2){
-            hsv.smoothScrollTo(-50, 0);
-        }
+        final int defItem = defSelectItem;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (defItem >= 3){
+                    hsv.smoothScrollTo(3000, 0);
+                } else if (defItem <= 2){
+                    hsv.smoothScrollTo(-50, 0);
+                }
+            }
+        }, 100);
+
 
         noVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

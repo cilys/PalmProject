@@ -15,6 +15,7 @@ import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.aopcloud.palmproject.ui.activity.task.list.TaskListAc;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
+import com.aopcloud.palmproject.utils.task.TaskUtils;
 import com.cily.utils.base.time.TimeType;
 import com.cily.utils.base.time.TimeUtils;
 
@@ -145,30 +146,11 @@ public class TaskCountFragment extends BaseFragment {
             int outTime = 0;
             int doing = 0;
             for (ProjectTaskBean b : beanList){
-                String status = b.getStatus_str();
+                String status = TaskUtils.getState(b);
                 if (TaskStatus.STATE_complete.equals(status)){
                     done ++;
                 } else {
-                    /*if (HomeTaskFragment.STATE_no_start.equals(status)
-                            || HomeTaskFragment.STATE_progress.equals(status)
-                            || HomeTaskFragment.STATE_operation.equals(status)
-                            || HomeTaskFragment.STATE_pause.equals(status)){
-                        if (HomeTaskFragment.STATE_progress.equals(status)
-                                || HomeTaskFragment.STATE_operation.equals(status)){
-                            doing ++;
-                        }else {
-                            undo++;
-                        }
-
-                        String endDate = b.getEnd_date();
-                        long ed = TimeUtils.strToMil(endDate, TimeType.DAY_LINE, 0L);;
-                        if (System.currentTimeMillis() > ed) {
-                            outTime ++;
-                        }
-                    }*/
                     if (TaskStatus.STATE_no_start.equals(status)){
-
-
                         String endDate = b.getEnd_date();
                         String realEndDate = b.getEnd_date_real();
 
@@ -180,9 +162,10 @@ public class TaskCountFragment extends BaseFragment {
                             undo ++;
                         }
 
-                    }else if (TaskStatus.STATE_progress.equals(status)
-                            || TaskStatus.STATE_operation.equals(status)) {
+                    } else if (TaskStatus.STATE_progress.equals(status) || TaskStatus.STATE_operation.equals(status)) {
                         doing ++;
+                    } else if (TaskStatus.STATE_expect.equals(status)) {
+                        outTime ++;
                     }
                 }
             }

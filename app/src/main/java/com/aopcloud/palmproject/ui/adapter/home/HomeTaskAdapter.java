@@ -7,6 +7,7 @@ import com.amap.api.maps.model.LatLng;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
+import com.aopcloud.palmproject.utils.task.TaskUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -68,20 +69,23 @@ public class HomeTaskAdapter extends BaseQuickAdapter<ProjectTaskBean, BaseViewH
         LatLng latLng2 = new LatLng(task_latitude, task_longitude);
         int distance = (int) AMapUtils.calculateLineDistance(latLng1, latLng2);
 
+//        String state = item.getStatus_str();
+        String state = TaskUtils.getState(item);
+
         helper.setText(R.id.tv_name, item.getName())
                 .setText(R.id.tv_leader_name, item.getLeader_name())
                 .setText(R.id.tv_time, item.getStart_date() + "-" + item.getEnd_date())
                 .setText(R.id.tv_days, ""+days)
                 .setText(R.id.tv_count_unit, item.getWork_value() + "/" + item.getWork_unit())
                 .setText(R.id.tv_progress, item.getProgress() + "%")
-                .setText(R.id.tv_state, item.getStatus_str())
+                .setText(R.id.tv_state, state)
                 .setText(R.id.tv_address, item.getAddress())
                 .setText(R.id.tv_distance, distance>1000?"距你"+(distance/1000)+"km":"距你"+distance+"米")
-                .setTextColor(R.id.tv_days,item.getStatus_str().equals("已逾期")?ResourceUtil.getColor("#FFF90C0C"):ResourceUtil.getColor("#FF3291F8"))
-                .setTextColor(R.id.tv_state, getStateColor(item.getStatus_str()))
-                .setVisible(R.id.tv_time, !item.getStatus_str().equals("未安排"))
-                .setVisible(R.id.tv_days, item.getStatus_str().equals("已逾期") || item.getStatus_str().equals("进行中") || item.getStatus_str().equals("作业中"))
-                .setVisible(R.id.tv_progress, !item.getStatus_str().equals("未安排"))
+                .setTextColor(R.id.tv_days,state.equals("已逾期")?ResourceUtil.getColor("#FFF90C0C"):ResourceUtil.getColor("#FF3291F8"))
+                .setTextColor(R.id.tv_state, getStateColor(state))
+                .setVisible(R.id.tv_time, !state.equals("未安排"))
+                .setVisible(R.id.tv_days, state.equals("已逾期") || state.equals("进行中") || state.equals("作业中"))
+                .setVisible(R.id.tv_progress, !state.equals("未安排"))
         ;
 
     }

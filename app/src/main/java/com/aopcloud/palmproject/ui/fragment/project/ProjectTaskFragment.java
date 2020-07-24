@@ -38,6 +38,7 @@ import com.aopcloud.palmproject.ui.adapter.base.ViewHolder;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectTaskAdapter;
 import com.aopcloud.palmproject.ui.adapter.project.SpinnerTeamAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
+import com.aopcloud.palmproject.utils.task.TaskUtils;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
@@ -148,7 +149,8 @@ public class ProjectTaskFragment extends BaseFragment implements TextView.OnEdit
             mBeanList.addAll(mAllList);
         } else {
             for (int i = 0; i < mAllList.size(); i++) {
-                if (type.equals(mAllList.get(i).getStatus_str())) {
+//                if (type.equals(mAllList.get(i).getStatus_str())) {
+                if (type.equals(TaskUtils.getState(mAllList.get(i)))) {
                     mBeanList.add(mAllList.get(i));
                 }
             }
@@ -311,7 +313,8 @@ public class ProjectTaskFragment extends BaseFragment implements TextView.OnEdit
 
         List list = new ArrayList();
         for (int i = 0; i <mAllList.size() ; i++) {
-            if (mAllList.get(i).getStatus_str().contains("未安排")){
+//            if (mAllList.get(i).getStatus_str().contains("未安排")){
+            if (TaskUtils.getState(mAllList.get(i)).contains("未安排")){
                 list.add(mAllList.get(i));
             }
         }

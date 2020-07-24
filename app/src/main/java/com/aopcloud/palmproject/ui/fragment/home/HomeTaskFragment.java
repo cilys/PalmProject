@@ -52,6 +52,7 @@ import com.aopcloud.palmproject.ui.activity.task.TaskUpdateProgressActivity;
 import com.aopcloud.palmproject.ui.adapter.home.HomeTaskAdapter;
 import com.aopcloud.palmproject.ui.fragment.BaseFg;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
+import com.aopcloud.palmproject.utils.task.TaskUtils;
 import com.aopcloud.palmproject.view.decoration.DividerItemDecoration;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cily.utils.base.StrUtils;
@@ -279,7 +280,7 @@ public class HomeTaskFragment extends BaseFg implements LocationSource
 
         List<ProjectTaskBean> ls = new ArrayList<>();
         for (ProjectTaskBean b : mAllList) {
-            String state_str = b.getStatus_str();
+            String state_str = TaskUtils.getState(b);
             String level_str = b.getLevel();
 
             if (state_str == null || state_str.equals("")) {
@@ -305,17 +306,19 @@ public class HomeTaskFragment extends BaseFg implements LocationSource
         mTvCount.setText("" + ls.size());
 
         for (int i = 0; i < mAllList.size(); i++) {
-            if (mAllList.get(i).getStatus_str().equals("未开始")) {
+//            String state = mAllList.get(i).getStatus_str();
+            String state = TaskUtils.getState(mAllList.get(i));
+            if (state.equals("未开始")) {
                 addMarker(mAllList.get(i), R.mipmap.icon_task_no_started);
-            } else if (mAllList.get(i).getStatus_str().equals("进行中")) {
+            } else if (state.equals("进行中")) {
                 addMarker(mAllList.get(i), R.mipmap.icon_task_progress);
-            } else if (mAllList.get(i).getStatus_str().equals("作业中")) {
+            } else if (state.equals("作业中")) {
                 addMarker(mAllList.get(i), R.mipmap.icon_task_progress);
-            } else if (mAllList.get(i).getStatus_str().equals("进行中")) {
+            } else if (state.equals("进行中")) {
                 addMarker(mAllList.get(i), R.mipmap.icon_task_progress);
-            } else if (mAllList.get(i).getStatus_str().equals("已逾期")) {
+            } else if (state.equals("已逾期")) {
                 addMarker(mAllList.get(i), R.mipmap.icon_task_incomplete);
-            } else if (mAllList.get(i).getStatus_str().equals("已完成")) {
+            } else if (state.equals("已完成")) {
                 addMarker(mAllList.get(i), R.mipmap.icon_task_complete);
             }
         }
@@ -768,21 +771,24 @@ public class HomeTaskFragment extends BaseFg implements LocationSource
         LatLng latLng2 = new LatLng(latitude, longitude);
         int distance = (int) AMapUtils.calculateLineDistance(latLng1, latLng2);
 
+//        String state = taskBean.getStatus_str();
+        String state = TaskUtils.getState(taskBean);
+
         mTvName.setText("" + taskBean.getName());
         mTvLeaderName.setText("" + taskBean.getLeader_name());
         mTvTime.setText("" + taskBean.getStart_date() + "-" + taskBean.getEnd_date());
         mTvDays.setText("" + days);
         mTvCountUnit.setText("" + taskBean.getWork_value() + "/" + taskBean.getWork_unit());
         mTvProgress.setText("" + taskBean.getProgress() + "%");
-        mTvState.setText("" + taskBean.getStatus_str());
+        mTvState.setText("" + state);
         mTvAddress.setText("" + taskBean.getAddress());
         mTvDistance.setText(distance > 1000 ? "距你" + (distance / 1000) + "km" : "距你" + distance + "米");
 
-        mTvDays.setTextColor(taskBean.getStatus_str().equals("已逾期") ? ResourceUtil.getColor("#FFF90C0C") : ResourceUtil.getColor("#FF3291F8"));
-        mTvState.setTextColor(getStateColor(taskBean.getStatus_str()));
-        mTvTime.setVisibility(!taskBean.getStatus_str().equals("未安排") ? View.VISIBLE : View.GONE);
-        mTvDays.setVisibility(taskBean.getStatus_str().equals("已逾期") || taskBean.getStatus_str().equals("进行中") || taskBean.getStatus_str().equals("作业中") ? View.VISIBLE : View.GONE);
-        mTvProgress.setVisibility(!taskBean.getStatus_str().equals("未安排") ? View.VISIBLE : View.GONE);
+        mTvDays.setTextColor(state.equals("已逾期") ? ResourceUtil.getColor("#FFF90C0C") : ResourceUtil.getColor("#FF3291F8"));
+        mTvState.setTextColor(getStateColor(state));
+        mTvTime.setVisibility(!state.equals("未安排") ? View.VISIBLE : View.GONE);
+        mTvDays.setVisibility(state.equals("已逾期") || state.equals("进行中") || state.equals("作业中") ? View.VISIBLE : View.GONE);
+        mTvProgress.setVisibility(!state.equals("未安排") ? View.VISIBLE : View.GONE);
 
         dialog.findViewById(R.id.tv_edit).setOnClickListener(new View.OnClickListener() {
             @Override

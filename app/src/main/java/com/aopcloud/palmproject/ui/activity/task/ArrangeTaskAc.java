@@ -27,6 +27,7 @@ import com.aopcloud.palmproject.ui.adapter.home.HomeTaskAdapter;
 import com.aopcloud.palmproject.ui.fragment.home.HomeProjectFragment;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
+import com.aopcloud.palmproject.utils.task.TaskUtils;
 import com.aopcloud.palmproject.view.decoration.DividerItemDecoration;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.listener.OnTimeSelectListener;
@@ -307,7 +308,7 @@ public class ArrangeTaskAc extends BaseAc {
         datas_task.clear();
         if (beanList != null) {
             for (ProjectTaskBean bean : beanList) {
-                if (TaskStatus.STATE_no_plan.equals(bean.getStatus_str())){
+                if (TaskStatus.STATE_no_plan.equals(TaskUtils.getState(bean))){
                     datas_task.add(bean);
                 }
             }

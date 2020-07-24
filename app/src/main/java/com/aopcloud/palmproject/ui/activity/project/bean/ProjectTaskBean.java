@@ -2,6 +2,11 @@ package com.aopcloud.palmproject.ui.activity.project.bean;
 
 import android.text.TextUtils;
 
+import com.aopcloud.palmproject.conf.TaskStatus;
+import com.cily.utils.base.StrUtils;
+import com.cily.utils.base.time.TimeType;
+import com.cily.utils.base.time.TimeUtils;
+
 /**
  * @PackageName : com.aopcloud.palmproject.ui.activity.project.bean
  * @File : ProjectTaskBean.java
@@ -285,5 +290,69 @@ public class ProjectTaskBean {
 
     public void setEnd_date_real(String end_date_real) {
         this.end_date_real = end_date_real;
+    }
+
+    /**
+     * 经过计算后的任务状态
+     */
+    private String calculateStatus;
+    /**
+     * 经过计算后的超期天数，>= 0，未逾期，< 0逾期的天数
+     */
+    private long outOfDay;
+    public void setCalculateStatus(String calculateStatus) {
+        this.calculateStatus = calculateStatus;
+    }
+
+    public String getCalculateStatus() {
+        if (StrUtils.isEmpty(calculateStatus)){
+            calculateStatus = calculateStatus();
+        }
+        return calculateStatus;
+    }
+
+    public void setOutOfDay(long outOfDay) {
+        this.outOfDay = outOfDay;
+    }
+
+    public long getOutOfDay() {
+        return outOfDay;
+    }
+
+    private String calculateStatus(){
+        if (StrUtils.isEmpty(getStatus_str())){
+            return getStatus_str();
+        }
+        if (TaskStatus.STATE_complete.equals(getStatus_str())){
+            return getStatus_str();
+        }
+        if (TaskStatus.STATE_pause.equals(getStatus_str()) || getStatus_str().contains("暂停")){
+            return getStatus_str();
+        }
+        if (TaskStatus.STATE_progress.equals(getStatus_str())
+                || TaskStatus.STATE_operation.equals(getStatus_str())) {
+            if (getProgress() >= 100){
+                return TaskStatus.STATE_complete;
+            }
+        }
+
+        long cd = System.currentTimeMillis();
+        long ed = TimeUtils.strToMil(getEnd_date(), TimeType.DAY_LINE, cd);
+        if (ed < cd){
+            outOfDay = (cd - ed) / (1000 * 60* 60 * 24);
+            return TaskStatus.STATE_expect;
+        }
+        if (TaskStatus.STATE_progress.equals(getStatus_str())
+                || TaskStatus.STATE_operation.equals(getStatus_str())) {
+            if (getProgress() >= 100){
+                return TaskStatus.STATE_complete;
+            }
+            return TaskStatus.STATE_progress;
+        }
+        if (TaskStatus.STATE_no_start.equals(getStatus_str())){
+            return getStatus_str();
+        }
+
+        return getStatus_str();
     }
 }

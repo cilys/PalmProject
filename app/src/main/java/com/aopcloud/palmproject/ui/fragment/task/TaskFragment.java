@@ -25,6 +25,7 @@ import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.aopcloud.palmproject.ui.activity.task.TaskDetailActivity;
 import com.aopcloud.palmproject.ui.adapter.task.TaskManagerAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
+import com.aopcloud.palmproject.utils.task.TaskUtils;
 import com.aopcloud.palmproject.view.BgDarkPopupWindow;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
@@ -110,9 +111,11 @@ public class TaskFragment extends BaseFragment implements OnTaskFilterListener {
         timeOutList.clear();
         currentTaskList.clear();
         for (int i = 0; i < mAllBeanList.size(); i++) {
-            if (mAllBeanList.get(i).getStatus_str().equals("已逾期") || mAllBeanList.get(i).getStatus_str().equals("已超期")) {
+//            String state = mAllBeanList.get(i).getStatus_str();
+            String state = TaskUtils.getState(mAllBeanList.get(i));
+            if (state.equals("已逾期") || state.equals("已超期")) {
                 timeOutList.add(mAllBeanList.get(i));
-            } else if (mAllBeanList.get(i).getStatus_str().equals("进行中")) {
+            } else if (state.equals("进行中")) {
                 currentTaskList.add(mAllBeanList.get(i));
             }
         }
