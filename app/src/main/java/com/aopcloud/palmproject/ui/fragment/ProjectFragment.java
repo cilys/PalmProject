@@ -34,6 +34,7 @@ import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.aopcloud.palmproject.ui.activity.staff.bean.StaffListBean;
 import com.aopcloud.palmproject.ui.activity.task.TaskDetailActivity;
 import com.aopcloud.palmproject.ui.activity.task.TaskManageActivity;
+import com.aopcloud.palmproject.ui.activity.task.list.RvTaskListAdapter;
 import com.aopcloud.palmproject.ui.activity.task.list.TaskListAc;
 import com.aopcloud.palmproject.ui.adapter.enterprise.EnterpriseProjectAdapter;
 import com.aopcloud.palmproject.ui.adapter.enterprise.EnterpriseTaskAdapter;
@@ -119,7 +120,8 @@ public class ProjectFragment extends BaseFragment {
 
 //    private EnterpriseTodoAdapter mTodoAdapter;
     private EnterpriseProjectAdapter mProjectAdapter;
-    private EnterpriseTaskAdapter mTaskAdapter;
+//    private EnterpriseTaskAdapter mTaskAdapter;
+    private RvTaskListAdapter mTaskAdapter;
     private List todoList = new ArrayList();
     private List<ProjectListBean> projectList = new ArrayList();
     private List<ProjectTaskBean> mTaskBeans = new ArrayList();
@@ -179,7 +181,8 @@ public class ProjectFragment extends BaseFragment {
                 .build();
 //        mTodoAdapter = new EnterpriseTodoAdapter(R.layout.item_enterprise_todo, todoList);
         mProjectAdapter = new EnterpriseProjectAdapter(R.layout.item_enterprise_project, projectList);
-        mTaskAdapter = new EnterpriseTaskAdapter(R.layout.item_enterprise_task, mTaskBeans);
+//        mTaskAdapter = new EnterpriseTaskAdapter(R.layout.item_enterprise_task, mTaskBeans);
+        mTaskAdapter = new RvTaskListAdapter(R.layout.item_enterprise_task, mTaskBeans);
 
         mRvProject.addItemDecoration(decoration);
         mRvProject.setLayoutManager(new LinearLayoutManager(mActivity));

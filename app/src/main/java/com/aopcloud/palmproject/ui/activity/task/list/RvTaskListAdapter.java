@@ -37,6 +37,12 @@ public class RvTaskListAdapter extends BaseQuickAdapter<ProjectTaskBean, BaseVie
                 .setVisible(R.id.tv_project_time, !state.equals("未安排"))
                 .setVisible(R.id.tv_project_time_count, TaskStatus.STATE_expect.equals(state))
                 .setVisible(R.id.tv_progress, !state.equals("未安排"))
+                .setVisible(R.id.tv_state, !(
+                            TaskStatus.STATE_no_start.equals(state)
+                            || TaskStatus.STATE_progress.equals(state)
+                            || TaskStatus.STATE_operation.equals(state)
+                            || TaskStatus.STATE_expect.equals(state))
+                        )
         ;
 
     }
