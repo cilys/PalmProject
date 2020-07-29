@@ -120,7 +120,6 @@ public class ImagesFragment extends BaseFragment implements TextView.OnEditorAct
     private List<SpinnerItemAdapter.SpinnerItemBean> mTaskList = new ArrayList();
 
     private void setViewData(List<ProjectSceneBean> beanList) {
-
         mTaskList.clear();
         mTaskList.add(new SpinnerItemAdapter.SpinnerItemBean(-1, "全部工单"));
 

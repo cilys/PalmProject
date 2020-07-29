@@ -2,17 +2,24 @@ package com.aopcloud.palmproject.ui.activity;
 
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.base.BaseActivity;
+import com.aopcloud.base.common.BaseEvent;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.bean.UserBean;
 import com.aopcloud.palmproject.bean.WeatherBean;
+import com.aopcloud.palmproject.common.ResultBean;
 import com.aopcloud.palmproject.net.BaseRequestListener;
 import com.aopcloud.palmproject.net.HttpUtils;
+import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseManagerBean;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.utils.WeatherUtils;
+import com.aopcloud.palmproject.utils.user.UserUtils;
 import com.cily.utils.base.StrUtils;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import de.greenrobot.event.EventBus;
 
 public abstract class BaseAc extends BaseActivity {
 
@@ -117,5 +124,62 @@ public abstract class BaseAc extends BaseActivity {
     protected String getUserId(){
         UserBean ub = LoginUserUtil.getLoginUserBean(this);
         return ub == null ? "" : "" + ub.getId();
+    }
+
+    /**
+     * 是否可以创建工单
+     * @return
+     */
+    protected boolean canAddProjectOrder(){
+        String type = LoginUserUtil.getUserRole(this);
+        return UserUtils.canAddOrder(type);
+    }
+
+    /**
+     * 获取企业的管理员
+     */
+    protected void getManageAll(){
+        String token =  LoginUserUtil.getToken(this);
+        if (StrUtils.isEmpty(token)) {
+            return;
+        }
+        String companyId = getCompanyId();
+        if (StrUtils.isEmpty(companyId)) {
+            return;
+        }
+        int uId  = -1;
+        UserBean ub = LoginUserUtil.getLoginUserBean(this);
+        if (ub != null) {
+            uId = ub.getId();
+        }
+        final int userId = uId;
+
+        HttpUtils.post(String.valueOf(ApiConstants.EventTags.manage_all),
+                ApiConstants.manage_all, null, baseParamMap(), new BaseRequestListener() {
+                    @Override
+                    public void onError(String tag, Exception e) {
+                        super.onError(tag, e);
+                    }
+
+                    @Override
+                    public void onSuccess(String tag, String response) {
+                        super.onSuccess(tag, response);
+                        ResultBean bean = JSON.parseObject(response, ResultBean.class);
+                        if (bean != null && bean.getCode() == 0) {
+                            if (StrUtils.isEmpty(bean.getData())){
+                                return;
+                            }
+
+                            List<EnterpriseManagerBean> ls = JSON.parseArray(bean.getData(), EnterpriseManagerBean.class);
+                            if (ls != null) {
+                                for (EnterpriseManagerBean b : ls) {
+                                    if (b.getUser_id() == userId) {
+                                        LoginUserUtil.saveUserRole(BaseAc.this, b.getType());
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
     }
 }

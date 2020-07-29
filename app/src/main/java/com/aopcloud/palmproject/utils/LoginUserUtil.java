@@ -127,6 +127,8 @@ public class LoginUserUtil {
         SharedPreferencesUtils.removeSP(context, "userToken");
         SharedPreferencesUtils.removeSP(context, "CurrentEnterpriseBean");
         SharedPreferencesUtils.removeSP(context, "Enterprise");
+
+        remove(context, "userRole");
     }
 
     public static void setSignup(Context cx, String userId, Map<String, String> param){
@@ -161,5 +163,18 @@ public class LoginUserUtil {
             return;
         }
         SharedPreferencesUtils.removeSP(cx, key);
+    }
+
+    public static void saveUserRole(Context cx, String type){
+        if (cx == null || type == null){
+            return;
+        }
+        SharedPreferencesUtils.setSP(cx, "userRole" , type);
+    }
+    public static String getUserRole(Context cx){
+        if (cx == null){
+            return "";
+        }
+        return (String)SharedPreferencesUtils.getSP(cx, "userRole", "");
     }
 }

@@ -578,4 +578,11 @@ public class MainActivity extends BaseAc {
             }).show();
         }
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        getManageAll();
+    }
 }

@@ -16,6 +16,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -37,6 +38,7 @@ import com.aopcloud.palmproject.ui.adapter.base.CommonAdapter;
 import com.aopcloud.palmproject.ui.adapter.base.ViewHolder;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectTaskAdapter;
 import com.aopcloud.palmproject.ui.adapter.project.SpinnerTeamAdapter;
+import com.aopcloud.palmproject.ui.fragment.BaseFg;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.utils.task.TaskUtils;
 import com.bigkoo.pickerview.builder.TimePickerBuilder;
@@ -64,7 +66,7 @@ import butterknife.OnClick;
  * @Version : V 1.0
  * @Describe ：
  */
-public class ProjectTaskFragment extends BaseFragment implements TextView.OnEditorActionListener {
+public class ProjectTaskFragment extends BaseFg implements TextView.OnEditorActionListener {
     @BindView(R.id.et_search)
     EditText mEtSearch;
     @BindView(R.id.iv_chart)
@@ -79,6 +81,8 @@ public class ProjectTaskFragment extends BaseFragment implements TextView.OnEdit
     CheckBox mCheckbox;
     @BindView(R.id.tv_type)
     TextView mTvType;
+    @BindView(R.id.ll_bottom)
+    LinearLayout ll_bottom;
 
     private ProjectTaskAdapter mAdapter;
     private List<ProjectTaskBean> mAllList = new ArrayList();
@@ -135,6 +139,8 @@ public class ProjectTaskFragment extends BaseFragment implements TextView.OnEdit
         mAdapter.isUseEmpty(true);
 
         mEtSearch.setOnEditorActionListener(this::onEditorAction);
+
+        ll_bottom.setVisibility(canAddProjectOrder() ? View.VISIBLE : View.GONE);
     }
 
     private void setViewData(List<ProjectTaskBean> beanList) {
