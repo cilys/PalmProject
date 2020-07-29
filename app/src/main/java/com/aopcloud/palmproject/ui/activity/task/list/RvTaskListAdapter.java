@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.conf.TaskStatus;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectTaskBean;
 import com.aopcloud.palmproject.utils.DateUtils;
 import com.aopcloud.palmproject.utils.task.TaskUtils;
@@ -24,7 +25,7 @@ public class RvTaskListAdapter extends BaseQuickAdapter<ProjectTaskBean, BaseVie
         String state = TaskUtils.getState(item);
         helper.setText(R.id.tv_title, item.getName())
                 .setText(R.id.tv_count, "工作量：" + item.getWork_value() + "" + item.getWork_unit())
-                .setText(R.id.tv_state, state)
+                .setText(R.id.tv_state, TaskStatus.STATE_complete.equals(state) ? "待验收" : state)
                 .setText(R.id.tv_manager, "发起:" + item.getLeader_name())
                 .setText(R.id.tv_progress, item.getProgress() + "%")
                 .setText(R.id.tv_project_time, "限期" + DateUtils.betweenDay(item.getStart_date(), item.getEnd_date()) + "天")
@@ -34,7 +35,7 @@ public class RvTaskListAdapter extends BaseQuickAdapter<ProjectTaskBean, BaseVie
                 .setTextColor(R.id.tv_state, getStateColor(state))
                 .setVisible(R.id.tv_time, !state.equals("未安排"))
                 .setVisible(R.id.tv_project_time, !state.equals("未安排"))
-                .setVisible(R.id.tv_project_time_count, DateUtils.betweenDay(item.getEnd_date()) < 0)
+                .setVisible(R.id.tv_project_time_count, TaskStatus.STATE_expect.equals(state))
                 .setVisible(R.id.tv_progress, !state.equals("未安排"))
         ;
 

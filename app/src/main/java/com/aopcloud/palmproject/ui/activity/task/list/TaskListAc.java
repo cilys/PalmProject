@@ -106,6 +106,8 @@ public class TaskListAc extends BaseAc {
             tv_title_left.setText("未开始");
             defSelectItem = 1;
         }
+        //去掉左上角文字
+        tv_title_left.setText("");
 
         fgs = new ArrayList<>();
         for (int i = 0; i < states.length; i++) {
