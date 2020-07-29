@@ -1,6 +1,7 @@
 package com.aopcloud.palmproject.ui.fragment.project;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,11 +22,14 @@ import com.aopcloud.base.util.ViewUtil;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.dialog.BottomListMulDialog;
+import com.aopcloud.palmproject.dialog.bean.MulBean;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectLogBean;
 import com.aopcloud.palmproject.ui.adapter.project.ProjectLogAdapter;
 import com.aopcloud.palmproject.ui.adapter.project.SpinnerItemAdapter;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.view.decoration.HorizontalDividerItemDecoration;
+import com.cily.utils.base.StrUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
@@ -55,20 +59,20 @@ public class ProjectLogFragment extends BaseFragment implements OnRefreshListene
     TextView mTvTime;
     @BindView(R.id.ll_time)
     LinearLayout mLlTime;
-    @BindView(R.id.spinner_child)
-    Spinner mSpinnerChild;
-    @BindView(R.id.spinner_user)
-    Spinner mSpinnerUser;
+
     @BindView(R.id.ll_content_layout)
     LinearLayout mLlContentLayout;
     @BindView(R.id.refresh_layout)
     SmartRefreshLayout mRefreshLayout;
 
+    @BindView(R.id.tv_child)
+    TextView tv_child;
+    @BindView(R.id.tv_user)
+    TextView tv_user;
+
     private ProjectLogAdapter mAdapter;
     private List<ProjectLogBean> mBeanList = new ArrayList();
     private List<ProjectLogBean> mAllBeanList = new ArrayList();
-    private SpinnerItemAdapter mUserAdapter;
-    private SpinnerItemAdapter mTaskAdapter;
 
     public static ProjectLogFragment getInstance(String project_id) {
         ProjectLogFragment fragment = new ProjectLogFragment();
@@ -114,37 +118,135 @@ public class ProjectLogFragment extends BaseFragment implements OnRefreshListene
         mAdapter.setEmptyView(R.layout.layout_common_empty, mRvList);
         mAdapter.isUseEmpty(true);
 
-        mUserAdapter = new SpinnerItemAdapter(mActivity, R.layout.item_spinner_team, mUserList);
-        mSpinnerUser.setAdapter(mUserAdapter);
-        mTaskAdapter = new SpinnerItemAdapter(mActivity, R.layout.item_spinner_team, mTaskList);
-        mSpinnerChild.setAdapter(mTaskAdapter);
-    }
-
-    @Override
-    protected void setListener() {
-        super.setListener();
-        mSpinnerChild.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        Drawable df = getResources().getDrawable(R.mipmap.icon_sort_down);
+        df.setBounds(0, 0, 46, 26);
+        tv_child.setText("全部工单");
+        tv_child.setCompoundDrawables(null, null, df, null);
+        tv_child.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                SpinnerItemAdapter.SpinnerItemBean itemBean = (SpinnerItemAdapter.SpinnerItemBean) mSpinnerUser.getSelectedItem();
-                setFilter(0, itemBean.getId(), mTaskList.get(position).getId());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void onClick(View view) {
+                showChildDialog();
             }
         });
-        mSpinnerUser.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        tv_user.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                SpinnerItemAdapter.SpinnerItemBean itemBean = (SpinnerItemAdapter.SpinnerItemBean) mSpinnerChild.getSelectedItem();
-                setFilter(1, itemBean.getId(), mUserList.get(position).getId());
+            public void onClick(View view) {
+                showTypeDialog();
+            }
+        });
+        tv_user.setText("全部班组");
+        tv_user.setCompoundDrawables(null, null, df, null);
+    }
+    private List<MulBean> datas_child = new ArrayList<>();
+    private List<MulBean> datas_user = new ArrayList<>();
+    private BottomListMulDialog dialog_user;
+    private int selectedUserId = -1;
+    private void showTypeDialog(){
+        if (datas_user == null){
+            datas_user = new ArrayList<>();
+        }
+        if (datas_user.size() < 1) {
+            MulBean mulBean = new MulBean();
+            mulBean.setId("-1");
+            mulBean.setName("全部工单");
+            datas_user.add(mulBean);
+        }
+        for (MulBean b : datas_user) {
+            if (tv_user.getText().toString().trim().equals(b.getName())) {
+                b.setSelected(true);
+            }
+        }
+        dialog_user = new BottomListMulDialog(getActivity(), false, datas_user);
+        dialog_user.setOnClickListener(new BottomListMulDialog.OnClickListener() {
+            @Override
+            public void onCommit(View view) {
+                int position = -1;
+                for (int i = 0; i < datas_user.size(); i++) {
+                    if (datas_user.get(i).isSelected()) {
+                        position = i;
+                        break;
+                    }
+                }
+                if (position > -1) {
+                    if (!StrUtils.isEmpty(datas_user.get(position).getName())) {
+                        tv_user.setText(datas_user.get(position).getName());
+                        selectedUserId = Integer.valueOf(datas_user.get(position).getId());
+                        setFilter(1, selectedChildId, selectedUserId);
+                    }
+                }
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onCancel(View view) {
 
+            }
+
+            @Override
+            public void onItemClick(View view, int position, boolean selected) {
+                if (selected) {
+                    String name = datas_user.get(position).getName();
+                    if (!StrUtils.isEmpty(name)) {
+                        tv_user.setText(name);
+                        selectedUserId = Integer.valueOf(datas_user.get(position).getId());
+                        setFilter(1, selectedChildId, selectedUserId);
+                    }
+                }
+            }
+        });
+    }
+    private BottomListMulDialog dialog_child;
+    private int selectedChildId = -1;
+    private void showChildDialog(){
+        if (datas_child == null){
+            datas_child = new ArrayList<>();
+        }
+        if (datas_child.size() < 1) {
+            MulBean mulBean = new MulBean();
+            mulBean.setId("-1");
+            mulBean.setName("全部工单");
+            datas_child.add(mulBean);
+        }
+        for (MulBean b : datas_child) {
+            if (tv_child.getText().toString().trim().equals(b.getName())) {
+                b.setSelected(true);
+            }
+        }
+        dialog_child = new BottomListMulDialog(getActivity(), false, datas_child);
+        dialog_child.setOnClickListener(new BottomListMulDialog.OnClickListener() {
+            @Override
+            public void onCommit(View view) {
+                int position = -1;
+                for (int i = 0; i < datas_child.size(); i++) {
+                    if (datas_child.get(i).isSelected()) {
+                        position = i;
+                        break;
+                    }
+                }
+                if (position > -1) {
+                    if (!StrUtils.isEmpty(datas_child.get(position).getName())) {
+                        tv_child.setText(datas_child.get(position).getName());
+                        selectedChildId = Integer.valueOf(datas_child.get(position).getId());
+                        setFilter(0, selectedUserId, selectedChildId);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancel(View view) {
+
+            }
+
+            @Override
+            public void onItemClick(View view, int position, boolean selected) {
+                if (selected) {
+                    String name = datas_child.get(position).getName();
+                    if (!StrUtils.isEmpty(name)) {
+                        tv_child.setText(name);
+                        selectedChildId = Integer.valueOf(datas_child.get(position).getId());
+                        setFilter(0, selectedUserId, selectedChildId);
+                    }
+                }
             }
         });
     }
@@ -154,25 +256,31 @@ public class ProjectLogFragment extends BaseFragment implements OnRefreshListene
         toRequest(ApiConstants.EventTags.trends_project);
     }
 
-    private List<SpinnerItemAdapter.SpinnerItemBean> mTaskList = new ArrayList();
-    private List<SpinnerItemAdapter.SpinnerItemBean> mUserList = new ArrayList();
     private Map mUserMap = new HashMap();
     private Map mTaskMap = new HashMap();
 
     private void setViewData(List<ProjectLogBean> beanList) {
-        mTaskList.clear();
-        mUserList.clear();
+        if (datas_user == null) {
+            datas_user = new ArrayList<>();
+        }
+        datas_user.clear();
+        datas_user.add(new MulBean("-1", "全部班组"));
+
+        if (datas_child == null){
+            datas_child = new ArrayList<>();
+        }
+        datas_child.clear();
+        datas_child.add(new MulBean("-1", "全部工单"));
+
         mUserMap.clear();
-        mTaskList.add(new SpinnerItemAdapter.SpinnerItemBean(-1, "全部工单"));
-        mUserList.add(new SpinnerItemAdapter.SpinnerItemBean(-1, "全部班组"));
         for (int i = 0; i < beanList.size(); i++) {
             if (!mTaskMap.containsKey(beanList.get(i).getTask_id()) && !TextUtils.isEmpty(beanList.get(i).getTask_name())) {
                 mTaskMap.put(beanList.get(i).getTask_id(), beanList.get(i));
-                mTaskList.add(new SpinnerItemAdapter.SpinnerItemBean(beanList.get(i).getTask_id(), beanList.get(i).getTask_name()));
+                datas_child.add(new MulBean(String.valueOf(beanList.get(i).getTask_id()), beanList.get(i).getTask_name()));
             }
             if (!mUserMap.containsKey(beanList.get(i).getUser_id()) && !TextUtils.isEmpty(beanList.get(i).getUser_name())) {
                 mUserMap.put(beanList.get(i).getUser_id(), beanList.get(i));
-                mUserList.add(new SpinnerItemAdapter.SpinnerItemBean(beanList.get(i).getUser_id(), beanList.get(i).getUser_name()));
+                datas_user.add(new MulBean(String.valueOf(beanList.get(i).getUser_id()), beanList.get(i).getUser_name()));
             }
         }
         mRefreshLayout.finishLoadMore();
@@ -183,8 +291,12 @@ public class ProjectLogFragment extends BaseFragment implements OnRefreshListene
         mBeanList.addAll(mAllBeanList);
         mAdapter.notifyDataSetChanged();
 
-        mUserAdapter.notifyDataSetChanged();
-        mTaskAdapter.notifyDataSetChanged();
+        if (dialog_child != null) {
+            dialog_child.notifyDateChanged();
+        }
+        if (dialog_user != null) {
+            dialog_user.notifyDateChanged();
+        }
     }
 
 
