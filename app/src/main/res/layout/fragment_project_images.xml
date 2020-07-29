@@ -42,20 +42,25 @@
 
         </LinearLayout>
 
-        <Spinner
-            android:id="@+id/spinner_child"
+        <TextView
+            android:id="@+id/tv_child"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="15dp"
+            android:gravity="center"
             android:layout_weight="1"
-             />
+            android:textSize="16dp"
+            android:drawablePadding="5dp"
+            />
 
-        <Spinner
-            android:id="@+id/spinner_type"
-            android:layout_width="wrap_content"
-            android:entries="@array/spinner_project_img"
+        <TextView
+            android:id="@+id/tv_type"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-           />
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="16dp"
+            android:drawablePadding="5dp" />
 
         <ImageView
             android:layout_width="28dp"

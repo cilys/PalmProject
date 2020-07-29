@@ -14,6 +14,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import java.util.List;
 
 public class BottomListMulDialog {
+    private RvBottomListMulAdapter adapter;
 
     public BottomListMulDialog(Context cx, List<MulBean> datas) {
         this(cx, true, datas);
@@ -30,13 +31,19 @@ public class BottomListMulDialog {
         rv.setLayoutManager(new LinearLayoutManager(cx));
 
 
-        RvBottomListMulAdapter adapter = new RvBottomListMulAdapter(datas);
+        adapter = new RvBottomListMulAdapter(datas);
         rv.setAdapter(adapter);
         adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 select(mulSelect, datas, position);
-                adapter.notifyLoadMoreToLoading();
+                adapter.notifyDataSetChanged();
+                if (datas.get(position).isSelected()) {
+                    if (onClickListener != null){
+                        onClickListener.onItemClick(view, position, datas.get(position).isSelected());
+                    }
+                    dialog.dismiss();
+                }
             }
         });
 
@@ -46,6 +53,7 @@ public class BottomListMulDialog {
                 if (onClickListener != null) {
                     onClickListener.onCancel(view);
                 }
+                dialog.dismiss();
             }
         });
 
@@ -55,6 +63,7 @@ public class BottomListMulDialog {
                 if (onClickListener != null) {
                     onClickListener.onCommit(view);
                 }
+                dialog.dismiss();
             }
         });
     }
@@ -86,9 +95,16 @@ public class BottomListMulDialog {
         }
     }
 
+    public void notifyDateChanged(){
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
+    }
+
     public interface OnClickListener {
         void onCommit(View view);
         void onCancel(View view);
+        void onItemClick(View view, int position, boolean selected);
     }
 
     private OnClickListener onClickListener;
