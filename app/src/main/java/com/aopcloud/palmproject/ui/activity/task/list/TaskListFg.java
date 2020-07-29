@@ -68,6 +68,8 @@ public class TaskListFg extends BaseFragment {
                 bundle.putString("task_name", "" + datas.get(position).getName());
                 bundle.putString("team_id",datas.get(position).getTeam_id() + "");
                 bundle.putString("project_name", datas.get(position).getProject_name());
+
+                bundle.putString("task_status", TaskUtils.getState(datas.get(position)));
                 gotoActivity(TaskDetailActivity.class, 0, bundle);
             }
         });

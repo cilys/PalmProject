@@ -42,6 +42,7 @@ import com.aopcloud.palmproject.ui.adapter.feagment.AppFragmentPagerAdapter;
 import com.aopcloud.palmproject.ui.fragment.home.HomeTaskFragment;
 import com.aopcloud.palmproject.ui.fragment.task.TaskCountFragment;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
+import com.aopcloud.palmproject.utils.task.TaskUtils;
 import com.aopcloud.palmproject.view.decoration.DividerItemDecoration;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.cilys.app.view.NoScrollViewPager;
@@ -316,6 +317,8 @@ public class ProjectFragment extends BaseFragment {
                 bundle.putString("project_id",mTaskBeans.get(position).getProject_id()+"");
                 bundle.putString("team_id",mTaskBeans.get(position).getTeam_id() + "");
                 bundle.putString("project_name", mTaskBeans.get(position).getProject_name() + "");
+
+                bundle.putString("task_status", TaskUtils.getState(mTaskBeans.get(position)));
                 gotoActivity(TaskDetailActivity.class, 0, bundle);
             }
         });

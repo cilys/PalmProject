@@ -42,6 +42,7 @@ import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.bean.WeatherBean;
 import com.aopcloud.palmproject.common.GlideRoundTransform;
 import com.aopcloud.palmproject.common.ResultBean;
+import com.aopcloud.palmproject.conf.TaskStatus;
 import com.aopcloud.palmproject.loader.AppImageLoader;
 import com.aopcloud.palmproject.ui.activity.camera.PictureOrVideoActivity;
 import com.aopcloud.palmproject.ui.activity.project.bean.DashboardAttendanceBean;
@@ -256,7 +257,7 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
                 Date startDate = format.parse(startTime);
                 Date endDate = format.parse(endTime);
 
-              long s=  System.currentTimeMillis();
+                long s = System.currentTimeMillis();
                 betweenDays = ((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
                 cDays = ((s - endDate.getTime()) / (1000 * 60 * 60 * 24));
 
@@ -265,8 +266,8 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
             }
         }
         mTvDays.setText(betweenDays + "天");
-        if (cDays>0){
-            mTvCurrentTime.setText("已逾期"+cDays+"天");
+        if (cDays > 0) {
+            mTvCurrentTime.setText("已逾期" + cDays + "天");
         }
         if (mTaskDetailBean.getLeader_id() == LoginUserUtil.getLoginUserBean(mActivity).getId()) {
             mIvEdit.setVisibility(View.VISIBLE);
@@ -278,6 +279,16 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
 
 //        String state = mTaskDetailBean.getStatus_str();
         String state = TaskUtils.getTaskDetailState(mTaskDetailBean);
+        if (TaskStatus.STATE_complete.equals(state)
+                || TaskStatus.STATE_pause.equals(state)
+                || state.contains("暂停")
+                || TaskStatus.STATE_cancel.equals(state)){
+
+            mIvEdit.setVisibility(View.INVISIBLE);
+            mTvSkip.setVisibility(View.INVISIBLE);
+            mTvReport.setVisibility(View.INVISIBLE);
+        }
+
         if (state.equals("未开始")) {
             addMarker(mTaskDetailBean, R.mipmap.icon_task_no_started);
         } else if (state.equals("进行中")) {
@@ -390,6 +401,7 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
         Bundle bundle;
         switch (view.getId()) {
             case R.id.iv_edit:
+                //TODO
                 bundle = new Bundle();
                 bundle.putString("task_id", task_id);
                 bundle.putString("work_unit", mTaskDetailBean.getWork_unit() + "");
@@ -429,6 +441,7 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
                 }
                 break;
             case R.id.tv_skip:
+                //TODO
                 TipsDialog.wrap(mActivity)
                         .setTitle("跳过上报出工地点")
                         .setShowCancel(true)
@@ -443,6 +456,7 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
                         }).show();
                 break;
             case R.id.tv_report:
+                //TODO
                 if (mTaskDetailBean == null) {
                     return;
                 }
@@ -544,7 +558,7 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
                 toRequest(ApiConstants.EventTags.attendance_status);
                 break;
             case R.id.ll_replace:
-                if (BuildConfig.DEBUG){
+                if (BuildConfig.DEBUG) {
                     bundle = new Bundle();
                     bundle.putString("task_id", task_id);
                     bundle.putString("project_id", project_id);
@@ -764,7 +778,7 @@ public class TaskExecuteFragment extends BaseFragment implements LocationSource,
                 }
 
                 if (!StrUtils.isEmpty(amapLocation.getCity())) {
-                    if (!amapLocation.getCity().equals(WeatherBean.getCityName())){
+                    if (!amapLocation.getCity().equals(WeatherBean.getCityName())) {
                         WeatherBean.setCityName(amapLocation.getCity());
                     }
                 }

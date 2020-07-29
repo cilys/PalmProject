@@ -813,13 +813,15 @@ public class HomeTaskFragment extends BaseFg implements LocationSource
                 bundle.putString("project_name", taskBean.getProject_name());
 //                bundle.putString("project_tag", taskBean.get);
 //                bundle.putString("project_type", taskBean.getProj);
+                bundle.putString("task_status", TaskUtils.getState(taskBean));
                 gotoActivity(TaskDetailActivity.class, bundle, 0);
             }
         });
     }
 
     private void gotoTaskDetailActivity(String task_id, String project_id,
-                                        String task_name, String team_id, String project_name){
+                                        String task_name, String team_id,
+                                        String project_name){
         Bundle bundle = new Bundle();
         bundle.putString("task_id", task_id);
         bundle.putString("project_id", project_id);
@@ -887,6 +889,8 @@ public class HomeTaskFragment extends BaseFg implements LocationSource
                 bundle.putString("task_name", mTaskBeans.get(position).getName() + "");
                 bundle.putString("team_id", mTaskBeans.get(position).getTeam_id() + "");
                 bundle.putString("project_name", mTaskBeans.get(position).getProject_name());
+
+                bundle.putString("task_status", TaskUtils.getState(mTaskBeans.get(position)));
                 gotoActivity(TaskDetailActivity.class, bundle, 0);
             }
         });

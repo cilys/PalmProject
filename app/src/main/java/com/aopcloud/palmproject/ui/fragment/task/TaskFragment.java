@@ -171,6 +171,8 @@ public class TaskFragment extends BaseFragment implements OnTaskFilterListener {
                     bundle.putString("task_name", "" + mBeanList.get(position).getName());
                     bundle.putString("team_id",mBeanList.get(position).getTeam_id() + "");
                     bundle.putString("project_name", mBeanList.get(position).getProject_name());
+
+                bundle.putString("task_status", TaskUtils.getState(mBeanList.get(position)));
                     gotoActivity(TaskDetailActivity.class, 0, bundle);
 //                }
             }
