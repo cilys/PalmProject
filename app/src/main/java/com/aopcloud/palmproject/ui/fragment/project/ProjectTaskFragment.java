@@ -26,6 +26,7 @@ import com.aopcloud.base.base.BaseFragment;
 import com.aopcloud.base.util.KeyboardUtil;
 import com.aopcloud.base.util.ToastUtil;
 import com.aopcloud.base.util.ViewUtil;
+import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
@@ -462,6 +463,9 @@ public class ProjectTaskFragment extends BaseFg implements TextView.OnEditorActi
         ResultBean bean = JSON.parseObject(result, ResultBean.class);
         if (bean != null && bean.getCode() == 0) {
             if (eventTag == ApiConstants.EventTags.project_tasks) {
+//                if (BuildConfig.DEBUG) {
+//                    return;
+//                }
                 List<ProjectTaskBean> beanList = JSON.parseArray(bean.getData(), ProjectTaskBean.class);
                 setViewData(beanList);
             } else if (eventTag == ApiConstants.EventTags.project_team) {

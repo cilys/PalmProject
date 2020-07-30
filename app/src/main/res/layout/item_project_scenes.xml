@@ -2,8 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/shape_enterprise_item_bg"
+    android:padding="5dp"
+    android:layout_margin="10dp"
     android:orientation="vertical">
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,6 +13,7 @@
         android:layout_below="@+id/tv_title"
         android:layout_marginLeft="38dp"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
         android:orientation="horizontal">
 
         <TextView
@@ -32,61 +35,108 @@
             android:text="高压配电柜 1AH"
             android:textColor="#FF101010"
             android:textSize="14sp" />
-
     </LinearLayout>
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_list"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="45dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="45dp"
-        android:layout_height="wrap_content" />
+    <include layout="@layout/view_horizon_line" />
 
     <LinearLayout
-        android:id="@+id/ll_count"
-        android:layout_width="wrap_content"
-        android:layout_gravity="right"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="54dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="-28dp"
-        android:background="@drawable/shape_project_scenes_bg"
-        android:gravity="center"
-        android:paddingLeft="7dp"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
-        android:paddingRight="7dp">
-
-        <ImageView
-            android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal" >
+        <LinearLayout
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:src="@mipmap/icon_img_c" />
+            android:gravity="center_horizontal"
+            android:paddingRight="5dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_count"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tv_week"
+                style="@style/style_item_project_scenes_left_tv"
+                android:text="星期三"/>
+            <TextView
+                android:id="@+id/tv_day"
+                style="@style/style_item_project_scenes_left_tv"
+                android:textSize="12dp"
+                android:background="@color/color_gray_2"
+                android:text="今天"/>
+
+            <TextView
+                android:id="@+id/tv_class"
+                style="@style/style_item_project_scenes_left_tv"
+                android:visibility="gone"
+                android:text="土建一班" />
+
+            <ImageView
+                android:id="@+id/img_user_avater"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/ic_default_image"/>
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                style="@style/style_item_project_scenes_left_tv"
+                android:text="李四"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:ellipsize="end"
-            android:lines="1"
-            android:text="30"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:orientation="vertical">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/ll_count"
+                android:layout_width="wrap_content"
+                android:layout_gravity="right"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="9dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="-28dp"
+                android:background="@drawable/shape_project_scenes_bg"
+                android:gravity="center"
+                android:paddingLeft="7dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:paddingRight="7dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_img_c" />
+
+                <TextView
+                    android:id="@+id/tv_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:text="30"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="3天前 "
+                android:textColor="#FF6F6D6D"
+                android:visibility="gone"
+                android:textSize="12sp" />
+        </LinearLayout>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="38dp"
-        android:layout_marginTop="15dp"
-        android:ellipsize="end"
-        android:lines="1"
-        android:text="3天前 "
-        android:textColor="#FF6F6D6D"
-        android:textSize="12sp" />
+
 </LinearLayout>

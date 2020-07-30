@@ -54,6 +54,7 @@ import com.aopcloud.palmproject.ui.fragment.FindFragment;
 import com.aopcloud.palmproject.ui.fragment.HomeFragment;
 import com.aopcloud.palmproject.ui.fragment.NewsFragment;
 import com.aopcloud.palmproject.ui.fragment.ProjectFragment;
+import com.aopcloud.palmproject.utils.AppVersionUtils;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.view.CircleImageView;
 import com.aopcloud.palmproject.view.TipsDialog;
@@ -511,6 +512,10 @@ public class MainActivity extends BaseAc {
                 if (BuildConfig.VERSION_NAME.equals(version)){
 
                 } else {
+                    if (!AppVersionUtils.needUpdate(version)){
+                        return;
+                    }
+
                     TipsDialog.wrap(this)
                             .setTitle("版本更新")
                             .setShowCancel(true)

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.aopcloud.base.base.BaseFragment;
 import com.aopcloud.base.util.ToastUtil;
+import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
 import com.aopcloud.palmproject.api.ApiConstants;
 import com.aopcloud.palmproject.common.ResultBean;
@@ -379,6 +380,9 @@ public class DashboardFragment extends BaseFragment {
                 List<DashboardAttendanceBean> beanList = JSON.parseArray(bean.getData(), DashboardAttendanceBean.class);
                 setAttendanceView(beanList);
             } else if (eventTag == ApiConstants.EventTags.project_tasks) {
+//                if (BuildConfig.DEBUG){
+//                    return;
+//                }
                 List<ProjectTaskBean> beanList = JSON.parseArray(bean.getData(), ProjectTaskBean.class);
                 setViewTaskData(beanList);
             }

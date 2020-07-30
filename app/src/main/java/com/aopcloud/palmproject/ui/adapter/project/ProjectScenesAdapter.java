@@ -9,7 +9,10 @@ import android.view.View;
 import com.aopcloud.base.util.ResourceUtil;
 import com.aopcloud.palmproject.BuildConfig;
 import com.aopcloud.palmproject.R;
+import com.aopcloud.palmproject.api.ApiConstants;
+import com.aopcloud.palmproject.loader.AppImageLoader;
 import com.aopcloud.palmproject.ui.activity.project.bean.ProjectSceneBean;
+import com.aopcloud.palmproject.utils.DateUtils;
 import com.aopcloud.palmproject.view.decoration.DividerItemDecoration;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -43,7 +46,6 @@ public class ProjectScenesAdapter extends BaseQuickAdapter<ProjectSceneBean.Scen
     @Override
     protected void convert(BaseViewHolder helper, ProjectSceneBean.ScenesBean item) {
         SimpleDateFormat dateFormat = new SimpleDateFormat();
-        Date date = new Date();
 
         List list = new ArrayList();
 
@@ -55,8 +57,13 @@ public class ProjectScenesAdapter extends BaseQuickAdapter<ProjectSceneBean.Scen
         }
         helper.setText(R.id.tv_name, "" + item.getTask_name())
                 .setText(R.id.tv_count, "" + list.size())
-                .setText(R.id.tv_time, "" + dateFormat.format(date))
+                .setText(R.id.tv_user_name, item.getUser_name())
+                .setText(R.id.tv_week, DateUtils.getWeekByDay(item.getMake_time() * 1000))
+                .setText(R.id.tv_day, DateUtils.fomcatDay(item.getMake_time() * 1000))
                 .setVisible(R.id.ll_count, list.size() > 9);
+        AppImageLoader.load(mContext,
+                ApiConstants.BASE_URL_PRODUCTION + item.getUser_avatar(),
+                helper.getView(R.id.img_user_avater), 4);
 
         ProjectScenesChildAdapter adapter = new ProjectScenesChildAdapter(R.layout.item_project_scenes_img, list);
         RecyclerView gridView = helper.getView(R.id.rv_list);
