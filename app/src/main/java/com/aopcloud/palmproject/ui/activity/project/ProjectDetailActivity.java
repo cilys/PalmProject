@@ -104,6 +104,9 @@ public class ProjectDetailActivity extends BaseAc {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             project_id = bundle.getString("project_id");
+
+            saveRecentlyUsedProjects(project_id);
+
             project_name = bundle.getString("project_name");
             company_id = bundle.getString("company_id");
             company_name = bundle.getString("company_name");

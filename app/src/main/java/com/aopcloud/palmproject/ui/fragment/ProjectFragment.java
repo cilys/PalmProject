@@ -45,10 +45,12 @@ import com.aopcloud.palmproject.utils.LoginUserUtil;
 import com.aopcloud.palmproject.utils.task.TaskUtils;
 import com.aopcloud.palmproject.view.decoration.DividerItemDecoration;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.cily.utils.base.StrUtils;
 import com.cilys.app.view.NoScrollViewPager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -64,7 +66,7 @@ import butterknife.OnClick;
  * @Version : V 1.0
  * @Describe ：
  */
-public class ProjectFragment extends BaseFragment {
+public class ProjectFragment extends BaseFg {
 
     @BindView(R.id.ll_info)
     LinearLayout mLlInfo;
@@ -291,15 +293,71 @@ public class ProjectFragment extends BaseFragment {
             }
         });
     }
+    private void addDataToTasks(List<ProjectTaskBean> beanList){
+        String[] recentProjects = getRecentlyUsedTasks();
+        if (recentProjects == null || recentProjects.length < 1) {
+            if (beanList.size() >= 3) {
+                mTaskBeans.addAll(beanList.subList(0, 3));
+            } else {
+                mTaskBeans.addAll(beanList);
+            }
+        } else {
+            String p0 = null, p1 = null, p2 = null;
+            if (recentProjects.length == 1) {
+                p0 = recentProjects[0];
+            } else if (recentProjects.length == 2) {
+                p0 = recentProjects[0];
+                p1 = recentProjects[1];
+            } else {
+                p0 = recentProjects[0];
+                p1 = recentProjects[1];
+                p2 = recentProjects[0];
+            }
 
+            ProjectTaskBean b0 = null, b1 = null, b2 = null;
+            Iterator<ProjectTaskBean> it = beanList.iterator();
+            while (it.hasNext()) {
+                ProjectTaskBean bean = it.next();
+                String pId = String.valueOf(bean.getTask_id());
+                if (pId.equals(p0)) {
+                    b0 = bean;
+                    it.remove();
+                } else if (pId.equals(p1)) {
+                    b1 = bean;
+                    it.remove();
+                } else if (pId.equals(p2)) {
+                    b2 = bean;
+                    it.remove();
+                }
+            }
+            if (b2 == b1 || b2 == b0) {
+                b2 = null;
+            }
+            if (b1 == b0) {
+                b1 = null;
+            }
+
+            if (b0 != null) {
+                mTaskBeans.add(b0);
+            }
+            if (b1 != null) {
+                mTaskBeans.add(b1);
+            }
+            if (b2 != null) {
+                mTaskBeans.add(b2);
+            }
+
+            Iterator<ProjectTaskBean> iterator = beanList.iterator();
+            while (mTaskBeans.size() < 3 && iterator.hasNext()) {
+                mTaskBeans.add(iterator.next());
+                iterator.remove();
+            }
+        }
+    }
     private void setViewTaskData(List<ProjectTaskBean> beanList) {
         mTaskBeans.clear();
         if (beanList != null){
-            if (beanList.size() > 3){
-                mTaskBeans.addAll(beanList.subList(0, 3));
-            }else {
-                mTaskBeans.addAll(beanList);
-            }
+            addDataToTasks(beanList);
         }
 //        mTaskBeans.addAll(beanList);
         mTaskAdapter.notifyDataSetChanged();
@@ -343,16 +401,72 @@ public class ProjectFragment extends BaseFragment {
         mTvEnterpriseName.setText(enterpriseInfoBean.getName());
     }
 
+    private void addDataToProjects(List<ProjectListBean> beanList){
+        String[] recentProjects = getRecentlyUsedProjects();
+        if (recentProjects == null || recentProjects.length < 1) {
+            if (beanList.size() >= 3) {
+                projectList.addAll(beanList.subList(0, 3));
+            } else {
+                projectList.addAll(beanList);
+            }
+        } else {
+            String p0 = null, p1 = null, p2 = null;
+            if (recentProjects.length == 1) {
+                p0 = recentProjects[0];
+            } else if (recentProjects.length == 2) {
+                p0 = recentProjects[0];
+                p1 = recentProjects[1];
+            } else {
+                p0 = recentProjects[0];
+                p1 = recentProjects[1];
+                p2 = recentProjects[0];
+            }
+
+            ProjectListBean b0 = null, b1 = null, b2 = null;
+            Iterator<ProjectListBean> it = beanList.iterator();
+            while (it.hasNext()) {
+                ProjectListBean bean = it.next();
+                String pId = String.valueOf(bean.getProject_id());
+                if (pId.equals(p0)) {
+                    b0 = bean;
+                    it.remove();
+                } else if (pId.equals(p1)) {
+                    b1 = bean;
+                    it.remove();
+                } else if (pId.equals(p2)) {
+                    b2 = bean;
+                    it.remove();
+                }
+                if (b2 == b1 || b2 == b0) {
+                    b2 = null;
+                }
+                if (b1 == b0) {
+                    b1 = null;
+                }
+            }
+            if (b0 != null) {
+                projectList.add(b0);
+            }
+            if (b1 != null) {
+                projectList.add(b1);
+            }
+            if (b2 != null) {
+                projectList.add(b2);
+            }
+
+            Iterator<ProjectListBean> iterator = beanList.iterator();
+            while (projectList.size() < 3 && iterator.hasNext()) {
+                projectList.add(iterator.next());
+                iterator.remove();
+            }
+        }
+    }
+
     private void setViewData(List<ProjectListBean> beanList) {
         projectList.clear();
         if (beanList != null){
-            if (beanList.size() > 3) {
-                projectList.addAll(beanList.subList(0, 3));
-            }else {
-                projectList.addAll(beanList);
-            }
+            addDataToProjects(beanList);
         }
-//        projectList.addAll(beanList);
         mProjectAdapter.notifyDataSetChanged();
     }
 
@@ -425,10 +539,12 @@ public class ProjectFragment extends BaseFragment {
         if (eventTag == ApiConstants.EventTags.company_get) {
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.company_get, map);
         } else if (eventTag == ApiConstants.EventTags.project_all) {
+//            map.put("type", "1");//类型，1：我负责的，2：我参与的，3：企业全部
             map.put("type", "1");//类型，1：我负责的，2：我参与的，3：企业全部
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.project_all, map);
         } else if (eventTag == ApiConstants.EventTags.task_all) {
-            map.put("type",""+1);
+//            map.put("type",""+1);
+            map.put("type","0");
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.task_all, map);
         } else if (eventTag == ApiConstants.EventTags.company_usermange) {
             map.put("status", "" + 1);
@@ -438,36 +554,6 @@ public class ProjectFragment extends BaseFragment {
             map.put("role","1");
             iCommonRequestPresenter.requestPost(eventTag, mActivity, ApiConstants.reportjob_statistics, map);
         }
-    }
-
-    private void parseProjectCount(List<ProjectListBean> beanList){
-//        if (beanList == null || beanList.size() < 1){
-//            mTvUndo.setText("0");
-//            mTvDone.setText("0");
-//            mTvOutTime.setText("0");
-//        } else {
-//            int undo = 0;
-//            int done = 0;
-//            int outTime = 0;
-//            for (ProjectListBean b : beanList){
-//                String status = b.getStatus();
-//                if (HomeProjectFragment.STATE_completed.equals(status)
-//                    || HomeProjectFragment.STATE_finish.equals(status)){
-//                    done ++;
-//                }else {
-//                    String end_data = b.getEnd_date();
-//                    long endDate = TimeUtils.strToMil(end_data, TimeType.DAY_LINE, System.currentTimeMillis());
-//                    if (System.currentTimeMillis() > endDate){
-//                        outTime ++;
-//                    }else {
-//                        undo ++;
-//                    }
-//                }
-//            }
-//            mTvUndo.setText(String.valueOf(undo));
-//            mTvDone.setText(String.valueOf(done));
-//            mTvOutTime.setText(String.valueOf(outTime));
-//        }
     }
 
     @Override
@@ -481,7 +567,6 @@ public class ProjectFragment extends BaseFragment {
             } else if (eventTag == ApiConstants.EventTags.project_all) {
                 List<ProjectListBean> beanList = JSON.parseArray(bean.getData(), ProjectListBean.class);
                 setViewData(beanList);
-                parseProjectCount(beanList);
             } else if (eventTag == ApiConstants.EventTags.task_all) {
                 List<ProjectTaskBean> beanList = JSON.parseArray(bean.getData(), ProjectTaskBean.class);
                 setViewTaskData(beanList);

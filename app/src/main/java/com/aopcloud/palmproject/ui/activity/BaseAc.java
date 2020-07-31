@@ -11,13 +11,16 @@ import com.aopcloud.palmproject.net.BaseRequestListener;
 import com.aopcloud.palmproject.net.HttpUtils;
 import com.aopcloud.palmproject.ui.activity.enterprise.bean.EnterpriseManagerBean;
 import com.aopcloud.palmproject.utils.LoginUserUtil;
+import com.aopcloud.palmproject.utils.SpUtils;
 import com.aopcloud.palmproject.utils.WeatherUtils;
 import com.aopcloud.palmproject.utils.user.UserUtils;
 import com.cily.utils.base.StrUtils;
 
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import de.greenrobot.event.EventBus;
 
@@ -181,5 +184,102 @@ public abstract class BaseAc extends BaseActivity {
                         }
                     }
                 });
+    }
+
+    protected void saveRecentlyUsedProjects(String projectId){
+        if (StrUtils.isEmpty(projectId)) {
+            return;
+        }
+        String[] strs = getRecentlyUsedProjects();
+        LinkedHashSet<String> sets = getSaveSets(strs, projectId);
+        if (sets != null && sets.size() > 0) {
+            SpUtils.saveRecentlyUsedProjects(this, sets);
+        }
+    }
+    protected void saveRecentlyUsedTasks(String projectId){
+        if (StrUtils.isEmpty(projectId)) {
+            return;
+        }
+        String[] strs = getRecentlyUsedTasks();
+        LinkedHashSet<String> sets = getSaveSets(strs, projectId);
+        if (sets != null && sets.size() > 0) {
+            SpUtils.saveRecentlyUsedTasks(this, sets);
+        }
+    }
+
+    protected String[] getRecentlyUsedTasks(){
+        Set<String> sets = SpUtils.getRecentlyUsedTasks(this);
+        if (sets != null) {
+            return sets.toArray(new String[sets.size()]);
+        }
+        return null;
+    }
+
+    protected String[] getRecentlyUsedProjects(){
+        Set<String> sets = SpUtils.getRecentlyUsedProjects(this);
+        if (sets != null) {
+            return sets.toArray(new String[sets.size()]);
+        }
+        return null;
+    }
+
+    private LinkedHashSet<String> getSaveSets(String[] strs, String key){
+        if (StrUtils.isEmpty(key)) {
+            return null;
+        }
+
+        LinkedHashSet<String> set = new LinkedHashSet<>();
+
+        if (strs == null) {
+            set.add(key);
+        } else {
+            if (strs.length == 0) {
+                set.add(key);
+            }else if (strs.length == 1) {
+                String s = strs[0];
+                if (key.equals(s)) {
+                    set.add(s);
+                } else {
+                    set.add(key);
+                    set.add(s);
+                }
+            } else if (strs.length == 2) {
+                String s0 = strs[0];
+                String s1 = strs[1];
+                if (key.equals(s0)) {
+                    set.add(s0);
+                    set.add(s1);
+                } else if (key.equals(s1)) {
+                    set.add(s1);
+                    set.add(s0);
+                } else {
+                    set.add(key);
+                    set.add(s0);
+                    set.add(s1);
+                }
+            } else if (strs.length == 3) {
+                String s0 = strs[0];
+                String s1 = strs[1];
+                String s2 = strs[1];
+                if (key.equals(s0)) {
+                    set.add(s0);
+                    set.add(s1);
+                    set.add(s2);
+                } else if (key.equals(s1)) {
+                    set.add(s1);
+                    set.add(s0);
+                    set.add(s2);
+                } else if (key.equals(s2)) {
+                    set.add(s2);
+                    set.add(s0);
+                    set.add(s1);
+                } else {
+                    set.add(key);
+                    set.add(s0);
+                    set.add(s1);
+                }
+            }
+        }
+        return set;
     }
 }

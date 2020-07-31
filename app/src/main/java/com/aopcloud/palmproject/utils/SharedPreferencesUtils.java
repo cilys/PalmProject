@@ -3,9 +3,13 @@ package com.aopcloud.palmproject.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.cily.utils.base.StrUtils;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @PackageName : com.aopcloud.palmproject.utils
@@ -51,6 +55,24 @@ public class SharedPreferencesUtils {
         }
 
         SharedPreferencesCompat.apply(editor);
+    }
+
+    public static void saveSet(Context context, String key, LinkedHashSet<String> sets){
+        if (context == null || StrUtils.isEmpty(key) || sets == null) {
+            return;
+        }
+        SharedPreferences sp = context.getSharedPreferences(getSpName(context), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putStringSet(key, sets);
+        SharedPreferencesCompat.apply(editor);
+    }
+
+    public static Set<String> getSet(Context context, String key, Set<String> defValue){
+        if (context == null || StrUtils.isEmpty(key)) {
+            return defValue;
+        }
+        SharedPreferences sp = context.getSharedPreferences(getSpName(context), Context.MODE_PRIVATE);
+        return sp.getStringSet(key, defValue);
     }
 
     /**

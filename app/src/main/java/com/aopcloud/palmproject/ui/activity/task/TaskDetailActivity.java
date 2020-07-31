@@ -67,6 +67,9 @@ public class TaskDetailActivity extends BaseAc {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             task_id = bundle.getString("task_id");
+
+            saveRecentlyUsedTasks(task_id);
+
             project_id = bundle.getString("project_id");
             task_name =bundle.getString("task_name");
             team_id = bundle.getString("team_id");
